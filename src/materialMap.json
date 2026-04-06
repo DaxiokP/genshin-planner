@@ -1,0 +1,5561 @@
+{
+  "aberrantcoreofthedeepshadow": {
+    "id": "112138",
+    "name": "Aberrant Core of the Deep Shadow",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Fishers of Hidden Depths",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10145,
+    "localExt": ".png"
+  },
+  "adventurersexperience": {
+    "id": "104002",
+    "name": "Adventurer's Experience",
+    "rarity": 3,
+    "sources": [
+      "Adventure and Exploration Reward",
+      "Blossom of Revelation Revitalization Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 100,
+    "localExt": ".png"
+  },
+  "afloweryettobloom": {
+    "id": "112077",
+    "name": "A Flower Yet to Bloom",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Hilichurl Rogues",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10127,
+    "localExt": ".png"
+  },
+  "afterglowoflongnightflint": {
+    "id": "114078",
+    "name": "Afterglow of Long Night Flint",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15120,
+    "localExt": ".png"
+  },
+  "agentssacrificialknife": {
+    "id": "112030",
+    "name": "Agent's Sacrificial Knife",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Fatui Agents",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10110,
+    "localExt": ".png"
+  },
+  "agnidusagatechunk": {
+    "id": "104113",
+    "name": "Agnidus Agate Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12102,
+    "localExt": ".png"
+  },
+  "agnidusagatefragment": {
+    "id": "104112",
+    "name": "Agnidus Agate Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12102,
+    "localExt": ".png"
+  },
+  "agnidusagategemstone": {
+    "id": "104114",
+    "name": "Agnidus Agate Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12102,
+    "localExt": ".png"
+  },
+  "agnidusagatesliver": {
+    "id": "104111",
+    "name": "Agnidus Agate Sliver",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop",
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12102,
+    "localExt": ".png"
+  },
+  "alienlifecore": {
+    "id": "112091",
+    "name": "Alien Life Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Breacher Primuses",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10131,
+    "localExt": ".png"
+  },
+  "amakumofruit": {
+    "id": "101208",
+    "name": "Amakumo Fruit",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Seirai Island",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "artfuldevicefragment": {
+    "id": "114073",
+    "name": "Artful Device Fragment",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15119,
+    "localExt": ".png"
+  },
+  "artfuldeviceinheritance": {
+    "id": "114075",
+    "name": "Artful Device Inheritance",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15119,
+    "localExt": ".png"
+  },
+  "artfuldevicereplica": {
+    "id": "114074",
+    "name": "Artful Device Replica",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15119,
+    "localExt": ".png"
+  },
+  "artfuldevicewish": {
+    "id": "114076",
+    "name": "Artful Device Wish",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15119,
+    "localExt": ".png"
+  },
+  "artificeddynamicgear": {
+    "id": "112085",
+    "name": "Artificed Dynamic Gear",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Clockwork Meka",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10629,
+    "localExt": ".png"
+  },
+  "artificedspareclockworkcomponentcoppelia": {
+    "id": "113049",
+    "name": "Artificed Spare Clockwork Component — Coppelia",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ \"Icewind Suite\""
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "artificedspareclockworkcomponentcoppelius": {
+    "id": "113050",
+    "name": "Artificed Spare Clockwork Component — Coppelius",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ \"Icewind Suite\""
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "ascendedsampleknight": {
+    "id": "113073",
+    "name": "Ascended Sample: Knight",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Game Before the Gate Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "ascendedsamplequeen": {
+    "id": "113075",
+    "name": "Ascended Sample: Queen",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Game Before the Gate Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "ascendedsamplerook": {
+    "id": "113074",
+    "name": "Ascended Sample: Rook",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Game Before the Gate Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "ashenheart": {
+    "id": "113027",
+    "name": "Ashen Heart",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Signora Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "aureateradianceofthefarnorthscions": {
+    "id": "114084",
+    "name": "Aureate Radiance of the Far-North Scions",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15121,
+    "localExt": ".png"
+  },
+  "axisofthesecretsource": {
+    "id": "112113",
+    "name": "Axis of the Secret Source",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Secret Source Automaton: Hunter-Seeker",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10139,
+    "localExt": ".png"
+  },
+  "basaltpillar": {
+    "id": "113009",
+    "name": "Basalt Pillar",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv.30+ Geo Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "berylconch": {
+    "id": "101232",
+    "name": "Beryl Conch",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Salacia Plain",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "bewilderingbroadleaf": {
+    "id": "112117",
+    "name": "Bewildering Broadleaf",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Tenebrous Mimiflora",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10140,
+    "localExt": ".png"
+  },
+  "bitofaerosiderite": {
+    "id": "114023",
+    "name": "Bit of Aerosiderite",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15106,
+    "localExt": ".png"
+  },
+  "blackbronzehorn": {
+    "id": "112015",
+    "name": "Black Bronze Horn",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ mitachurls",
+      "Dropped by Lv. 40+ lawachurls",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10105,
+    "localExt": ".png"
+  },
+  "blackcrystalhorn": {
+    "id": "112016",
+    "name": "Black Crystal Horn",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ mitachurls",
+      "Dropped by Lv. 60+ lawachurls",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10105,
+    "localExt": ".png"
+  },
+  "blazeoflongnightflint": {
+    "id": "114080",
+    "name": "Blaze of Long Night Flint",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15120,
+    "localExt": ".png"
+  },
+  "blazingprismshell": {
+    "id": "112121",
+    "name": "Blazing Prismshell",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Furnace Shell Mountain Weasels",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10141,
+    "localExt": ".png"
+  },
+  "blazingsacrificialheartshesitance": {
+    "id": "114062",
+    "name": "Blazing Sacrificial Heart's Hesitance",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15116,
+    "localExt": ".png"
+  },
+  "blazingsacrificialheartsresolve": {
+    "id": "114063",
+    "name": "Blazing Sacrificial Heart's Resolve",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15116,
+    "localExt": ".png"
+  },
+  "blazingsacrificialheartssplendor": {
+    "id": "114064",
+    "name": "Blazing Sacrificial Heart's Splendor",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15116,
+    "localExt": ".png"
+  },
+  "blazingsacrificialheartsterror": {
+    "id": "114061",
+    "name": "Blazing Sacrificial Heart's Terror",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15116,
+    "localExt": ".png"
+  },
+  "bloodjadebranch": {
+    "id": "113018",
+    "name": "Bloodjade Branch",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Azhdaha Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "borealwolfsbrokenfang": {
+    "id": "114007",
+    "name": "Boreal Wolf's Broken Fang",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15102,
+    "localExt": ".png"
+  },
+  "borealwolfscrackedtooth": {
+    "id": "114006",
+    "name": "Boreal Wolf's Cracked Tooth",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15102,
+    "localExt": ".png"
+  },
+  "borealwolfsmilktooth": {
+    "id": "114005",
+    "name": "Boreal Wolf's Milk Tooth",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop in Mondstadt",
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15102,
+    "localExt": ".png"
+  },
+  "borealwolfsnostalgia": {
+    "id": "114008",
+    "name": "Boreal Wolf's Nostalgia",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15102,
+    "localExt": ".png"
+  },
+  "brilliantchrysanthemum": {
+    "id": "101248",
+    "name": "Brilliant Chrysanthemum",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Huitztli Hill",
+      "Recommendation: Found near the Stadium of the Sacred Flame",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "brilliantdiamondchunk": {
+    "id": "104103",
+    "name": "Brilliant Diamond Chunk",
+    "rarity": 4,
+    "sources": [
+      "Adventure Rank Reward"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12101,
+    "localExt": ".png"
+  },
+  "brilliantdiamondfragment": {
+    "id": "104102",
+    "name": "Brilliant Diamond Fragment",
+    "rarity": 3,
+    "sources": [
+      "Adventure Rank Reward"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12101,
+    "localExt": ".png"
+  },
+  "brilliantdiamondgemstone": {
+    "id": "104104",
+    "name": "Brilliant Diamond Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Adventure Rank Reward"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12101,
+    "localExt": ".png"
+  },
+  "brilliantdiamondsliver": {
+    "id": "104101",
+    "name": "Brilliant Diamond Sliver",
+    "rarity": 2,
+    "sources": [
+      "Adventure Rank Reward"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12101,
+    "localExt": ".png"
+  },
+  "brokendriveshaft": {
+    "id": "112122",
+    "name": "Broken Drive Shaft",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Landcruisers",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10637,
+    "localExt": ".png"
+  },
+  "brokengobletofthepristinesea": {
+    "id": "114057",
+    "name": "Broken Goblet of the Pristine Sea",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15115,
+    "localExt": ".png"
+  },
+  "callalily": {
+    "id": "100056",
+    "name": "Calla Lily",
+    "rarity": 1,
+    "sources": [
+      "Found near lakes",
+      "Recommendation: Found in Springvale",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "cecilia": {
+    "id": "100023",
+    "name": "Cecilia",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Starsnatch Cliff",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "chainsofthedandeliongladiator": {
+    "id": "114010",
+    "name": "Chains of the Dandelion Gladiator",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15103,
+    "localExt": ".png"
+  },
+  "chaosaxis": {
+    "id": "112048",
+    "name": "Chaos Axis",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Ruin Sentinels",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10116,
+    "localExt": ".png"
+  },
+  "chaosbolt": {
+    "id": "112070",
+    "name": "Chaos Bolt",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Ruin Drakes",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10124,
+    "localExt": ".png"
+  },
+  "chaoscircuit": {
+    "id": "112024",
+    "name": "Chaos Circuit",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Ruin Guards",
+      "Dropped by Lv. 40+ Ruin Hunters",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10108,
+    "localExt": ".png"
+  },
+  "chaoscore": {
+    "id": "112025",
+    "name": "Chaos Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Ruin Guards",
+      "Dropped by Lv. 60+ Ruin Hunters",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10108,
+    "localExt": ".png"
+  },
+  "chaosdevice": {
+    "id": "112023",
+    "name": "Chaos Device",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Ruin Guards",
+      "Dropped by Ruin Hunters",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10108,
+    "localExt": ".png"
+  },
+  "chaosgear": {
+    "id": "112047",
+    "name": "Chaos Gear",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Ruin Sentinels",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10116,
+    "localExt": ".png"
+  },
+  "chaosmodule": {
+    "id": "112069",
+    "name": "Chaos Module",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Ruin Drakes",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10124,
+    "localExt": ".png"
+  },
+  "chaosoculus": {
+    "id": "112049",
+    "name": "Chaos Oculus",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Ruin Sentinels",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10116,
+    "localExt": ".png"
+  },
+  "chaosstorage": {
+    "id": "112068",
+    "name": "Chaos Storage",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Ruin Drakes",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10124,
+    "localExt": ".png"
+  },
+  "chapterofanancientchord": {
+    "id": "114050",
+    "name": "Chapter of an Ancient Chord",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15113,
+    "localExt": ".png"
+  },
+  "chasmlightfin": {
+    "id": "112097",
+    "name": "Chasmlight Fin",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Xuanwen Beasts",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10133,
+    "localExt": ".png"
+  },
+  "chunkofaerosiderite": {
+    "id": "114024",
+    "name": "Chunk of Aerosiderite",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15106,
+    "localExt": ".png"
+  },
+  "cleansingheart": {
+    "id": "113012",
+    "name": "Cleansing Heart",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Oceanids"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "clearwaterjade": {
+    "id": "101241",
+    "name": "Clearwater Jade",
+    "rarity": 1,
+    "sources": [
+      "Found in the wild",
+      "Recommendation: Found in Chenyu Vale: Southern Mountain",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "cloudseamscale": {
+    "id": "113058",
+    "name": "Cloudseam Scale",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Solitary Suanni"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "coldcrackedshellshard": {
+    "id": "112119",
+    "name": "Cold-Cracked Shellshard",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Furnace Shell Mountain Weasels",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10141,
+    "localExt": ".png"
+  },
+  "concealedclaw": {
+    "id": "112056",
+    "name": "Concealed Claw",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Riftwolves",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10119,
+    "localExt": ".png"
+  },
+  "concealedtalon": {
+    "id": "112058",
+    "name": "Concealed Talon",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Riftwolves",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10119,
+    "localExt": ".png"
+  },
+  "concealedunguis": {
+    "id": "112057",
+    "name": "Concealed Unguis",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Riftwolves",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10119,
+    "localExt": ".png"
+  },
+  "coppertalismanoftheforestdew": {
+    "id": "114037",
+    "name": "Copper Talisman of the Forest Dew",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15110,
+    "localExt": ".png"
+  },
+  "coralbranchofadistantsea": {
+    "id": "114025",
+    "name": "Coral Branch of a Distant Sea",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15107,
+    "localExt": ".png"
+  },
+  "corlapis": {
+    "id": "100058",
+    "name": "Cor Lapis",
+    "rarity": 1,
+    "sources": [
+      "Found under cliffs in Liyue",
+      "Recommendation: Found on Mt. Hulao",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "crownofinsight": {
+    "id": "104319",
+    "name": "Crown of Insight",
+    "rarity": 5,
+    "sources": [
+      "Limited-Duration Event Reward"
+    ],
+    "sortGroup": 500,
+    "sortRank": 14101,
+    "localExt": ".png"
+  },
+  "crystallinebloom": {
+    "id": "113020",
+    "name": "Crystalline Bloom",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv.30+ Cryo Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "crystallinecystdust": {
+    "id": "112061",
+    "name": "Crystalline Cyst Dust",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Fungi",
+      "Dropped uncommonly by Lv. 60+ Fungi (activated)",
+      "Dropped uncommonly by Lv. 60+ Fungi (scorched)",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10621,
+    "localExt": ".png"
+  },
+  "crystalmarrow": {
+    "id": "101203",
+    "name": "Crystal Marrow",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Yashiori Island",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "crystalprism": {
+    "id": "112051",
+    "name": "Crystal Prism",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Mirror Maidens",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10117,
+    "localExt": ".png"
+  },
+  "cyclicmilitarykuuvahkicore": {
+    "id": "113080",
+    "name": "Cyclic Military Kuuvahki Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Super-Heavy Landrover: Mechanized Fortresses"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "dakasbell": {
+    "id": "113043",
+    "name": "Daka's Bell",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Shouki no Kami, the Prodigal Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "damagedmask": {
+    "id": "112005",
+    "name": "Damaged Mask",
+    "rarity": 1,
+    "sources": [
+      "Dropped by hilichurls",
+      "Dropped uncommonly by Hilichurl Shooters",
+      "Dropped uncommonly by samachurls",
+      "Dropped uncommonly by mitachurls",
+      "Dropped uncommonly by lawachurls",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10602,
+    "localExt": ".png"
+  },
+  "damagedprism": {
+    "id": "112071",
+    "name": "Damaged Prism",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Primal Constructs",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10125,
+    "localExt": ".png"
+  },
+  "dandelionseed": {
+    "id": "100057",
+    "name": "Dandelion Seed",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found at Mondstadt gates",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "darkstatuette": {
+    "id": "112018",
+    "name": "Dark Statuette",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Black Serpents",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10120,
+    "localExt": ".png"
+  },
+  "deadleylinebranch": {
+    "id": "112020",
+    "name": "Dead Ley Line Branch",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Abyss Mages",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10107,
+    "localExt": ".png"
+  },
+  "deadleylineleaves": {
+    "id": "112021",
+    "name": "Dead Ley Line Leaves",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Abyss Mages",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10107,
+    "localExt": ".png"
+  },
+  "deathlystatuette": {
+    "id": "112019",
+    "name": "Deathly Statuette",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Black Serpents",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10120,
+    "localExt": ".png"
+  },
+  "debrisofdecarabianscity": {
+    "id": "114002",
+    "name": "Debris of Decarabian's City",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15101,
+    "localExt": ".png"
+  },
+  "deliriousdecadenceofthesacredlord": {
+    "id": "114065",
+    "name": "Delirious Decadence of the Sacred Lord",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15117,
+    "localExt": ".png"
+  },
+  "deliriousdemeanorofthesacredlord": {
+    "id": "114067",
+    "name": "Delirious Demeanor of the Sacred Lord",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15117,
+    "localExt": ".png"
+  },
+  "deliriousdesolationofthesacredlord": {
+    "id": "114066",
+    "name": "Delirious Desolation of the Sacred Lord",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15117,
+    "localExt": ".png"
+  },
+  "deliriousdivinityofthesacredlord": {
+    "id": "114068",
+    "name": "Delirious Divinity of the Sacred Lord",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15117,
+    "localExt": ".png"
+  },
+  "dendrobium": {
+    "id": "101204",
+    "name": "Dendrobium",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Nazuchi Beach",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "denialandjudgment": {
+    "id": "113062",
+    "name": "Denial and Judgment",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Knave Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "desiccatedshell": {
+    "id": "112074",
+    "name": "Desiccated Shell",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Consecrated Beasts",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10126,
+    "localExt": ".png"
+  },
+  "dewofrepudiation": {
+    "id": "113028",
+    "name": "Dew of Repudiation",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Hydro Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "dismalprism": {
+    "id": "112050",
+    "name": "Dismal Prism",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Mirror Maidens",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10117,
+    "localExt": ".png"
+  },
+  "divinebodyfromguyun": {
+    "id": "114016",
+    "name": "Divine Body from Guyun",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15104,
+    "localExt": ".png"
+  },
+  "diviningscroll": {
+    "id": "112008",
+    "name": "Divining Scroll",
+    "rarity": 1,
+    "sources": [
+      "Dropped by samachurls",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10603,
+    "localExt": ".png"
+  },
+  "dormantfungalnucleus": {
+    "id": "112063",
+    "name": "Dormant Fungal Nucleus",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Fungi (activated)",
+      "Dropped by Lv. 40+ Fungi (scorched)",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10122,
+    "localExt": ".png"
+  },
+  "dracolite": {
+    "id": "101255",
+    "name": "Dracolite",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Atocpan",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "dragonheirsfalsefin": {
+    "id": "113031",
+    "name": "Dragonheir's False Fin",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Bathysmal Vishap Herds"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "dragonlordscrown": {
+    "id": "113017",
+    "name": "Dragon Lord's Crown",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Azhdaha Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "dreamofscorchingmight": {
+    "id": "114047",
+    "name": "Dream of Scorching Might",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15112,
+    "localExt": ".png"
+  },
+  "dreamofthedandeliongladiator": {
+    "id": "114012",
+    "name": "Dream of the Dandelion Gladiator",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15103,
+    "localExt": ".png"
+  },
+  "dropoftaintedwater": {
+    "id": "112086",
+    "name": "Drop of Tainted Water",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Tainted Hydro Phantasms",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10130,
+    "localExt": ".png"
+  },
+  "drossofpuresacreddewdrop": {
+    "id": "114053",
+    "name": "Dross of Pure Sacred Dewdrop",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15114,
+    "localExt": ".png"
+  },
+  "dvalinsclaw": {
+    "id": "113004",
+    "name": "Dvalin's Claw",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Stormterror Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "dvalinsplume": {
+    "id": "113003",
+    "name": "Dvalin's Plume",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Stormterror Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "dvalinssigh": {
+    "id": "113005",
+    "name": "Dvalin's Sigh",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Stormterror Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "echoofanancientchord": {
+    "id": "114052",
+    "name": "Echo of an Ancient Chord",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15113,
+    "localExt": ".png"
+  },
+  "echoofscorchingmight": {
+    "id": "114045",
+    "name": "Echo of Scorching Might",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15112,
+    "localExt": ".png"
+  },
+  "emberoflongnightflint": {
+    "id": "114077",
+    "name": "Ember of Long Night Flint",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15120,
+    "localExt": ".png"
+  },
+  "emperorsresolution": {
+    "id": "113051",
+    "name": "Emperor's Resolution",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Emperor of Fire and Iron"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "energynectar": {
+    "id": "112040",
+    "name": "Energy Nectar",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ whopperflowers",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10613,
+    "localExt": ".png"
+  },
+  "enhancementore": {
+    "id": "104011",
+    "name": "Enhancement Ore",
+    "rarity": 1,
+    "sources": [
+      "Forged",
+      "Random Event Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 5,
+    "localExt": ".png"
+  },
+  "ensnaringgaze": {
+    "id": "113067",
+    "name": "Ensnaring Gaze",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Tenebrous Papilla"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "erodedhorn": {
+    "id": "113068",
+    "name": "Eroded Horn",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Lord of Eroded Primal Fire Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "erodedscalefeather": {
+    "id": "113070",
+    "name": "Eroded Scale-Feather",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Lord of Eroded Primal Fire Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "erodedsunfire": {
+    "id": "113069",
+    "name": "Eroded Sunfire",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Lord of Eroded Primal Fire Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "essenceofpuresacreddewdrop": {
+    "id": "114056",
+    "name": "Essence of Pure Sacred Dewdrop",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15114,
+    "localExt": ".png"
+  },
+  "everamber": {
+    "id": "113048",
+    "name": "Everamber",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Guardian of Apep's Oasis Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "everflameseed": {
+    "id": "113011",
+    "name": "Everflame Seed",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Pyro Regisvines"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "evergloomring": {
+    "id": "113045",
+    "name": "Evergloom Ring",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Iniquitous Baptists"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "fadedredsatin": {
+    "id": "112065",
+    "name": "Faded Red Satin",
+    "rarity": 1,
+    "sources": [
+      "Dropped by The Eremites",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10623,
+    "localExt": ".png"
+  },
+  "fadingcandle": {
+    "id": "113060",
+    "name": "Fading Candle",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Knave Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "famedhandguard": {
+    "id": "112046",
+    "name": "Famed Handguard",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Nobushi",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10615,
+    "localExt": ".png"
+  },
+  "featheryfin": {
+    "id": "112095",
+    "name": "Feathery Fin",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Xuanwen Beasts",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10133,
+    "localExt": ".png"
+  },
+  "fettersofthedandeliongladiator": {
+    "id": "114009",
+    "name": "Fetters of the Dandelion Gladiator",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop in Mondstadt",
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15103,
+    "localExt": ".png"
+  },
+  "fineenhancementore": {
+    "id": "104012",
+    "name": "Fine Enhancement Ore",
+    "rarity": 2,
+    "sources": [
+      "Forged",
+      "Random Event Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 5,
+    "localExt": ".png"
+  },
+  "firmarrowhead": {
+    "id": "112011",
+    "name": "Firm Arrowhead",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Hilichurl Shooters",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10604,
+    "localExt": ".png"
+  },
+  "flareoflongnightflint": {
+    "id": "114079",
+    "name": "Flare of Long Night Flint",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15120,
+    "localExt": ".png"
+  },
+  "fluorescentfungus": {
+    "id": "101209",
+    "name": "Fluorescent Fungus",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Tsurumi Island",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "fontemerunihorn": {
+    "id": "113053",
+    "name": "Fontemer Unihorn",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Millennial Pearl Seahorses"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "forbiddencursescroll": {
+    "id": "112010",
+    "name": "Forbidden Curse Scroll",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ samachurls",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10603,
+    "localExt": ".png"
+  },
+  "foreignsynapse": {
+    "id": "112090",
+    "name": "Foreign Synapse",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Breacher Primuses",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10131,
+    "localExt": ".png"
+  },
+  "fossilizedboneshard": {
+    "id": "112043",
+    "name": "Fossilized Bone Shard",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Geovishap Hatchlings",
+      "Dropped by Lv. 60+ Geovishaps",
+      "Dropped by Lv. 60+ Bathysmal Vishaps",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10114,
+    "localExt": ".png"
+  },
+  "fracturedeyeofthedeepshadow": {
+    "id": "112137",
+    "name": "Fractured Eye of the Deep Shadow",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Fishers of Hidden Depths",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10145,
+    "localExt": ".png"
+  },
+  "fragileboneshard": {
+    "id": "112041",
+    "name": "Fragile Bone Shard",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Geovishap Hatchlings",
+      "Dropped by Geovishaps",
+      "Dropped by Bathysmal Vishaps",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10114,
+    "localExt": ".png"
+  },
+  "fragmentofagoldenmelody": {
+    "id": "113059",
+    "name": "Fragment of a Golden Melody",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Legatus Golems"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "fragmentofanancientchord": {
+    "id": "114049",
+    "name": "Fragment of an Ancient Chord",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15113,
+    "localExt": ".png"
+  },
+  "fragmentofdecarabiansepic": {
+    "id": "114003",
+    "name": "Fragment of Decarabian's Epic",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15101,
+    "localExt": ".png"
+  },
+  "frostetchedwarrant": {
+    "id": "112127",
+    "name": "Frost-Etched Warrant",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Fatui Oprichniki",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10638,
+    "localExt": ".png"
+  },
+  "frostlampflower": {
+    "id": "101261",
+    "name": "Frostlamp Flower",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in the Final Night Cemetery",
+      "Recommendation: Found near the Frostmoon Enclave",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 317,
+    "localExt": ".png"
+  },
+  "frostnightsglimmer": {
+    "id": "112128",
+    "name": "Frostnight's Glimmer",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Frostnight Scions",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10142,
+    "localExt": ".png"
+  },
+  "frostnightsglory": {
+    "id": "112130",
+    "name": "Frostnight's Glory",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Frostnight Scions",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10142,
+    "localExt": ".png"
+  },
+  "frostnightsglow": {
+    "id": "112129",
+    "name": "Frostnight's Glow",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Frostnight Scions",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10142,
+    "localExt": ".png"
+  },
+  "fungalspores": {
+    "id": "112059",
+    "name": "Fungal Spores",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Fungi",
+      "Dropped uncommonly by Fungi (activated)",
+      "Dropped uncommonly by Fungi (scorched)",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10621,
+    "localExt": ".png"
+  },
+  "gildedscale": {
+    "id": "113019",
+    "name": "Gilded Scale",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Azhdaha Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "glazelily": {
+    "id": "100030",
+    "name": "Glaze Lily",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Yujing Terrace, Liyue Harbor",
+      "Recommendation: Found in Qingce Village",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "gloomystatuette": {
+    "id": "112017",
+    "name": "Gloomy Statuette",
+    "rarity": 2,
+    "sources": [
+      "Dropped by the Black Serpents",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10120,
+    "localExt": ".png"
+  },
+  "glowinghornshroom": {
+    "id": "101252",
+    "name": "Glowing Hornshroom",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Tezcatepetonco Range",
+      "Recommendation: Found near the \"Masters of the Night-Wind\"",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "glowingremains": {
+    "id": "112132",
+    "name": "Glowing Remains",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Radiant Beasts",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10143,
+    "localExt": ".png"
+  },
+  "goldenbranchofadistantsea": {
+    "id": "114028",
+    "name": "Golden Branch of a Distant Sea",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15107,
+    "localExt": ".png"
+  },
+  "goldengobletofthepristinesea": {
+    "id": "114060",
+    "name": "Golden Goblet of the Pristine Sea",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15115,
+    "localExt": ".png"
+  },
+  "goldenraveninsignia": {
+    "id": "112037",
+    "name": "Golden Raven Insignia",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Treasure Hoarders",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10612,
+    "localExt": ".png"
+  },
+  "goldentalismanoftheforestdew": {
+    "id": "114040",
+    "name": "Golden Talisman of the Forest Dew",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15110,
+    "localExt": ".png"
+  },
+  "goldinscribedsecretsourcecore": {
+    "id": "113066",
+    "name": "Gold-Inscribed Secret Source Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Secret Source Automaton: Configuration Device"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "grainofaerosiderite": {
+    "id": "114021",
+    "name": "Grain of Aerosiderite",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop in Liyue",
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15106,
+    "localExt": ".png"
+  },
+  "guidetoadmonition": {
+    "id": "104330",
+    "name": "Guide to Admonition",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13110,
+    "localExt": ".png"
+  },
+  "guidetoballad": {
+    "id": "104308",
+    "name": "Guide to Ballad",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13103,
+    "localExt": ".png"
+  },
+  "guidetoconflict": {
+    "id": "104354",
+    "name": "Guide to Conflict",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13118,
+    "localExt": ".png"
+  },
+  "guidetocontention": {
+    "id": "104348",
+    "name": "Guide to Contention",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13116,
+    "localExt": ".png"
+  },
+  "guidetodiligence": {
+    "id": "104314",
+    "name": "Guide to Diligence",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13105,
+    "localExt": ".png"
+  },
+  "guidetoelegance": {
+    "id": "104324",
+    "name": "Guide to Elegance",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13108,
+    "localExt": ".png"
+  },
+  "guidetoelysium": {
+    "id": "104360",
+    "name": "Guide to Elysium",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13120,
+    "localExt": ".png"
+  },
+  "guidetoequity": {
+    "id": "104339",
+    "name": "Guide to Equity",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13113,
+    "localExt": ".png"
+  },
+  "guidetofreedom": {
+    "id": "104302",
+    "name": "Guide to Freedom",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13101,
+    "localExt": ".png"
+  },
+  "guidetogold": {
+    "id": "104317",
+    "name": "Guide to Gold",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13106,
+    "localExt": ".png"
+  },
+  "guidetoingenuity": {
+    "id": "104333",
+    "name": "Guide to Ingenuity",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13111,
+    "localExt": ".png"
+  },
+  "guidetojustice": {
+    "id": "104342",
+    "name": "Guide to Justice",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13114,
+    "localExt": ".png"
+  },
+  "guidetokindling": {
+    "id": "104351",
+    "name": "Guide to Kindling",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13117,
+    "localExt": ".png"
+  },
+  "guidetolight": {
+    "id": "104327",
+    "name": "Guide to Light",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13109,
+    "localExt": ".png"
+  },
+  "guidetomoonlight": {
+    "id": "104357",
+    "name": "Guide to Moonlight",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13119,
+    "localExt": ".png"
+  },
+  "guidetoorder": {
+    "id": "104345",
+    "name": "Guide to Order",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13115,
+    "localExt": ".png"
+  },
+  "guidetopraxis": {
+    "id": "104336",
+    "name": "Guide to Praxis",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13112,
+    "localExt": ".png"
+  },
+  "guidetoprosperity": {
+    "id": "104311",
+    "name": "Guide to Prosperity",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13104,
+    "localExt": ".png"
+  },
+  "guidetoresistance": {
+    "id": "104305",
+    "name": "Guide to Resistance",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13102,
+    "localExt": ".png"
+  },
+  "guidetotransience": {
+    "id": "104321",
+    "name": "Guide to Transience",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13107,
+    "localExt": ".png"
+  },
+  "guidetovagrancy": {
+    "id": "104363",
+    "name": "Guide to Vagrancy",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13121,
+    "localExt": ".png"
+  },
+  "heartofthesecretsource": {
+    "id": "112115",
+    "name": "Heart of the Secret Source",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Secret Source Automaton: Hunter-Seeker",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10139,
+    "localExt": ".png"
+  },
+  "heavyhorn": {
+    "id": "112014",
+    "name": "Heavy Horn",
+    "rarity": 2,
+    "sources": [
+      "Dropped by mitachurls",
+      "Dropped by lawachurls",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10105,
+    "localExt": ".png"
+  },
+  "hellfirebutterfly": {
+    "id": "113026",
+    "name": "Hellfire Butterfly",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Signora Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "hennaberry": {
+    "id": "101220",
+    "name": "Henna Berry",
+    "rarity": 1,
+    "sources": [
+      "Found in the deserts of Sumeru",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "heroswit": {
+    "id": "104003",
+    "name": "Hero's Wit",
+    "rarity": 4,
+    "sources": [
+      "Random Event Reward",
+      "Exchanged from the Realm Depot",
+      "Blossom of Revelation Revitalization Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 100,
+    "localExt": ".png"
+  },
+  "hoarfrostcore": {
+    "id": "113010",
+    "name": "Hoarfrost Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Cryo Regisvines"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "hookedbeakofthedeepshadow": {
+    "id": "112139",
+    "name": "Hooked Beak of the Deep Shadow",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Fishers of Hidden Depths",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10145,
+    "localExt": ".png"
+  },
+  "hunterssacrificialknife": {
+    "id": "112029",
+    "name": "Hunter's Sacrificial Knife",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Fatui Agents",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10110,
+    "localExt": ".png"
+  },
+  "hurricaneseed": {
+    "id": "113001",
+    "name": "Hurricane Seed",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Anemo Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "ignitedseedoflife": {
+    "id": "112111",
+    "name": "Ignited Seed of Life",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Avatars of Lava",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10138,
+    "localExt": ".png"
+  },
+  "ignitedseeingeye": {
+    "id": "112112",
+    "name": "Ignited Seeing Eye",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Avatars of Lava",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10138,
+    "localExt": ".png"
+  },
+  "ignitedstone": {
+    "id": "112110",
+    "name": "Ignited Stone",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Avatars of Lava",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10138,
+    "localExt": ".png"
+  },
+  "illusoryleafcoil": {
+    "id": "112118",
+    "name": "Illusory Leafcoil",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Tenebrous Mimiflora",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10140,
+    "localExt": ".png"
+  },
+  "immaculatewarrant": {
+    "id": "112126",
+    "name": "Immaculate Warrant",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Fatui Oprichniki",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10638,
+    "localExt": ".png"
+  },
+  "inactivatedfungalnucleus": {
+    "id": "112062",
+    "name": "Inactivated Fungal Nucleus",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Fungi (activated)",
+      "Dropped by Fungi (scorched)",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10122,
+    "localExt": ".png"
+  },
+  "inspectorssacrificialknife": {
+    "id": "112031",
+    "name": "Inspector's Sacrificial Knife",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Fatui Agents",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10110,
+    "localExt": ".png"
+  },
+  "irontalismanoftheforestdew": {
+    "id": "114038",
+    "name": "Iron Talisman of the Forest Dew",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15110,
+    "localExt": ".png"
+  },
+  "jadebranchofadistantsea": {
+    "id": "114027",
+    "name": "Jade Branch of a Distant Sea",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15107,
+    "localExt": ".png"
+  },
+  "jeweledbranchofadistantsea": {
+    "id": "114026",
+    "name": "Jeweled Branch of a Distant Sea",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15107,
+    "localExt": ".png"
+  },
+  "jueyunchili": {
+    "id": "100027",
+    "name": "Jueyun Chili",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Qingce Village",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "juvenilefang": {
+    "id": "112101",
+    "name": "Juvenile Fang",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Natlan Saurians",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10635,
+    "localExt": ".png"
+  },
+  "juvenilejade": {
+    "id": "113016",
+    "name": "Juvenile Jade",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Primo Geovishaps"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "kageuchihandguard": {
+    "id": "112045",
+    "name": "Kageuchi Handguard",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Nobushi",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10615,
+    "localExt": ".png"
+  },
+  "kalpalatalotus": {
+    "id": "101217",
+    "name": "Kalpalata Lotus",
+    "rarity": 1,
+    "sources": [
+      "Found in the mountains of Sumeru",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "lakelightlily": {
+    "id": "101238",
+    "name": "Lakelight Lily",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Erinnyes Forest",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "leylinesprout": {
+    "id": "112022",
+    "name": "Ley Line Sprout",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Abyss Mages",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10107,
+    "localExt": ".png"
+  },
+  "lieutenantsinsignia": {
+    "id": "112034",
+    "name": "Lieutenant's Insignia",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Fatui Skirmishers",
+      "Dropped uncommonly by Lv. 60+ Fatui Agents",
+      "Dropped uncommonly by Lv. 60+ Fatui Cicin Mages",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10611,
+    "localExt": ".png"
+  },
+  "lightbearingscalefeather": {
+    "id": "113078",
+    "name": "Lightbearing Scale-Feather",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Radiant Moonflies"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "lightguidingtetrahedron": {
+    "id": "113039",
+    "name": "Light Guiding Tetrahedron",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Semi-Intransient Matrices"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "lightlessbone": {
+    "id": "112131",
+    "name": "Lightless Bone",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Radiant Beasts",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10143,
+    "localExt": ".png"
+  },
+  "lightlesseyeofthemaelstrom": {
+    "id": "113055",
+    "name": "Lightless Eye of the Maelstrom",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ All-Devouring Narwhal Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "lightlessmass": {
+    "id": "113056",
+    "name": "Lightless Mass",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ All-Devouring Narwhal Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "lightlesssilkstring": {
+    "id": "113054",
+    "name": "Lightless Silk String",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ All-Devouring Narwhal Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "lightningprism": {
+    "id": "113002",
+    "name": "Lightning Prism",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Electro Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "locusofaclearwill": {
+    "id": "112108",
+    "name": "Locus of a Clear Will",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Wayob Manifestations",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10137,
+    "localExt": ".png"
+  },
+  "lumidoucebell": {
+    "id": "101235",
+    "name": "Lumidouce Bell",
+    "rarity": 1,
+    "sources": [
+      "Found in the north of the Court of Fontaine",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "luminescentpollen": {
+    "id": "112060",
+    "name": "Luminescent Pollen",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Fungi",
+      "Dropped uncommonly by Lv. 40+ Fungi (activated)",
+      "Dropped uncommonly by Lv. 40+ Fungi (scorched)",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10621,
+    "localExt": ".png"
+  },
+  "luminoussandsfromguyun": {
+    "id": "114013",
+    "name": "Luminous Sands from Guyun",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop in Liyue",
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15104,
+    "localExt": ".png"
+  },
+  "lumitoile": {
+    "id": "101237",
+    "name": "Lumitoile",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Liffey Region",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "lunarfin": {
+    "id": "112096",
+    "name": "Lunar Fin",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Xuanwen Beasts",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10133,
+    "localExt": ".png"
+  },
+  "lustrousstonefromguyun": {
+    "id": "114014",
+    "name": "Lustrous Stone from Guyun",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15104,
+    "localExt": ".png"
+  },
+  "majestichookedbeak": {
+    "id": "113036",
+    "name": "Majestic Hooked Beak",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Jadeplume Terrorshroom"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "marionettecore": {
+    "id": "113022",
+    "name": "Marionette Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Maguu Kenki"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "markedshell": {
+    "id": "112076",
+    "name": "Marked Shell",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Consecrated Beasts",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10126,
+    "localExt": ".png"
+  },
+  "markofthebindingblessing": {
+    "id": "113064",
+    "name": "Mark of the Binding Blessing",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Goldflame Qucusaur Tyrant"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "maskofthekijin": {
+    "id": "114036",
+    "name": "Mask of the Kijin",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15109,
+    "localExt": ".png"
+  },
+  "maskoftheonehorned": {
+    "id": "114035",
+    "name": "Mask of the One-Horned",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15109,
+    "localExt": ".png"
+  },
+  "maskofthetigersbite": {
+    "id": "114034",
+    "name": "Mask of the Tiger's Bite",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15109,
+    "localExt": ".png"
+  },
+  "maskofthevirtuousdoctor": {
+    "id": "113081",
+    "name": "Mask of the Virtuous Doctor",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Doctor Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "maskofthewickedlieutenant": {
+    "id": "114033",
+    "name": "Mask of the Wicked Lieutenant",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15109,
+    "localExt": ".png"
+  },
+  "mechanicalspurgear": {
+    "id": "112084",
+    "name": "Mechanical Spur Gear",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Clockwork Meka",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10629,
+    "localExt": ".png"
+  },
+  "meshinggear": {
+    "id": "112083",
+    "name": "Meshing Gear",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Clockwork Meka",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10629,
+    "localExt": ".png"
+  },
+  "mirrorofmushin": {
+    "id": "113042",
+    "name": "Mirror of Mushin",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Shouki no Kami, the Prodigal Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "mistgrass": {
+    "id": "112027",
+    "name": "Mist Grass",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Fatui Cicin Mages",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10109,
+    "localExt": ".png"
+  },
+  "mistgrasspollen": {
+    "id": "112026",
+    "name": "Mist Grass Pollen",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Fatui Cicin Mages",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10109,
+    "localExt": ".png"
+  },
+  "mistgrasswick": {
+    "id": "112028",
+    "name": "Mist Grass Wick",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Fatui Cicin Mages",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10109,
+    "localExt": ".png"
+  },
+  "mistshroudhelmet": {
+    "id": "112136",
+    "name": "Mistshroud Helmet",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Wasteland Wild Hunt",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10144,
+    "localExt": ".png"
+  },
+  "mistshroudmanifestation": {
+    "id": "112134",
+    "name": "Mistshroud Manifestation",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Wasteland Wild Hunt",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10144,
+    "localExt": ".png"
+  },
+  "mistshroudplate": {
+    "id": "112135",
+    "name": "Mistshroud Plate",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Wasteland Wild Hunt",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10144,
+    "localExt": ".png"
+  },
+  "mistveiledgoldelixir": {
+    "id": "114019",
+    "name": "Mist Veiled Gold Elixir",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15105,
+    "localExt": ".png"
+  },
+  "mistveiledleadelixir": {
+    "id": "114017",
+    "name": "Mist Veiled Lead Elixir",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop in Liyue",
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15105,
+    "localExt": ".png"
+  },
+  "mistveiledmercuryelixir": {
+    "id": "114018",
+    "name": "Mist Veiled Mercury Elixir",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15105,
+    "localExt": ".png"
+  },
+  "mistveiledprimoelixir": {
+    "id": "114020",
+    "name": "Mist Veiled Primo Elixir",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15105,
+    "localExt": ".png"
+  },
+  "moltenmoment": {
+    "id": "113025",
+    "name": "Molten Moment",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Signora Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "moonfallsilver": {
+    "id": "101263",
+    "name": "Moonfall Silver",
+    "rarity": 1,
+    "sources": [
+      "Found on Hiisi Island",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 317,
+    "localExt": ".png"
+  },
+  "mora": {
+    "id": "202",
+    "name": "Mora",
+    "rarity": 3,
+    "sources": [
+      "Adventure and Exploration Reward",
+      "Exchanged from the Realm Depot",
+      "Blossom of Wealth Revitalization Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 10,
+    "localExt": ".png"
+  },
+  "mourningflower": {
+    "id": "101223",
+    "name": "Mourning Flower",
+    "rarity": 1,
+    "sources": [
+      "Found in the deserts of Sumeru",
+      "Recommendation: Found in the Asipattravana Swamp",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "movementofanancientchord": {
+    "id": "114051",
+    "name": "Movement of an Ancient Chord",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15113,
+    "localExt": ".png"
+  },
+  "mudraofthemaleficgeneral": {
+    "id": "113032",
+    "name": "Mudra of the Malefic General",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Guardian of Eternity Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "mysticenhancementore": {
+    "id": "104013",
+    "name": "Mystic Enhancement Ore",
+    "rarity": 3,
+    "sources": [
+      "Forged",
+      "Random Event Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 5,
+    "localExt": ".png"
+  },
+  "nagadusemeraldchunk": {
+    "id": "104133",
+    "name": "Nagadus Emerald Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12104,
+    "localExt": ".png"
+  },
+  "nagadusemeraldfragment": {
+    "id": "104132",
+    "name": "Nagadus Emerald Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12104,
+    "localExt": ".png"
+  },
+  "nagadusemeraldgemstone": {
+    "id": "104134",
+    "name": "Nagadus Emerald Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12104,
+    "localExt": ".png"
+  },
+  "nagadusemeraldsliver": {
+    "id": "104131",
+    "name": "Nagadus Emerald Sliver",
+    "rarity": 2,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12104,
+    "localExt": ".png"
+  },
+  "nakuweed": {
+    "id": "101205",
+    "name": "Naku Weed",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Tatarasuna",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "narukamisaffection": {
+    "id": "114031",
+    "name": "Narukami's Affection",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15108,
+    "localExt": ".png"
+  },
+  "narukamisjoy": {
+    "id": "114030",
+    "name": "Narukami's Joy",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15108,
+    "localExt": ".png"
+  },
+  "narukamisvalor": {
+    "id": "114032",
+    "name": "Narukami's Valor",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15108,
+    "localExt": ".png"
+  },
+  "narukamiswisdom": {
+    "id": "114029",
+    "name": "Narukami's Wisdom",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15108,
+    "localExt": ".png"
+  },
+  "newborntaintedhydrophantasm": {
+    "id": "112088",
+    "name": "Newborn Tainted Hydro Phantasm",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Tainted Hydro Phantasms",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10130,
+    "localExt": ".png"
+  },
+  "nightwindsmysticaugury": {
+    "id": "114071",
+    "name": "Night-Wind's Mystic Augury",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15118,
+    "localExt": ".png"
+  },
+  "nightwindsmysticconsideration": {
+    "id": "114069",
+    "name": "Night-Wind's Mystic Consideration",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15118,
+    "localExt": ".png"
+  },
+  "nightwindsmysticpremonition": {
+    "id": "114070",
+    "name": "Night-Wind's Mystic Premonition",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15118,
+    "localExt": ".png"
+  },
+  "nightwindsmysticrevelation": {
+    "id": "114072",
+    "name": "Night-Wind's Mystic Revelation",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15118,
+    "localExt": ".png"
+  },
+  "nilotpalalotus": {
+    "id": "101215",
+    "name": "Nilotpala Lotus",
+    "rarity": 1,
+    "sources": [
+      "Found at water bodies in Sumeru",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "noctilucousjade": {
+    "id": "100028",
+    "name": "Noctilucous Jade",
+    "rarity": 1,
+    "sources": [
+      "Found in caves in Liyue",
+      "Recommendation: Found in Mingyun Village",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "oasisgardenskindness": {
+    "id": "114042",
+    "name": "Oasis Garden's Kindness",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15111,
+    "localExt": ".png"
+  },
+  "oasisgardensmourning": {
+    "id": "114043",
+    "name": "Oasis Garden's Mourning",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15111,
+    "localExt": ".png"
+  },
+  "oasisgardensreminiscence": {
+    "id": "114041",
+    "name": "Oasis Garden's Reminiscence",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15111,
+    "localExt": ".png"
+  },
+  "oasisgardenstruth": {
+    "id": "114044",
+    "name": "Oasis Garden's Truth",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15111,
+    "localExt": ".png"
+  },
+  "oblationofthefarnorthscions": {
+    "id": "114083",
+    "name": "Oblation of the Far-North Scions",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15121,
+    "localExt": ".png"
+  },
+  "oldendaysofscorchingmight": {
+    "id": "114048",
+    "name": "Olden Days of Scorching Might",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15112,
+    "localExt": ".png"
+  },
+  "oldhandguard": {
+    "id": "112044",
+    "name": "Old Handguard",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Nobushi",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10615,
+    "localExt": ".png"
+  },
+  "oldoperativespocketwatch": {
+    "id": "112092",
+    "name": "Old Operative's Pocket Watch",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Fatui Operatives",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10132,
+    "localExt": ".png"
+  },
+  "ominousmask": {
+    "id": "112007",
+    "name": "Ominous Mask",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ hilichurls",
+      "Dropped uncommonly by Lv. 60+ Hilichurl Shooters",
+      "Dropped uncommonly by Lv. 60+ samachurls",
+      "Dropped uncommonly by Lv. 60+ mitachurls",
+      "Dropped uncommonly by Lv. 60+ lawachurls",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10602,
+    "localExt": ".png"
+  },
+  "onikabuto": {
+    "id": "101201",
+    "name": "Onikabuto",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Narukami Island",
+      "Recommendation: Found in Tatarasuna",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "operativesconstancy": {
+    "id": "112094",
+    "name": "Operative's Constancy",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Fatui Operatives",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10132,
+    "localExt": ".png"
+  },
+  "operativesstandardpocketwatch": {
+    "id": "112093",
+    "name": "Operative's Standard Pocket Watch",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Fatui Operatives",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10132,
+    "localExt": ".png"
+  },
+  "overripeflamegranate": {
+    "id": "113065",
+    "name": "Overripe Flamegranate",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Gluttonous Yumkasaur Mountain King"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "padisarah": {
+    "id": "101214",
+    "name": "Padisarah",
+    "rarity": 1,
+    "sources": [
+      "Found near Sumeru City",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "perpetualcaliber": {
+    "id": "113038",
+    "name": "Perpetual Caliber",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Aeonblight Drakes"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "perpetualheart": {
+    "id": "113023",
+    "name": "Perpetual Heart",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Perpetual Mechanical Arrays"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "philanemomushroom": {
+    "id": "100025",
+    "name": "Philanemo Mushroom",
+    "rarity": 1,
+    "sources": [
+      "Found under the eaves of houses",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "philosophiesofadmonition": {
+    "id": "104331",
+    "name": "Philosophies of Admonition",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13110,
+    "localExt": ".png"
+  },
+  "philosophiesofballad": {
+    "id": "104309",
+    "name": "Philosophies of Ballad",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13103,
+    "localExt": ".png"
+  },
+  "philosophiesofconflict": {
+    "id": "104355",
+    "name": "Philosophies of Conflict",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13118,
+    "localExt": ".png"
+  },
+  "philosophiesofcontention": {
+    "id": "104349",
+    "name": "Philosophies of Contention",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13116,
+    "localExt": ".png"
+  },
+  "philosophiesofdiligence": {
+    "id": "104315",
+    "name": "Philosophies of Diligence",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13105,
+    "localExt": ".png"
+  },
+  "philosophiesofelegance": {
+    "id": "104325",
+    "name": "Philosophies of Elegance",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13108,
+    "localExt": ".png"
+  },
+  "philosophiesofelysium": {
+    "id": "104361",
+    "name": "Philosophies of Elysium",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13120,
+    "localExt": ".png"
+  },
+  "philosophiesofequity": {
+    "id": "104340",
+    "name": "Philosophies of Equity",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13113,
+    "localExt": ".png"
+  },
+  "philosophiesoffreedom": {
+    "id": "104303",
+    "name": "Philosophies of Freedom",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13101,
+    "localExt": ".png"
+  },
+  "philosophiesofgold": {
+    "id": "104318",
+    "name": "Philosophies of Gold",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13106,
+    "localExt": ".png"
+  },
+  "philosophiesofingenuity": {
+    "id": "104334",
+    "name": "Philosophies of Ingenuity",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13111,
+    "localExt": ".png"
+  },
+  "philosophiesofjustice": {
+    "id": "104343",
+    "name": "Philosophies of Justice",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13114,
+    "localExt": ".png"
+  },
+  "philosophiesofkindling": {
+    "id": "104352",
+    "name": "Philosophies of Kindling",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13117,
+    "localExt": ".png"
+  },
+  "philosophiesoflight": {
+    "id": "104328",
+    "name": "Philosophies of Light",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13109,
+    "localExt": ".png"
+  },
+  "philosophiesofmoonlight": {
+    "id": "104358",
+    "name": "Philosophies of Moonlight",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13119,
+    "localExt": ".png"
+  },
+  "philosophiesoforder": {
+    "id": "104346",
+    "name": "Philosophies of Order",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13115,
+    "localExt": ".png"
+  },
+  "philosophiesofpraxis": {
+    "id": "104337",
+    "name": "Philosophies of Praxis",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13112,
+    "localExt": ".png"
+  },
+  "philosophiesofprosperity": {
+    "id": "104312",
+    "name": "Philosophies of Prosperity",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13104,
+    "localExt": ".png"
+  },
+  "philosophiesofresistance": {
+    "id": "104306",
+    "name": "Philosophies of Resistance",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13102,
+    "localExt": ".png"
+  },
+  "philosophiesoftransience": {
+    "id": "104322",
+    "name": "Philosophies of Transience",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13107,
+    "localExt": ".png"
+  },
+  "philosophiesofvagrancy": {
+    "id": "104364",
+    "name": "Philosophies of Vagrancy",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13121,
+    "localExt": ".png"
+  },
+  "pieceofaerosiderite": {
+    "id": "114022",
+    "name": "Piece of Aerosiderite",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15106,
+    "localExt": ".png"
+  },
+  "pineamber": {
+    "id": "101269",
+    "name": "Pine Amber",
+    "rarity": 1,
+    "sources": [
+      "Found in Dreadshade Mire",
+      "Recommendation: Found near the Favonius Keep",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 317,
+    "localExt": ".png"
+  },
+  "polarizingprism": {
+    "id": "112052",
+    "name": "Polarizing Prism",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Mirror Maidens",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10117,
+    "localExt": ".png"
+  },
+  "portablebearing": {
+    "id": "101257",
+    "name": "Portable Bearing",
+    "rarity": 1,
+    "sources": [
+      "Found near Blue Amber Lake",
+      "Recommendation: Found at the Clink-Clank Krumkake Craftshop",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 317,
+    "localExt": ".png"
+  },
+  "precisiondriveshaft": {
+    "id": "112124",
+    "name": "Precision Drive Shaft",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Landcruisers",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10637,
+    "localExt": ".png"
+  },
+  "precisionkuuvahkistampingdie": {
+    "id": "113077",
+    "name": "Precision Kuuvahki Stamping Die",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Knuckle Duckles"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "primordialgreenbloom": {
+    "id": "113047",
+    "name": "Primordial Greenbloom",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Guardian of Apep's Oasis Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "prismaticseveredtail": {
+    "id": "113085",
+    "name": "Prismatic Severed Tail",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Radiant Moongeckos"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "prithivatopazchunk": {
+    "id": "104173",
+    "name": "Prithiva Topaz Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12108,
+    "localExt": ".png"
+  },
+  "prithivatopazfragment": {
+    "id": "104172",
+    "name": "Prithiva Topaz Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12108,
+    "localExt": ".png"
+  },
+  "prithivatopazgemstone": {
+    "id": "104174",
+    "name": "Prithiva Topaz Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12108,
+    "localExt": ".png"
+  },
+  "prithivatopazsliver": {
+    "id": "104171",
+    "name": "Prithiva Topaz Sliver",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop",
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12108,
+    "localExt": ".png"
+  },
+  "pseudostamens": {
+    "id": "113044",
+    "name": "Pseudo-Stamens",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Setekh Wenut"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "puppetstrings": {
+    "id": "113041",
+    "name": "Puppet Strings",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Shouki no Kami, the Prodigal Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "qingxin": {
+    "id": "100031",
+    "name": "Qingxin",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Jueyun Karst",
+      "Recommendation: Found in Guyun Stone Forest",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "quelledcreeper": {
+    "id": "113040",
+    "name": "Quelled Creeper",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv.30+ Dendro Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "quenepaberry": {
+    "id": "101249",
+    "name": "Quenepa Berry",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Coatepec Mountain",
+      "Recommendation: Found below the \"Scions of the Canopy\"",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "radiantantler": {
+    "id": "113079",
+    "name": "Radiant Antler",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Frostnight Herras"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "radiantexoskeleton": {
+    "id": "112133",
+    "name": "Radiant Exoskeleton",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Radiant Beasts",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10143,
+    "localExt": ".png"
+  },
+  "radiantprism": {
+    "id": "112073",
+    "name": "Radiant Prism",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Primal Constructs",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10125,
+    "localExt": ".png"
+  },
+  "rainbowrose": {
+    "id": "101236",
+    "name": "Rainbow Rose",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Beryl Region",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "recruitsinsignia": {
+    "id": "112032",
+    "name": "Recruit's Insignia",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Fatui Skirmishers",
+      "Dropped by some Fatui Agents",
+      "Dropped uncommonly by Fatui Cicin Mages",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10611,
+    "localExt": ".png"
+  },
+  "refractivebud": {
+    "id": "112116",
+    "name": "Refractive Bud",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Tenebrous Mimiflora",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10140,
+    "localExt": ".png"
+  },
+  "reinforceddriveshaft": {
+    "id": "112123",
+    "name": "Reinforced Drive Shaft",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Landcruisers",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10637,
+    "localExt": ".png"
+  },
+  "relicfromguyun": {
+    "id": "114015",
+    "name": "Relic from Guyun",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15104,
+    "localExt": ".png"
+  },
+  "remnantglowofscorchingmight": {
+    "id": "114046",
+    "name": "Remnant Glow of Scorching Might",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15112,
+    "localExt": ".png"
+  },
+  "remnantofthedreadwing": {
+    "id": "113084",
+    "name": "Remnant of the Dreadwing",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Lords of the Hidden Depths: Whisperer of Nightmares"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "richredbrocade": {
+    "id": "112067",
+    "name": "Rich Red Brocade",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Eremites",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10623,
+    "localExt": ".png"
+  },
+  "riftbornregalia": {
+    "id": "113030",
+    "name": "Riftborn Regalia",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Golden Wolflords"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "riftcore": {
+    "id": "112089",
+    "name": "Rift Core",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Breacher Primuses",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10131,
+    "localExt": ".png"
+  },
+  "ringofboreas": {
+    "id": "113007",
+    "name": "Ring of Boreas",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Wolf of the North Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "robustfungalnucleus": {
+    "id": "112064",
+    "name": "Robust Fungal Nucleus",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Fungi (activated)",
+      "Dropped by Lv. 60+ Fungi (scorched)",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10122,
+    "localExt": ".png"
+  },
+  "romaritimeflower": {
+    "id": "101233",
+    "name": "Romaritime Flower",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Salacia Plain",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "ruinedhilt": {
+    "id": "112098",
+    "name": "Ruined Hilt",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Praetorian Golems",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10134,
+    "localExt": ".png"
+  },
+  "rukkhashavamushrooms": {
+    "id": "101213",
+    "name": "Rukkhashava Mushrooms",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in the Ashavan Realm",
+      "Recommendation: Found in Lokapala Jungle",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "runicfang": {
+    "id": "113035",
+    "name": "Runic Fang",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Ruin Serpents"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "sakurabloom": {
+    "id": "101202",
+    "name": "Sakura Bloom",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Narukami Island",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "sandgreasepupa": {
+    "id": "101222",
+    "name": "Sand Grease Pupa",
+    "rarity": 1,
+    "sources": [
+      "Found in the deserts of Sumeru",
+      "Recommendation: Found in Wenut Tunnels",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "sangopearl": {
+    "id": "101207",
+    "name": "Sango Pearl",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Watatsumi Island",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "saurianclawsucculent": {
+    "id": "101250",
+    "name": "Saurian Claw Succulent",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in the Sulfurous Veins",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "sauriancrownedwarriorsgoldenwhistle": {
+    "id": "112106",
+    "name": "Saurian-Crowned Warrior's Golden Whistle",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Sauroform Tribal Warriors",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10636,
+    "localExt": ".png"
+  },
+  "scarab": {
+    "id": "101225",
+    "name": "Scarab",
+    "rarity": 1,
+    "sources": [
+      "Found in the desert ruins of Sumeru",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "scatteredpieceofdecarabiansdream": {
+    "id": "114004",
+    "name": "Scattered Piece of Decarabian's Dream",
+    "rarity": 5,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15101,
+    "localExt": ".png"
+  },
+  "scoopoftaintedwater": {
+    "id": "112087",
+    "name": "Scoop of Tainted Water",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Tainted Hydro Phantasms",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10130,
+    "localExt": ".png"
+  },
+  "seaganoderma": {
+    "id": "101206",
+    "name": "Sea Ganoderma",
+    "rarity": 1,
+    "sources": [
+      "Found in Inazuman seawater",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 313,
+    "localExt": ".png"
+  },
+  "sealedscroll": {
+    "id": "112009",
+    "name": "Sealed Scroll",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ samachurls",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10603,
+    "localExt": ".png"
+  },
+  "seasonedfang": {
+    "id": "112102",
+    "name": "Seasoned Fang",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Natlan Saurians",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10635,
+    "localExt": ".png"
+  },
+  "secretsourceairflowaccumulator": {
+    "id": "113076",
+    "name": "Secret Source Airflow Accumulator",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Secret Source Automaton: Overseer Device"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "sentryswoodenwhistle": {
+    "id": "112104",
+    "name": "Sentry's Wooden Whistle",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Sauroform Tribal Warriors",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10636,
+    "localExt": ".png"
+  },
+  "sergeantsinsignia": {
+    "id": "112033",
+    "name": "Sergeant's Insignia",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Fatui Skirmishers",
+      "Dropped uncommonly by Lv. 40+ Fatui Agents",
+      "Dropped uncommonly by Lv. 40+ Fatui Cicin Mages",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10611,
+    "localExt": ".png"
+  },
+  "shacklesofthedandeliongladiator": {
+    "id": "114011",
+    "name": "Shackles of the Dandelion Gladiator",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15103,
+    "localExt": ".png"
+  },
+  "shadowofthewarrior": {
+    "id": "113015",
+    "name": "Shadow of the Warrior",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Childe Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "shardofafoullegacy": {
+    "id": "113014",
+    "name": "Shard of a Foul Legacy",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Childe Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "shardofashatteredwill": {
+    "id": "112107",
+    "name": "Shard of a Shattered Will",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Wayob Manifestations",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10137,
+    "localExt": ".png"
+  },
+  "sharparrowhead": {
+    "id": "112012",
+    "name": "Sharp Arrowhead",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Hilichurl Shooters",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10604,
+    "localExt": ".png"
+  },
+  "sheathofthesecretsource": {
+    "id": "112114",
+    "name": "Sheath of the Secret Source",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Secret Source Automaton: Hunter-Seeker",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10139,
+    "localExt": ".png"
+  },
+  "shimmeringnectar": {
+    "id": "112039",
+    "name": "Shimmering Nectar",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ whopperflowers",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10613,
+    "localExt": ".png"
+  },
+  "shivadajadechunk": {
+    "id": "104163",
+    "name": "Shivada Jade Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12107,
+    "localExt": ".png"
+  },
+  "shivadajadefragment": {
+    "id": "104162",
+    "name": "Shivada Jade Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12107,
+    "localExt": ".png"
+  },
+  "shivadajadegemstone": {
+    "id": "104164",
+    "name": "Shivada Jade Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12107,
+    "localExt": ".png"
+  },
+  "shivadajadesliver": {
+    "id": "104161",
+    "name": "Shivada Jade Sliver",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop",
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12107,
+    "localExt": ".png"
+  },
+  "sigilofastridingwill": {
+    "id": "112109",
+    "name": "Sigil of a Striding Will",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Wayob Manifestations",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10137,
+    "localExt": ".png"
+  },
+  "silkenfeather": {
+    "id": "113061",
+    "name": "Silken Feather",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Knave Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "silkflower": {
+    "id": "100029",
+    "name": "Silk Flower",
+    "rarity": 1,
+    "sources": [
+      "Found near Yujing Terrace, Liyue Harbor",
+      "Found near Wangshu Inn",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "silvergobletofthepristinesea": {
+    "id": "114059",
+    "name": "Silver Goblet of the Pristine Sea",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15115,
+    "localExt": ".png"
+  },
+  "silverraveninsignia": {
+    "id": "112036",
+    "name": "Silver Raven Insignia",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Treasure Hoarders",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10612,
+    "localExt": ".png"
+  },
+  "silvertalismanoftheforestdew": {
+    "id": "114039",
+    "name": "Silver Talisman of the Forest Dew",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15110,
+    "localExt": ".png"
+  },
+  "skysplitgembloom": {
+    "id": "101254",
+    "name": "Skysplit Gembloom",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Atocpan",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "slimeconcentrate": {
+    "id": "112004",
+    "name": "Slime Concentrate",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ slimes",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10601,
+    "localExt": ".png"
+  },
+  "slimecondensate": {
+    "id": "112002",
+    "name": "Slime Condensate",
+    "rarity": 1,
+    "sources": [
+      "Dropped by slimes",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10601,
+    "localExt": ".png"
+  },
+  "slimesecretions": {
+    "id": "112003",
+    "name": "Slime Secretions",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ slimes",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10601,
+    "localExt": ".png"
+  },
+  "smalllampgrass": {
+    "id": "100055",
+    "name": "Small Lamp Grass",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Wolvendom",
+      "Recommendation: Found in the Whispering Woods",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "smolderingpearl": {
+    "id": "113024",
+    "name": "Smoldering Pearl",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv.30+ Pyro Hypostases"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "sparklessstatuecore": {
+    "id": "113072",
+    "name": "Sparkless Statue Core",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Lava Dragon Statues"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "spectralheart": {
+    "id": "112054",
+    "name": "Spectral Heart",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Specters",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10618,
+    "localExt": ".png"
+  },
+  "spectralhusk": {
+    "id": "112053",
+    "name": "Spectral Husk",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Specters",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10618,
+    "localExt": ".png"
+  },
+  "spectralnucleus": {
+    "id": "112055",
+    "name": "Spectral Nucleus",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Specters",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10618,
+    "localExt": ".png"
+  },
+  "spiritlocketofboreas": {
+    "id": "113008",
+    "name": "Spirit Locket of Boreas",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Wolf of the North Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "splinteredhilt": {
+    "id": "112099",
+    "name": "Splintered Hilt",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Praetorian Golems",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10134,
+    "localExt": ".png"
+  },
+  "sprayfeathergill": {
+    "id": "101247",
+    "name": "Sprayfeather Gill",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Toyac Springs",
+      "Recommendation: Found near the \"People of the Springs\"",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "springofpuresacreddewdrop": {
+    "id": "114055",
+    "name": "Spring of Pure Sacred Dewdrop",
+    "rarity": 4,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15114,
+    "localExt": ".png"
+  },
+  "springofthefirstdewdrop": {
+    "id": "101240",
+    "name": "Spring of the First Dewdrop",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found underwater in Morte Region",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "stainedmask": {
+    "id": "112006",
+    "name": "Stained Mask",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ hilichurls",
+      "Dropped uncommonly by Lv. 40+ Hilichurl Shooters",
+      "Dropped uncommonly by Lv. 40+ samachurls",
+      "Dropped uncommonly by Lv. 40+ mitachurls",
+      "Dropped uncommonly by Lv. 40+ lawachurls",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10602,
+    "localExt": ".png"
+  },
+  "starconch": {
+    "id": "100033",
+    "name": "Starconch",
+    "rarity": 1,
+    "sources": [
+      "Found on the beaches of Liyue",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "stillsmolderinghilt": {
+    "id": "112100",
+    "name": "Still-Smoldering Hilt",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Praetorian Golems",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10134,
+    "localExt": ".png"
+  },
+  "stormbeads": {
+    "id": "113029",
+    "name": "Storm Beads",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Thunder Manifestations"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "sturdyboneshard": {
+    "id": "112042",
+    "name": "Sturdy Bone Shard",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Geovishap Hatchlings",
+      "Dropped by Lv. 40+ Geovishaps",
+      "Dropped by Lv. 40+ Bathysmal Vishaps",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10114,
+    "localExt": ".png"
+  },
+  "sturdyshell": {
+    "id": "112075",
+    "name": "Sturdy Shell",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Consecrated Beasts",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10126,
+    "localExt": ".png"
+  },
+  "subdetectionunit": {
+    "id": "101239",
+    "name": "Subdetection Unit",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Fontaine Research Institute of Kinetic Energy Engineering Region",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 315,
+    "localExt": ".png"
+  },
+  "sublimationofpuresacreddewdrop": {
+    "id": "114054",
+    "name": "Sublimation of Pure Sacred Dewdrop",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15114,
+    "localExt": ".png"
+  },
+  "sunderedgloryofthefarnorthscions": {
+    "id": "114081",
+    "name": "Sundered Glory of the Far-North Scions",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15121,
+    "localExt": ".png"
+  },
+  "tailofboreas": {
+    "id": "113006",
+    "name": "Tail of Boreas",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Wolf of the North Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "talismanoftheenigmaticland": {
+    "id": "113071",
+    "name": "Talisman of the Enigmatic Land",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Wayward Hermetic Spiritspeakers"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "tatteredwarrant": {
+    "id": "112125",
+    "name": "Tattered Warrant",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Fatui Oprichniki",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10638,
+    "localExt": ".png"
+  },
+  "teachingsofadmonition": {
+    "id": "104329",
+    "name": "Teachings of Admonition",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13110,
+    "localExt": ".png"
+  },
+  "teachingsofballad": {
+    "id": "104307",
+    "name": "Teachings of Ballad",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13103,
+    "localExt": ".png"
+  },
+  "teachingsofconflict": {
+    "id": "104353",
+    "name": "Teachings of Conflict",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13118,
+    "localExt": ".png"
+  },
+  "teachingsofcontention": {
+    "id": "104347",
+    "name": "Teachings of Contention",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13116,
+    "localExt": ".png"
+  },
+  "teachingsofdiligence": {
+    "id": "104313",
+    "name": "Teachings of Diligence",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13105,
+    "localExt": ".png"
+  },
+  "teachingsofelegance": {
+    "id": "104323",
+    "name": "Teachings of Elegance",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13108,
+    "localExt": ".png"
+  },
+  "teachingsofelysium": {
+    "id": "104359",
+    "name": "Teachings of Elysium",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13120,
+    "localExt": ".png"
+  },
+  "teachingsofequity": {
+    "id": "104338",
+    "name": "Teachings of Equity",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13113,
+    "localExt": ".png"
+  },
+  "teachingsoffreedom": {
+    "id": "104301",
+    "name": "Teachings of Freedom",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13101,
+    "localExt": ".png"
+  },
+  "teachingsofgold": {
+    "id": "104316",
+    "name": "Teachings of Gold",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13106,
+    "localExt": ".png"
+  },
+  "teachingsofingenuity": {
+    "id": "104332",
+    "name": "Teachings of Ingenuity",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13111,
+    "localExt": ".png"
+  },
+  "teachingsofjustice": {
+    "id": "104341",
+    "name": "Teachings of Justice",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13114,
+    "localExt": ".png"
+  },
+  "teachingsofkindling": {
+    "id": "104350",
+    "name": "Teachings of Kindling",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13117,
+    "localExt": ".png"
+  },
+  "teachingsoflight": {
+    "id": "104326",
+    "name": "Teachings of Light",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13109,
+    "localExt": ".png"
+  },
+  "teachingsofmoonlight": {
+    "id": "104356",
+    "name": "Teachings of Moonlight",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13119,
+    "localExt": ".png"
+  },
+  "teachingsoforder": {
+    "id": "104344",
+    "name": "Teachings of Order",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13115,
+    "localExt": ".png"
+  },
+  "teachingsofpraxis": {
+    "id": "104335",
+    "name": "Teachings of Praxis",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13112,
+    "localExt": ".png"
+  },
+  "teachingsofprosperity": {
+    "id": "104310",
+    "name": "Teachings of Prosperity",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13104,
+    "localExt": ".png"
+  },
+  "teachingsofresistance": {
+    "id": "104304",
+    "name": "Teachings of Resistance",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13102,
+    "localExt": ".png"
+  },
+  "teachingsoftransience": {
+    "id": "104320",
+    "name": "Teachings of Transience",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13107,
+    "localExt": ".png"
+  },
+  "teachingsofvagrancy": {
+    "id": "104362",
+    "name": "Teachings of Vagrancy",
+    "rarity": 2,
+    "sources": [
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 500,
+    "sortRank": 13121,
+    "localExt": ".png"
+  },
+  "tearsofthecalamitousgod": {
+    "id": "113033",
+    "name": "Tears of the Calamitous God",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Guardian of Eternity Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "themeaningofaeons": {
+    "id": "113034",
+    "name": "The Meaning of Aeons",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Guardian of Eternity Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "thunderclapfruitcore": {
+    "id": "113037",
+    "name": "Thunderclap Fruitcore",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Electro Regisvines"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "tileofdecarabianstower": {
+    "id": "114001",
+    "name": "Tile of Decarabian's Tower",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop in Mondstadt",
+      "Exchanged in the Gift Shop"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15101,
+    "localExt": ".png"
+  },
+  "tourbillondevice": {
+    "id": "113052",
+    "name": "\"Tourbillon Device\"",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Experimental Field Generators"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "transoceanicchunk": {
+    "id": "112081",
+    "name": "Transoceanic Chunk",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Fontemer Aberrants",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10628,
+    "localExt": ".png"
+  },
+  "transoceanicpearl": {
+    "id": "112080",
+    "name": "Transoceanic Pearl",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Fontemer Aberrants",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10628,
+    "localExt": ".png"
+  },
+  "treasuredflower": {
+    "id": "112078",
+    "name": "Treasured Flower",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Hilichurl Rogues",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10127,
+    "localExt": ".png"
+  },
+  "treasurehoarderinsignia": {
+    "id": "112035",
+    "name": "Treasure Hoarder Insignia",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Treasure Hoarders",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10612,
+    "localExt": ".png"
+  },
+  "trimmedredsilk": {
+    "id": "112066",
+    "name": "Trimmed Red Silk",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Eremites",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10623,
+    "localExt": ".png"
+  },
+  "trishiraite": {
+    "id": "101224",
+    "name": "Trishiraite",
+    "rarity": 1,
+    "sources": [
+      "Found in the deserts of Sumeru",
+      "Recommendation: Found in Temir Mountains",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 314,
+    "localExt": ".png"
+  },
+  "turbidprism": {
+    "id": "112072",
+    "name": "Turbid Prism",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Primal Constructs",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10125,
+    "localExt": ".png"
+  },
+  "tuskofmonoceroscaeli": {
+    "id": "113013",
+    "name": "Tusk of Monoceros Caeli",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Childe Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "tyrantsfang": {
+    "id": "112103",
+    "name": "Tyrant's Fang",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Natlan Saurians",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10635,
+    "localExt": ".png"
+  },
+  "unyieldingdelusionofthefarnorthscions": {
+    "id": "114082",
+    "name": "Unyielding Delusion of the Far-North Scions",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15121,
+    "localExt": ".png"
+  },
+  "vajradaamethystchunk": {
+    "id": "104143",
+    "name": "Vajrada Amethyst Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12105,
+    "localExt": ".png"
+  },
+  "vajradaamethystfragment": {
+    "id": "104142",
+    "name": "Vajrada Amethyst Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12105,
+    "localExt": ".png"
+  },
+  "vajradaamethystgemstone": {
+    "id": "104144",
+    "name": "Vajrada Amethyst Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12105,
+    "localExt": ".png"
+  },
+  "vajradaamethystsliver": {
+    "id": "104141",
+    "name": "Vajrada Amethyst Sliver",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop",
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12105,
+    "localExt": ".png"
+  },
+  "valberry": {
+    "id": "100022",
+    "name": "Valberry",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Stormbearer Mountains",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "varunadalazuritechunk": {
+    "id": "104123",
+    "name": "Varunada Lazurite Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12103,
+    "localExt": ".png"
+  },
+  "varunadalazuritefragment": {
+    "id": "104122",
+    "name": "Varunada Lazurite Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12103,
+    "localExt": ".png"
+  },
+  "varunadalazuritegemstone": {
+    "id": "104124",
+    "name": "Varunada Lazurite Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12103,
+    "localExt": ".png"
+  },
+  "varunadalazuritesliver": {
+    "id": "104121",
+    "name": "Varunada Lazurite Sliver",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop",
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12103,
+    "localExt": ".png"
+  },
+  "vayudaturquoisechunk": {
+    "id": "104153",
+    "name": "Vayuda Turquoise Chunk",
+    "rarity": 4,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12106,
+    "localExt": ".png"
+  },
+  "vayudaturquoisefragment": {
+    "id": "104152",
+    "name": "Vayuda Turquoise Fragment",
+    "rarity": 3,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12106,
+    "localExt": ".png"
+  },
+  "vayudaturquoisegemstone": {
+    "id": "104154",
+    "name": "Vayuda Turquoise Gemstone",
+    "rarity": 5,
+    "sources": [
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12106,
+    "localExt": ".png"
+  },
+  "vayudaturquoisesliver": {
+    "id": "104151",
+    "name": "Vayuda Turquoise Sliver",
+    "rarity": 2,
+    "sources": [
+      "Purchase from the Souvenir Shop",
+      "Check the Enemies Tab in the Adventurer Handbook",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 400,
+    "sortRank": 12106,
+    "localExt": ".png"
+  },
+  "violetgrass": {
+    "id": "100034",
+    "name": "Violetgrass",
+    "rarity": 1,
+    "sources": [
+      "Found near cliffs in Liyue",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 312,
+    "localExt": ".png"
+  },
+  "wanderersadvice": {
+    "id": "104001",
+    "name": "Wanderer's Advice",
+    "rarity": 2,
+    "sources": [
+      "Adventure and Exploration Reward",
+      "Exchanged from the Realm Depot"
+    ],
+    "sortGroup": 800,
+    "sortRank": 100,
+    "localExt": ".png"
+  },
+  "wanderersbloomingflower": {
+    "id": "112079",
+    "name": "Wanderer's Blooming Flower",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Hilichurl Rogues",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10127,
+    "localExt": ".png"
+  },
+  "warmbackshell": {
+    "id": "112120",
+    "name": "Warm Back-Shell",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Furnace Shell Mountain Weasels",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10141,
+    "localExt": ".png"
+  },
+  "warriorsmetalwhistle": {
+    "id": "112105",
+    "name": "Warrior's Metal Whistle",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lv. 40+ Sauroform Tribal Warriors",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10636,
+    "localExt": ".png"
+  },
+  "waterthatfailedtotranscend": {
+    "id": "113057",
+    "name": "Water That Failed To Transcend",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Hydro Tulpas"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "weatheredarrowhead": {
+    "id": "112013",
+    "name": "Weathered Arrowhead",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Hilichurl Shooters",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10604,
+    "localExt": ".png"
+  },
+  "whopperflowernectar": {
+    "id": "112038",
+    "name": "Whopperflower Nectar",
+    "rarity": 1,
+    "sources": [
+      "Dropped by whopperflowers",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10613,
+    "localExt": ".png"
+  },
+  "windwheelaster": {
+    "id": "100024",
+    "name": "Windwheel Aster",
+    "rarity": 1,
+    "sources": [
+      "Found near the Statue of The Seven at Windrise",
+      "Recommendation: Found in Stormterror's Lair",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "winegobletofthepristinesea": {
+    "id": "114058",
+    "name": "Wine Goblet of the Pristine Sea",
+    "rarity": 3,
+    "sources": [
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 600,
+    "sortRank": 15115,
+    "localExt": ".png"
+  },
+  "wintericelea": {
+    "id": "101266",
+    "name": "Winter Icelea",
+    "rarity": 1,
+    "sources": [
+      "Found at the Pillar of Embla",
+      "Recommendation: Found near Amsvartnir",
+      "Grown in the Serenitea Pot",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 317,
+    "localExt": ".png"
+  },
+  "witheringpurpurbloom": {
+    "id": "101253",
+    "name": "Withering Purpurbloom",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Ochkanatlan",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 316,
+    "localExt": ".png"
+  },
+  "wolfhook": {
+    "id": "100021",
+    "name": "Wolfhook",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found in Wolvendom",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
+  "worldspanfern": {
+    "id": "113046",
+    "name": "Worldspan Fern",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Guardian of Apep's Oasis Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "xenochromaticcrystal": {
+    "id": "112082",
+    "name": "Xenochromatic Crystal",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 60+ Fontemer Aberrants",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10628,
+    "localExt": ".png"
+  }
+}
