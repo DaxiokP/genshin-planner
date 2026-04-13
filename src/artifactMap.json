@@ -1,0 +1,1074 @@
+{
+  "ADayCarvedFromRisingWinds": {
+    "name": "A Day Carved From Rising Winds",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15044_4",
+      "filename_plume": "UI_RelicIcon_15044_2",
+      "filename_sands": "UI_RelicIcon_15044_5",
+      "filename_goblet": "UI_RelicIcon_15044_1",
+      "filename_circlet": "UI_RelicIcon_15044_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15044_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15044_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15044_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15044_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15044_3.png"
+    }
+  },
+  "Adventurer": {
+    "name": "Adventurer",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_3.png",
+      "filename_flower": "UI_RelicIcon_10010_4",
+      "filename_plume": "UI_RelicIcon_10010_2",
+      "filename_sands": "UI_RelicIcon_10010_5",
+      "filename_goblet": "UI_RelicIcon_10010_1",
+      "filename_circlet": "UI_RelicIcon_10010_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10010_3.png"
+    }
+  },
+  "ArchaicPetra": {
+    "name": "Archaic Petra",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_3.png",
+      "filename_flower": "UI_RelicIcon_15014_4",
+      "filename_plume": "UI_RelicIcon_15014_2",
+      "filename_sands": "UI_RelicIcon_15014_5",
+      "filename_goblet": "UI_RelicIcon_15014_1",
+      "filename_circlet": "UI_RelicIcon_15014_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15014_3.png"
+    }
+  },
+  "AubadeofMorningstarandMoon": {
+    "name": "Aubade of Morningstar and Moon",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15043_4",
+      "filename_plume": "UI_RelicIcon_15043_2",
+      "filename_sands": "UI_RelicIcon_15043_5",
+      "filename_goblet": "UI_RelicIcon_15043_1",
+      "filename_circlet": "UI_RelicIcon_15043_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15043_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15043_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15043_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15043_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15043_3.png"
+    }
+  },
+  "Berserker": {
+    "name": "Berserker",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_3.png",
+      "filename_flower": "UI_RelicIcon_10005_4",
+      "filename_plume": "UI_RelicIcon_10005_2",
+      "filename_sands": "UI_RelicIcon_10005_5",
+      "filename_goblet": "UI_RelicIcon_10005_1",
+      "filename_circlet": "UI_RelicIcon_10005_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10005_3.png"
+    }
+  },
+  "BlizzardStrayer": {
+    "name": "Blizzard Strayer",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_3.png",
+      "filename_flower": "UI_RelicIcon_14001_4",
+      "filename_plume": "UI_RelicIcon_14001_2",
+      "filename_sands": "UI_RelicIcon_14001_5",
+      "filename_goblet": "UI_RelicIcon_14001_1",
+      "filename_circlet": "UI_RelicIcon_14001_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14001_3.png"
+    }
+  },
+  "BloodstainedChivalry": {
+    "name": "Bloodstained Chivalry",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_3.png",
+      "filename_flower": "UI_RelicIcon_15008_4",
+      "filename_plume": "UI_RelicIcon_15008_2",
+      "filename_sands": "UI_RelicIcon_15008_5",
+      "filename_goblet": "UI_RelicIcon_15008_1",
+      "filename_circlet": "UI_RelicIcon_15008_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15008_3.png"
+    }
+  },
+  "BraveHeart": {
+    "name": "Brave Heart",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_3.png",
+      "filename_flower": "UI_RelicIcon_10002_4",
+      "filename_plume": "UI_RelicIcon_10002_2",
+      "filename_sands": "UI_RelicIcon_10002_5",
+      "filename_goblet": "UI_RelicIcon_10002_1",
+      "filename_circlet": "UI_RelicIcon_10002_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10002_3.png"
+    }
+  },
+  "CrimsonWitchofFlames": {
+    "name": "Crimson Witch of Flames",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_3.png",
+      "filename_flower": "UI_RelicIcon_15006_4",
+      "filename_plume": "UI_RelicIcon_15006_2",
+      "filename_sands": "UI_RelicIcon_15006_5",
+      "filename_goblet": "UI_RelicIcon_15006_1",
+      "filename_circlet": "UI_RelicIcon_15006_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15006_3.png"
+    }
+  },
+  "DeepwoodMemories": {
+    "name": "Deepwood Memories",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_3.png",
+      "filename_flower": "UI_RelicIcon_15025_4",
+      "filename_plume": "UI_RelicIcon_15025_2",
+      "filename_sands": "UI_RelicIcon_15025_5",
+      "filename_goblet": "UI_RelicIcon_15025_1",
+      "filename_circlet": "UI_RelicIcon_15025_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15025_3.png"
+    }
+  },
+  "DefendersWill": {
+    "name": "Defender's Will",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_3.png",
+      "filename_flower": "UI_RelicIcon_10003_4",
+      "filename_plume": "UI_RelicIcon_10003_2",
+      "filename_sands": "UI_RelicIcon_10003_5",
+      "filename_goblet": "UI_RelicIcon_10003_1",
+      "filename_circlet": "UI_RelicIcon_10003_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10003_3.png"
+    }
+  },
+  "DesertPavilionChronicle": {
+    "name": "Desert Pavilion Chronicle",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_3.png",
+      "filename_flower": "UI_RelicIcon_15027_4",
+      "filename_plume": "UI_RelicIcon_15027_2",
+      "filename_sands": "UI_RelicIcon_15027_5",
+      "filename_goblet": "UI_RelicIcon_15027_1",
+      "filename_circlet": "UI_RelicIcon_15027_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15027_3.png"
+    }
+  },
+  "EchoesofanOffering": {
+    "name": "Echoes of an Offering",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_3.png",
+      "filename_flower": "UI_RelicIcon_15024_4",
+      "filename_plume": "UI_RelicIcon_15024_2",
+      "filename_sands": "UI_RelicIcon_15024_5",
+      "filename_goblet": "UI_RelicIcon_15024_1",
+      "filename_circlet": "UI_RelicIcon_15024_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15024_3.png"
+    }
+  },
+  "EmblemofSeveredFate": {
+    "name": "Emblem of Severed Fate",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_3.png",
+      "filename_flower": "UI_RelicIcon_15020_4",
+      "filename_plume": "UI_RelicIcon_15020_2",
+      "filename_sands": "UI_RelicIcon_15020_5",
+      "filename_goblet": "UI_RelicIcon_15020_1",
+      "filename_circlet": "UI_RelicIcon_15020_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15020_3.png"
+    }
+  },
+  "FinaleoftheDeepGalleries": {
+    "name": "Finale of the Deep Galleries",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15040_4",
+      "filename_plume": "UI_RelicIcon_15040_2",
+      "filename_sands": "UI_RelicIcon_15040_5",
+      "filename_goblet": "UI_RelicIcon_15040_1",
+      "filename_circlet": "UI_RelicIcon_15040_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15040_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15040_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15040_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15040_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15040_3.png"
+    }
+  },
+  "FlowerofParadiseLost": {
+    "name": "Flower of Paradise Lost",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_3.png",
+      "filename_flower": "UI_RelicIcon_15028_4",
+      "filename_plume": "UI_RelicIcon_15028_2",
+      "filename_sands": "UI_RelicIcon_15028_5",
+      "filename_goblet": "UI_RelicIcon_15028_1",
+      "filename_circlet": "UI_RelicIcon_15028_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15028_3.png"
+    }
+  },
+  "FragmentofHarmonicWhimsy": {
+    "name": "Fragment of Harmonic Whimsy",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15035_4",
+      "filename_plume": "UI_RelicIcon_15035_2",
+      "filename_sands": "UI_RelicIcon_15035_5",
+      "filename_goblet": "UI_RelicIcon_15035_1",
+      "filename_circlet": "UI_RelicIcon_15035_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15035_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15035_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15035_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15035_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15035_3.png"
+    }
+  },
+  "Gambler": {
+    "name": "Gambler",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_3.png",
+      "filename_flower": "UI_RelicIcon_10008_4",
+      "filename_plume": "UI_RelicIcon_10008_2",
+      "filename_sands": "UI_RelicIcon_10008_5",
+      "filename_goblet": "UI_RelicIcon_10008_1",
+      "filename_circlet": "UI_RelicIcon_10008_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10008_3.png"
+    }
+  },
+  "GildedDreams": {
+    "name": "Gilded Dreams",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_3.png",
+      "filename_flower": "UI_RelicIcon_15026_4",
+      "filename_plume": "UI_RelicIcon_15026_2",
+      "filename_sands": "UI_RelicIcon_15026_5",
+      "filename_goblet": "UI_RelicIcon_15026_1",
+      "filename_circlet": "UI_RelicIcon_15026_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15026_3.png"
+    }
+  },
+  "GladiatorsFinale": {
+    "name": "Gladiator's Finale",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_3.png",
+      "filename_flower": "UI_RelicIcon_15001_4",
+      "filename_plume": "UI_RelicIcon_15001_2",
+      "filename_sands": "UI_RelicIcon_15001_5",
+      "filename_goblet": "UI_RelicIcon_15001_1",
+      "filename_circlet": "UI_RelicIcon_15001_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15001_3.png"
+    }
+  },
+  "GoldenTroupe": {
+    "name": "Golden Troupe",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_3.png",
+      "filename_flower": "UI_RelicIcon_15032_4",
+      "filename_plume": "UI_RelicIcon_15032_2",
+      "filename_sands": "UI_RelicIcon_15032_5",
+      "filename_goblet": "UI_RelicIcon_15032_1",
+      "filename_circlet": "UI_RelicIcon_15032_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15032_3.png"
+    }
+  },
+  "HeartofDepth": {
+    "name": "Heart of Depth",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_3.png",
+      "filename_flower": "UI_RelicIcon_15016_4",
+      "filename_plume": "UI_RelicIcon_15016_2",
+      "filename_sands": "UI_RelicIcon_15016_5",
+      "filename_goblet": "UI_RelicIcon_15016_1",
+      "filename_circlet": "UI_RelicIcon_15016_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15016_3.png"
+    }
+  },
+  "HuskofOpulentDreams": {
+    "name": "Husk of Opulent Dreams",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_3.png",
+      "filename_flower": "UI_RelicIcon_15021_4",
+      "filename_plume": "UI_RelicIcon_15021_2",
+      "filename_sands": "UI_RelicIcon_15021_5",
+      "filename_goblet": "UI_RelicIcon_15021_1",
+      "filename_circlet": "UI_RelicIcon_15021_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15021_3.png"
+    }
+  },
+  "Instructor": {
+    "name": "Instructor",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_3.png",
+      "filename_flower": "UI_RelicIcon_10007_4",
+      "filename_plume": "UI_RelicIcon_10007_2",
+      "filename_sands": "UI_RelicIcon_10007_5",
+      "filename_goblet": "UI_RelicIcon_10007_1",
+      "filename_circlet": "UI_RelicIcon_10007_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10007_3.png"
+    }
+  },
+  "Lavawalker": {
+    "name": "Lavawalker",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_3.png",
+      "filename_flower": "UI_RelicIcon_14003_4",
+      "filename_plume": "UI_RelicIcon_14003_2",
+      "filename_sands": "UI_RelicIcon_14003_5",
+      "filename_goblet": "UI_RelicIcon_14003_1",
+      "filename_circlet": "UI_RelicIcon_14003_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14003_3.png"
+    }
+  },
+  "LongNightsOath": {
+    "name": "Long Night's Oath",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15039_4",
+      "filename_plume": "UI_RelicIcon_15039_2",
+      "filename_sands": "UI_RelicIcon_15039_5",
+      "filename_goblet": "UI_RelicIcon_15039_1",
+      "filename_circlet": "UI_RelicIcon_15039_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15039_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15039_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15039_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15039_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15039_3.png"
+    }
+  },
+  "LuckyDog": {
+    "name": "Lucky Dog",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_3.png",
+      "filename_flower": "UI_RelicIcon_10011_4",
+      "filename_plume": "UI_RelicIcon_10011_2",
+      "filename_sands": "UI_RelicIcon_10011_5",
+      "filename_goblet": "UI_RelicIcon_10011_1",
+      "filename_circlet": "UI_RelicIcon_10011_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10011_3.png"
+    }
+  },
+  "MaidenBeloved": {
+    "name": "Maiden Beloved",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_3.png",
+      "filename_flower": "UI_RelicIcon_14004_4",
+      "filename_plume": "UI_RelicIcon_14004_2",
+      "filename_sands": "UI_RelicIcon_14004_5",
+      "filename_goblet": "UI_RelicIcon_14004_1",
+      "filename_circlet": "UI_RelicIcon_14004_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14004_3.png"
+    }
+  },
+  "MarechausseeHunter": {
+    "name": "Marechaussee Hunter",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_3.png",
+      "filename_flower": "UI_RelicIcon_15031_4",
+      "filename_plume": "UI_RelicIcon_15031_2",
+      "filename_sands": "UI_RelicIcon_15031_5",
+      "filename_goblet": "UI_RelicIcon_15031_1",
+      "filename_circlet": "UI_RelicIcon_15031_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15031_3.png"
+    }
+  },
+  "MartialArtist": {
+    "name": "Martial Artist",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_3.png",
+      "filename_flower": "UI_RelicIcon_10006_4",
+      "filename_plume": "UI_RelicIcon_10006_2",
+      "filename_sands": "UI_RelicIcon_10006_5",
+      "filename_goblet": "UI_RelicIcon_10006_1",
+      "filename_circlet": "UI_RelicIcon_10006_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10006_3.png"
+    }
+  },
+  "NightoftheSkysUnveiling": {
+    "name": "Night of the Sky's Unveiling",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15041_4",
+      "filename_plume": "UI_RelicIcon_15041_2",
+      "filename_sands": "UI_RelicIcon_15041_5",
+      "filename_goblet": "UI_RelicIcon_15041_1",
+      "filename_circlet": "UI_RelicIcon_15041_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15041_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15041_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15041_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15041_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15041_3.png"
+    }
+  },
+  "NighttimeWhispersintheEchoingWoods": {
+    "name": "Nighttime Whispers in the Echoing Woods",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15034_4",
+      "filename_plume": "UI_RelicIcon_15034_2",
+      "filename_sands": "UI_RelicIcon_15034_5",
+      "filename_goblet": "UI_RelicIcon_15034_1",
+      "filename_circlet": "UI_RelicIcon_15034_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15034_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15034_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15034_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15034_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15034_3.png"
+    }
+  },
+  "NoblesseOblige": {
+    "name": "Noblesse Oblige",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_3.png",
+      "filename_flower": "UI_RelicIcon_15007_4",
+      "filename_plume": "UI_RelicIcon_15007_2",
+      "filename_sands": "UI_RelicIcon_15007_5",
+      "filename_goblet": "UI_RelicIcon_15007_1",
+      "filename_circlet": "UI_RelicIcon_15007_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15007_3.png"
+    }
+  },
+  "NymphsDream": {
+    "name": "Nymph's Dream",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_3.png",
+      "filename_flower": "UI_RelicIcon_15029_4",
+      "filename_plume": "UI_RelicIcon_15029_2",
+      "filename_sands": "UI_RelicIcon_15029_5",
+      "filename_goblet": "UI_RelicIcon_15029_1",
+      "filename_circlet": "UI_RelicIcon_15029_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15029_3.png"
+    }
+  },
+  "ObsidianCodex": {
+    "name": "Obsidian Codex",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15038_4",
+      "filename_plume": "UI_RelicIcon_15038_2",
+      "filename_sands": "UI_RelicIcon_15038_5",
+      "filename_goblet": "UI_RelicIcon_15038_1",
+      "filename_circlet": "UI_RelicIcon_15038_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15038_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15038_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15038_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15038_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15038_3.png"
+    }
+  },
+  "OceanHuedClam": {
+    "name": "Ocean-Hued Clam",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_3.png",
+      "filename_flower": "UI_RelicIcon_15022_4",
+      "filename_plume": "UI_RelicIcon_15022_2",
+      "filename_sands": "UI_RelicIcon_15022_5",
+      "filename_goblet": "UI_RelicIcon_15022_1",
+      "filename_circlet": "UI_RelicIcon_15022_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15022_3.png"
+    }
+  },
+  "PaleFlame": {
+    "name": "Pale Flame",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_3.png",
+      "filename_flower": "UI_RelicIcon_15018_4",
+      "filename_plume": "UI_RelicIcon_15018_2",
+      "filename_sands": "UI_RelicIcon_15018_5",
+      "filename_goblet": "UI_RelicIcon_15018_1",
+      "filename_circlet": "UI_RelicIcon_15018_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15018_3.png"
+    }
+  },
+  "PrayersforDestiny": {
+    "name": "Prayers for Destiny",
+    "icons": {
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15010_3.png",
+      "filename_circlet": "UI_RelicIcon_15010_3",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15010_3.png"
+    }
+  },
+  "PrayersforIllumination": {
+    "name": "Prayers for Illumination",
+    "icons": {
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15009_3.png",
+      "filename_circlet": "UI_RelicIcon_15009_3",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15009_3.png"
+    }
+  },
+  "PrayersforWisdom": {
+    "name": "Prayers for Wisdom",
+    "icons": {
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15011_3.png",
+      "filename_circlet": "UI_RelicIcon_15011_3",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15011_3.png"
+    }
+  },
+  "PrayerstoSpringtime": {
+    "name": "Prayers to Springtime",
+    "icons": {
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15013_3.png",
+      "filename_circlet": "UI_RelicIcon_15013_3",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15013_3.png"
+    }
+  },
+  "ResolutionofSojourner": {
+    "name": "Resolution of Sojourner",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_3.png",
+      "filename_flower": "UI_RelicIcon_10001_4",
+      "filename_plume": "UI_RelicIcon_10001_2",
+      "filename_sands": "UI_RelicIcon_10001_5",
+      "filename_goblet": "UI_RelicIcon_10001_1",
+      "filename_circlet": "UI_RelicIcon_10001_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10001_3.png"
+    }
+  },
+  "RetracingBolide": {
+    "name": "Retracing Bolide",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_3.png",
+      "filename_flower": "UI_RelicIcon_15015_4",
+      "filename_plume": "UI_RelicIcon_15015_2",
+      "filename_sands": "UI_RelicIcon_15015_5",
+      "filename_goblet": "UI_RelicIcon_15015_1",
+      "filename_circlet": "UI_RelicIcon_15015_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15015_3.png"
+    }
+  },
+  "Scholar": {
+    "name": "Scholar",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_3.png",
+      "filename_flower": "UI_RelicIcon_10012_4",
+      "filename_plume": "UI_RelicIcon_10012_2",
+      "filename_sands": "UI_RelicIcon_10012_5",
+      "filename_goblet": "UI_RelicIcon_10012_1",
+      "filename_circlet": "UI_RelicIcon_10012_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10012_3.png"
+    }
+  },
+  "ScrolloftheHeroofCinderCity": {
+    "name": "Scroll of the Hero of Cinder City",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15037_4",
+      "filename_plume": "UI_RelicIcon_15037_2",
+      "filename_sands": "UI_RelicIcon_15037_5",
+      "filename_goblet": "UI_RelicIcon_15037_1",
+      "filename_circlet": "UI_RelicIcon_15037_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15037_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15037_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15037_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15037_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15037_3.png"
+    }
+  },
+  "ShimenawasReminiscence": {
+    "name": "Shimenawa's Reminiscence",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_3.png",
+      "filename_flower": "UI_RelicIcon_15019_4",
+      "filename_plume": "UI_RelicIcon_15019_2",
+      "filename_sands": "UI_RelicIcon_15019_5",
+      "filename_goblet": "UI_RelicIcon_15019_1",
+      "filename_circlet": "UI_RelicIcon_15019_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15019_3.png"
+    }
+  },
+  "SilkenMoonsSerenade": {
+    "name": "Silken Moon's Serenade",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15042_4",
+      "filename_plume": "UI_RelicIcon_15042_2",
+      "filename_sands": "UI_RelicIcon_15042_5",
+      "filename_goblet": "UI_RelicIcon_15042_1",
+      "filename_circlet": "UI_RelicIcon_15042_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15042_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15042_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15042_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15042_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15042_3.png"
+    }
+  },
+  "SongofDaysPast": {
+    "name": "Song of Days Past",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15033_4",
+      "filename_plume": "UI_RelicIcon_15033_2",
+      "filename_sands": "UI_RelicIcon_15033_5",
+      "filename_goblet": "UI_RelicIcon_15033_1",
+      "filename_circlet": "UI_RelicIcon_15033_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15033_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15033_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15033_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15033_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15033_3.png"
+    }
+  },
+  "TenacityoftheMillelith": {
+    "name": "Tenacity of the Millelith",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_3.png",
+      "filename_flower": "UI_RelicIcon_15017_4",
+      "filename_plume": "UI_RelicIcon_15017_2",
+      "filename_sands": "UI_RelicIcon_15017_5",
+      "filename_goblet": "UI_RelicIcon_15017_1",
+      "filename_circlet": "UI_RelicIcon_15017_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15017_3.png"
+    }
+  },
+  "TheExile": {
+    "name": "The Exile",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_3.png",
+      "filename_flower": "UI_RelicIcon_10009_4",
+      "filename_plume": "UI_RelicIcon_10009_2",
+      "filename_sands": "UI_RelicIcon_10009_5",
+      "filename_goblet": "UI_RelicIcon_10009_1",
+      "filename_circlet": "UI_RelicIcon_10009_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10009_3.png"
+    }
+  },
+  "ThunderingFury": {
+    "name": "Thundering Fury",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_3.png",
+      "filename_flower": "UI_RelicIcon_15005_4",
+      "filename_plume": "UI_RelicIcon_15005_2",
+      "filename_sands": "UI_RelicIcon_15005_5",
+      "filename_goblet": "UI_RelicIcon_15005_1",
+      "filename_circlet": "UI_RelicIcon_15005_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15005_3.png"
+    }
+  },
+  "Thundersoother": {
+    "name": "Thundersoother",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_3.png",
+      "filename_flower": "UI_RelicIcon_14002_4",
+      "filename_plume": "UI_RelicIcon_14002_2",
+      "filename_sands": "UI_RelicIcon_14002_5",
+      "filename_goblet": "UI_RelicIcon_14002_1",
+      "filename_circlet": "UI_RelicIcon_14002_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_14002_3.png"
+    }
+  },
+  "TinyMiracle": {
+    "name": "Tiny Miracle",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_3.png",
+      "filename_flower": "UI_RelicIcon_10004_4",
+      "filename_plume": "UI_RelicIcon_10004_2",
+      "filename_sands": "UI_RelicIcon_10004_5",
+      "filename_goblet": "UI_RelicIcon_10004_1",
+      "filename_circlet": "UI_RelicIcon_10004_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10004_3.png"
+    }
+  },
+  "TravelingDoctor": {
+    "name": "Traveling Doctor",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_3.png",
+      "filename_flower": "UI_RelicIcon_10013_4",
+      "filename_plume": "UI_RelicIcon_10013_2",
+      "filename_sands": "UI_RelicIcon_10013_5",
+      "filename_goblet": "UI_RelicIcon_10013_1",
+      "filename_circlet": "UI_RelicIcon_10013_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_10013_3.png"
+    }
+  },
+  "UnfinishedReverie": {
+    "name": "Unfinished Reverie",
+    "icons": {
+      "filename_flower": "UI_RelicIcon_15036_4",
+      "filename_plume": "UI_RelicIcon_15036_2",
+      "filename_sands": "UI_RelicIcon_15036_5",
+      "filename_goblet": "UI_RelicIcon_15036_1",
+      "filename_circlet": "UI_RelicIcon_15036_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15036_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15036_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15036_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15036_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15036_3.png"
+    }
+  },
+  "VermillionHereafter": {
+    "name": "Vermillion Hereafter",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_3.png",
+      "filename_flower": "UI_RelicIcon_15023_4",
+      "filename_plume": "UI_RelicIcon_15023_2",
+      "filename_sands": "UI_RelicIcon_15023_5",
+      "filename_goblet": "UI_RelicIcon_15023_1",
+      "filename_circlet": "UI_RelicIcon_15023_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15023_3.png"
+    }
+  },
+  "ViridescentVenerer": {
+    "name": "Viridescent Venerer",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_3.png",
+      "filename_flower": "UI_RelicIcon_15002_4",
+      "filename_plume": "UI_RelicIcon_15002_2",
+      "filename_sands": "UI_RelicIcon_15002_5",
+      "filename_goblet": "UI_RelicIcon_15002_1",
+      "filename_circlet": "UI_RelicIcon_15002_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15002_3.png"
+    }
+  },
+  "VourukashasGlow": {
+    "name": "Vourukasha's Glow",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_3.png",
+      "filename_flower": "UI_RelicIcon_15030_4",
+      "filename_plume": "UI_RelicIcon_15030_2",
+      "filename_sands": "UI_RelicIcon_15030_5",
+      "filename_goblet": "UI_RelicIcon_15030_1",
+      "filename_circlet": "UI_RelicIcon_15030_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15030_3.png"
+    }
+  },
+  "WanderersTroupe": {
+    "name": "Wanderer's Troupe",
+    "icons": {
+      "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_4.png",
+      "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_2.png",
+      "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_5.png",
+      "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_1.png",
+      "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_3.png",
+      "filename_flower": "UI_RelicIcon_15003_4",
+      "filename_plume": "UI_RelicIcon_15003_2",
+      "filename_sands": "UI_RelicIcon_15003_5",
+      "filename_goblet": "UI_RelicIcon_15003_1",
+      "filename_circlet": "UI_RelicIcon_15003_3",
+      "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_4.png",
+      "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_2.png",
+      "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_5.png",
+      "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_1.png",
+      "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_15003_3.png"
+    }
+  }
+}

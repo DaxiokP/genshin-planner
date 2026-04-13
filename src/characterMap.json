@@ -1,0 +1,922 @@
+{
+  "Aether": {
+    "name": "Aether",
+    "rarity": 5,
+    "element": "None",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_PlayerBoy.png",
+    "id": "PlayerBoy"
+  },
+  "Aino": {
+    "name": "Aino",
+    "rarity": 4,
+    "element": "Hydro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Aino.png",
+    "id": "Aino"
+  },
+  "Albedo": {
+    "name": "Albedo",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Albedo.png",
+    "id": "Albedo"
+  },
+  "Alhaitham": {
+    "name": "Alhaitham",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Alhatham.png",
+    "id": "Alhatham"
+  },
+  "Aloy": {
+    "name": "Aloy",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Aloy.png",
+    "id": "Aloy"
+  },
+  "Amber": {
+    "name": "Amber",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ambor.png",
+    "id": "Ambor"
+  },
+  "AratakiItto": {
+    "name": "Arataki Itto",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Itto.png",
+    "id": "Itto"
+  },
+  "Arlecchino": {
+    "name": "Arlecchino",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Arlecchino.png",
+    "id": "Arlecchino"
+  },
+  "Baizhu": {
+    "name": "Baizhu",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Baizhuer.png",
+    "id": "Baizhuer"
+  },
+  "Barbara": {
+    "name": "Barbara",
+    "rarity": 4,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Barbara.png",
+    "id": "Barbara"
+  },
+  "Beidou": {
+    "name": "Beidou",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Beidou.png",
+    "id": "Beidou"
+  },
+  "Bennett": {
+    "name": "Bennett",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Bennett.png",
+    "id": "Bennett"
+  },
+  "Candace": {
+    "name": "Candace",
+    "rarity": 4,
+    "element": "Hydro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Candace.png",
+    "id": "Candace"
+  },
+  "Charlotte": {
+    "name": "Charlotte",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Charlotte.png",
+    "id": "Charlotte"
+  },
+  "Chasca": {
+    "name": "Chasca",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Chasca.png",
+    "id": "Chasca"
+  },
+  "Chevreuse": {
+    "name": "Chevreuse",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Chevreuse.png",
+    "id": "Chevreuse"
+  },
+  "Chiori": {
+    "name": "Chiori",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Chiori.png",
+    "id": "Chiori"
+  },
+  "Chongyun": {
+    "name": "Chongyun",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Chongyun.png",
+    "id": "Chongyun"
+  },
+  "Citlali": {
+    "name": "Citlali",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Citlali.png",
+    "id": "Citlali"
+  },
+  "Clorinde": {
+    "name": "Clorinde",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Clorinde.png",
+    "id": "Clorinde"
+  },
+  "Collei": {
+    "name": "Collei",
+    "rarity": 4,
+    "element": "Dendro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Collei.png",
+    "id": "Collei"
+  },
+  "Columbina": {
+    "name": "Columbina",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Columbina.png",
+    "id": "Columbina"
+  },
+  "Cyno": {
+    "name": "Cyno",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Cyno.png",
+    "id": "Cyno"
+  },
+  "Dahlia": {
+    "name": "Dahlia",
+    "rarity": 4,
+    "element": "Hydro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Dahlia.png",
+    "id": "Dahlia"
+  },
+  "Dehya": {
+    "name": "Dehya",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Dehya.png",
+    "id": "Dehya"
+  },
+  "Diluc": {
+    "name": "Diluc",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diluc.png",
+    "id": "Diluc"
+  },
+  "Diona": {
+    "name": "Diona",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diona.png",
+    "id": "Diona"
+  },
+  "Dori": {
+    "name": "Dori",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Dori.png",
+    "id": "Dori"
+  },
+  "Durin": {
+    "name": "Durin",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Durin.png",
+    "id": "Durin"
+  },
+  "Emilie": {
+    "name": "Emilie",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Emilie.png",
+    "id": "Emilie"
+  },
+  "Escoffier": {
+    "name": "Escoffier",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Escoffier.png",
+    "id": "Escoffier"
+  },
+  "Eula": {
+    "name": "Eula",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Eula.png",
+    "id": "Eula"
+  },
+  "Faruzan": {
+    "name": "Faruzan",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Faruzan.png",
+    "id": "Faruzan"
+  },
+  "Fischl": {
+    "name": "Fischl",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Fischl.png",
+    "id": "Fischl"
+  },
+  "Flins": {
+    "name": "Flins",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Flins.png",
+    "id": "Flins"
+  },
+  "Freminet": {
+    "name": "Freminet",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Freminet.png",
+    "id": "Freminet"
+  },
+  "Furina": {
+    "name": "Furina",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Furina.png",
+    "id": "Furina"
+  },
+  "Gaming": {
+    "name": "Gaming",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Gaming.png",
+    "id": "Gaming"
+  },
+  "Ganyu": {
+    "name": "Ganyu",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ganyu.png",
+    "id": "Ganyu"
+  },
+  "Gorou": {
+    "name": "Gorou",
+    "rarity": 4,
+    "element": "Geo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Gorou.png",
+    "id": "Gorou"
+  },
+  "HuTao": {
+    "name": "Hu Tao",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Hutao.png",
+    "id": "Hutao"
+  },
+  "Iansan": {
+    "name": "Iansan",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Iansan.png",
+    "id": "Iansan"
+  },
+  "Ifa": {
+    "name": "Ifa",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ifa.png",
+    "id": "Ifa"
+  },
+  "Illuga": {
+    "name": "Illuga",
+    "rarity": 4,
+    "element": "Geo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Illuga.png",
+    "id": "Illuga"
+  },
+  "Ineffa": {
+    "name": "Ineffa",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ineffa.png",
+    "id": "Ineffa"
+  },
+  "Jahoda": {
+    "name": "Jahoda",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Jahoda.png",
+    "id": "Jahoda"
+  },
+  "Jean": {
+    "name": "Jean",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Qin.png",
+    "id": "Qin"
+  },
+  "Kachina": {
+    "name": "Kachina",
+    "rarity": 4,
+    "element": "Geo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kachina.png",
+    "id": "Kachina"
+  },
+  "KaedeharaKazuha": {
+    "name": "Kaedehara Kazuha",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kazuha.png",
+    "id": "Kazuha"
+  },
+  "Kaeya": {
+    "name": "Kaeya",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kaeya.png",
+    "id": "Kaeya"
+  },
+  "KamisatoAyaka": {
+    "name": "Kamisato Ayaka",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ayaka.png",
+    "id": "Ayaka"
+  },
+  "KamisatoAyato": {
+    "name": "Kamisato Ayato",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ayato.png",
+    "id": "Ayato"
+  },
+  "Kaveh": {
+    "name": "Kaveh",
+    "rarity": 4,
+    "element": "Dendro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kaveh.png",
+    "id": "Kaveh"
+  },
+  "Keqing": {
+    "name": "Keqing",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Keqing.png",
+    "id": "Keqing"
+  },
+  "Kinich": {
+    "name": "Kinich",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kinich.png",
+    "id": "Kinich"
+  },
+  "Kirara": {
+    "name": "Kirara",
+    "rarity": 4,
+    "element": "Dendro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Momoka.png",
+    "id": "Momoka"
+  },
+  "Klee": {
+    "name": "Klee",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Klee.png",
+    "id": "Klee"
+  },
+  "KujouSara": {
+    "name": "Kujou Sara",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sara.png",
+    "id": "Sara"
+  },
+  "KukiShinobu": {
+    "name": "Kuki Shinobu",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shinobu.png",
+    "id": "Shinobu"
+  },
+  "LanYan": {
+    "name": "Lan Yan",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Lanyan.png",
+    "id": "Lanyan"
+  },
+  "Lauma": {
+    "name": "Lauma",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Lauma.png",
+    "id": "Lauma"
+  },
+  "Layla": {
+    "name": "Layla",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Layla.png",
+    "id": "Layla"
+  },
+  "Lisa": {
+    "name": "Lisa",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Lisa.png",
+    "id": "Lisa"
+  },
+  "Lumine": {
+    "name": "Lumine",
+    "rarity": 5,
+    "element": "None",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_PlayerGirl.png",
+    "id": "PlayerGirl"
+  },
+  "Lynette": {
+    "name": "Lynette",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Linette.png",
+    "id": "Linette"
+  },
+  "Lyney": {
+    "name": "Lyney",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Liney.png",
+    "id": "Liney"
+  },
+  "Manekin": {
+    "name": "Manekin",
+    "rarity": 5,
+    "element": "None",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_MannequinBoy.png",
+    "id": "MannequinBoy"
+  },
+  "Manekina": {
+    "name": "Manekina",
+    "rarity": 5,
+    "element": "None",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_MannequinGirl.png",
+    "id": "MannequinGirl"
+  },
+  "Mavuika": {
+    "name": "Mavuika",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mavuika.png",
+    "id": "Mavuika"
+  },
+  "Mika": {
+    "name": "Mika",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mika.png",
+    "id": "Mika"
+  },
+  "Mona": {
+    "name": "Mona",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mona.png",
+    "id": "Mona"
+  },
+  "Mualani": {
+    "name": "Mualani",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mualani.png",
+    "id": "Mualani"
+  },
+  "Nahida": {
+    "name": "Nahida",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Nahida.png",
+    "id": "Nahida"
+  },
+  "Navia": {
+    "name": "Navia",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Navia.png",
+    "id": "Navia"
+  },
+  "Nefer": {
+    "name": "Nefer",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Nefer.png",
+    "id": "Nefer"
+  },
+  "Neuvillette": {
+    "name": "Neuvillette",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Neuvillette.png",
+    "id": "Neuvillette"
+  },
+  "Nilou": {
+    "name": "Nilou",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Nilou.png",
+    "id": "Nilou"
+  },
+  "Ningguang": {
+    "name": "Ningguang",
+    "rarity": 4,
+    "element": "Geo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ningguang.png",
+    "id": "Ningguang"
+  },
+  "Noelle": {
+    "name": "Noelle",
+    "rarity": 4,
+    "element": "Geo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Noel.png",
+    "id": "Noel"
+  },
+  "Ororon": {
+    "name": "Ororon",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Olorun.png",
+    "id": "Olorun"
+  },
+  "Qiqi": {
+    "name": "Qiqi",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Qiqi.png",
+    "id": "Qiqi"
+  },
+  "RaidenShogun": {
+    "name": "Raiden Shogun",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shougun.png",
+    "id": "Shougun"
+  },
+  "Razor": {
+    "name": "Razor",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Razor.png",
+    "id": "Razor"
+  },
+  "Rosaria": {
+    "name": "Rosaria",
+    "rarity": 4,
+    "element": "Cryo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Rosaria.png",
+    "id": "Rosaria"
+  },
+  "SangonomiyaKokomi": {
+    "name": "Sangonomiya Kokomi",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kokomi.png",
+    "id": "Kokomi"
+  },
+  "Sayu": {
+    "name": "Sayu",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sayu.png",
+    "id": "Sayu"
+  },
+  "Sethos": {
+    "name": "Sethos",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sethos.png",
+    "id": "Sethos"
+  },
+  "Shenhe": {
+    "name": "Shenhe",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shenhe.png",
+    "id": "Shenhe"
+  },
+  "ShikanoinHeizou": {
+    "name": "Shikanoin Heizou",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Heizo.png",
+    "id": "Heizo"
+  },
+  "Sigewinne": {
+    "name": "Sigewinne",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sigewinne.png",
+    "id": "Sigewinne"
+  },
+  "Skirk": {
+    "name": "Skirk",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_SkirkNew.png",
+    "id": "SkirkNew"
+  },
+  "Sucrose": {
+    "name": "Sucrose",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sucrose.png",
+    "id": "Sucrose"
+  },
+  "Tartaglia": {
+    "name": "Tartaglia",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tartaglia.png",
+    "id": "Tartaglia"
+  },
+  "Thoma": {
+    "name": "Thoma",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tohma.png",
+    "id": "Tohma"
+  },
+  "Tighnari": {
+    "name": "Tighnari",
+    "rarity": 5,
+    "element": "Dendro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tighnari.png",
+    "id": "Tighnari"
+  },
+  "Varesa": {
+    "name": "Varesa",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Varesa.png",
+    "id": "Varesa"
+  },
+  "Varka": {
+    "name": "Varka",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Varka.png",
+    "id": "Varka"
+  },
+  "Venti": {
+    "name": "Venti",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Venti.png",
+    "id": "Venti"
+  },
+  "Wanderer": {
+    "name": "Wanderer",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Wanderer.png",
+    "id": "Wanderer"
+  },
+  "Wriothesley": {
+    "name": "Wriothesley",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Wriothesley.png",
+    "id": "Wriothesley"
+  },
+  "Xiangling": {
+    "name": "Xiangling",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xiangling.png",
+    "id": "Xiangling"
+  },
+  "Xianyun": {
+    "name": "Xianyun",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Liuyun.png",
+    "id": "Liuyun"
+  },
+  "Xiao": {
+    "name": "Xiao",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xiao.png",
+    "id": "Xiao"
+  },
+  "Xilonen": {
+    "name": "Xilonen",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xilonen.png",
+    "id": "Xilonen"
+  },
+  "Xingqiu": {
+    "name": "Xingqiu",
+    "rarity": 4,
+    "element": "Hydro",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xingqiu.png",
+    "id": "Xingqiu"
+  },
+  "Xinyan": {
+    "name": "Xinyan",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Claymore",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xinyan.png",
+    "id": "Xinyan"
+  },
+  "YaeMiko": {
+    "name": "Yae Miko",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yae.png",
+    "id": "Yae"
+  },
+  "Yanfei": {
+    "name": "Yanfei",
+    "rarity": 4,
+    "element": "Pyro",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Feiyan.png",
+    "id": "Feiyan"
+  },
+  "Yaoyao": {
+    "name": "Yaoyao",
+    "rarity": 4,
+    "element": "Dendro",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yaoyao.png",
+    "id": "Yaoyao"
+  },
+  "Yelan": {
+    "name": "Yelan",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yelan.png",
+    "id": "Yelan"
+  },
+  "Yoimiya": {
+    "name": "Yoimiya",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Bow",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yoimiya.png",
+    "id": "Yoimiya"
+  },
+  "YumemizukiMizuki": {
+    "name": "Yumemizuki Mizuki",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mizuki.png",
+    "id": "Mizuki"
+  },
+  "YunJin": {
+    "name": "Yun Jin",
+    "rarity": 4,
+    "element": "Geo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yunjin.png",
+    "id": "Yunjin"
+  },
+  "Zhongli": {
+    "name": "Zhongli",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Polearm",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Zhongli.png",
+    "id": "Zhongli"
+  },
+  "Zibai": {
+    "name": "Zibai",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Sword",
+    "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Zibai.png",
+    "id": "Zibai"
+  }
+}
