@@ -193,7 +193,7 @@ function App() {
               <div className="mora-banner">
                 <div className="mora-icon-wrapper">
                   <img 
-                    src={moraData.localExt ? `/icons/${moraData.id}${moraData.localExt}` : '/icons/202.png'}
+                    src={moraData.localExt ? `${import.meta.env.BASE_URL}icons/${moraData.id}${moraData.localExt}` : `${import.meta.env.BASE_URL}icons/202.png`}
                     alt="Mora"
                     className="mora-icon"
                   />
@@ -240,7 +240,7 @@ function App() {
                 >
                   <div className={`material-icon-wrapper bg-rarity-${pseudoRarity}`}>
                     <img 
-                      src={data.localExt ? `/icons/${itemID}${data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(formattedName)}&background=random&color=fff&rounded=true&font-size=0.33`}
+                      src={data.localExt ? `${import.meta.env.BASE_URL}icons/${itemID}${data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(formattedName)}&background=random&color=fff&rounded=true&font-size=0.33`}
                       alt={formattedName}
                       className="material-icon"
                       onError={(e) => {
@@ -324,7 +324,7 @@ function App() {
               <span className="tooltip-name">{hoveredItem.data.name || hoveredItem.key}</span>
               <div className={`tooltip-icon-wrapper bg-rarity-${hoveredItem.data.rarity || 1}`}>
                 <img 
-                  src={hoveredItem.data.localExt ? `/icons/${hoveredItem.data.id}${hoveredItem.data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`}
+                  src={hoveredItem.data.localExt ? `${import.meta.env.BASE_URL}icons/${hoveredItem.data.id}${hoveredItem.data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`}
                   alt=""
                   onError={(e) => {
                       e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
