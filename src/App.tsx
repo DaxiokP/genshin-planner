@@ -255,7 +255,17 @@ function App() {
                       value={count} 
                       onChange={(e) => {
                          const val = parseInt(e.target.value, 10);
-                         setMaterials(prev => prev ? { ...prev, [key]: isNaN(val) ? 0 : val } : null);
+                         setMaterials(prev => {
+                           if (!prev) return prev;
+                           let updatedKey = key;
+                           for (const gk of Object.keys(prev)) {
+                             if (gk.toLowerCase() === key) {
+                               updatedKey = gk;
+                               break;
+                             }
+                           }
+                           return { ...prev, [updatedKey]: isNaN(val) ? 0 : val };
+                         });
                       }}
                       min="0"
                     />

@@ -1,0 +1,28 @@
+# Agent Rules: Genshin Planner
+
+This file defines the behavior and conventions for AI agents interacting with this repository.
+
+## Project Context
+- **Domain**: Genshin Impact Material Planning.
+- **Data Format**: GOOD (Genshin Optimizer Data) JSON.
+- **Core State**: Managed in `src/App.tsx`.
+- **Resources**: Icons located in `/public/icons/`.
+
+## Architecture Rules
+1. **Source of Truth**: Always refer to `src/materialMap.json` for material metadata.
+2. **Data Pipeline**: If material data is missing or incorrect, suggest updating `generateMap.cjs` or `downloadIcons.cjs` before modifying `App.tsx`.
+3. **Key Matching**: Always use `.toLowerCase()` when matching keys from GOOD format to `materialMap.json`.
+
+## Coding Standards
+1. **Framework**: React (Functional Components with Hooks).
+2. **Styling**: 
+    - Use vanilla CSS in `src/App.css`.
+    - Use CSS variables for rarity colors (`--rarity-1` to `--rarity-5`).
+    - Follow the `bg-rarity-[N]` class convention for item backgrounds.
+3. **Icons**: Use `lucide-react` for UI icons.
+4. **Localization**: Use `item.name` from the map if available; otherwise, use the capitalized key.
+
+## Agent Behavior
+1. **Read-First**: Before suggesting changes to data structures, read `ARCHITECTURE.md` and `CONTEXT.md`.
+2. **Roadmap Aware**: Check `ROADMAP.md` to see current work-in-progress to avoid conflicting with planned features.
+3. **No Placeholders**: Never use placeholder images. Use the `import.meta.env.BASE_URL` + `/icons/` path for local assets, or fallback to UI-avatars if an icon is missing.
