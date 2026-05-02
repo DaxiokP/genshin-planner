@@ -26,3 +26,4 @@ This file defines the behavior and conventions for AI agents interacting with th
 1. **Read-First**: Before suggesting changes to data structures, read `ARCHITECTURE.md` and `CONTEXT.md`.
 2. **Roadmap Aware**: Check `ROADMAP.md` to see current work-in-progress to avoid conflicting with planned features.
 3. **No Placeholders**: Never use placeholder images. Use the `import.meta.env.BASE_URL` + `/icons/` path for local assets, or fallback to UI-avatars if an icon is missing.
+4. **Compile and Verify**: After finalizing all changes, run a build or compile step (e.g., `npm run build` or `npx tsc`) to ensure there are no compilation or type errors in the project.

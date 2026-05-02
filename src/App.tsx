@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileUp, Sparkles, X, Search, UserPlus, Sword, ListOrdered } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
+import { CharacterSelectionModal } from './components/CharacterSelectionModal';
+import { CharacterTargetModal } from './components/CharacterTargetModal';
 import './App.css';
 import materialMapData from './maps/materialMap.json';
+import characterMapData from './maps/characterMap.json';
 
 type MaterialMapEntry = {
   id: string;
@@ -14,6 +17,16 @@ type MaterialMapEntry = {
   sortRank?: number;
 };
 const materialMap: Record<string, MaterialMapEntry> = materialMapData as any;
+
+// Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
+const characterMapRaw: Record<string, any> = characterMapData as any;
+const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
+const charIndex: Record<string, string> = {};
+Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
+const lookupChar = (key: string) => {
+  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
+  return characterMapRaw[charIndex[normalizedKey]] ?? null;
+};
 
 // Type definition for what we expect in the materials section
 type MaterialsData = Record<string, number>;
@@ -46,6 +59,20 @@ export interface GoodArtifact {
   location: string;
 }
 
+export interface PlannedCharacter {
+  key: string;
+  current: {
+    level: number;
+    ascension: number;
+    talent: { auto: number; skill: number; burst: number };
+  };
+  desired: {
+    level: number;
+    ascension: number;
+    talent: { auto: number; skill: number; burst: number };
+  };
+}
+
 type TabType = 'planner' | 'characters' | 'weapons' | 'inventory';
 
 function App() {
@@ -53,12 +80,15 @@ function App() {
   const [characters, setCharacters] = useState<GoodCharacter[]>([]);
   const [weapons, setWeapons] = useState<GoodWeapon[]>([]);
   const [artifacts, setArtifacts] = useState<GoodArtifact[]>([]);
+  const [plannedCharacters, setPlannedCharacters] = useState<PlannedCharacter[]>([]);
   const [activeTab, setActiveTab] = useState<TabType>('inventory');
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [hoveredItem, setHoveredItem] = useState<{ key: string, data: MaterialMapEntry } | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isCharacterSelectModalOpen, setIsCharacterSelectModalOpen] = useState(false);
+  const [selectedCharacterKeyForTarget, setSelectedCharacterKeyForTarget] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -348,22 +378,85 @@ function App() {
 
           {activeTab === 'planner' && (
             <section className="planner-container">
-              <h2>Plan Your Progress</h2>
-              <p className="planner-subtitle">Select what you want to work on</p>
-              <div className="planner-actions">
-                <button className="planner-btn planner-btn-character">
-                  <UserPlus size={28} />
-                  <span>Add Character</span>
-                </button>
-                <button className="planner-btn planner-btn-weapon">
-                  <Sword size={28} />
-                  <span>Add Weapon</span>
-                </button>
-                <button className="planner-btn planner-btn-priority">
-                  <ListOrdered size={28} />
-                  <span>Manage Priority</span>
-                </button>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <div>
+                  <h2>Plan Your Progress</h2>
+                  <p className="planner-subtitle">Select what you want to work on</p>
+                </div>
+                <div className="planner-actions">
+                  <button 
+                    className="planner-btn planner-btn-character"
+                    onClick={() => setIsCharacterSelectModalOpen(true)}
+                  >
+                    <UserPlus size={20} />
+                    <span>Add Character</span>
+                  </button>
+                  <button className="planner-btn planner-btn-weapon">
+                    <Sword size={20} />
+                    <span>Add Weapon</span>
+                  </button>
+                  <button className="planner-btn planner-btn-priority">
+                    <ListOrdered size={20} />
+                    <span>Manage Priority</span>
+                  </button>
+                </div>
               </div>
+
+              {plannedCharacters.length > 0 ? (
+                <div className="planner-grid">
+                  {plannedCharacters.map((planned) => {
+                    const charData = characters.find(c => c.key === planned.key);
+                    const charMapInfo = lookupChar(planned.key);
+                    
+                    return (
+                      <div key={planned.key} className="character-card bg-element-none" style={{ padding: '1rem' }}>
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                          <img 
+                            src={`${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`} 
+                            alt={charMapInfo?.name || planned.key}
+                            style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'contain', background: 'rgba(0,0,0,0.3)' }}
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              if (!target.dataset.fallback) {
+                                target.dataset.fallback = 'enka';
+                                target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
+                              } else if (!target.dataset.fallbackUi) {
+                                target.dataset.fallbackUi = 'ui';
+                                target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || planned.key}&background=random`;
+                              }
+                            }}
+                          />
+                          <div style={{ flex: 1 }}>
+                            <h3 style={{ margin: 0, color: '#ffcc66' }}>{charMapInfo?.name || planned.key}</h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '0.5rem', fontSize: '0.9rem' }}>
+                              <div>
+                                <span style={{ color: 'var(--text-secondary)' }}>Level:</span><br/>
+                                {planned.current.level} ➔ {planned.desired.level}
+                              </div>
+                              <div>
+                                <span style={{ color: 'var(--text-secondary)' }}>Auto:</span> {planned.current.talent.auto} ➔ {planned.desired.talent.auto}<br/>
+                                <span style={{ color: 'var(--text-secondary)' }}>Skill:</span> {planned.current.talent.skill} ➔ {planned.desired.talent.skill}<br/>
+                                <span style={{ color: 'var(--text-secondary)' }}>Burst:</span> {planned.current.talent.burst} ➔ {planned.desired.talent.burst}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px dashed var(--glass-border)' }}>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Your planner is empty.</p>
+                  <button 
+                    className="planner-btn planner-btn-character" 
+                    style={{ margin: '0 auto' }}
+                    onClick={() => setIsCharacterSelectModalOpen(true)}
+                  >
+                    <UserPlus size={20} /> Add your first character
+                  </button>
+                </div>
+              )}
             </section>
           )}
         </div>
@@ -402,6 +495,35 @@ function App() {
           )}
         </div>
       )}
+
+      <CharacterSelectionModal 
+        isOpen={isCharacterSelectModalOpen}
+        onClose={() => setIsCharacterSelectModalOpen(false)}
+        ownedCharacters={characters}
+        onSelect={(key) => {
+          setIsCharacterSelectModalOpen(false);
+          setSelectedCharacterKeyForTarget(key);
+        }}
+      />
+
+      <CharacterTargetModal 
+        isOpen={selectedCharacterKeyForTarget !== null}
+        onClose={() => setSelectedCharacterKeyForTarget(null)}
+        characterKey={selectedCharacterKeyForTarget}
+        currentData={characters.find(c => c.key === selectedCharacterKeyForTarget)}
+        onAccept={(planned) => {
+          setPlannedCharacters(prev => {
+            const exists = prev.findIndex(p => p.key === planned.key);
+            if (exists >= 0) {
+              const next = [...prev];
+              next[exists] = planned;
+              return next;
+            }
+            return [...prev, planned];
+          });
+          setSelectedCharacterKeyForTarget(null);
+        }}
+      />
     </div>
   );
 }
