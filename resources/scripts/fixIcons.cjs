@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const mapPath = './src/materialMap.json';
+const mapPath = './src/maps/materialMap.json';
 const map = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
 
 const downloadImage = (url, dest) => {
@@ -36,8 +36,8 @@ async function fixBrokenIcons() {
     for (let i = 0; i < broken.length; i += 5) {
         const chunk = broken.slice(i, i + 5);
         await Promise.all(chunk.map(async ([key, item]) => {
-            const badPath = path.join(__dirname, 'public', 'icons', `${item.id}.webp`);
-            const goodPath = path.join(__dirname, 'public', 'icons', `${item.id}.png`);
+            const badPath = path.join(__dirname, '../../public', 'icons', `${item.id}.webp`);
+            const goodPath = path.join(__dirname, '../../public', 'icons', `${item.id}.png`);
             const yattaUrl = `https://gi.yatta.moe/assets/UI/UI_ItemIcon_${item.id}.png`;
 
             // Delete the broken webp

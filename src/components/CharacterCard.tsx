@@ -1,9 +1,9 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
 import type { GoodCharacter, GoodWeapon, GoodArtifact } from '../App';
-import characterMapData from '../characterMap.json';
-import weaponMapData from '../weaponMap.json';
-import artifactMapData from '../artifactMap.json';
+import characterMapData from '../maps/characterMap.json';
+import weaponMapData from '../maps/weaponMap.json';
+import artifactMapData from '../maps/artifactMap.json';
 
 const characterMapRaw: Record<string, any> = characterMapData as any;
 const weaponMapRaw: Record<string, any> = weaponMapData as any;

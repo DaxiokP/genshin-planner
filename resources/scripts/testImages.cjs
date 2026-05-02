@@ -1,5 +1,5 @@
 const http = require('https');
-const map = require('./src/materialMap.json');
+const map = require('../../src/maps/materialMap.json');
 
 const entries = Object.entries(map);
 

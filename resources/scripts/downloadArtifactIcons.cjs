@@ -1,16 +1,18 @@
 /**
- * Downloads all weapon icons into public/weapons/
- * Files are saved as: <id>.png  (e.g. Sword_Estoc.png)
+ * Downloads all artifact piece icons into public/artifacts/
+ * Files are saved as: <filename>.png  (e.g. UI_RelicIcon_15014_4.png)
  */
 
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const weaponMap = JSON.parse(fs.readFileSync('./src/weaponMap.json', 'utf8'));
-const outputDir = path.join(__dirname, 'public', 'weapons');
+const artifactMap = JSON.parse(fs.readFileSync('./src/maps/artifactMap.json', 'utf8'));
+const outputDir = path.join(__dirname, '../../public', 'artifacts');
 
 if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
+
+const SLOTS = ['flower', 'plume', 'sands', 'goblet', 'circlet'];
 
 const downloadImage = (url, dest) => {
     return new Promise((resolve, reject) => {
@@ -35,25 +37,36 @@ const downloadImage = (url, dest) => {
 const isValid = (dest) => fs.existsSync(dest) && fs.statSync(dest).size > 500;
 
 const processAll = async () => {
-    const tasks = Object.entries(weaponMap).map(([key, data]) => {
-        const id = data.id;
-        const dest = path.join(outputDir, `${id}.png`);
+    // Build a flat list of {filename, urls[]} to download
+    const tasks = [];
 
-        // URL priority: mihoyo CDN -> enka.network -> yatta.moe
-        const mihoyoUrl = data.icon; // e.g. https://upload-os-bbs.mihoyo.com/.../UI_EquipIcon_Sword_Estoc.png
-        const enkaUrl = `https://enka.network/ui/UI_EquipIcon_${id}.png`;
-        const yattaUrl = `https://gi.yatta.moe/assets/UI/UI_EquipIcon_${id}.png`;
+    for (const [key, data] of Object.entries(artifactMap)) {
+        const icons = data.icons || {};
+        for (const slot of SLOTS) {
+            // Determine the filename for this slot
+            const filenameKey = `filename_${slot}`;
+            const filename = icons[filenameKey];
+            
+            if (!filename) continue; // slot not available for this set
 
-        return { key, name: data.name, id, dest, urls: [mihoyoUrl, enkaUrl, yattaUrl].filter(Boolean) };
-    });
+            const dest = path.join(outputDir, `${filename}.png`);
 
-    console.log(`⚔️  ${tasks.length} weapon icons to process...`);
+            // Build URL priority list
+            const mihoyoUrl = icons[`mihoyo_${slot}`] || icons[slot];
+            const enkaUrl = `https://enka.network/ui/${filename}.png`;
+            const yattaUrl = `https://gi.yatta.moe/assets/UI/${filename}.png`;
+
+            tasks.push({ key, slot, filename, dest, urls: [mihoyoUrl, enkaUrl, yattaUrl].filter(Boolean) });
+        }
+    }
+
+    console.log(`📦 ${tasks.length} artifact icons to process...`);
     let downloaded = 0, skipped = 0, failed = 0;
 
     // Download in chunks of 10
     for (let i = 0; i < tasks.length; i += 10) {
         const chunk = tasks.slice(i, i + 10);
-        await Promise.all(chunk.map(async ({ key, name, id, dest, urls }) => {
+        await Promise.all(chunk.map(async ({ key, slot, filename, dest, urls }) => {
             if (isValid(dest)) {
                 skipped++;
                 return;
@@ -75,7 +88,7 @@ const processAll = async () => {
 
             if (!success) {
                 failed++;
-                console.log(`  ✗ ${name} (${id})`);
+                console.log(`  ✗ ${key}/${slot} (${filename})`);
             }
         }));
 

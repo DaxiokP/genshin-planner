@@ -19,5 +19,5 @@ weapons.forEach(name => {
     };
 });
 
-fs.writeFileSync('src/weaponMap.json', JSON.stringify(weaponMap, null, 2));
+fs.writeFileSync('src/maps/weaponMap.json', JSON.stringify(weaponMap, null, 2));
 console.log(`Mapped ${Object.keys(weaponMap).length} weapons.`);

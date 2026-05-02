@@ -23,5 +23,5 @@ characters.forEach(name => {
     };
 });
 
-fs.writeFileSync('src/characterMap.json', JSON.stringify(characterMap, null, 2));
+fs.writeFileSync('src/maps/characterMap.json', JSON.stringify(characterMap, null, 2));
 console.log(`Mapped ${Object.keys(characterMap).length} characters.`);

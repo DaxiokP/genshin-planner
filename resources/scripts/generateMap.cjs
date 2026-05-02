@@ -129,5 +129,5 @@ for (const cat of categories) {
     });
 }
 
-fs.writeFileSync('src/materialMap.json', JSON.stringify(map, null, 2));
+fs.writeFileSync('src/maps/materialMap.json', JSON.stringify(map, null, 2));
 console.log(`Successfully mapped ${mappedCount} total progression materials (full database).`);

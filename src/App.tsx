@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Upload, FileUp, Sparkles, X, Search, UserPlus, Sword, ListOrdered } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
 import './App.css';
-import materialMapData from './materialMap.json';
+import materialMapData from './maps/materialMap.json';
 
 type MaterialMapEntry = {
   id: string;

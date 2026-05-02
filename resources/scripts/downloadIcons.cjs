@@ -1,7 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
-const mapPath = './src/materialMap.json';
+const mapPath = './src/maps/materialMap.json';
 const map = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
 
 const downloadImage = (url, dest) => {
@@ -46,7 +46,7 @@ const processQueue = async () => {
         const chunk = keys.slice(i, i + 10);
         await Promise.all(chunk.map(async (key) => {
             const item = map[key];
-            const dest = path.join(__dirname, 'public', 'icons', `${item.id}.png`);
+            const dest = path.join(__dirname, '../../public', 'icons', `${item.id}.png`);
             
             // Skip if already downloaded
             if (fs.existsSync(dest) && fs.statSync(dest).size > 500) {

@@ -16,5 +16,5 @@ artifacts.forEach(name => {
     };
 });
 
-fs.writeFileSync('src/artifactMap.json', JSON.stringify(artifactMap, null, 2));
+fs.writeFileSync('src/maps/artifactMap.json', JSON.stringify(artifactMap, null, 2));
 console.log(`Mapped ${Object.keys(artifactMap).length} artifact sets.`);

@@ -1,4 +1,4 @@
-const m = require('./src/materialMap.json');
+const m = require('../../src/maps/materialMap.json');
 const groups = {};
 Object.entries(m).forEach(([k, v]) => {
     const g = v.sortGroup || 999;

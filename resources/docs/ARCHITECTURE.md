@@ -14,9 +14,9 @@ This document outlines the technical architecture, data flow, and design pattern
 ```mermaid
 graph TD
     subgraph Scripts [Data Pipeline - Root]
-        A[downloadIcons.cjs] -->|Images| Public[public/icons/]
-        B[generateMap.cjs] -->|Mapping| Data[src/materialMap.json]
-        C[fixIcons.cjs] -->|Cleanup| Public
+        A[resources/scripts/downloadIcons.cjs] -->|Images| Public[public/icons/]
+        B[resources/scripts/generateMap.cjs] -->|Mapping| Data[src/maps/materialMap.json]
+        C[resources/scripts/fixIcons.cjs] -->|Cleanup| Public
     end
 
     subgraph App [Frontend - src/]
@@ -29,11 +29,11 @@ graph TD
 
 ## Core Components
 
-### 1. Data Pipeline (`*.cjs`)
-The project relies on external game data. Several CommonJS scripts in the root handle the heavy lifting:
-- `downloadIcons.cjs`: Fetches material icons from external sources.
-- `generateMap.cjs`: Aggregates material metadata (rarity, sources, names) into `materialMap.json`.
-- `fixIcons.cjs`: Ensures icon consistency and proper file extensions.
+### 1. Data Pipeline (`resources/scripts/*.cjs`)
+
+- `resources/scripts/downloadIcons.cjs`: Fetches material icons from external sources.
+- `resources/scripts/generateMap.cjs`: Aggregates material metadata (rarity, sources, names) into `src/maps/materialMap.json`.
+- `resources/scripts/fixIcons.cjs`: Ensures icon consistency and proper file extensions.
 
 ### 2. State Management
 Currently, state is centralized in `App.tsx` using React's `useState`:
@@ -43,7 +43,7 @@ Currently, state is centralized in `App.tsx` using React's `useState`:
 
 ### 3. Data Format (GOOD)
 The app is built around the **Genshin Optimizer Data (GOOD)** format. 
-- It maps lowercase internal keys (e.g., `creaturesurveyingnotes`) to human-readable names and game IDs via the `materialMap.json`.
+- It maps lowercase internal keys (e.g., `creaturesurveyingnotes`) to human-readable names and game IDs via the `src/maps/materialMap.json`.
 
 ## Design Patterns
 - **Local-First**: All processing happens in the browser. No backend is required.
@@ -51,6 +51,7 @@ The app is built around the **Genshin Optimizer Data (GOOD)** format.
 - **Lazy Mapping**: The app merges static metadata (`materialMap`) with dynamic user data (`materials`) at render time.
 
 ## Directory Structure
-- `/src`: React components and styles.
+- `/src`: React components, styles, and data maps.
 - `/public`: Static assets including the processed `/icons` folder.
-- `/`: Root contains configuration and data-processing scripts.
+- `/resources`: Data processing scripts and documentation.
+- `/`: Root contains configuration files.
