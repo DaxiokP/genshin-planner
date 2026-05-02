@@ -405,7 +405,7 @@ function App() {
               {plannedCharacters.length > 0 ? (
                 <div className="planner-grid">
                   {plannedCharacters.map((planned) => {
-                    const charData = characters.find(c => c.key === planned.key);
+                    // const charData = characters.find(c => c.key === planned.key);
                     const charMapInfo = lookupChar(planned.key);
                     
                     return (
