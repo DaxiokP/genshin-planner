@@ -58,6 +58,16 @@
   box-shadow: 0 0 15px var(--accent-glow);
 }
 
+/* Hide number spinner arrows globally */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .coming-soon {
   text-align: center;
   padding: 4rem 2rem;
@@ -1218,4 +1228,72 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
+}
+
+/* Level Selector Dropdown */
+.level-selector-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.level-selector-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a2e3d;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 100;
+  margin-top: 4px;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.level-dropdown-row {
+  display: flex;
+  gap: 4px;
+}
+
+.level-dropdown-btn {
+  flex: 1;
+  background: #f0e6d2;
+  color: #333;
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.level-dropdown-btn:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.level-value-display {
+  width: 50px;
+  height: 36px;
+  background: #f0e6d2;
+  color: #333;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 4px;
 }
