@@ -71,3 +71,52 @@ If you need to update the material icons or mapping data from the game database:
 - **Update Character Icons**: `node resources/scripts/downloadCharacterIcons.cjs`
 - **Update Weapon Icons**: `node resources/scripts/downloadWeaponIcons.cjs`
 - **Regenerate Mappings**: `node resources/scripts/generateMap.cjs`
+
+---
+
+## 6. Configuring Supabase Cloud Sync (Optional / Recommended)
+
+To enable Username authentication and multi-profile cloud synchronization, follow these steps to connect your own Supabase instance:
+
+### Step A: Configure Environment Variables
+Create a file named `.env.local` in the root of the project (this is automatically ignored by Git) and add your project credentials:
+```env
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anonymous-public-key
+```
+
+### Step B: Create the Database Table
+Go to the **SQL Editor** in your Supabase Dashboard and execute the following query to initialize the `user_planners` table:
+```sql
+-- Create the user_planners table with compound primary key for multi-profile support
+CREATE TABLE IF NOT EXISTS public.user_planners (
+    user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    profile_name TEXT NOT NULL,
+    materials JSONB DEFAULT '{}'::jsonb NOT NULL,
+    characters JSONB DEFAULT '[]'::jsonb NOT NULL,
+    weapons JSONB DEFAULT '[]'::jsonb NOT NULL,
+    artifacts JSONB DEFAULT '[]'::jsonb NOT NULL,
+    planned_characters JSONB DEFAULT '[]'::jsonb NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+    PRIMARY KEY (user_id, profile_name)
+);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE public.user_planners ENABLE ROW LEVEL SECURITY;
+
+-- Create an RLS policy so users can only manage their own planners
+CREATE POLICY "Users can manage their own planners"
+    ON public.user_planners
+    FOR ALL
+    USING (auth.uid() = user_id)
+    WITH CHECK (auth.uid() = user_id);
+```
+
+### Step C: Disable Email Confirmation (CRITICAL)
+Because the app uses simple, alphanumeric Username authentication (transparently mapped internally to Gmail localpart aliases to bypass standard Supabase MX checks), **you must disable mandatory email confirmation**:
+1. In the Supabase Dashboard, navigate to **Authentication** -> **Providers** -> **Email**.
+2. Turn **OFF** the **Confirm email** toggle.
+3. Save the changes.
+
+> [!IMPORTANT]
+> If "Confirm email" is left turned ON, new username registrations will immediately lock up in an unconfirmed state, triggering "email rate limit exceeded" or other rate limits during rapid testing.

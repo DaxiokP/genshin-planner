@@ -1,11 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { Upload, FileUp, Sparkles, X, Search, UserPlus, Sword, ListOrdered } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Upload, FileUp, Sparkles, X, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2 } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
 import { CharacterTargetModal } from './components/CharacterTargetModal';
 import './App.css';
 import materialMapData from './maps/materialMap.json';
 import characterMapData from './maps/characterMap.json';
+import { supabase, fetchUserProfiles, saveProfileState, createCustomProfile, deleteUserProfile } from './supabase';
+import { AuthModal } from './components/AuthModal';
 
 type MaterialMapEntry = {
   id: string;
@@ -90,6 +92,222 @@ function App() {
   const [isCharacterSelectModalOpen, setIsCharacterSelectModalOpen] = useState(false);
   const [selectedCharacterKeyForTarget, setSelectedCharacterKeyForTarget] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // --- Supabase Authentication & Syncing State ---
+  const [user, setUser] = useState<any>(null);
+  const [profiles, setProfiles] = useState<any[]>([]);
+  const [activeProfile, setActiveProfile] = useState<string>('');
+  const [isAddingProfile, setIsAddingProfile] = useState(false);
+  const [newProfileName, setNewProfileName] = useState('');
+  const [isCreatingProfile, setIsCreatingProfile] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<'local' | 'syncing' | 'synced' | 'error'>('local');
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  const isSavingBlocked = useRef(false);
+  const [isLoadingProfile, setIsLoadingProfile] = useState(false);
+  const saveTimeoutRef = useRef<any>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsProfileDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Monitor Supabase Authentication Changes
+  useEffect(() => {
+    if (!supabase) return;
+
+    // Get current session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen to changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      if (!session?.user) {
+        // If logged out, reset active profile and profiles
+        setActiveProfile('');
+        setProfiles([]);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Sync profile data when active profile or user changes
+  useEffect(() => {
+    let active = true;
+
+    async function loadData() {
+      isSavingBlocked.current = true;
+      setIsLoadingProfile(true);
+      setSyncStatus('syncing');
+
+      try {
+        if (user) {
+          // Fetch cloud data
+          const fetchedProfiles = await fetchUserProfiles(user.id);
+          if (!active) return;
+
+          setProfiles(fetchedProfiles);
+
+          if (fetchedProfiles.length === 0) {
+            setSyncStatus('synced');
+            setIsLoadingProfile(false);
+            isSavingBlocked.current = false;
+            return;
+          }
+
+          // Determine target profile name
+          let targetProfile = activeProfile;
+          const exists = fetchedProfiles.some(
+            p => p.profile_name.toLowerCase() === targetProfile.toLowerCase()
+          );
+
+          if (!targetProfile || !exists) {
+            targetProfile = fetchedProfiles[0].profile_name;
+            setActiveProfile(targetProfile);
+          }
+
+          const currentProfileData = fetchedProfiles.find(
+            p => p.profile_name.toLowerCase() === targetProfile.toLowerCase()
+          );
+
+          let materialsData = currentProfileData?.materials || null;
+          let charactersData = currentProfileData?.characters || [];
+          let weaponsData = currentProfileData?.weapons || [];
+          let artifactsData = currentProfileData?.artifacts || [];
+          let plannedCharactersData = currentProfileData?.planned_characters || [];
+
+          // Migration logic: If cloud profile is empty but local has data, migrate it!
+          const localDataStr = localStorage.getItem('genshin_planner_local_data');
+          if (localDataStr && (!materialsData || Object.keys(materialsData).length === 0) && charactersData.length === 0) {
+            try {
+              const localData = JSON.parse(localDataStr);
+              if (localData.materials && Object.keys(localData.materials).length > 0) {
+                materialsData = localData.materials;
+                charactersData = localData.characters || [];
+                weaponsData = localData.weapons || [];
+                artifactsData = localData.artifacts || [];
+                plannedCharactersData = localData.planned_characters || [];
+                
+                // Save directly to DB
+                await saveProfileState(user.id, targetProfile, {
+                  materials: materialsData,
+                  characters: charactersData,
+                  weapons: weaponsData,
+                  artifacts: artifactsData,
+                  planned_characters: plannedCharactersData
+                });
+                console.log(`Migrated local data to cloud for profile: ${targetProfile}`);
+                
+                // Refresh profiles
+                const refreshed = await fetchUserProfiles(user.id);
+                if (active) setProfiles(refreshed);
+              }
+            } catch (migrationErr) {
+              console.error('Migration failed:', migrationErr);
+            }
+          }
+
+          setMaterials(materialsData);
+          setCharacters(charactersData);
+          setWeapons(weaponsData);
+          setArtifacts(artifactsData);
+          setPlannedCharacters(plannedCharactersData);
+          setSyncStatus('synced');
+        } else {
+          // Load local storage
+          const localDataStr = localStorage.getItem('genshin_planner_local_data');
+          if (!active) return;
+
+          if (localDataStr) {
+            const localData = JSON.parse(localDataStr);
+            setMaterials(localData.materials);
+            setCharacters(localData.characters || []);
+            setWeapons(localData.weapons || []);
+            setArtifacts(localData.artifacts || []);
+            setPlannedCharacters(localData.planned_characters || []);
+          } else {
+            setMaterials(null);
+            setCharacters([]);
+            setWeapons([]);
+            setArtifacts([]);
+            setPlannedCharacters([]);
+          }
+          setSyncStatus('local');
+        }
+      } catch (err) {
+        console.error('Error loading profile data:', err);
+        setSyncStatus('error');
+      } finally {
+        if (active) {
+          // Micro delay to let react state setters resolve before unblocking saves
+          setTimeout(() => {
+            isSavingBlocked.current = false;
+            setIsLoadingProfile(false);
+          }, 100);
+        }
+      }
+    }
+
+    loadData();
+
+    return () => {
+      active = false;
+    };
+  }, [user, activeProfile]);
+
+  // Save profile data automatically to cloud or local storage when any state updates
+  useEffect(() => {
+    if (isSavingBlocked.current || isLoadingProfile) {
+      return;
+    }
+
+    const stateToSave = {
+      materials,
+      characters,
+      weapons,
+      artifacts,
+      planned_characters: plannedCharacters
+    };
+
+    if (user) {
+      if (!activeProfile) return;
+      
+      setSyncStatus('syncing');
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+
+      saveTimeoutRef.current = setTimeout(async () => {
+        try {
+          await saveProfileState(user.id, activeProfile, stateToSave);
+          setSyncStatus('synced');
+        } catch (err) {
+          console.error('Failed to sync to database:', err);
+          setSyncStatus('error');
+        }
+      }, 1000); // 1-second debounce
+    } else {
+      localStorage.setItem('genshin_planner_local_data', JSON.stringify(stateToSave));
+      setSyncStatus('local');
+    }
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [materials, characters, weapons, artifacts, plannedCharacters, user, activeProfile, isLoadingProfile]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -197,6 +415,198 @@ function App() {
           <button className={`nav-tab ${activeTab === 'weapons' ? 'active' : ''}`} onClick={() => setActiveTab('weapons')}>Weapons</button>
           <button className={`nav-tab ${activeTab === 'inventory' ? 'active' : ''}`} onClick={() => setActiveTab('inventory')}>Inventory</button>
         </nav>
+        <div className="sync-controls">
+          <div className={`sync-status-badge ${syncStatus}`} title={
+            syncStatus === 'synced' ? 'All changes synced securely to database.' :
+            syncStatus === 'syncing' ? 'Saving changes to database...' :
+            syncStatus === 'local' ? 'Data saved in local browser storage only.' :
+            'Error synchronizing data with database.'
+          }>
+            {syncStatus === 'synced' && (
+              <>
+                <Cloud size={16} />
+                <span>Cloud Synced</span>
+              </>
+            )}
+            {syncStatus === 'syncing' && (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                <span>Syncing...</span>
+              </>
+            )}
+            {syncStatus === 'local' && (
+              <>
+                <CloudOff size={16} />
+                <span>Local Saving</span>
+              </>
+            )}
+            {syncStatus === 'error' && (
+              <>
+                <CloudLightning size={16} />
+                <span>Sync Error</span>
+              </>
+            )}
+          </div>
+
+          {user && (
+            <div className="profile-switcher" ref={dropdownRef}>
+              <button 
+                className="profile-active-btn"
+                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+              >
+                <span>Profile: {activeProfile}</span>
+                <ChevronDown size={14} />
+              </button>
+              {isProfileDropdownOpen && (
+                <div className="profile-dropdown-menu">
+                  {profiles.map(p => (
+                    <div 
+                      key={p.profile_name}
+                      className={`profile-dropdown-row ${activeProfile === p.profile_name ? 'active' : ''}`}
+                    >
+                      <button 
+                        className="profile-dropdown-item-btn"
+                        onClick={() => {
+                          setActiveProfile(p.profile_name);
+                          setIsProfileDropdownOpen(false);
+                        }}
+                      >
+                        <span>{p.profile_name}</span>
+                        {activeProfile === p.profile_name && <span style={{ color: '#ffcc66', marginLeft: '6px' }}>✓</span>}
+                      </button>
+                      
+                      {profiles.length > 1 && (
+                        <button 
+                          className="profile-delete-btn"
+                          title={`Delete profile ${p.profile_name}`}
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            if (window.confirm(`Are you sure you want to delete the profile "${p.profile_name}"? This action cannot be undone.`)) {
+                              try {
+                                await deleteUserProfile(user.id, p.profile_name);
+                                const updated = await fetchUserProfiles(user.id);
+                                setProfiles(updated);
+                                
+                                // If the deleted profile was active, switch to another one
+                                if (activeProfile === p.profile_name) {
+                                  const fallback = updated.find(prof => prof.profile_name !== p.profile_name);
+                                  if (fallback) {
+                                    setActiveProfile(fallback.profile_name);
+                                  }
+                                }
+                              } catch (err: any) {
+                                alert(err.message || 'Failed to delete profile.');
+                              }
+                            }
+                          }}
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  
+                  <div className="profile-dropdown-divider"></div>
+                  
+                  {!isAddingProfile ? (
+                    <button 
+                      className="profile-dropdown-add-btn"
+                      onClick={() => {
+                        setIsAddingProfile(true);
+                        setNewProfileName('');
+                      }}
+                    >
+                      <span>+ Create Profile</span>
+                    </button>
+                  ) : (
+                    <form 
+                      className="profile-dropdown-add-form"
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        const trimmed = newProfileName.trim();
+                        if (!trimmed) return;
+                        if (profiles.some(p => p.profile_name.toLowerCase() === trimmed.toLowerCase())) {
+                          alert('A profile with this name already exists.');
+                          return;
+                        }
+                        setIsCreatingProfile(true);
+                        try {
+                          const newProfile = await createCustomProfile(user.id, trimmed);
+                          if (newProfile) {
+                            const updatedProfiles = await fetchUserProfiles(user.id);
+                            setProfiles(updatedProfiles);
+                            setActiveProfile(trimmed);
+                            setIsAddingProfile(false);
+                            setIsProfileDropdownOpen(false);
+                          }
+                        } catch (err: any) {
+                          alert(err.message || 'Failed to create profile.');
+                        } finally {
+                          setIsCreatingProfile(false);
+                        }
+                      }}
+                    >
+                      <input 
+                        type="text" 
+                        required
+                        maxLength={15}
+                        placeholder="Profile name..."
+                        value={newProfileName}
+                        onChange={(e) => setNewProfileName(e.target.value)}
+                        className="profile-add-input"
+                        disabled={isCreatingProfile}
+                        autoFocus
+                      />
+                      <div className="profile-add-actions">
+                        <button 
+                          type="submit" 
+                          className="profile-add-btn-confirm"
+                          disabled={isCreatingProfile}
+                        >
+                          Add
+                        </button>
+                        <button 
+                          type="button" 
+                          className="profile-add-btn-cancel"
+                          onClick={() => setIsAddingProfile(false)}
+                          disabled={isCreatingProfile}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {user ? (
+            <button 
+              className="user-menu-btn"
+              onClick={async () => {
+                if (supabase) {
+                  await supabase.auth.signOut();
+                }
+              }}
+              title={`Logged in as ${user.email.split('@')[0].split('.')[0]}. Click to Log Out.`}
+            >
+              <User size={16} />
+              <span style={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {user.email.split('@')[0].split('.')[0]}
+              </span>
+              <LogOut size={14} style={{ marginLeft: '4px' }} />
+            </button>
+          ) : (
+            <button 
+              className="auth-trigger-btn"
+              onClick={() => setIsAuthModalOpen(true)}
+            >
+              <LogIn size={16} />
+              <span>Sign In & Sync</span>
+            </button>
+          )}
+        </div>
       </header>
 
       {!materials ? (
@@ -527,6 +937,12 @@ function App() {
           });
           setSelectedCharacterKeyForTarget(null);
         }}
+      />
+
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onSuccess={(usr) => setUser(usr)}
       />
     </div>
   );

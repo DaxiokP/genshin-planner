@@ -1,44 +1,64 @@
 # Genshin Planner
 
-A web application to optimize and plan materials for Genshin Impact.
+A premium web application to optimize and plan character materials for Genshin Impact. Seamlessly import your inventory, manage multiple custom planners under a single shared account, and calculate precise farming requirements.
+
+![Genshin Planner Overview](public/icons/materials/creaturesurveyingnotes.png) *(Placeholder or generic preview representation)*
+
+---
+
+## Key Features
+
+- 🎒 **Inventory-Aware Material Planning**: Import inventory directly using standard community **Genshin Optimizer Data (GOOD)** formats (via Akasha Scanner, Inventory Kamera, etc.) or manually edit material counters.
+- ✨ **Constellation Talent Level Boosts**: Automatically boosts Elemental Skill (+3 at C3+) and Elemental Burst (+3 at C5+) talent levels to mirror actual game behavior, styled in a premium sky blue theme.
+- 👥 **Multi-Profile Shared Accounts**: Dynamically create, swap, and manage multiple planners under a single account. Easily switch between your planner and your partner's planner in real time.
+- 🔒 **Clean Username Authentication**: Sign up and log in using a simple Username (e.g. `daxiok`) without exposing personal emails or dealing with email confirmation limits.
+- 💾 **Dual-Mode Persistence & Sync**: Play as an offline guest (saved locally under the `genshin_planner_local_data` namespace) or sign in to sync your profiles in real time with a debounced [Supabase](https://supabase.com/) cloud database.
+- 🎨 **Premium Glassmorphic UI**: Beautiful responsive layout featuring deep harmonic dark colors, dynamic micro-animations, clean scrollbars, and full tooltips.
+
+---
+
+## Detailed Documentation
+
+To explore the inner workings and configurations of the project, refer to our specialized manuals:
+- 🛠️ **[Setup Guide](file:///Users/daxiok/projects/genshin-planner/SETUP.md)**: Instructions on cloning, running locally, configuring your custom Supabase client, and DDL PostgreSQL queries.
+- 🏗️ **[Technical Architecture](file:///Users/daxiok/projects/genshin-planner/resources/docs/ARCHITECTURE.md)**: Information about the technology stack, dual-persistence pipelines, database schemas, and username mapping structures.
+- 📜 **[Domain Context](file:///Users/daxiok/projects/genshin-planner/resources/docs/CONTEXT.md)**: Conceptual domain definitions (GOOD schema, ascension phases, constellation boost systems, and pitfall checks).
+- 🗺️ **[Development Roadmap](file:///Users/daxiok/projects/genshin-planner/resources/docs/ROADMAP.md)**: Tracking current feature completions, active milestones, and future route optimizations.
+
+---
 
 ## Getting Started
 
 ### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) (LTS recommended) installed on your machine.
 
-You need [Node.js](https://nodejs.org/) installed on your machine.
+### Quick Setup
 
-### Installation
-
-1. Clone the repository or navigate to the project directory:
+1. **Clone & Navigate**:
    ```bash
+   git clone https://github.com/YOUR_USERNAME/genshin-planner.git
    cd genshin-planner
    ```
-2. Install the dependencies:
+2. **Install Dependencies**:
    ```bash
    npm install
    ```
+3. **Configure Database (Optional)**:
+   Create a `.env.local` file to attach a Supabase client. See the **[Setup Guide](file:///Users/daxiok/projects/genshin-planner/SETUP.md)** for instructions and SQL schemas.
 
 ### Running Locally
 
-To start the development server, run:
-
+Start the hot-reloading development server:
 ```bash
 npm run dev
 ```
-
-The application will start, and you will typically be able to view it by opening [http://localhost:5173](http://localhost:5173) in your browser. (Check the terminal output for the exact local URL).
+Open the printed local URL (typically [http://localhost:5173](http://localhost:5173)) in your browser.
 
 ### Building for Production
 
-To create a production build of the project, run:
-
+Compile optimized static resources:
 ```bash
 npm run build
 ```
+The compiled files are stored in the `/dist` directory, fully prepared for deployment on static hosting providers like GitHub Pages.
 
-The built files will be located in the `dist` directory. You can preview the production build using:
-
-```bash
-npm run preview
-```
