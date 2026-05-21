@@ -45,10 +45,16 @@ Currently, state is centralized in `App.tsx` using React's `useState`:
 The app is built around the **Genshin Optimizer Data (GOOD)** format. 
 - It maps lowercase internal keys (e.g., `creaturesurveyingnotes`) to human-readable names and game IDs via the `src/maps/materialMap.json`.
 
+### 4. UI & Modal Navigation Flow
+- `CharacterSelectionModal`: Renders owned characters with their current level and constellation-boosted talents.
+- `CharacterTargetModal`: Handles the setting of current and desired character states. 
+- **Sequential Back Navigation**: When canceling/closing the `CharacterTargetModal` via the close button, the UI returns to the `CharacterSelectionModal` seamlessly rather than dismissing entirely to the dashboard, enhancing user workflow.
+
 ## Design Patterns
 - **Local-First**: All processing happens in the browser. No backend is required.
 - **Dynamic Theming**: CSS variables are used for rarity-based background colors (`bg-rarity-1` through `bg-rarity-5`).
 - **Lazy Mapping**: The app merges static metadata (`materialMap`) with dynamic user data (`materials`) at render time.
+- **Constellation Boost Presentation Pattern**: To mirror native game behavior, talent levels displayed in selection and input screens are dynamically adjusted (+3 to Elemental Skill for C3+, +3 to Elemental Burst for C5+). These are visually highlighted with a premium sky blue theme. In the input controllers, the UI maps display values back to standard **base** talent levels before state storage, ensuring calculations and schema are cleanly separated from constellation logic.
 
 ## Directory Structure
 - `/src`: React components, styles, and data maps.

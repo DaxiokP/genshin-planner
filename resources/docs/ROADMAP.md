@@ -13,11 +13,11 @@ This document tracks the project milestones and future development plans.
 ## Phase 1: Ownership & Planner Core (In Progress)
 Goal: Move from a static inventory view to a dynamic planning tool.
 
-- [ ] **Own Characters Implementation**
+- [x] **Own Characters Implementation**
     - Track talents, levels, and constellations.
 - [ ] **Own Weapons Implementation**
     - Track levels and refinement levels.
-- [ ] **Planner: Character Integration**
+- [x] **Planner: Character Integration**
     - Add owned characters to the planner.
     - Set target levels and talent goals.
 - [ ] **Planner: Weapon Integration**

@@ -8,6 +8,7 @@ const characterMap: Record<string, any> = characterMapData;
 interface CharacterTargetModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onCancel?: () => void;
   characterKey: string | null;
   currentData: GoodCharacter | undefined;
   onAccept: (planned: PlannedCharacter) => void;
@@ -22,7 +23,7 @@ const getMaxTalentForAscension = (asc: number) => {
   return 10;
 };
 
-const NumberSpinner = ({ value, min, max, onChange }: { value: number, min: number, max: number, onChange: (val: number) => void }) => {
+const NumberSpinner = ({ value, min, max, onChange, isBoosted }: { value: number, min: number, max: number, onChange: (val: number) => void, isBoosted?: boolean }) => {
   return (
     <div className="number-spinner">
       <button 
@@ -32,7 +33,7 @@ const NumberSpinner = ({ value, min, max, onChange }: { value: number, min: numb
       >-</button>
       <input 
         type="number" 
-        className="spinner-input" 
+        className={`spinner-input ${isBoosted ? 'boosted-talent' : ''}`} 
         value={value} 
         onChange={(e) => {
           let val = parseInt(e.target.value);
@@ -139,6 +140,7 @@ const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: a
 export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   isOpen,
   onClose,
+  onCancel,
   characterKey,
   currentData,
   onAccept,
@@ -156,6 +158,10 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   const minCurrentAuto = currentData?.talent?.auto || 1;
   const minCurrentSkill = currentData?.talent?.skill || 1;
   const minCurrentBurst = currentData?.talent?.burst || 1;
+
+  const constellation = currentData?.constellation || 0;
+  const isSkillBoosted = constellation >= 3;
+  const isBurstBoosted = constellation >= 5;
 
   useEffect(() => {
     if (currentData) {
@@ -320,19 +326,21 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
               <div className="target-input-col">
                 <span className="target-input-label">Current</span>
                 <NumberSpinner 
-                  value={currentTalents.skill} 
-                  min={minCurrentSkill} 
-                  max={getMaxTalentForAscension(currentAscension)} 
-                  onChange={v => handleCurrentTalentChange('skill', v)} 
+                  value={currentTalents.skill + (isSkillBoosted ? 3 : 0)} 
+                  min={minCurrentSkill + (isSkillBoosted ? 3 : 0)} 
+                  max={getMaxTalentForAscension(currentAscension) + (isSkillBoosted ? 3 : 0)} 
+                  onChange={v => handleCurrentTalentChange('skill', v - (isSkillBoosted ? 3 : 0))} 
+                  isBoosted={isSkillBoosted}
                 />
               </div>
               <div className="target-input-col">
                 <span className="target-input-label">Desired</span>
                 <NumberSpinner 
-                  value={desiredTalents.skill} 
-                  min={currentTalents.skill} 
-                  max={getMaxTalentForAscension(desiredAscension)} 
-                  onChange={v => setDesiredTalents({...desiredTalents, skill: v})} 
+                  value={desiredTalents.skill + (isSkillBoosted ? 3 : 0)} 
+                  min={currentTalents.skill + (isSkillBoosted ? 3 : 0)} 
+                  max={getMaxTalentForAscension(desiredAscension) + (isSkillBoosted ? 3 : 0)} 
+                  onChange={v => setDesiredTalents({...desiredTalents, skill: v - (isSkillBoosted ? 3 : 0)})} 
+                  isBoosted={isSkillBoosted}
                 />
               </div>
             </div>
@@ -344,26 +352,28 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
               <div className="target-input-col">
                 <span className="target-input-label">Current</span>
                 <NumberSpinner 
-                  value={currentTalents.burst} 
-                  min={minCurrentBurst} 
-                  max={getMaxTalentForAscension(currentAscension)} 
-                  onChange={v => handleCurrentTalentChange('burst', v)} 
+                  value={currentTalents.burst + (isBurstBoosted ? 3 : 0)} 
+                  min={minCurrentBurst + (isBurstBoosted ? 3 : 0)} 
+                  max={getMaxTalentForAscension(currentAscension) + (isBurstBoosted ? 3 : 0)} 
+                  onChange={v => handleCurrentTalentChange('burst', v - (isBurstBoosted ? 3 : 0))} 
+                  isBoosted={isBurstBoosted}
                 />
               </div>
               <div className="target-input-col">
                 <span className="target-input-label">Desired</span>
                 <NumberSpinner 
-                  value={desiredTalents.burst} 
-                  min={currentTalents.burst} 
-                  max={getMaxTalentForAscension(desiredAscension)} 
-                  onChange={v => setDesiredTalents({...desiredTalents, burst: v})} 
+                  value={desiredTalents.burst + (isBurstBoosted ? 3 : 0)} 
+                  min={currentTalents.burst + (isBurstBoosted ? 3 : 0)} 
+                  max={getMaxTalentForAscension(desiredAscension) + (isBurstBoosted ? 3 : 0)} 
+                  onChange={v => setDesiredTalents({...desiredTalents, burst: v - (isBurstBoosted ? 3 : 0)})} 
+                  isBoosted={isBurstBoosted}
                 />
               </div>
             </div>
           </div>
         </div>
         <div className="target-modal-actions">
-          <button className="action-btn btn-cancel" onClick={onClose}>
+          <button className="action-btn btn-cancel" onClick={onCancel || onClose}>
             <X size={24} />
           </button>
           <button className="action-btn btn-accept" onClick={handleAccept}>

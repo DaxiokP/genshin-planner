@@ -1297,3 +1297,14 @@ input[type=number] {
   user-select: none;
   margin: 0 4px;
 }
+
+.spinner-input.boosted-talent {
+  color: #0284c7; /* Light blue text */
+  background: #e0f2fe; /* Light blue tint background */
+  border: 1px solid #7dd3fc;
+}
+
+.char-select-talent.boosted {
+  color: #38bdf8; /* Light blue text */
+  border-color: rgba(56, 189, 248, 0.4);
+}

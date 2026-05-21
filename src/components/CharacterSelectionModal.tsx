@@ -171,8 +171,12 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
                       </div>
                       <div className="char-select-talents-overlay">
                         <span className="char-select-talent">{char.talent.auto}</span>
-                        <span className="char-select-talent">{char.talent.skill}</span>
-                        <span className="char-select-talent">{char.talent.burst}</span>
+                        <span className={`char-select-talent ${char.constellation >= 3 ? 'boosted' : ''}`}>
+                          {char.talent.skill + (char.constellation >= 3 ? 3 : 0)}
+                        </span>
+                        <span className={`char-select-talent ${char.constellation >= 5 ? 'boosted' : ''}`}>
+                          {char.talent.burst + (char.constellation >= 5 ? 3 : 0)}
+                        </span>
                       </div>
                     </div>
                     <div className="char-select-name">{charInfo.name}</div>

@@ -509,6 +509,10 @@ function App() {
       <CharacterTargetModal 
         isOpen={selectedCharacterKeyForTarget !== null}
         onClose={() => setSelectedCharacterKeyForTarget(null)}
+        onCancel={() => {
+          setSelectedCharacterKeyForTarget(null);
+          setIsCharacterSelectModalOpen(true);
+        }}
         characterKey={selectedCharacterKeyForTarget}
         currentData={characters.find(c => c.key === selectedCharacterKeyForTarget)}
         onAccept={(planned) => {
