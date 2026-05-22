@@ -9,6 +9,7 @@ import materialMapData from './maps/materialMap.json';
 import characterMapData from './maps/characterMap.json';
 import { supabase, fetchUserProfiles, saveProfileState, createCustomProfile, deleteUserProfile } from './supabase';
 import { AuthModal } from './components/AuthModal';
+import { DeletePlanConfirmationModal } from './components/DeletePlanConfirmationModal';
 
 type MaterialMapEntry = {
   id: string;
@@ -94,6 +95,7 @@ function App() {
   const [isCharacterSelectModalOpen, setIsCharacterSelectModalOpen] = useState(false);
   const [selectedCharacterKeyForTarget, setSelectedCharacterKeyForTarget] = useState<string | null>(null);
   const [openedTargetFromPlanner, setOpenedTargetFromPlanner] = useState(false);
+  const [deletingCharacterKey, setDeletingCharacterKey] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // --- Supabase Authentication & Syncing State ---
@@ -535,10 +537,7 @@ function App() {
   };
 
   const removePlannedCharacter = (key: string) => {
-    const charName = lookupChar(key)?.name || key;
-    if (window.confirm(`Are you sure you want to remove the plan for ${charName}?`)) {
-      setPlannedCharacters(prev => prev.filter(p => p.key !== key));
-    }
+    setDeletingCharacterKey(key);
   };
 
   const upgradePlannedCharacter = (key: string) => {
@@ -1513,6 +1512,17 @@ function App() {
         onClose={() => setIsAuthModalOpen(false)}
         onSuccess={(usr) => setUser(usr)}
       />
+
+      {deletingCharacterKey && (
+        <DeletePlanConfirmationModal
+          characterKey={deletingCharacterKey}
+          onClose={() => setDeletingCharacterKey(null)}
+          onConfirm={() => {
+            setPlannedCharacters(prev => prev.filter(p => p.key !== deletingCharacterKey));
+            setDeletingCharacterKey(null);
+          }}
+        />
+      )}
     </div>
   );
 }
