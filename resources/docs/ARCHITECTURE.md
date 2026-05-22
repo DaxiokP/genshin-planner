@@ -92,13 +92,23 @@ The app is built around the **Genshin Optimizer Data (GOOD)** format.
 - `CharacterSelectionModal`: Renders owned characters with their current level and constellation-boosted talents.
 - `CharacterTargetModal`: Handles the setting of current and desired character states.
 - **Sequential Back Navigation**: When canceling/closing the `CharacterTargetModal` via the close button, the UI returns to the `CharacterSelectionModal` seamlessly rather than dismissing entirely to the dashboard, enhancing user workflow.
+- **Planner Back Redirection Flow**: If the `CharacterTargetModal` is launched directly from the Planner's character card (via the Edit button), closing or canceling the modal redirects back to the Planner tab (`openedTargetFromPlanner` logic), bypassing the selection modal.
+- **Planner Card Dual Controls & Headers**:
+  - **Edit Button**: Seamlessly launches the `CharacterTargetModal` for the designated planned character.
+  - **Upgrade Button**: Triggers `upgradePlannedCharacter`, prompting the user to instantly promote current in-game levels/talents to target planner levels upon successful farming completion.
+  - **Power Toggle**: Puts planning on standby (grayscale overlay, excluding material totals from calculations) or reactivates plans.
+  - **Delete Button**: Discards the planned character card.
 
 ## Design Patterns
 
 - **Local-First with Cloud Sync**: All processing and rendering occur dynamically on the client, with background syncing to Supabase for authenticated users, combining low-latency responses with multi-device persistence.
-- **Dynamic Theming**: CSS variables are used for rarity-based background colors (`bg-rarity-1` through `bg-rarity-5`).
+- **Dynamic Rarity Styling**: CSS variables are used for rarity-based background colors (`bg-rarity-1` through `bg-rarity-5`). Additionally, planner card nameplate headers dynamically shift their linear background gradients based on character database rarity: a signature purple (`#7b6a99`) for 4★ characters and a signature gold-brown (`#8c6a4a`) for 5★ characters.
+- **High-Density Compact Grid Layout**: Material grids in planner cards render as highly dense grids utilizing `50px` width cells with a strict aspect ratio. Numbers are structured cleanly above the graphic assets, maximizing display room (supporting 5+ columns per row).
+- **Centered Artwork Crop Zoom**: To isolate transparent margins of standard asset files, material images employ `transform: scale(1.35)` and `transform-origin: center` properties, with the parent boundaries clipped via `overflow: hidden`, guaranteeing highly focused in-game artwork.
+- **Strict Domain Material Sorting**: Calculations and grids strictly sort required materials by game category (Mora ➔ XP ➔ Gems ➔ Specialties ➔ Drops ➔ Boss ➔ Weekly ➔ Crowns), maintaining domain expectations.
 - **Lazy Mapping**: The app merges static metadata (`materialMap`) with dynamic user data (`materials`) at render time.
 - **Constellation Boost Presentation Pattern**: To mirror native game behavior, talent levels displayed in selection and input screens are dynamically adjusted (+3 to Elemental Skill for C3+, +3 to Elemental Burst for C5+). These are visually highlighted with a premium sky blue theme. In the input controllers, the UI maps display values back to standard **base** talent levels before state storage, ensuring calculations and schema are cleanly separated from constellation logic.
+
 
 ## Directory Structure
 

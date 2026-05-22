@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, FileUp, Sparkles, X, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2 } from 'lucide-react';
+import { Upload, FileUp, Sparkles, X, Check, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2, Pencil, Power, RotateCw } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
 import { CharacterTargetModal } from './components/CharacterTargetModal';
+import { calculateRequirements } from './utils/plannerCalculator';
 import './App.css';
 import materialMapData from './maps/materialMap.json';
 import characterMapData from './maps/characterMap.json';
@@ -73,6 +74,7 @@ export interface PlannedCharacter {
     ascension: number;
     talent: { auto: number; skill: number; burst: number };
   };
+  enabled?: boolean;
 }
 
 type TabType = 'planner' | 'characters' | 'weapons' | 'inventory';
@@ -91,6 +93,7 @@ function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isCharacterSelectModalOpen, setIsCharacterSelectModalOpen] = useState(false);
   const [selectedCharacterKeyForTarget, setSelectedCharacterKeyForTarget] = useState<string | null>(null);
+  const [openedTargetFromPlanner, setOpenedTargetFromPlanner] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // --- Supabase Authentication & Syncing State ---
@@ -108,6 +111,169 @@ function App() {
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const saveTimeoutRef = useRef<any>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const formatCompact = (num: number): string => {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace('.0', '') + 'M';
+    }
+    if (num >= 100000) {
+      return (num / 1000).toFixed(0) + 'K';
+    }
+    if (num >= 1000) {
+      const kValue = num / 1000;
+      return kValue % 1 === 0 ? kValue.toFixed(0) + 'K' : kValue.toFixed(1).replace('.0', '') + 'K';
+    }
+    return num.toString();
+  };
+
+  const renderLevelsAndTalents = (planned: PlannedCharacter) => {
+    const charOwned = characters.find(c => c.key === planned.key);
+    const constellation = charOwned?.constellation || 0;
+    const isSkillBoosted = constellation >= 3;
+    const isBurstBoosted = constellation >= 5;
+
+    const skillCur = planned.current.talent.skill + (isSkillBoosted ? 3 : 0);
+    const skillDes = planned.desired.talent.skill + (isSkillBoosted ? 3 : 0);
+    const skillDiff = skillDes > skillCur;
+
+    const burstCur = planned.current.talent.burst + (isBurstBoosted ? 3 : 0);
+    const burstDes = planned.desired.talent.burst + (isBurstBoosted ? 3 : 0);
+    const burstDiff = burstDes > burstCur;
+
+    const autoCur = planned.current.talent.auto;
+    const autoDes = planned.desired.talent.auto;
+    const autoDiff = autoDes > autoCur;
+
+    const boostedColor = '#38bdf8'; // light blue
+    const normalColor = 'rgba(255,255,255,0.9)'; // off-white
+    const labelColor = 'rgba(255,255,255,0.4)'; // gray label
+
+    const renderTalentRow = (cur: number, des: number, diff: boolean, isBoosted: boolean, label: string) => {
+      const textColor = isBoosted ? boostedColor : normalColor;
+      const fontStyle = { color: textColor, fontWeight: isBoosted ? '700' : '500' };
+
+      return (
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: '0.9rem',
+          width: '100%',
+          height: '22px',
+          position: 'relative'
+        }}>
+          {/* Centered Transition Container */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '90px',
+            position: 'relative'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'center' }}>
+              <span style={{ ...fontStyle, width: '32px', textAlign: 'right' }}>{cur}</span>
+              <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.75rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>➔</span>
+              <span style={{
+                color: isBoosted ? boostedColor : (diff ? '#ffcc66' : textColor),
+                fontWeight: isBoosted || diff ? 'bold' : '500',
+                width: '32px',
+                textAlign: 'left',
+                position: 'relative',
+                display: 'inline-flex',
+                alignItems: 'center'
+              }}>
+                {des}
+
+                {/* Label: absolutely positioned on the right to preserve centering */}
+                <span style={{
+                  color: labelColor,
+                  fontSize: '0.75rem',
+                  position: 'absolute',
+                  left: '100%',
+                  marginLeft: '12px',
+                  whiteSpace: 'nowrap',
+                  fontWeight: '500'
+                }}>
+                  {label}
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: "'Outfit', sans-serif",
+        gap: '4px',
+        marginTop: '0.35rem',
+        width: '100%'
+      }}>
+        {/* Levels */}
+        <div style={{ color: '#ffcc66', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Levels
+        </div>
+        <div style={{
+          fontSize: '1.05rem',
+          fontWeight: '700',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '24px',
+          width: '100%'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '90px'
+          }}>
+            <span style={{ color: 'rgba(255,255,255,0.9)', width: '32px', textAlign: 'right', fontSize: '0.95rem' }}>
+              {planned.current.level}
+            </span>
+            <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
+              ➔
+            </span>
+            <span style={{
+              color: planned.desired.level > planned.current.level ? '#ffcc66' : 'inherit',
+              width: '32px',
+              textAlign: 'left',
+              position: 'relative',
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontSize: '0.95rem'
+            }}>
+              {planned.desired.level}
+              {planned.desired.ascension > planned.current.ascension && (
+                <span style={{
+                  color: '#ffcc66',
+                  fontSize: '0.8rem',
+                  marginLeft: '4px'
+                }}>
+                  ✦
+                </span>
+              )}
+            </span>
+          </div>
+        </div>
+
+        {/* Talents */}
+        <div style={{ color: '#ffcc66', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '2px' }}>
+          Talents
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', width: '100%', alignItems: 'center' }}>
+          {renderTalentRow(autoCur, autoDes, autoDiff, false, 'Attack')}
+          {renderTalentRow(skillCur, skillDes, skillDiff, isSkillBoosted, 'Skill')}
+          {renderTalentRow(burstCur, burstDes, burstDiff, isBurstBoosted, 'Burst')}
+        </div>
+      </div>
+    );
+  };
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -198,7 +364,7 @@ function App() {
                 weaponsData = localData.weapons || [];
                 artifactsData = localData.artifacts || [];
                 plannedCharactersData = localData.planned_characters || [];
-                
+
                 // Save directly to DB
                 await saveProfileState(user.id, targetProfile, {
                   materials: materialsData,
@@ -208,7 +374,7 @@ function App() {
                   planned_characters: plannedCharactersData
                 });
                 console.log(`Migrated local data to cloud for profile: ${targetProfile}`);
-                
+
                 // Refresh profiles
                 const refreshed = await fetchUserProfiles(user.id);
                 if (active) setProfiles(refreshed);
@@ -282,7 +448,7 @@ function App() {
 
     if (user) {
       if (!activeProfile) return;
-      
+
       setSyncStatus('syncing');
       if (saveTimeoutRef.current) {
         clearTimeout(saveTimeoutRef.current);
@@ -368,6 +534,44 @@ function App() {
     reader.readAsText(file);
   };
 
+  const removePlannedCharacter = (key: string) => {
+    const charName = lookupChar(key)?.name || key;
+    if (window.confirm(`Are you sure you want to remove the plan for ${charName}?`)) {
+      setPlannedCharacters(prev => prev.filter(p => p.key !== key));
+    }
+  };
+
+  const upgradePlannedCharacter = (key: string) => {
+    const charName = lookupChar(key)?.name || key;
+    if (window.confirm(`Mark ${charName} as upgraded? This will promote your current levels to your target levels.`)) {
+      setPlannedCharacters(prev => prev.map(p => {
+        if (p.key === key) {
+          return {
+            ...p,
+            current: {
+              level: p.desired.level,
+              ascension: p.desired.ascension,
+              talent: { ...p.desired.talent }
+            }
+          };
+        }
+        return p;
+      }));
+    }
+  };
+
+  const togglePlannedCharacter = (key: string) => {
+    setPlannedCharacters(prev => prev.map(p => {
+      if (p.key === key) {
+        return {
+          ...p,
+          enabled: p.enabled !== false ? false : true
+        };
+      }
+      return p;
+    }));
+  };
+
   // Build the display list from the FULL materialMap, merging counts from GOOD file
   const allMaterialEntries: [string, number][] = Object.entries(materialMap).map(([key]) => {
     // Try to find matching GOOD key (GOOD uses CamelCase, our map uses lowercase-no-special-chars)
@@ -418,9 +622,9 @@ function App() {
         <div className="sync-controls">
           <div className={`sync-status-badge ${syncStatus}`} title={
             syncStatus === 'synced' ? 'All changes synced securely to database.' :
-            syncStatus === 'syncing' ? 'Saving changes to database...' :
-            syncStatus === 'local' ? 'Data saved in local browser storage only.' :
-            'Error synchronizing data with database.'
+              syncStatus === 'syncing' ? 'Saving changes to database...' :
+                syncStatus === 'local' ? 'Data saved in local browser storage only.' :
+                  'Error synchronizing data with database.'
           }>
             {syncStatus === 'synced' && (
               <>
@@ -450,7 +654,7 @@ function App() {
 
           {user && (
             <div className="profile-switcher" ref={dropdownRef}>
-              <button 
+              <button
                 className="profile-active-btn"
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
               >
@@ -460,11 +664,11 @@ function App() {
               {isProfileDropdownOpen && (
                 <div className="profile-dropdown-menu">
                   {profiles.map(p => (
-                    <div 
+                    <div
                       key={p.profile_name}
                       className={`profile-dropdown-row ${activeProfile === p.profile_name ? 'active' : ''}`}
                     >
-                      <button 
+                      <button
                         className="profile-dropdown-item-btn"
                         onClick={() => {
                           setActiveProfile(p.profile_name);
@@ -474,9 +678,9 @@ function App() {
                         <span>{p.profile_name}</span>
                         {activeProfile === p.profile_name && <span style={{ color: '#ffcc66', marginLeft: '6px' }}>✓</span>}
                       </button>
-                      
+
                       {profiles.length > 1 && (
-                        <button 
+                        <button
                           className="profile-delete-btn"
                           title={`Delete profile ${p.profile_name}`}
                           onClick={async (e) => {
@@ -486,7 +690,7 @@ function App() {
                                 await deleteUserProfile(user.id, p.profile_name);
                                 const updated = await fetchUserProfiles(user.id);
                                 setProfiles(updated);
-                                
+
                                 // If the deleted profile was active, switch to another one
                                 if (activeProfile === p.profile_name) {
                                   const fallback = updated.find(prof => prof.profile_name !== p.profile_name);
@@ -505,11 +709,11 @@ function App() {
                       )}
                     </div>
                   ))}
-                  
+
                   <div className="profile-dropdown-divider"></div>
-                  
+
                   {!isAddingProfile ? (
-                    <button 
+                    <button
                       className="profile-dropdown-add-btn"
                       onClick={() => {
                         setIsAddingProfile(true);
@@ -519,7 +723,7 @@ function App() {
                       <span>+ Create Profile</span>
                     </button>
                   ) : (
-                    <form 
+                    <form
                       className="profile-dropdown-add-form"
                       onSubmit={async (e) => {
                         e.preventDefault();
@@ -546,8 +750,8 @@ function App() {
                         }
                       }}
                     >
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         required
                         maxLength={15}
                         placeholder="Profile name..."
@@ -558,15 +762,15 @@ function App() {
                         autoFocus
                       />
                       <div className="profile-add-actions">
-                        <button 
-                          type="submit" 
+                        <button
+                          type="submit"
                           className="profile-add-btn-confirm"
                           disabled={isCreatingProfile}
                         >
                           Add
                         </button>
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           className="profile-add-btn-cancel"
                           onClick={() => setIsAddingProfile(false)}
                           disabled={isCreatingProfile}
@@ -582,7 +786,7 @@ function App() {
           )}
 
           {user ? (
-            <button 
+            <button
               className="user-menu-btn"
               onClick={async () => {
                 if (supabase) {
@@ -598,7 +802,7 @@ function App() {
               <LogOut size={14} style={{ marginLeft: '4px' }} />
             </button>
           ) : (
-            <button 
+            <button
               className="auth-trigger-btn"
               onClick={() => setIsAuthModalOpen(true)}
             >
@@ -763,11 +967,11 @@ function App() {
             <section className="characters-container">
               <div className="characters-grid">
                 {characters.map((char) => (
-                  <CharacterCard 
-                    key={char.key} 
-                    character={char} 
-                    weapon={weapons.find(w => w.location === char.key)} 
-                    artifacts={artifacts.filter(a => a.location === char.key)} 
+                  <CharacterCard
+                    key={char.key}
+                    character={char}
+                    weapon={weapons.find(w => w.location === char.key)}
+                    artifacts={artifacts.filter(a => a.location === char.key)}
                   />
                 ))}
               </div>
@@ -794,7 +998,7 @@ function App() {
                   <p className="planner-subtitle">Select what you want to work on</p>
                 </div>
                 <div className="planner-actions">
-                  <button 
+                  <button
                     className="planner-btn planner-btn-character"
                     onClick={() => setIsCharacterSelectModalOpen(true)}
                   >
@@ -815,41 +1019,405 @@ function App() {
               {plannedCharacters.length > 0 ? (
                 <div className="planner-grid">
                   {plannedCharacters.map((planned) => {
-                    // const charData = characters.find(c => c.key === planned.key);
                     const charMapInfo = lookupChar(planned.key);
-                    
+                    const elementClass = charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none';
+                    const requirements = calculateRequirements(planned, materials);
+
                     return (
-                      <div key={planned.key} className="character-card bg-element-none" style={{ padding: '1rem' }}>
-                        <div style={{ display: 'flex', gap: '1rem' }}>
-                          <img 
-                            src={`${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`} 
-                            alt={charMapInfo?.name || planned.key}
-                            style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'contain', background: 'rgba(0,0,0,0.3)' }}
-                            onError={(e) => {
-                              const target = e.currentTarget;
-                              if (!target.dataset.fallback) {
-                                target.dataset.fallback = 'enka';
-                                target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
-                              } else if (!target.dataset.fallbackUi) {
-                                target.dataset.fallbackUi = 'ui';
-                                target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || planned.key}&background=random`;
-                              }
-                            }}
-                          />
-                          <div style={{ flex: 1 }}>
-                            <h3 style={{ margin: 0, color: '#ffcc66' }}>{charMapInfo?.name || planned.key}</h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                              <div>
-                                <span style={{ color: 'var(--text-secondary)' }}>Level:</span><br/>
-                                {planned.current.level} ➔ {planned.desired.level}
-                              </div>
-                              <div>
-                                <span style={{ color: 'var(--text-secondary)' }}>Auto:</span> {planned.current.talent.auto} ➔ {planned.desired.talent.auto}<br/>
-                                <span style={{ color: 'var(--text-secondary)' }}>Skill:</span> {planned.current.talent.skill} ➔ {planned.desired.talent.skill}<br/>
-                                <span style={{ color: 'var(--text-secondary)' }}>Burst:</span> {planned.current.talent.burst} ➔ {planned.desired.talent.burst}
-                              </div>
+                      <div
+                        key={planned.key}
+                        className={`character-card bg-element-${elementClass}`}
+                        style={{
+                          padding: 0,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          overflow: 'hidden',
+                          position: 'relative'
+                        }}
+                      >
+                        {/* Premium Rarity-Based Header Bar */}
+                        <div style={{
+                          background: charMapInfo?.rarity === 5
+                            ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
+                            : 'linear-gradient(to right, #7b6a99, #5a4b78)', // 4* Purple
+                          height: '46px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0 12px',
+                          borderBottom: '1px solid rgba(0,0,0,0.15)',
+                          position: 'relative'
+                        }}>
+                          {/* Left Buttons (Edit, Upgrade) */}
+                          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            <button
+                              onClick={() => {
+                                setOpenedTargetFromPlanner(true);
+                                setSelectedCharacterKeyForTarget(planned.key);
+                              }}
+                              style={{
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                background: '#eae3d2',
+                                color: '#4a3c31',
+                                border: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 0.15s ease',
+                                padding: 0,
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.opacity = '0.9';
+                                e.currentTarget.style.transform = 'scale(1.05)';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.opacity = '1';
+                                e.currentTarget.style.transform = 'scale(1)';
+                              }}
+                              title="Edit target levels"
+                            >
+                              <Pencil size={15} style={{ strokeWidth: 2.2 }} />
+                            </button>
+                            <button
+                              onClick={() => upgradePlannedCharacter(planned.key)}
+                              style={{
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                background: '#eae3d2',
+                                color: '#4a3c31',
+                                border: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 0.15s ease',
+                                padding: 0,
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.opacity = '0.9';
+                                e.currentTarget.style.transform = 'scale(1.05)';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.opacity = '1';
+                                e.currentTarget.style.transform = 'scale(1)';
+                              }}
+                              title="Mark as upgraded"
+                            >
+                              <Sparkles size={15} style={{ strokeWidth: 2.2 }} />
+                            </button>
+                          </div>
+
+                          {/* Center Character Name */}
+                          <div style={{
+                            color: '#fff',
+                            fontFamily: "'Outfit', sans-serif",
+                            fontWeight: '700',
+                            fontSize: '1.15rem',
+                            letterSpacing: '0.01em',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            justifyContent: 'center',
+                            flex: 1
+                          }}>
+                            <span>{charMapInfo?.name || planned.key}</span>
+                          </div>
+
+                          {/* Right Buttons (Standby, Delete) */}
+                          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            <button
+                              onClick={() => togglePlannedCharacter(planned.key)}
+                              style={{
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                background: '#12131a',
+                                color: planned.enabled !== false ? '#fff' : '#555',
+                                border: planned.enabled !== false ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(255,255,255,0.05)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 0.15s ease',
+                                padding: 0,
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.05)';
+                                if (planned.enabled !== false) {
+                                  e.currentTarget.style.color = '#ffcc66';
+                                } else {
+                                  e.currentTarget.style.color = '#777';
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'scale(1)';
+                                e.currentTarget.style.color = planned.enabled !== false ? '#fff' : '#555';
+                              }}
+                              title={planned.enabled !== false ? "Put on Standby" : "Activate Plan"}
+                            >
+                              <Power size={14} style={{ strokeWidth: 2.5 }} />
+                            </button>
+                            <button
+                              onClick={() => removePlannedCharacter(planned.key)}
+                              style={{
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                background: '#eae3d2',
+                                color: '#4a3c31',
+                                border: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 0.15s ease',
+                                padding: 0,
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.opacity = '0.9';
+                                e.currentTarget.style.transform = 'scale(1.05)';
+                                e.currentTarget.style.color = '#ff3333';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.opacity = '1';
+                                e.currentTarget.style.transform = 'scale(1)';
+                                e.currentTarget.style.color = '#4a3c31';
+                              }}
+                              title="Remove plan"
+                            >
+                              <Trash2 size={14} style={{ strokeWidth: 2.2 }} />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Card Body */}
+                        <div style={{
+                          padding: '1.25rem',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '0.75rem',
+                          filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
+                          transition: 'filter 0.3s ease, opacity 0.3s ease',
+                          flex: 1
+                        }}>
+                          {/* Symmetrical side-by-side flex row */}
+                          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                            {/* Enlarged premium avatar frame */}
+                            <div
+                              className={`bg-rarity-${charMapInfo?.rarity || 4}-solid bg-element-${elementClass}-gradient`}
+                              style={{
+                                width: '120px',
+                                height: '120px',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                                position: 'relative',
+                                flexShrink: 0,
+                                border: '2px solid rgba(0,0,0,0.4)',
+                                boxShadow: '0 6px 12px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.08)'
+                              }}
+                            >
+                              <img
+                                src={`${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
+                                alt={charMapInfo?.name || planned.key}
+                                style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }}
+                                onError={(e) => {
+                                  const target = e.currentTarget;
+                                  if (!target.dataset.fallback) {
+                                    target.dataset.fallback = 'enka';
+                                    target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
+                                  } else if (!target.dataset.fallbackUi) {
+                                    target.dataset.fallbackUi = 'ui';
+                                    target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || planned.key}&background=random`;
+                                  }
+                                }}
+                              />
+                              {/* Character Constellation Overlay inside avatar frame */}
+                              <span
+                                className={`char-constellation bg-element-${elementClass}-dark`}
+                                style={{
+                                  position: 'absolute',
+                                  top: '4px',
+                                  right: '4px',
+                                  fontSize: '0.65rem',
+                                  padding: '1px 5px',
+                                  borderRadius: '4px',
+                                  fontWeight: '700',
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                                  border: '1px solid rgba(255,255,255,0.1)'
+                                }}
+                              >
+                                C{characters.find(c => c.key === planned.key)?.constellation || 0}
+                              </span>
+                            </div>
+
+                            {/* Centered Levels and Talents Column */}
+                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '28px' }}>
+                              {renderLevelsAndTalents(planned)}
                             </div>
                           </div>
+
+                          <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', margin: '0.15rem 0' }} />
+
+                          {requirements.length === 0 ? (
+                            <div style={{
+                              textAlign: 'center',
+                              padding: '1.25rem',
+                              background: 'rgba(76, 175, 80, 0.08)',
+                              border: '1px dashed rgba(76, 175, 80, 0.2)',
+                              borderRadius: '8px',
+                              color: '#a5d6a7',
+                              fontSize: '0.85rem',
+                              fontWeight: '500'
+                            }}>
+                              {planned.enabled === false ? "Plan on standby (Active power toggled off)" : "Target reached (No materials needed!)"}
+                            </div>
+                          ) : (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                              <div style={{
+                                fontSize: '0.8rem',
+                                fontWeight: '600',
+                                color: '#ffcc66',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                fontFamily: "'Outfit', sans-serif"
+                              }}>
+                                <span>Required Materials</span>
+                                {requirements.every(r => r.owned >= r.required) ? (
+                                  <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
+                                ) : (
+                                  <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>
+                                )}
+                              </div>
+
+                              {/* Materials grid */}
+                              <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
+                                gap: '0.3rem'
+                              }}>
+                                {requirements.map((mat) => {
+                                  const isEnough = mat.owned >= mat.required;
+                                  const pseudoRarity = mat.rarity || 1;
+                                  const originalEntry = materialMap[mat.key];
+                                  const isExpOrMora = mat.key === 'heroswit' || mat.key === 'mora';
+
+                                  return (
+                                    <div
+                                      key={mat.key}
+                                      style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        borderRadius: '6px',
+                                        overflow: 'hidden',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                        position: 'relative',
+                                        cursor: 'pointer',
+                                        aspectRatio: '50 / 62',
+                                        opacity: isEnough ? 0.45 : 1,
+                                        transition: 'opacity 0.2s ease',
+                                      }}
+                                      onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
+                                      onMouseLeave={() => setHoveredItem(null)}
+                                      onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+                                    >
+                                      {/* Header bar with Required numbers (large) */}
+                                      <div style={{
+                                        height: '20px',
+                                        background: 'rgba(0, 0, 0, 0.6)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '0.8rem',
+                                        fontWeight: '700',
+                                        color: isEnough ? '#a5d6a7' : '#fff',
+                                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                                        fontFamily: "'Outfit', sans-serif"
+                                      }}>
+                                        {isExpOrMora ? `~${formatCompact(mat.required)}` : formatCompact(mat.required)}
+                                      </div>
+
+                                      {/* Icon Bottom Area */}
+                                      <div
+                                        className={`bg-rarity-${pseudoRarity}`}
+                                        style={{
+                                          flex: 1,
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          position: 'relative'
+                                        }}
+                                      >
+                                        <img
+                                          src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
+                                          alt={mat.name}
+                                          style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
+                                          onError={(e) => {
+                                            e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
+                                          }}
+                                        />
+
+                                        {/* Owned sync badge pill overlaid bottom-left */}
+                                        {!isExpOrMora && mat.owned > 0 && (
+                                          <div style={{
+                                            position: 'absolute',
+                                            bottom: '2px',
+                                            left: '2px',
+                                            background: 'rgba(15, 17, 26, 0.85)',
+                                            borderRadius: '4px',
+                                            padding: '1px 3px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '2px',
+                                            border: '1px solid rgba(255, 255, 255, 0.08)',
+                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+                                            zIndex: 2
+                                          }}>
+                                            <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
+                                            <span style={{
+                                              fontSize: '0.58rem',
+                                              color: '#fff',
+                                              fontWeight: '700',
+                                              lineHeight: 1,
+                                              fontFamily: "'Outfit', sans-serif"
+                                            }}>
+                                              {formatCompact(mat.owned)}
+                                            </span>
+                                          </div>
+                                        )}
+
+                                        {/* Done overlay checkmark */}
+                                        {isEnough && (
+                                          <div style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            background: 'rgba(0, 0, 0, 0.15)',
+                                            zIndex: 3
+                                          }}>
+                                            <Check size={22} color="#4caf50" style={{ strokeWidth: 4, filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))' }} />
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     );
@@ -858,8 +1426,8 @@ function App() {
               ) : (
                 <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px dashed var(--glass-border)' }}>
                   <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Your planner is empty.</p>
-                  <button 
-                    className="planner-btn planner-btn-character" 
+                  <button
+                    className="planner-btn planner-btn-character"
                     style={{ margin: '0 auto' }}
                     onClick={() => setIsCharacterSelectModalOpen(true)}
                   >
@@ -906,20 +1474,21 @@ function App() {
         </div>
       )}
 
-      <CharacterSelectionModal 
+      <CharacterSelectionModal
         isOpen={isCharacterSelectModalOpen}
         onClose={() => setIsCharacterSelectModalOpen(false)}
         ownedCharacters={characters}
         onSelect={(key) => {
           setIsCharacterSelectModalOpen(false);
+          setOpenedTargetFromPlanner(false);
           setSelectedCharacterKeyForTarget(key);
         }}
       />
 
-      <CharacterTargetModal 
+      <CharacterTargetModal
         isOpen={selectedCharacterKeyForTarget !== null}
         onClose={() => setSelectedCharacterKeyForTarget(null)}
-        onCancel={() => {
+        onCancel={openedTargetFromPlanner ? undefined : () => {
           setSelectedCharacterKeyForTarget(null);
           setIsCharacterSelectModalOpen(true);
         }}
@@ -939,7 +1508,7 @@ function App() {
         }}
       />
 
-      <AuthModal 
+      <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onSuccess={(usr) => setUser(usr)}

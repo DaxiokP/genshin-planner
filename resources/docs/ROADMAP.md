@@ -54,8 +54,9 @@ Goal: Expanding the scope of planning.
     - Allow adding characters that aren't in the user's import file.
 - [ ] **Global Weapon DB**
     - Allow adding any weapon to the planner.
-- [ ] **Requirements Visualization**
-    - Show the exact materials needed to level up a character or weapon.
+- [x] **Requirements Visualization**
+    - Show the exact materials needed to level up a character or weapon with full cost tracking and inventory integrations.
+
 
 ## Phase 4: Advanced UX & Optimization
 Goal: Filtering, refinement, and routes.

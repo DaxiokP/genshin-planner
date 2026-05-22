@@ -26,6 +26,6 @@ This file defines the behavior and conventions for AI agents interacting with th
 1. **Read-First**: Before making changes, you MUST read the following documentation:
    - **Architecture & Tech Stack**: `resources/docs/ARCHITECTURE.md`
    - **Game Mechanics & Business Logic**: `DOMAIN_KNOWLEDGE.md`
-2. **Roadmap Aware**: (If applicable) Check `ROADMAP.md` to see current work-in-progress.
+2. **Roadmap Aware**: (If applicable) Check `resources/docs/ROADMAP.md` to see current work-in-progress.
 3. **No Placeholders**: Never use placeholder images. Use the `import.meta.env.BASE_URL` + `/icons/` path for local assets, or fallback to UI-avatars if an icon is missing.
 4. **Compile and Verify**: After finalizing all changes, run a build or compile step (e.g., `npm run build` or `npx tsc`) to ensure there are no compilation or type errors in the project.
