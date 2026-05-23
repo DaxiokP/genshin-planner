@@ -23,7 +23,7 @@ Goal: Move from a static inventory view to a dynamic planning tool.
 - [ ] **Planner: Weapon Integration**
     - Add owned weapons to the planner.
     - Set target levels.
-- [ ] **Planner: Priority Management**
+- [x] **Planner: Priority Management**
     - Allow reordering characters and weapons in the planner to prioritize specific material needs.
 
 ## Phase 2: Persistence, Multi-Profile & Cloud Sync (Completed)

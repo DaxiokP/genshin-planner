@@ -94,10 +94,28 @@ The app is built around the **Genshin Optimizer Data (GOOD)** format.
 - **Sequential Back Navigation**: When canceling/closing the `CharacterTargetModal` via the close button, the UI returns to the `CharacterSelectionModal` seamlessly rather than dismissing entirely to the dashboard, enhancing user workflow.
 - **Planner Back Redirection Flow**: If the `CharacterTargetModal` is launched directly from the Planner's character card (via the Edit button), closing or canceling the modal redirects back to the Planner tab (`openedTargetFromPlanner` logic), bypassing the selection modal.
 - **Planner Card Dual Controls & Headers**:
-  - **Edit Button**: Seamlessly launches the `CharacterTargetModal` for the designated planned character.
+  - **Edit Button**: Launches the `CharacterTargetModal` for the designated planned character.
   - **Upgrade Button**: Triggers `upgradePlannedCharacter`, launching an editable, multi-stage upgrade wizard.
-  - **Power Toggle**: Puts planning on standby (grayscale overlay, excluding material totals from calculations) or reactivates plans.
+  - **Power Toggle**: Puts planning on standby (grayscale/opacity overlay across the *entire* card header and body, excluding material totals from requirements) or reactivates plans.
   - **Delete Button**: Discards the planned character card.
+  - **Draggable Title Affordance**: Clicking and dragging the card's header bar initiates a native HTML5 drag event to reorder elements.
+
+### 9. Priority Manager Modal & Reordering Grid Flow
+
+The app features two robust ways to reorder progression cards and customize priority weighting:
+- **Priority Manager Modal (`PriorityManagerModal.tsx`)**:
+  - Launches from the header tab's "Manage Priority" action button.
+  - Hosts a vertical list of planned characters. Standby cards (`enabled === false`) are styled in a faded state.
+  - Dragging rows swaps their visual draft order immediately for real-time feedback.
+  - Order numbers next to elements remain unchanged (representing the original *saved* order) during draft swaps, only updating to reflect the new sequence once the user clicks "Save".
+- **Direct Grid Card Drag-and-Drop**:
+  - **Header-Only Restriction**: Card dragging can only be initiated by clicking and dragging on the card's title/name bar, preventing conflicts with buttons, scrollbars, or text selections in the body.
+  - **Horizontal Split Drops**: Calculates the mouse coordinates relative to the target card's bounding box. Hovering on the left half overlays a glowing golden border on the left (`drop-before` pseudo-element) to insert the card *before* the target; hovering on the right half overlays a gold border on the right (`drop-after` pseudo-element) to insert it *after* the target.
+  - **Reordering Utilities (`src/utils/plannerHelpers.ts`)**:
+    - `reorderByKeys(items, orderedKeys)`: Re-sequences elements by matching keys.
+    - `moveItem(items, fromKey, toKey, placement)`: Inserts elements at specified positions based on target coordinates.
+  - **State Autosave**: Drag reordering updates the `plannedCharacters` array directly, triggering the standard debounced LocalStorage/Supabase cloud background sync to persist changes permanently.
+
 
 ### 8. Editable Character Upgrade & Crafting Flow (`src/utils/upgradeHelpers.ts`, `src/components/*Modal.tsx`)
 
@@ -126,6 +144,10 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
 - **Strict Domain Material Sorting**: Calculations and grids strictly sort required materials by game category (Mora ➔ XP ➔ Gems ➔ Specialties ➔ Drops ➔ Boss ➔ Weekly ➔ Crowns), maintaining domain expectations.
 - **Lazy Mapping**: The app merges static metadata (`materialMap`) with dynamic user data (`materials`) at render time.
 - **Constellation Boost Presentation Pattern**: To mirror native game behavior, talent levels displayed in selection and input screens are dynamically adjusted (+3 to Elemental Skill for C3+, +3 to Elemental Burst for C5+). These are visually highlighted with a premium sky blue theme. In the input controllers, the UI maps display values back to standard **base** talent levels before state storage, ensuring calculations and schema are cleanly separated from constellation logic.
+- **Locked Center Grid Page Header Navigation**: Swaps the `.header` from a flexbox layout to a 3-column CSS Grid (`1fr auto 1fr`). This forces the tab navigation links to sit strictly in the mathematical center of the viewport. Sync controls are aligned right via `justify-content: flex-end` and `justify-self: end`. When the cloud sync badge sizes change dynamically during saving operations, the width differences are swallowed within the right column and do not shift the center tabs.
+- **Dynamic Header Text Scaling & Aligned Leveled Cards**: Planner grid cards keep their headers strictly aligned at a fixed `height: '46px'` to maintain a visually unified grid level. Very long character and weapon names are gracefully wrapped and fitted using dynamic font scaling (`fontScale` of `0.8rem` vs `0.95rem` vs `1.15rem` based on character length) and multiline clamp styles (`display: '-webkit-box'`, `WebkitLineClamp: 2`, `lineHeight: '1.15'`), preventing overlapping or out-of-bounds spillages.
+- **Planner Tab Default Landing State**: The initial tab state defaults to `'planner'` rather than `'inventory'`, prioritizing active visual progression cards immediately upon page loads and browser refreshes.
+
 
 
 ## Directory Structure

@@ -23,6 +23,14 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
     * Hero's Wit uses an equivalent EXP sufficiency check ($20\text{k}/5\text{k}/1\text{k}$ EXP book ratios). Satisfied cards display `#Required / ~#Required` and light up green, while unsatisfied ones display `#EquivalentOwned / ~#Required` and light up red.
     * The Craft list filters out empty items, and the Crafting Bonus pane lists all tiers of drops in active chains.
 - **Sequential Back Navigation & Edit Flows**: When editing a character's planner from the dashboard, cancelling/closing the `CharacterTargetModal` uses a dynamic redirect check (`openedTargetFromPlanner` state) to return the user directly to the Planner board, preventing disruptive transitions to the general character selection modal.
+- **Planner Priority Reordering Systems**: Changing progression weight priority is supported in two ways:
+  1. A standalone visual **Priority Manager Modal** featuring immediate visual drag-swaps of character rows while preserving original saved order number badges next to them until save confirmation.
+  2. Direct **Grid Card Drag-and-Drop** reordering, strictly restricted to clicks originating on the card's header bar, calculating mouse offsets to insert *before* (left-half) or *after* (right-half) target cards, utilizing a golden neon glowing edge overlay border drop cue for high visual confidence.
+- **Card-Wide Standby Fading**: Grayscale and opacity filters are applied to the outermost card container element instead of only the body, causing the entire plan (header, name, action buttons, portrait, and material list) to fade together in a unified transition when placed on standby.
+- **Page Layout Lock & Aligned Leveling**:
+  * Page tabs are centered mathematically and frozen in place using a 3-column CSS Grid (`1fr auto 1fr`) on the `.header`, preventing tab shifting when the Cloud Sync status badge size changes.
+  * Planner cards maintain a strictly fixed header `height: '46px'` to keep all items aligned, while wrapping longer character and weapon names using dynamic font auto-scaling (`0.8rem` vs `0.95rem` vs `1.15rem` based on character length) and vertical `-webkit-box` multi-line text clamping.
+  * The active tab defaults to `'planner'` rather than `'inventory'` to bring the user's progress card board into primary focus upon initialization or page refresh.
 - **Local-First with Cloud Sync Philosophy**: The project uses a hybrid data model:
   - **Speed & Privacy First**: All data processing, delta calculations, and rendering occur entirely in the client browser, maintaining sub-millisecond responsiveness.
   - **Offline Storage**: Guest (logged out) users are saved under a single Local Storage namespace: `genshin_planner_local_data`. In this offline-only mode, the profile dropdown switcher is fully hidden.

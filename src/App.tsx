@@ -13,6 +13,9 @@ import { DeletePlanConfirmationModal } from './components/DeletePlanConfirmation
 import { UpgradeCharacterModal } from './components/UpgradeCharacterModal';
 import { UpgradeEstimateCorrectionModal } from './components/UpgradeEstimateCorrectionModal';
 import { applyUpgradeInventoryMutations, hasSingleStar } from './utils/upgradeHelpers';
+import { moveItem } from './utils/plannerHelpers';
+import { PriorityManagerModal } from './components/PriorityManagerModal';
+
 
 type MaterialMapEntry = {
   id: string;
@@ -89,7 +92,13 @@ function App() {
   const [weapons, setWeapons] = useState<GoodWeapon[]>([]);
   const [artifacts, setArtifacts] = useState<GoodArtifact[]>([]);
   const [plannedCharacters, setPlannedCharacters] = useState<PlannedCharacter[]>([]);
-  const [activeTab, setActiveTab] = useState<TabType>('inventory');
+  const [isPriorityModalOpen, setIsPriorityModalOpen] = useState(false);
+  const [canDragCardKey, setCanDragCardKey] = useState<string | null>(null);
+  const [draggedCardKey, setDraggedCardKey] = useState<string | null>(null);
+  const [dragOverCardKey, setDragOverCardKey] = useState<string | null>(null);
+  const [dropPlacement, setDropPlacement] = useState<'before' | 'after' | null>(null);
+  const [activeTab, setActiveTab] = useState<TabType>('planner');
+
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
@@ -496,6 +505,37 @@ function App() {
       }
     };
   }, [materials, characters, weapons, artifacts, plannedCharacters, user, activeProfile, isLoadingProfile]);
+
+  const handleCardDragStart = (e: React.DragEvent, key: string) => {
+    setDraggedCardKey(key);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleCardDragOver = (e: React.DragEvent, targetKey: string) => {
+    e.preventDefault();
+    if (draggedCardKey === targetKey) {
+      setDragOverCardKey(null);
+      setDropPlacement(null);
+      return;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const isLeft = x < rect.width / 2;
+    
+    setDragOverCardKey(targetKey);
+    setDropPlacement(isLeft ? 'before' : 'after');
+  };
+
+  const handleCardDrop = (e: React.DragEvent, targetKey: string) => {
+    e.preventDefault();
+    if (draggedCardKey && draggedCardKey !== targetKey && dropPlacement) {
+      const updated = moveItem(plannedCharacters, draggedCardKey, targetKey, dropPlacement);
+      setPlannedCharacters(updated);
+    }
+    setDraggedCardKey(null);
+    setDragOverCardKey(null);
+    setDropPlacement(null);
+  };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -1093,7 +1133,7 @@ function App() {
                     <Sword size={20} />
                     <span>Add Weapon</span>
                   </button>
-                  <button className="planner-btn planner-btn-priority">
+                  <button className="planner-btn planner-btn-priority" onClick={() => setIsPriorityModalOpen(true)}>
                     <ListOrdered size={20} />
                     <span>Manage Priority</span>
                   </button>
@@ -1104,34 +1144,56 @@ function App() {
                 <div className="planner-grid">
                   {plannedCharacters.map((planned) => {
                     const charMapInfo = lookupChar(planned.key);
+                    const name = charMapInfo?.name || planned.key;
+                    const fontScale = name.length > 20 ? '0.8rem' : name.length > 12 ? '0.95rem' : '1.15rem';
                     const elementClass = charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none';
                     const requirements = calculateRequirements(planned, materials);
 
                     return (
                       <div
                         key={planned.key}
-                        className={`character-card bg-element-${elementClass}`}
+                        draggable={canDragCardKey === planned.key}
+                        onDragStart={(e) => handleCardDragStart(e, planned.key)}
+                        onDragOver={(e) => handleCardDragOver(e, planned.key)}
+                        onDragLeave={() => { setDragOverCardKey(null); setDropPlacement(null); }}
+                        onDrop={(e) => handleCardDrop(e, planned.key)}
+                        onDragEnd={() => { setDraggedCardKey(null); setDragOverCardKey(null); setDropPlacement(null); }}
+                        className={`character-card bg-element-${elementClass} ${
+                          draggedCardKey === planned.key ? 'dragging-card' : ''
+                        } ${
+                          dragOverCardKey === planned.key && dropPlacement === 'before' ? 'drop-before' : ''
+                        } ${
+                          dragOverCardKey === planned.key && dropPlacement === 'after' ? 'drop-after' : ''
+                        }`}
                         style={{
                           padding: 0,
                           display: 'flex',
                           flexDirection: 'column',
                           overflow: 'hidden',
-                          position: 'relative'
+                          position: 'relative',
+                          filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
+                          transition: 'filter 0.3s ease, opacity 0.3s ease'
                         }}
                       >
                         {/* Premium Rarity-Based Header Bar */}
-                        <div style={{
-                          background: charMapInfo?.rarity === 5
-                            ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
-                            : 'linear-gradient(to right, #7b6a99, #5a4b78)', // 4* Purple
-                          height: '46px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          padding: '0 12px',
-                          borderBottom: '1px solid rgba(0,0,0,0.15)',
-                          position: 'relative'
-                        }}>
+                        <div
+                          className="planner-card-header-draggable"
+                          onMouseDown={() => setCanDragCardKey(planned.key)}
+                          onMouseUp={() => setCanDragCardKey(null)}
+                          style={{
+                            background: charMapInfo?.rarity === 5
+                              ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
+                              : 'linear-gradient(to right, #7b6a99, #5a4b78)', // 4* Purple
+                            height: '46px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            paddingLeft: '12px',
+                            paddingRight: '12px',
+                            borderBottom: '1px solid rgba(0,0,0,0.15)',
+                            position: 'relative'
+                          }}
+                        >
                           {/* Left Buttons (Edit, Upgrade) */}
                           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                             <button
@@ -1202,15 +1264,22 @@ function App() {
                             color: '#fff',
                             fontFamily: "'Outfit', sans-serif",
                             fontWeight: '700',
-                            fontSize: '1.15rem',
+                            fontSize: fontScale,
                             letterSpacing: '0.01em',
-                            display: 'flex',
+                            display: '-webkit-box',
                             alignItems: 'center',
-                            gap: '8px',
                             justifyContent: 'center',
-                            flex: 1
-                          }}>
-                            <span>{charMapInfo?.name || planned.key}</span>
+                            flex: 1,
+                            textAlign: 'center',
+                            lineHeight: '1.15',
+                            padding: '0 4px',
+                            maxHeight: '38px',
+                            overflow: 'hidden',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            wordBreak: 'break-word'
+                          } as any}>
+                            <span>{name}</span>
                           </div>
 
                           {/* Right Buttons (Standby, Delete) */}
@@ -1288,8 +1357,6 @@ function App() {
                           display: 'flex',
                           flexDirection: 'column',
                           gap: '0.75rem',
-                          filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
-                          transition: 'filter 0.3s ease, opacity 0.3s ease',
                           flex: 1
                         }}>
                           {/* Symmetrical side-by-side flex row */}
@@ -1644,6 +1711,13 @@ function App() {
           onConfirm={handleUpgradeFinalConfirmation}
         />
       )}
+
+      <PriorityManagerModal
+        isOpen={isPriorityModalOpen}
+        plannedCharacters={plannedCharacters}
+        onClose={() => setIsPriorityModalOpen(false)}
+        onSave={(ordered) => setPlannedCharacters(ordered)}
+      />
     </div>
   );
 }
