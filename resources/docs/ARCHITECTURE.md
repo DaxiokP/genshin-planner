@@ -95,13 +95,31 @@ The app is built around the **Genshin Optimizer Data (GOOD)** format.
 - **Planner Back Redirection Flow**: If the `CharacterTargetModal` is launched directly from the Planner's character card (via the Edit button), closing or canceling the modal redirects back to the Planner tab (`openedTargetFromPlanner` logic), bypassing the selection modal.
 - **Planner Card Dual Controls & Headers**:
   - **Edit Button**: Seamlessly launches the `CharacterTargetModal` for the designated planned character.
-  - **Upgrade Button**: Triggers `upgradePlannedCharacter`, prompting the user to instantly promote current in-game levels/talents to target planner levels upon successful farming completion.
+  - **Upgrade Button**: Triggers `upgradePlannedCharacter`, launching an editable, multi-stage upgrade wizard.
   - **Power Toggle**: Puts planning on standby (grayscale overlay, excluding material totals from calculations) or reactivates plans.
   - **Delete Button**: Discards the planned character card.
+
+### 8. Editable Character Upgrade & Crafting Flow (`src/utils/upgradeHelpers.ts`, `src/components/*Modal.tsx`)
+
+The instant upgrade confirm dialog is replaced by a two-stage alchemical and resource reconciliation workflow:
+- **Alchemical Calculation Engine (`upgradeHelpers.ts`)**:
+  - *Top-Down Propagation*: Calculates material shortages starting at the highest tier and recursively propagates missing amounts as demands ($3 \times$ ingredients) to lower-rarity tiers.
+  - *Bottom-Up Simulation*: Resolves conversions to craft exactly what is missing, falling back to the maximum possible conversion if inventory is insufficient.
+  - *Deduction & Clamping*: Performs the final subtraction of base requirements and consumed craft ingredients, adds manual crafting bonuses, and clamps inventory counts at `0`.
+- **Upgrade Customization Modal (`UpgradeCharacterModal.tsx`)**:
+  - *Target Level Selectors*: Houses dynamic sliders/spinners for levels and talents, displaying constellation talent boosts (+3) in light blue. Modifies target levels and dynamically re-simulates material/craft metrics in real-time.
+  - *Live Materials Calculator*: Renders progress bars formatted as `#Owned / #Required` (clamped to `#Required / #Required` if sufficient). Estimated cards (Mora and Hero's Wit) are formatted as `#Owned / ~#Required` and dynamically switch to green/red borders based on actual sufficiency.
+  - *Craft Panel*: Filters and lists only active conversions with `count > 0`.
+  - *Crafting Bonus Panel*: Displays all tiers of talent and monster drops in active chains, allowing manual entry of Sucrose or Albedo double yields.
+- **Mora & EXP Correction Modal (`UpgradeEstimateCorrectionModal.tsx`)**:
+  - Prompts the user to verify/correct estimated resource remaining values before final mutation.
+  - Uses `calculateRemainingExpBooks` to greedily deduct Hero's Wit, then Adventurer's Experience, and lastly Wanderer's Advice.
 
 ## Design Patterns
 
 - **Local-First with Cloud Sync**: All processing and rendering occur dynamically on the client, with background syncing to Supabase for authenticated users, combining low-latency responses with multi-device persistence.
+- **Top-Down & Bottom-Up Alchemical Cascading**: Separates the requirement propagation phase (top-down) from alchemical conversion execution (bottom-up), allowing exact tracking of crafted items and inventory consumption without cascading surplus explosion.
+- **Equivalent EXP Sufficiency Evaluation**: Hero's Wit sufficiency is calculated across all three tiers of EXP books (Hero's Wit = 20k, Adventurer's = 5k, Wanderer's = 1k). If the equivalent EXP is sufficient, the Hero's Wit card displays as green with clamped progress (`#Required / ~#Required`), and the deficit is greedily subtracted from lower-tier books.
 - **Dynamic Rarity Styling**: CSS variables are used for rarity-based background colors (`bg-rarity-1` through `bg-rarity-5`). Additionally, planner card nameplate headers dynamically shift their linear background gradients based on character database rarity: a signature purple (`#7b6a99`) for 4★ characters and a signature gold-brown (`#8c6a4a`) for 5★ characters.
 - **High-Density Compact Grid Layout**: Material grids in planner cards render as highly dense grids utilizing `50px` width cells with a strict aspect ratio. Numbers are structured cleanly above the graphic assets, maximizing display room (supporting 5+ columns per row).
 - **Centered Artwork Crop Zoom**: To isolate transparent margins of standard asset files, material images employ `transform: scale(1.35)` and `transform-origin: center` properties, with the parent boundaries clipped via `overflow: hidden`, guaranteeing highly focused in-game artwork.

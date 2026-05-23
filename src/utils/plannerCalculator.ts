@@ -128,6 +128,8 @@ export interface RequiredMaterial {
   iconId: string;
   sortGroup?: number;
   sortRank?: number;
+  isEnough?: boolean;
+  converted?: number;
 }
 
 /**
@@ -233,6 +235,110 @@ export function calculateRequirements(
       sortGroup: mapData?.sortGroup,
       sortRank: mapData?.sortRank
     });
+  });
+
+  // 4b. Apply material crafting up-conversion (alchemy) logic for groups 100, 400, 500
+  const activeChains = new Set<string>();
+  results.forEach(item => {
+    if ((item.sortGroup === 100 || item.sortGroup === 400 || item.sortGroup === 500) && 
+        item.sortGroup !== undefined && item.sortRank !== undefined) {
+      activeChains.add(`${item.sortGroup}_${item.sortRank}`);
+    }
+  });
+
+  if (activeChains.size > 0) {
+    // Collect all materials from materialMap for each active chain
+    const chainItemsMap: Record<string, { key: string; sortGroup: number; sortRank: number; rarity: number; owned: number; required: number; itemRef?: RequiredMaterial }[]> = {};
+
+    activeChains.forEach(chainKey => {
+      chainItemsMap[chainKey] = [];
+    });
+
+    // Populate with all possible materials in the materialMap matching the active chains
+    Object.entries(materialMap).forEach(([key, mapData]) => {
+      if (mapData.sortGroup !== undefined && mapData.sortRank !== undefined) {
+        const chainKey = `${mapData.sortGroup}_${mapData.sortRank}`;
+        if (activeChains.has(chainKey)) {
+          // Check if this item is in the results
+          const existing = results.find(r => r.key === key);
+          
+          let owned = 0;
+          if (existing) {
+            owned = existing.owned;
+          } else if (materials) {
+            // Retrieve owned count case-insensitively from GOOD inventory
+            for (const goodKey of Object.keys(materials)) {
+              if (goodKey.toLowerCase() === key) {
+                owned = materials[goodKey];
+                break;
+              }
+            }
+          }
+
+          chainItemsMap[chainKey].push({
+            key,
+            sortGroup: mapData.sortGroup,
+            sortRank: mapData.sortRank,
+            rarity: mapData.rarity,
+            owned,
+            required: existing ? existing.required : 0,
+            itemRef: existing
+          });
+        }
+      }
+    });
+
+    // Process each chain to cascade surplus
+    Object.values(chainItemsMap).forEach(chain => {
+      // Sort ascending by rarity
+      chain.sort((a, b) => a.rarity - b.rarity);
+
+      let surplus = 0;
+      chain.forEach(cItem => {
+        const converted = Math.floor(surplus / 3);
+        const available = cItem.owned + converted;
+        const isEnough = available >= cItem.required;
+        const missing = isEnough ? 0 : cItem.required - available;
+        surplus = isEnough ? (available - cItem.required) : 0;
+
+        // If the item exists in the actual required results, update its fields
+        if (cItem.itemRef) {
+          cItem.itemRef.isEnough = isEnough;
+          cItem.itemRef.missing = missing;
+          cItem.itemRef.converted = converted;
+        }
+      });
+    });
+  }
+
+  // Set isEnough for all results that were not handled by chains
+  results.forEach(item => {
+    if (item.isEnough === undefined) {
+      if (item.key === 'heroswit') {
+        const requiredExp = item.required * 20000;
+        
+        let ownedWit = item.owned;
+        let ownedAdv = 0;
+        let ownedAdvice = 0;
+        
+        if (materials) {
+          for (const goodKey of Object.keys(materials)) {
+            const gkLower = goodKey.toLowerCase();
+            if (gkLower === 'adventurersexperience') {
+              ownedAdv = materials[goodKey];
+            } else if (gkLower === 'wanderersadvice') {
+              ownedAdvice = materials[goodKey];
+            }
+          }
+        }
+        
+        const totalExpOwned = ownedWit * 20000 + ownedAdv * 5000 + ownedAdvice * 1000;
+        item.isEnough = totalExpOwned >= requiredExp;
+        item.missing = item.isEnough ? 0 : Math.ceil((requiredExp - totalExpOwned) / 20000);
+      } else {
+        item.isEnough = item.owned >= item.required;
+      }
+    }
   });
 
   // 5. Sort materials: Hero's Wit first, Mora second. Then by custom category order, then rarity ascending, then sortRank, then name.

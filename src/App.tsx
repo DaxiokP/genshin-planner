@@ -10,6 +10,9 @@ import characterMapData from './maps/characterMap.json';
 import { supabase, fetchUserProfiles, saveProfileState, createCustomProfile, deleteUserProfile } from './supabase';
 import { AuthModal } from './components/AuthModal';
 import { DeletePlanConfirmationModal } from './components/DeletePlanConfirmationModal';
+import { UpgradeCharacterModal } from './components/UpgradeCharacterModal';
+import { UpgradeEstimateCorrectionModal } from './components/UpgradeEstimateCorrectionModal';
+import { applyUpgradeInventoryMutations, hasSingleStar } from './utils/upgradeHelpers';
 
 type MaterialMapEntry = {
   id: string;
@@ -96,6 +99,12 @@ function App() {
   const [selectedCharacterKeyForTarget, setSelectedCharacterKeyForTarget] = useState<string | null>(null);
   const [openedTargetFromPlanner, setOpenedTargetFromPlanner] = useState(false);
   const [deletingCharacterKey, setDeletingCharacterKey] = useState<string | null>(null);
+  const [selectedUpgradeCharacterKey, setSelectedUpgradeCharacterKey] = useState<string | null>(null);
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+  const [isUpgradeCorrectionModalOpen, setIsUpgradeCorrectionModalOpen] = useState(false);
+  const [upgradeDraftTarget, setUpgradeDraftTarget] = useState<any>(null);
+  const [draftCraftingBonuses, setDraftCraftingBonuses] = useState<Record<string, number>>({});
+  const [estimatedSpend, setEstimatedSpend] = useState<{ mora: number, heroswit: number }>({ mora: 0, heroswit: 0 });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // --- Supabase Authentication & Syncing State ---
@@ -235,8 +244,19 @@ function App() {
             justifyContent: 'center',
             width: '90px'
           }}>
-            <span style={{ color: 'rgba(255,255,255,0.9)', width: '32px', textAlign: 'right', fontSize: '0.95rem' }}>
+            <span style={{
+              color: 'rgba(255,255,255,0.9)',
+              width: '32px',
+              textAlign: 'right',
+              fontSize: '0.95rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end'
+            }}>
               {planned.current.level}
+              {hasSingleStar(planned.current.level, planned.current.ascension) && (
+                <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
+              )}
             </span>
             <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
               ➔
@@ -251,11 +271,11 @@ function App() {
               fontSize: '0.95rem'
             }}>
               {planned.desired.level}
-              {planned.desired.ascension > planned.current.ascension && (
+              {hasSingleStar(planned.desired.level, planned.desired.ascension) && (
                 <span style={{
                   color: '#ffcc66',
                   fontSize: '0.8rem',
-                  marginLeft: '4px'
+                  marginLeft: '2px'
                 }}>
                   ✦
                 </span>
@@ -541,22 +561,87 @@ function App() {
   };
 
   const upgradePlannedCharacter = (key: string) => {
-    const charName = lookupChar(key)?.name || key;
-    if (window.confirm(`Mark ${charName} as upgraded? This will promote your current levels to your target levels.`)) {
-      setPlannedCharacters(prev => prev.map(p => {
-        if (p.key === key) {
-          return {
-            ...p,
-            current: {
-              level: p.desired.level,
-              ascension: p.desired.ascension,
-              talent: { ...p.desired.talent }
-            }
-          };
-        }
-        return p;
-      }));
+    const planned = plannedCharacters.find(p => p.key === key);
+    if (!planned) return;
+    setSelectedUpgradeCharacterKey(key);
+    setIsUpgradeModalOpen(true);
+  };
+
+  const handleUpgradeModalConfirm = (
+    target: {
+      level: number;
+      ascension: number;
+      talent: { auto: number; skill: number; burst: number };
+    },
+    craftingBonuses: Record<string, number>
+  ) => {
+    const planned = plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey);
+    if (!planned) return;
+
+    const draftChar = { ...planned, desired: target };
+    const reqs = calculateRequirements(draftChar, materials);
+    
+    const moraReq = reqs.find(r => r.key === 'mora')?.required || 0;
+    const heroswitReq = reqs.find(r => r.key === 'heroswit')?.required || 0;
+
+    setUpgradeDraftTarget(target);
+    setDraftCraftingBonuses(craftingBonuses);
+    setEstimatedSpend({ mora: moraReq, heroswit: heroswitReq });
+    setIsUpgradeCorrectionModalOpen(true);
+  };
+
+  const handleUpgradeFinalConfirmation = (
+    correctedMora: number,
+    correctedExp: {
+      heroswit: number;
+      adventurersexperience: number;
+      wanderersadvice: number;
     }
+  ) => {
+    const planned = plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey);
+    if (!planned || !upgradeDraftTarget || !materials) return;
+
+    const mutatedMaterials = applyUpgradeInventoryMutations(
+      planned,
+      upgradeDraftTarget,
+      materials,
+      draftCraftingBonuses,
+      correctedMora,
+      correctedExp
+    );
+
+    setMaterials(mutatedMaterials);
+    setPlannedCharacters(prev => prev.map(p => {
+      if (p.key === selectedUpgradeCharacterKey) {
+        return {
+          ...p,
+          current: {
+            level: upgradeDraftTarget.level,
+            ascension: upgradeDraftTarget.ascension,
+            talent: { ...upgradeDraftTarget.talent }
+          }
+        };
+      }
+      return p;
+    }));
+
+    setCharacters(prev => prev.map(c => {
+      if (c.key === selectedUpgradeCharacterKey) {
+        return {
+          ...c,
+          level: upgradeDraftTarget.level,
+          ascension: upgradeDraftTarget.ascension,
+          talent: { ...upgradeDraftTarget.talent }
+        };
+      }
+      return c;
+    }));
+
+    setIsUpgradeCorrectionModalOpen(false);
+    setIsUpgradeModalOpen(false);
+    setSelectedUpgradeCharacterKey(null);
+    setUpgradeDraftTarget(null);
+    setDraftCraftingBonuses({});
   };
 
   const togglePlannedCharacter = (key: string) => {
@@ -1290,7 +1375,7 @@ function App() {
                                 fontFamily: "'Outfit', sans-serif"
                               }}>
                                 <span>Required Materials</span>
-                                {requirements.every(r => r.owned >= r.required) ? (
+                                {requirements.every(r => r.isEnough) ? (
                                   <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
                                 ) : (
                                   <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>
@@ -1304,7 +1389,7 @@ function App() {
                                 gap: '0.3rem'
                               }}>
                                 {requirements.map((mat) => {
-                                  const isEnough = mat.owned >= mat.required;
+                                  const isEnough = mat.isEnough ?? (mat.owned >= mat.required);
                                   const pseudoRarity = mat.rarity || 1;
                                   const originalEntry = materialMap[mat.key];
                                   const isExpOrMora = mat.key === 'heroswit' || mat.key === 'mora';
@@ -1341,7 +1426,11 @@ function App() {
                                         borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
                                         fontFamily: "'Outfit', sans-serif"
                                       }}>
-                                        {isExpOrMora ? `~${formatCompact(mat.required)}` : formatCompact(mat.required)}
+                                        {isEnough ? (
+                                          isExpOrMora ? `~${formatCompact(mat.required)}` : formatCompact(mat.required)
+                                        ) : (
+                                          isExpOrMora ? `~${formatCompact(mat.missing)}` : formatCompact(mat.missing)
+                                        )}
                                       </div>
 
                                       {/* Icon Bottom Area */}
@@ -1365,33 +1454,41 @@ function App() {
                                         />
 
                                         {/* Owned sync badge pill overlaid bottom-left */}
-                                        {!isExpOrMora && mat.owned > 0 && (
-                                          <div style={{
-                                            position: 'absolute',
-                                            bottom: '2px',
-                                            left: '2px',
-                                            background: 'rgba(15, 17, 26, 0.85)',
-                                            borderRadius: '4px',
-                                            padding: '1px 3px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '2px',
-                                            border: '1px solid rgba(255, 255, 255, 0.08)',
-                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
-                                            zIndex: 2
-                                          }}>
-                                            <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
-                                            <span style={{
-                                              fontSize: '0.58rem',
-                                              color: '#fff',
-                                              fontWeight: '700',
-                                              lineHeight: 1,
-                                              fontFamily: "'Outfit', sans-serif"
-                                            }}>
-                                              {formatCompact(mat.owned)}
-                                            </span>
-                                          </div>
-                                        )}
+                                        {(() => {
+                                          if (!isExpOrMora && mat.converted !== undefined && mat.owned < mat.required) {
+                                            const convertValue = Math.min(mat.required - mat.owned, mat.converted);
+                                            if (convertValue > 0) {
+                                              return (
+                                                <div style={{
+                                                  position: 'absolute',
+                                                  bottom: '2px',
+                                                  left: '2px',
+                                                  background: 'rgba(15, 17, 26, 0.85)',
+                                                  borderRadius: '4px',
+                                                  padding: '1px 3px',
+                                                  display: 'flex',
+                                                  alignItems: 'center',
+                                                  gap: '2px',
+                                                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+                                                  zIndex: 2
+                                                }}>
+                                                  <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
+                                                  <span style={{
+                                                    fontSize: '0.58rem',
+                                                    color: '#fff',
+                                                    fontWeight: '700',
+                                                    lineHeight: 1,
+                                                    fontFamily: "'Outfit', sans-serif"
+                                                  }}>
+                                                    {formatCompact(convertValue)}
+                                                  </span>
+                                                </div>
+                                              );
+                                            }
+                                          }
+                                          return null;
+                                        })()}
 
                                         {/* Done overlay checkmark */}
                                         {isEnough && (
@@ -1521,6 +1618,30 @@ function App() {
             setPlannedCharacters(prev => prev.filter(p => p.key !== deletingCharacterKey));
             setDeletingCharacterKey(null);
           }}
+        />
+      )}
+
+      {isUpgradeModalOpen && selectedUpgradeCharacterKey && (
+        <UpgradeCharacterModal
+          isOpen={isUpgradeModalOpen}
+          onClose={() => {
+            setIsUpgradeModalOpen(false);
+            setSelectedUpgradeCharacterKey(null);
+          }}
+          planned={plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey)}
+          currentData={characters.find(c => c.key === selectedUpgradeCharacterKey)}
+          materials={materials}
+          onUpgradeClick={handleUpgradeModalConfirm}
+        />
+      )}
+
+      {isUpgradeCorrectionModalOpen && selectedUpgradeCharacterKey && (
+        <UpgradeEstimateCorrectionModal
+          isOpen={isUpgradeCorrectionModalOpen}
+          onClose={() => setIsUpgradeCorrectionModalOpen(false)}
+          materials={materials}
+          estimatedSpend={estimatedSpend}
+          onConfirm={handleUpgradeFinalConfirmation}
         />
       )}
     </div>

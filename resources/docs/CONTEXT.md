@@ -17,6 +17,11 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
 - **Rarity Branding**: Character nameplate banners automatically match the character's native rarity: 4★ characters display a premium purple name plate, while 5★ characters display a premium gold-brown name plate.
 - **Compact Material Cells with Center Zoom**: To provide a clean grid experience, required materials are displayed in a high-density, 5+ columns per row grid using compact `50px` cells. Material icons are scaled up and centered via `1.35x` transformations, clipping out empty transparent card margins. Complete satisfaction is highlighted by darkening/dimming cells in grayscale and showing translucent checkmarks.
 - **Mora & XP Estimations**: Mora and Hero's Wits bypass standard `owned/needed` counter layouts, instead showing a clean `~needed` estimation value for high-glance utility.
+- **Inventory-Aware Interactive Character Upgrades**: Clicking the card's Upgrade button opens a dedicated wizard with alchemical recipes, crafting bonus overlays, and a final verification screen that safely deducts Mora/EXP/materials from the user's inventory.
+- **Alchemical Conversions & Clamping Math**:
+    * Displays material cell progress in the upgrade grid in a `#ClampedOwned / #Required` format (e.g. `33/33` or `28/114`).
+    * Hero's Wit uses an equivalent EXP sufficiency check ($20\text{k}/5\text{k}/1\text{k}$ EXP book ratios). Satisfied cards display `#Required / ~#Required` and light up green, while unsatisfied ones display `#EquivalentOwned / ~#Required` and light up red.
+    * The Craft list filters out empty items, and the Crafting Bonus pane lists all tiers of drops in active chains.
 - **Sequential Back Navigation & Edit Flows**: When editing a character's planner from the dashboard, cancelling/closing the `CharacterTargetModal` uses a dynamic redirect check (`openedTargetFromPlanner` state) to return the user directly to the Planner board, preventing disruptive transitions to the general character selection modal.
 - **Local-First with Cloud Sync Philosophy**: The project uses a hybrid data model:
   - **Speed & Privacy First**: All data processing, delta calculations, and rendering occur entirely in the client browser, maintaining sub-millisecond responsiveness.

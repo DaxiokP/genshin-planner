@@ -56,6 +56,10 @@ Goal: Expanding the scope of planning.
     - Allow adding any weapon to the planner.
 - [x] **Requirements Visualization**
     - Show the exact materials needed to level up a character or weapon with full cost tracking and inventory integrations.
+- [x] **Inventory-Aware Upgrades & Crafting Simulations**
+    - Replace instant promotions with a robust alchemical crafting simulation engine.
+    - Added top-down Cascading requirement propagation and bottom-up craft simulators.
+    - Integrated dynamic progress bars, all-tier alchemical bonus sliders, and a final Mora/EXP verification modal.
 
 
 ## Phase 4: Advanced UX & Optimization
