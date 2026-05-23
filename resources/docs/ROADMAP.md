@@ -15,12 +15,12 @@ Goal: Move from a static inventory view to a dynamic planning tool.
 
 - [x] **Own Characters Implementation**
     - Track talents, levels, and constellations.
-- [ ] **Own Weapons Implementation**
+- [x] **Own Weapons Implementation**
     - Track levels and refinement levels.
 - [x] **Planner: Character Integration**
     - Add owned characters to the planner.
     - Set target levels and talent goals.
-- [ ] **Planner: Weapon Integration**
+- [x] **Planner: Weapon Integration**
     - Add owned weapons to the planner.
     - Set target levels.
 - [x] **Planner: Priority Management**
@@ -62,16 +62,22 @@ Goal: Expanding the scope of planning.
     - Integrated dynamic progress bars, all-tier alchemical bonus sliders, and a final Mora/EXP verification modal.
 
 
-## Phase 4: Advanced UX & Optimization
+## Phase 4: Advanced UX & Optimization (Completed)
 Goal: Filtering, refinement, and routes.
 
-- [ ] **Enhanced Filtering**
-    - Filter characters/weapons by Level, Element, and Weapon Type.
-- [ ] **Enhanced Character View**
+- [x] **Enhanced Filtering & Contiguous Badge Groups**
+    - Filter characters and weapons by weapon type, element, and rarity, all selected by default.
+    - Joined buttons into contiguous `.filter-button-group` boxes with explicit labels removed.
+    - Displayed only icons and dynamic count badge pills (`active/total`) with real-time cross-filtering.
+    - Locked all button and count pill widths statically to eliminate layout shifting.
+    - Styled active segments with subtle transparent element washes (`rgba(X, Y, Z, 0.15)`) and solid glowing bottom borders, preserving colorful native icons.
+- [x] **Multi-Tier Level Sorting Cascade**
+    - Level sorting on the characters tab cascades through Level ➔ Rarity ➔ Alphabetic (Name) to resolve identical level bounds cleanly.
+- [x] **Enhanced Character View**
     - Show which weapon each character has equipped.
-- [ ] **Enhanced Planner**
+- [x] **Enhanced Planner**
     - Display equipped weapons directly on the character cards in the planner.
-- [ ] **Enhanced Weapon View**
+- [x] **Enhanced Weapon View**
     - Show which character is currently using a specific weapon.
 - [ ] **Optimization Algorithms**
     - (Planned) Auto-calculate the best domain farming route based on current priorities.

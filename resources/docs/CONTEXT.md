@@ -38,6 +38,13 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
 - **Username Auth Layer**: Logins use clean, alphanumeric usernames rather than exposing emails. Client-side controllers transparently handle MX-valid Gmail mapping under the hood (`username ➔ username.planner@gmail.com`) to register smoothly on Supabase, while keeping all user-facing components clean and strictly username-oriented.
 - **Dynamic Switcher & Deletion**: Authenticated accounts can swap, create, and delete multiple custom profiles directly from the navigation bar. Deletion uses event propagation controls to avoid switching profiles, and is strictly boundary-checked (hidden when only one profile remains) to ensure account integrity.
 - **Data Scraping**: The project uses custom scripts (`resources/scripts/downloadIcons.cjs`, `resources/scripts/generateMap.cjs`) to extract data from game databases. If material data is missing, these scripts should be updated rather than hardcoding data in `App.tsx`.
+- **Contiguous Locked Filters & Transparent Elemental Fills**:
+  * Character and Weapon filter panels are built with contiguous, joined `.filter-button-group` boxes without text labels (icons-only for weapons/elements).
+  * Selection uses the smart `handleFilterToggle` logic: first click isolates, other clicks additively select, and clicking the last active resets to all active.
+  * Explicit, static button widths (weapons: `96px`, elements: `92px`, rarities: `88px`, sort-by: `110px`, sort-order: `135px`) and a locked `44px` width for `.badge-count-pill` prevent any horizontal layout shifts.
+  * Active buttons are filled with elegant, subtle transparent overlays (`rgba(X, Y, Z, 0.15)`) and solid glowing bottom borders, preserving natural colored icons and matching the glassmorphic dark theme.
+- **Hidden Multi-Tier Sorting Cascade**:
+  * Sorting the character roster by Level triggers a three-stage sorting cascade: **Level ➔ Rarity ➔ Alphabetic (Name)**. Rarity sorting matches the active sort direction, while display name A-Z serves as the stable final fallback.
 
 ## Coding Conventions for Agents
 - **Consistency**: Keep core state coordinates and layout structures in `App.tsx`, and split standalone visual forms/modals into `src/components/` (e.g. `AuthModal.tsx`).
