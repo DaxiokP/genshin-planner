@@ -1038,7 +1038,13 @@ function App() {
         if (a.level !== b.level) {
           return (a.level - b.level) * orderMultiplier;
         }
-        // 3. Display name ascending fallback (always alphabetical A-Z)
+        // 3. Rarity sort (secondary sort under level)
+        const rarityA = infoA?.rarity || 4;
+        const rarityB = infoB?.rarity || 4;
+        if (rarityA !== rarityB) {
+          return (rarityA - rarityB) * orderMultiplier;
+        }
+        // 4. Display name ascending fallback (always alphabetical A-Z)
         return nameA.localeCompare(nameB);
       } else {
         // Name sort
