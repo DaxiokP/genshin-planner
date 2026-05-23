@@ -19,6 +19,7 @@ export interface PlannerState {
   weapons: any[];
   artifacts: any[];
   planned_characters: any[];
+  favorite_character_keys: string[];
 }
 
 // Fetch all profiles for an authenticated user
@@ -55,6 +56,7 @@ export async function saveProfileState(
       weapons: state.weapons,
       artifacts: state.artifacts,
       planned_characters: state.planned_characters,
+      favorite_character_keys: state.favorite_character_keys || [],
       updated_at: new Date().toISOString()
     }, {
       onConflict: 'user_id,profile_name'
@@ -82,7 +84,8 @@ export async function ensureDefaultProfilesExist(userId: string, username: strin
     characters: [],
     weapons: [],
     artifacts: [],
-    planned_characters: []
+    planned_characters: [],
+    favorite_character_keys: []
   };
 
   const { error } = await supabase
@@ -107,7 +110,8 @@ export async function createCustomProfile(userId: string, profileName: string) {
     characters: [],
     weapons: [],
     artifacts: [],
-    planned_characters: []
+    planned_characters: [],
+    favorite_character_keys: []
   };
 
   const { data, error } = await supabase

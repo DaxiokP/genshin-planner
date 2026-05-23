@@ -26,6 +26,8 @@ interface CharacterCardProps {
   character: GoodCharacter;
   weapon?: GoodWeapon;
   artifacts?: GoodArtifact[];
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
 }
 
 const artifactSlotOrder = ['flower', 'plume', 'sands', 'goblet', 'circlet'];
@@ -46,15 +48,16 @@ const FallbackIcon = ({ slot }: { slot: string }) => {
     <img
       src={`${import.meta.env.BASE_URL}artifacts/${getFallbackIconName(slot)}`}
       alt={`Empty ${slot} slot`}
+      className="empty-slot-placeholder"
       style={{ opacity: 0.6, width: '100%', height: '100%', objectFit: 'contain' }}
     />
   );
 };
 
-export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon, artifacts = [] }) => {
+export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon, artifacts = [], isFavorite, onToggleFavorite }) => {
   // Handle Traveler alias — GOOD uses "Traveler" but map has "Aether"/"Lumine"
   const charKey = character.key === 'Traveler' ? 'Aether' : character.key;
-  const charData = lookupChar(charKey) || { name: character.key, rarity: 5, element: 'None', icon: '' };
+  const charData = lookupChar(charKey) || { name: character.key, rarity: 5, element: 'None', icon: '', weaponType: 'Sword' };
   const elementClass = charData.element ? charData.element.toLowerCase() : 'none';
 
   const weaponData = weapon ? lookupWeapon(weapon.key) : null;
@@ -65,10 +68,15 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon,
   );
 
   return (
-    <div className={`character-card bg-element-${elementClass}`}>
+    <div className={`character-card bg-rarity-${charData.rarity}`}>
       <div className="char-card-header">
-        <button className="heart-btn">
-          <Heart size={14} className="heart-icon" />
+        <button
+          className={`heart-btn ${isFavorite ? 'favorite-active' : ''}`}
+          onClick={onToggleFavorite}
+          title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          aria-label={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        >
+          <Heart size={14} className="heart-icon" fill={isFavorite ? "#ff5e5e" : "none"} color={isFavorite ? "#ff5e5e" : "currentColor"} />
         </button>
         <div className={`char-name-badge bg-element-${elementClass}-dark`}>
           {charData.name}
@@ -106,9 +114,13 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon,
             <span className="char-constellation">C{character.constellation}</span>
           </div>
           <div className="char-talents">
-            <span className="talent-badge">{character.talent.auto}</span>
-            <span className="talent-badge">{character.talent.skill}</span>
-            <span className="talent-badge">{character.talent.burst}</span>
+            <span className="talent-badge" title="Normal Attack">{character.talent.auto}</span>
+            <span className={`talent-badge ${character.constellation >= 3 ? 'boosted' : ''}`} title="Elemental Skill">
+              {character.talent.skill + (character.constellation >= 3 ? 3 : 0)}
+            </span>
+            <span className={`talent-badge ${character.constellation >= 5 ? 'boosted' : ''}`} title="Elemental Burst">
+              {character.talent.burst + (character.constellation >= 5 ? 3 : 0)}
+            </span>
           </div>
           <div className="char-stars">
             {Array.from({ length: charData.rarity }).map((_, i) => (
@@ -121,27 +133,36 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon,
       <div className="char-equipment-row">
         <div className="equip-slot">
           <div className="equip-lvl-overlay">
-            {weapon ? <span className="equip-lvl-text">{weapon.level}/90</span> : null}
-            {weapon ? <span className="equip-refine">R{weapon.refinement}</span> : null}
+            {weapon ? <span className="equip-lvl-text">Lv.{weapon.level}</span> : null}
           </div>
           <div className={`equip-icon-wrapper ${weaponData ? `bg-rarity-${weaponData.rarity || 1}` : 'empty-slot'}`}>
             {weaponData ? (
+              <>
+                <img
+                  src={`${import.meta.env.BASE_URL}weapons/${weaponData.id}.png`}
+                  alt={weapon!.key}
+                  title={weaponData.name || weapon!.key}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.dataset.fallback) {
+                      target.dataset.fallback = 'enka';
+                      target.src = `https://enka.network/ui/UI_EquipIcon_${weaponData.id}.png`;
+                    } else if (!target.dataset.fallbackUi) {
+                      target.dataset.fallbackUi = 'ui';
+                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(weaponData.name || weapon!.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
+                    }
+                  }}
+                />
+                {weapon && <span className="weapon-refine-badge-slot">R{weapon.refinement}</span>}
+              </>
+            ) : (
               <img
-                src={`${import.meta.env.BASE_URL}weapons/${weaponData.id}.png`}
-                alt={weapon!.key}
-                title={weaponData.name || weapon!.key}
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.dataset.fallback) {
-                    target.dataset.fallback = 'enka';
-                    target.src = `https://enka.network/ui/UI_EquipIcon_${weaponData.id}.png`;
-                  } else if (!target.dataset.fallbackUi) {
-                    target.dataset.fallbackUi = 'ui';
-                    target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(weaponData.name || weapon!.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
-                  }
-                }}
+                src={`${import.meta.env.BASE_URL}icons/${(charData.weaponType || 'Sword').toLowerCase()}.png`}
+                alt={`Empty ${charData.weaponType || 'Sword'} slot`}
+                className="empty-slot-placeholder"
+                style={{ opacity: 0.4, width: '100%', height: '100%', objectFit: 'contain', padding: '6px' }}
               />
-            ) : null}
+            )}
           </div>
         </div>
 

@@ -506,8 +506,14 @@ input[type=number] {
 
 .characters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+}
+
+@media (min-width: 1800px) {
+  .characters-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 /* Character Card */
@@ -565,8 +571,9 @@ input[type=number] {
   left: 8px;
   right: 8px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
   z-index: 10;
 }
 
@@ -1891,7 +1898,9 @@ input[type=number] {
 }
 
 .weapon-search-group {
-  flex: 1 1 280px;
+  flex: 0 1 320px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .weapon-search-wrapper {
@@ -2331,6 +2340,363 @@ input[type=number] {
 .weapons-empty-state p {
   font-size: 0.95rem;
   color: var(--text-secondary);
+}
+
+/* Premium Rarity backgrounds for Character Cards */
+.character-card.bg-rarity-5 {
+  background: #17151e;
+  border-color: rgba(184, 147, 92, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(184, 147, 92, 0.05);
+}
+
+.character-card.bg-rarity-4 {
+  background: #15131a;
+  border-color: rgba(133, 110, 156, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(133, 110, 156, 0.05);
+}
+
+/* Favorites Button and States */
+.heart-btn {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-btn:hover {
+  background: rgba(255, 94, 94, 0.15);
+  border-color: rgba(255, 94, 94, 0.35);
+  color: #ff5e5e;
+  transform: scale(1.08);
+}
+
+.heart-btn.favorite-active {
+  background: rgba(255, 94, 94, 0.2);
+  border-color: rgba(255, 94, 94, 0.45);
+  color: #ff5e5e;
+  animation: heartPulse 0.35s ease-out;
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+  100% { transform: scale(1); }
+}
+
+/* Boosted Talent styling */
+.talent-badge.boosted {
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  background: rgba(56, 189, 248, 0.12) !important;
+  box-shadow: inset 0 0 6px rgba(56, 189, 248, 0.2) !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+/* Character Empty States styled beautifully */
+.characters-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4.5rem 2rem;
+  background: var(--glass-bg);
+  border: 1px dashed var(--glass-border);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 2rem auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: fadeIn 0.4s ease-out;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.characters-empty-state .empty-icon {
+  color: var(--text-secondary);
+  opacity: 0.35;
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.characters-empty-state h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+}
+
+.characters-empty-state p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* Zooming actual equipped weapon and artifact icons but leaving placeholders centered */
+.equip-slot img:not(.empty-slot-placeholder) {
+  max-width: 110%;
+  max-height: 110%;
+  transform: scale(1.15);
+  transition: transform 0.25s ease;
+}
+
+.equip-slot:hover img:not(.empty-slot-placeholder) {
+  transform: scale(1.22);
+}
+
+/* weapon refinement slot badge */
+.weapon-refine-badge-slot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: #ffcc66;
+  color: #3b2806;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.62rem;
+  font-weight: 850;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  font-family: 'Outfit', sans-serif;
+  z-index: 5;
+  letter-spacing: 0.2px;
+}
+
+/* Badge counts on filters */
+.badge-count {
+  font-size: 0.72rem;
+  opacity: 0.65;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+/* Active element glows for character filters */
+.weapon-filter-badge.element-pyro.active {
+  border-color: #ff4848;
+  background: rgba(255, 72, 72, 0.15);
+  box-shadow: 0 0 10px rgba(255, 72, 72, 0.15);
+}
+.weapon-filter-badge.element-hydro.active {
+  border-color: #2ba2ff;
+  background: rgba(43, 162, 255, 0.15);
+  box-shadow: 0 0 10px rgba(43, 162, 255, 0.15);
+}
+.weapon-filter-badge.element-anemo.active {
+  border-color: #48fdcc;
+  background: rgba(72, 253, 204, 0.15);
+  box-shadow: 0 0 10px rgba(72, 253, 204, 0.15);
+}
+.weapon-filter-badge.element-electro.active {
+  border-color: #b258ff;
+  background: rgba(178, 88, 255, 0.15);
+  box-shadow: 0 0 10px rgba(178, 88, 255, 0.15);
+}
+.weapon-filter-badge.element-dendro.active {
+  border-color: #92e038;
+  background: rgba(146, 224, 56, 0.15);
+  box-shadow: 0 0 10px rgba(146, 224, 56, 0.15);
+}
+.weapon-filter-badge.element-cryo.active {
+  border-color: #88eeff;
+  background: rgba(136, 238, 255, 0.15);
+  box-shadow: 0 0 10px rgba(136, 238, 255, 0.15);
+}
+.weapon-filter-badge.element-geo.active {
+  border-color: #ffc448;
+  background: rgba(255, 196, 72, 0.15);
+  box-shadow: 0 0 10px rgba(255, 196, 72, 0.15);
+}
+
+/* Contiguous Filter Button Groups segment styling */
+.filter-button-group {
+  display: inline-flex;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-button-group .weapon-filter-badge {
+  border-radius: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 2px solid transparent !important; /* Lock vertical space to prevent any shifting */
+  background: transparent !important;
+  opacity: 0.45;
+  transition: all 0.25s ease;
+  box-shadow: none !important;
+  transform: none !important;
+  padding: 4px 14px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  min-width: 86px;
+  box-sizing: border-box;
+}
+
+.filter-button-group .weapon-filter-icon {
+  width: 27px;
+  height: 27px;
+}
+
+.filter-button-group .weapon-filter-badge:last-child {
+  border-right: none !important;
+}
+
+.filter-button-group .weapon-filter-badge:hover {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Static widths to prevent horizontal shift and layout jumping */
+.filter-button-group .weapon-filter-badge.type-sword,
+.filter-button-group .weapon-filter-badge.type-claymore,
+.filter-button-group .weapon-filter-badge.type-polearm,
+.filter-button-group .weapon-filter-badge.type-bow,
+.filter-button-group .weapon-filter-badge.type-catalyst {
+  width: 96px !important;
+  min-width: 96px !important;
+  max-width: 96px !important;
+  padding: 4px 6px !important;
+}
+
+.filter-button-group .weapon-filter-badge.element-pyro,
+.filter-button-group .weapon-filter-badge.element-hydro,
+.filter-button-group .weapon-filter-badge.element-anemo,
+.filter-button-group .weapon-filter-badge.element-electro,
+.filter-button-group .weapon-filter-badge.element-dendro,
+.filter-button-group .weapon-filter-badge.element-cryo,
+.filter-button-group .weapon-filter-badge.element-geo {
+  width: 92px !important;
+  min-width: 92px !important;
+  max-width: 92px !important;
+  padding: 4px 6px !important;
+}
+
+.filter-button-group .weapon-filter-badge.rarity-5,
+.filter-button-group .weapon-filter-badge.rarity-4,
+.filter-button-group .weapon-filter-badge.rarity-3,
+.filter-button-group .weapon-filter-badge.rarity-2,
+.filter-button-group .weapon-filter-badge.rarity-1 {
+  width: 88px !important;
+  min-width: 88px !important;
+  max-width: 88px !important;
+  padding: 4px 6px !important;
+}
+
+.filter-button-group .weapon-filter-badge.sort-by-btn {
+  width: 110px !important;
+  min-width: 110px !important;
+  max-width: 110px !important;
+  padding: 4px 8px !important;
+}
+
+.filter-button-group .weapon-filter-badge.sort-order-btn {
+  width: 135px !important;
+  min-width: 135px !important;
+  max-width: 135px !important;
+  padding: 4px 8px !important;
+}
+
+.filter-button-group .weapon-filter-badge.active {
+  opacity: 1 !important;
+  background: rgba(255, 204, 102, 0.1) !important;
+  color: #ffcc66 !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.filter-button-group .weapon-filter-badge.active:hover {
+  background: rgba(255, 204, 102, 0.15) !important;
+}
+
+/* Active Sort button styling - subtle glow */
+.filter-button-group .weapon-filter-badge.active.sort-by-btn,
+.filter-button-group .weapon-filter-badge.active.sort-order-btn {
+  background: rgba(255, 204, 102, 0.08) !important;
+  border-bottom-color: #ffcc66 !important;
+  color: #ffcc66 !important;
+}
+
+.filter-button-group .weapon-filter-badge.active.sort-order-btn svg {
+  color: #ffcc66 !important;
+}
+
+/* Custom Element and Weapon segment glowing fills when active - restored to elegant transparent styling */
+.filter-button-group .weapon-filter-badge.active.type-sword,
+.filter-button-group .weapon-filter-badge.active.type-claymore,
+.filter-button-group .weapon-filter-badge.active.type-polearm,
+.filter-button-group .weapon-filter-badge.active.type-bow,
+.filter-button-group .weapon-filter-badge.active.type-catalyst {
+  background: rgba(198, 255, 0, 0.12) !important;
+  border-bottom-color: #c6ff00 !important;
+  color: #fff !important;
+}
+
+.filter-button-group .weapon-filter-badge.active.rarity-5 {
+  background: rgba(255, 183, 77, 0.15) !important;
+  border-bottom-color: #ffb74d !important;
+  color: #ffb74d !important;
+}
+.filter-button-group .weapon-filter-badge.active.rarity-4 {
+  background: rgba(179, 136, 255, 0.15) !important;
+  border-bottom-color: #b388ff !important;
+  color: #b388ff !important;
+}
+.filter-button-group .weapon-filter-badge.active.rarity-3 {
+  background: rgba(79, 195, 247, 0.15) !important;
+  border-bottom-color: #4fc3f7 !important;
+  color: #4fc3f7 !important;
+}
+.filter-button-group .weapon-filter-badge.active.rarity-2 {
+  background: rgba(129, 199, 132, 0.15) !important;
+  border-bottom-color: #81c784 !important;
+  color: #81c784 !important;
+}
+.filter-button-group .weapon-filter-badge.active.rarity-1 {
+  background: rgba(158, 158, 158, 0.15) !important;
+  border-bottom-color: #9e9e9e !important;
+  color: #9e9e9e !important;
+}
+
+.filter-button-group .weapon-filter-badge.active.element-pyro { background: rgba(255, 72, 72, 0.15) !important; border-bottom-color: #ff4848 !important; color: #fff !important; }
+.filter-button-group .weapon-filter-badge.active.element-hydro { background: rgba(43, 162, 255, 0.15) !important; border-bottom-color: #2ba2ff !important; color: #fff !important; }
+.filter-button-group .weapon-filter-badge.active.element-anemo { background: rgba(72, 253, 204, 0.15) !important; border-bottom-color: #48fdcc !important; color: #fff !important; }
+.filter-button-group .weapon-filter-badge.active.element-electro { background: rgba(178, 88, 255, 0.15) !important; border-bottom-color: #b258ff !important; color: #fff !important; }
+.filter-button-group .weapon-filter-badge.active.element-dendro { background: rgba(146, 224, 56, 0.15) !important; border-bottom-color: #92e038 !important; color: #fff !important; }
+.filter-button-group .weapon-filter-badge.active.element-cryo { background: rgba(136, 238, 255, 0.15) !important; border-bottom-color: #88eeff !important; color: #fff !important; }
+.filter-button-group .weapon-filter-badge.active.element-geo { background: rgba(255, 196, 72, 0.15) !important; border-bottom-color: #ffc448 !important; color: #fff !important; }
+
+/* Badge counts inside segment pills */
+.badge-count-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  max-width: 44px !important;
+  height: 18px !important;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Outfit', sans-serif;
+  margin-left: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.weapon-filter-badge.active .badge-count-pill {
+  background: rgba(0, 0, 0, 0.22);
+  color: inherit;
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Upload, FileUp, Sparkles, X, Check, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2, Pencil, Power, RotateCw } from 'lucide-react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { Upload, FileUp, Sparkles, X, Check, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2, Pencil, Power, RotateCw, ArrowUpNarrowWide, ArrowDownNarrowWide } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
 import { WeaponCard } from './components/WeaponCard';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
@@ -113,6 +113,14 @@ function App() {
   const [weaponSearch, setWeaponSearch] = useState<string>('');
   const [selectedWeaponTypes, setSelectedWeaponTypes] = useState<string[]>(['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst']);
   const [selectedStarRarities, setSelectedStarRarities] = useState<number[]>([5, 4, 3, 2, 1]);
+
+  const [characterSearch, setCharacterSearch] = useState<string>('');
+  const [selectedCharacterWeaponTypes, setSelectedCharacterWeaponTypes] = useState<string[]>(['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst']);
+  const [selectedCharacterElements, setSelectedCharacterElements] = useState<string[]>(['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo']);
+  const [selectedCharacterRarities, setSelectedCharacterRarities] = useState<number[]>([5, 4]);
+  const [characterSortBy, setCharacterSortBy] = useState<'level' | 'name'>('level');
+  const [characterSortOrder, setCharacterSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [favoriteCharacterKeys, setFavoriteCharacterKeys] = useState<string[]>([]);
 
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -399,6 +407,7 @@ function App() {
           let weaponsData = currentProfileData?.weapons || [];
           let artifactsData = currentProfileData?.artifacts || [];
           let plannedCharactersData = currentProfileData?.planned_characters || [];
+          let favoriteCharacterKeysData = currentProfileData?.favorite_character_keys || [];
 
           // Migration logic: If cloud profile is empty but local has data, migrate it!
           const localDataStr = localStorage.getItem('genshin_planner_local_data');
@@ -411,6 +420,7 @@ function App() {
                 weaponsData = localData.weapons || [];
                 artifactsData = localData.artifacts || [];
                 plannedCharactersData = localData.planned_characters || [];
+                favoriteCharacterKeysData = localData.favorite_character_keys || [];
 
                 // Save directly to DB
                 await saveProfileState(user.id, targetProfile, {
@@ -418,7 +428,8 @@ function App() {
                   characters: charactersData,
                   weapons: weaponsData,
                   artifacts: artifactsData,
-                  planned_characters: plannedCharactersData
+                  planned_characters: plannedCharactersData,
+                  favorite_character_keys: favoriteCharacterKeysData
                 });
                 console.log(`Migrated local data to cloud for profile: ${targetProfile}`);
 
@@ -436,6 +447,7 @@ function App() {
           setWeapons(weaponsData);
           setArtifacts(artifactsData);
           setPlannedCharacters(plannedCharactersData);
+          setFavoriteCharacterKeys(favoriteCharacterKeysData);
           setSyncStatus('synced');
         } else {
           // Load local storage
@@ -449,12 +461,14 @@ function App() {
             setWeapons(localData.weapons || []);
             setArtifacts(localData.artifacts || []);
             setPlannedCharacters(localData.planned_characters || []);
+            setFavoriteCharacterKeys(localData.favorite_character_keys || []);
           } else {
             setMaterials(null);
             setCharacters([]);
             setWeapons([]);
             setArtifacts([]);
             setPlannedCharacters([]);
+            setFavoriteCharacterKeys([]);
           }
           setSyncStatus('local');
         }
@@ -490,7 +504,8 @@ function App() {
       characters,
       weapons,
       artifacts,
-      planned_characters: plannedCharacters
+      planned_characters: plannedCharacters,
+      favorite_character_keys: favoriteCharacterKeys
     };
 
     if (user) {
@@ -520,7 +535,7 @@ function App() {
         clearTimeout(saveTimeoutRef.current);
       }
     };
-  }, [materials, characters, weapons, artifacts, plannedCharacters, user, activeProfile, isLoadingProfile]);
+  }, [materials, characters, weapons, artifacts, plannedCharacters, favoriteCharacterKeys, user, activeProfile, isLoadingProfile]);
 
   const handleCardDragStart = (e: React.DragEvent, key: string) => {
     setDraggedCardKey(key);
@@ -712,6 +727,12 @@ function App() {
     }));
   };
 
+  const toggleFavoriteCharacter = (key: string) => {
+    setFavoriteCharacterKeys(prev =>
+      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+    );
+  };
+
   // Build the display list from the FULL materialMap, merging counts from GOOD file
   const allMaterialEntries: [string, number][] = Object.entries(materialMap).map(([key]) => {
     // Try to find matching GOOD key (GOOD uses CamelCase, our map uses lowercase-no-special-chars)
@@ -754,18 +775,6 @@ function App() {
   const getWeaponRarity = (w: GoodWeapon) => {
     const mapData = lookupWeapon(w.key);
     return mapData?.rarity || 1;
-  };
-
-  const toggleWeaponType = (type: string) => {
-    setSelectedWeaponTypes(prev =>
-      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
-    );
-  };
-
-  const toggleStarRarity = (rarity: number) => {
-    setSelectedStarRarities(prev =>
-      prev.includes(rarity) ? prev.filter(r => r !== rarity) : [...prev, rarity]
-    );
   };
 
   const filteredWeapons = weapons.filter(w => {
@@ -820,6 +829,224 @@ function App() {
     // 6. original import order as stable fallback
     return weapons.indexOf(a) - weapons.indexOf(b);
   });
+
+  // Counts for Weapon filter badges based on owned weapons and active filters
+  const weaponCounts = useMemo(() => {
+    const counts = {
+      weaponTypes: {
+        Sword: { active: 0, total: 0 },
+        Claymore: { active: 0, total: 0 },
+        Polearm: { active: 0, total: 0 },
+        Bow: { active: 0, total: 0 },
+        Catalyst: { active: 0, total: 0 }
+      } as Record<string, { active: number, total: number }>,
+      rarities: {
+        5: { active: 0, total: 0 },
+        4: { active: 0, total: 0 },
+        3: { active: 0, total: 0 },
+        2: { active: 0, total: 0 },
+        1: { active: 0, total: 0 }
+      } as Record<number, { active: number, total: number }>
+    };
+
+    // Total counts based on owned weapons
+    weapons.forEach(w => {
+      const mapData = lookupWeapon(w.key);
+      if (mapData) {
+        const type = mapData.type;
+        const rarity = mapData.rarity;
+        if (type in counts.weaponTypes) {
+          counts.weaponTypes[type].total++;
+        }
+        if (rarity in counts.rarities) {
+          counts.rarities[rarity].total++;
+        }
+      }
+    });
+
+    // Active counts based on weapons currently matching ALL active filters
+    filteredWeapons.forEach(w => {
+      const mapData = lookupWeapon(w.key);
+      if (mapData) {
+        const type = mapData.type;
+        const rarity = mapData.rarity;
+        if (type in counts.weaponTypes) {
+          counts.weaponTypes[type].active++;
+        }
+        if (rarity in counts.rarities) {
+          counts.rarities[rarity].active++;
+        }
+      }
+    });
+
+    return counts;
+  }, [weapons, filteredWeapons]);
+
+  // Helper for smart filter toggling
+  const handleFilterToggle = (
+    currentSelection: any[],
+    allOptions: any[],
+    clickedOption: any,
+    setSelection: (vals: any[]) => void
+  ) => {
+    // Case 1: All options are currently selected -> isolate the clicked option
+    if (currentSelection.length === allOptions.length) {
+      setSelection([clickedOption]);
+    }
+    // Case 2: Only the clicked option is currently selected -> select all options again
+    else if (currentSelection.length === 1 && currentSelection.includes(clickedOption)) {
+      setSelection([...allOptions]);
+    }
+    // Case 3: Multiple options selected, click on an active one -> unselect it
+    else if (currentSelection.includes(clickedOption)) {
+      const next = currentSelection.filter(x => x !== clickedOption);
+      if (next.length === 0) {
+        setSelection([...allOptions]); // fallback to all selected to avoid 'no match'
+      } else {
+        setSelection(next);
+      }
+    }
+    // Case 4: Click on an inactive option -> add to selection
+    else {
+      setSelection([...currentSelection, clickedOption]);
+    }
+  };
+
+  // Filtered characters memo
+  const filteredCharacters = useMemo(() => {
+    // If any filter category has no selection, show empty array
+    if (
+      selectedCharacterWeaponTypes.length === 0 ||
+      selectedCharacterElements.length === 0 ||
+      selectedCharacterRarities.length === 0
+    ) {
+      return [];
+    }
+
+    return characters.filter(char => {
+      const info = lookupChar(char.key);
+      if (!info) return false;
+
+      // 1. Search filter
+      if (characterSearch.trim()) {
+        const q = characterSearch.toLowerCase();
+        const displayName = info.name || char.key;
+        const matchesSearch = displayName.toLowerCase().includes(q) || char.key.toLowerCase().includes(q);
+        if (!matchesSearch) return false;
+      }
+
+      // 2. Weapon type filter
+      if (!selectedCharacterWeaponTypes.includes(info.weaponType)) {
+        return false;
+      }
+
+      // 3. Element filter
+      if (!selectedCharacterElements.includes(info.element)) {
+        return false;
+      }
+
+      // 4. Rarity filter
+      if (!selectedCharacterRarities.includes(info.rarity)) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [characters, characterSearch, selectedCharacterWeaponTypes, selectedCharacterElements, selectedCharacterRarities]);
+
+  // Counts for Character filter badges based on owned characters and active filters
+  const characterCounts = useMemo(() => {
+    const counts = {
+      weaponTypes: {
+        Sword: { active: 0, total: 0 },
+        Claymore: { active: 0, total: 0 },
+        Polearm: { active: 0, total: 0 },
+        Bow: { active: 0, total: 0 },
+        Catalyst: { active: 0, total: 0 }
+      } as Record<string, { active: number, total: number }>,
+      elements: {
+        Pyro: { active: 0, total: 0 },
+        Hydro: { active: 0, total: 0 },
+        Anemo: { active: 0, total: 0 },
+        Electro: { active: 0, total: 0 },
+        Dendro: { active: 0, total: 0 },
+        Cryo: { active: 0, total: 0 },
+        Geo: { active: 0, total: 0 }
+      } as Record<string, { active: number, total: number }>,
+      rarities: {
+        5: { active: 0, total: 0 },
+        4: { active: 0, total: 0 }
+      } as Record<number, { active: number, total: number }>
+    };
+
+    // Total counts based on owned characters
+    characters.forEach(char => {
+      const info = lookupChar(char.key);
+      if (info) {
+        if (info.weaponType in counts.weaponTypes) {
+          counts.weaponTypes[info.weaponType].total++;
+        }
+        if (info.element in counts.elements) {
+          counts.elements[info.element].total++;
+        }
+        if (info.rarity === 5 || info.rarity === 4) {
+          counts.rarities[info.rarity].total++;
+        }
+      }
+    });
+
+    // Active counts based on characters currently matching ALL active filters
+    filteredCharacters.forEach(char => {
+      const info = lookupChar(char.key);
+      if (info) {
+        if (info.weaponType in counts.weaponTypes) {
+          counts.weaponTypes[info.weaponType].active++;
+        }
+        if (info.element in counts.elements) {
+          counts.elements[info.element].active++;
+        }
+        if (info.rarity === 5 || info.rarity === 4) {
+          counts.rarities[info.rarity].active++;
+        }
+      }
+    });
+
+    return counts;
+  }, [characters, filteredCharacters]);
+
+  // Sorted characters memo
+  const sortedCharacters = useMemo(() => {
+    const list = [...filteredCharacters];
+    list.sort((a, b) => {
+      const isFavA = favoriteCharacterKeys.includes(a.key);
+      const isFavB = favoriteCharacterKeys.includes(b.key);
+
+      // 1. Favorite characters first
+      if (isFavA !== isFavB) {
+        return isFavA ? -1 : 1;
+      }
+
+      const infoA = lookupChar(a.key);
+      const infoB = lookupChar(b.key);
+      const nameA = infoA?.name || a.key;
+      const nameB = infoB?.name || b.key;
+
+      const orderMultiplier = characterSortOrder === 'asc' ? 1 : -1;
+
+      if (characterSortBy === 'level') {
+        // 2. Character level sort
+        if (a.level !== b.level) {
+          return (a.level - b.level) * orderMultiplier;
+        }
+        // 3. Display name ascending fallback (always alphabetical A-Z)
+        return nameA.localeCompare(nameB);
+      } else {
+        // Name sort
+        return nameA.localeCompare(nameB) * orderMultiplier;
+      }
+    });
+    return list;
+  }, [filteredCharacters, characterSortBy, characterSortOrder, favoriteCharacterKeys]);
 
 
   return (
@@ -1181,19 +1408,160 @@ function App() {
 
           {activeTab === 'characters' && (
             <section className="characters-container">
+              {/* Filters Bar */}
+              <div className="weapons-filters-bar">
+                <div className="weapon-search-group">
+                  <div className="weapon-search-wrapper">
+                    <Search size={18} className="weapon-search-icon" />
+                    <input
+                      type="text"
+                      placeholder="Search characters..."
+                      value={characterSearch}
+                      onChange={(e) => setCharacterSearch(e.target.value)}
+                      className="weapon-search-input"
+                    />
+                    {characterSearch && (
+                      <button
+                        onClick={() => setCharacterSearch('')}
+                        className="weapon-search-clear"
+                        title="Clear search"
+                      >
+                        <X size={14} />
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Contiguous Weapon Filter Group */}
+                <div className="weapon-filter-group">
+                  <div className="filter-button-group">
+                    {['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'].map(type => {
+                      const count = characterCounts.weaponTypes[type] || { active: 0, total: 0 };
+                      return (
+                        <button
+                          key={type}
+                          className={`weapon-filter-badge type-${type.toLowerCase()} ${selectedCharacterWeaponTypes.includes(type) ? 'active' : ''}`}
+                          onClick={() => handleFilterToggle(selectedCharacterWeaponTypes, ['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'], type, setSelectedCharacterWeaponTypes)}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          title={type}
+                        >
+                          <img
+                            src={`${import.meta.env.BASE_URL}icons/${type.toLowerCase()}.png`}
+                            alt={type}
+                            className="weapon-filter-icon"
+                          />
+                          <span className="badge-count-pill">{count.active}/{count.total}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Contiguous Element Filter Group */}
+                <div className="weapon-filter-group">
+                  <div className="filter-button-group">
+                    {['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo'].map(el => {
+                      const count = characterCounts.elements[el] || { active: 0, total: 0 };
+                      return (
+                        <button
+                          key={el}
+                          className={`weapon-filter-badge element-${el.toLowerCase()} ${selectedCharacterElements.includes(el) ? 'active' : ''}`}
+                          onClick={() => handleFilterToggle(selectedCharacterElements, ['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo'], el, setSelectedCharacterElements)}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          title={el}
+                        >
+                          <img
+                            src={`${import.meta.env.BASE_URL}elements/${el.toLowerCase()}.png`}
+                            alt={el}
+                            className="weapon-filter-icon"
+                          />
+                          <span className="badge-count-pill">{count.active}/{count.total}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Contiguous Rarity Filter Group */}
+                <div className="weapon-filter-group">
+                  <div className="filter-button-group">
+                    {[5, 4].map(stars => {
+                      const count = characterCounts.rarities[stars] || { active: 0, total: 0 };
+                      return (
+                        <button
+                          key={stars}
+                          className={`weapon-filter-badge rarity-${stars} ${selectedCharacterRarities.includes(stars) ? 'active' : ''}`}
+                          onClick={() => handleFilterToggle(selectedCharacterRarities, [5, 4], stars, setSelectedCharacterRarities)}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          title={`${stars}★ Rarity`}
+                        >
+                          <span style={{ fontSize: '0.95rem', fontWeight: '800' }}>{stars}★</span>
+                          <span className="badge-count-pill">{count.active}/{count.total}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Contiguous Sorting Group */}
+                <div className="weapon-filter-group">
+                  <div className="filter-button-group">
+                    <button
+                      className="weapon-filter-badge active sort-by-btn"
+                      onClick={() => setCharacterSortBy(prev => prev === 'level' ? 'name' : 'level')}
+                      title="Toggle Level / Name sort"
+                    >
+                      Sort: {characterSortBy === 'level' ? 'Level' : 'Name'}
+                    </button>
+                    <button
+                      className="weapon-filter-badge active sort-order-btn"
+                      onClick={() => setCharacterSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
+                      title="Toggle Sort Order"
+                    >
+                      {characterSortOrder === 'asc' ? (
+                        <>
+                          <ArrowUpNarrowWide size={15} />
+                          <span>Ascending</span>
+                        </>
+                      ) : (
+                        <>
+                          <ArrowDownNarrowWide size={15} />
+                          <span>Descending</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Characters Grid */}
               <div className="characters-grid">
-                {characters.map((char) => (
+                {sortedCharacters.map((char: GoodCharacter) => (
                   <CharacterCard
                     key={char.key}
                     character={char}
                     weapon={weapons.find(w => w.location === char.key)}
                     artifacts={artifacts.filter(a => a.location === char.key)}
+                    isFavorite={favoriteCharacterKeys.includes(char.key)}
+                    onToggleFavorite={() => toggleFavoriteCharacter(char.key)}
                   />
                 ))}
               </div>
+
+              {/* Empty States */}
               {characters.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
-                  No characters found in import.
+                <div className="characters-empty-state">
+                  <User size={48} className="empty-icon" />
+                  <h3>No Characters Found</h3>
+                  <p>No characters found in import.</p>
+                </div>
+              )}
+
+              {characters.length > 0 && sortedCharacters.length === 0 && (
+                <div className="characters-empty-state">
+                  <Search size={48} className="empty-icon" />
+                  <h3>No Matches</h3>
+                  <p>No characters match your filters.</p>
                 </div>
               )}
             </section>
@@ -1225,39 +1593,49 @@ function App() {
                   </div>
                 </div>
 
+                {/* Contiguous Weapon Type Filter Group */}
                 <div className="weapon-filter-group">
-                  <span className="weapon-filter-label">Type:</span>
-                  <div className="weapon-filter-badges">
-                    {['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'].map(type => (
-                      <button
-                        key={type}
-                        className={`weapon-filter-badge type-${type.toLowerCase()} ${selectedWeaponTypes.includes(type) ? 'active' : ''}`}
-                        onClick={() => toggleWeaponType(type)}
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                      >
-                        <img
-                          src={`${import.meta.env.BASE_URL}icons/${type.toLowerCase()}.png`}
-                          alt={type}
-                          className="weapon-filter-icon"
-                        />
-                        <span>{type}</span>
-                      </button>
-                    ))}
+                  <div className="filter-button-group">
+                    {['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'].map(type => {
+                      const count = weaponCounts.weaponTypes[type] || { active: 0, total: 0 };
+                      return (
+                        <button
+                          key={type}
+                          className={`weapon-filter-badge type-${type.toLowerCase()} ${selectedWeaponTypes.includes(type) ? 'active' : ''}`}
+                          onClick={() => handleFilterToggle(selectedWeaponTypes, ['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'], type, setSelectedWeaponTypes)}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          title={type}
+                        >
+                          <img
+                            src={`${import.meta.env.BASE_URL}icons/${type.toLowerCase()}.png`}
+                            alt={type}
+                            className="weapon-filter-icon"
+                          />
+                          <span className="badge-count-pill">{count.active}/{count.total}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
+                {/* Contiguous Weapon Rarity Filter Group */}
                 <div className="weapon-filter-group">
-                  <span className="weapon-filter-label">Rarity:</span>
-                  <div className="weapon-filter-badges">
-                    {[5, 4, 3, 2, 1].map(stars => (
-                      <button
-                        key={stars}
-                        className={`weapon-filter-badge rarity-${stars} ${selectedStarRarities.includes(stars) ? 'active' : ''}`}
-                        onClick={() => toggleStarRarity(stars)}
-                      >
-                        {stars}★
-                      </button>
-                    ))}
+                  <div className="filter-button-group">
+                    {[5, 4, 3, 2, 1].map(stars => {
+                      const count = weaponCounts.rarities[stars] || { active: 0, total: 0 };
+                      return (
+                        <button
+                          key={stars}
+                          className={`weapon-filter-badge rarity-${stars} ${selectedStarRarities.includes(stars) ? 'active' : ''}`}
+                          onClick={() => handleFilterToggle(selectedStarRarities, [5, 4, 3, 2, 1], stars, setSelectedStarRarities)}
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                          title={`${stars}★ Rarity`}
+                        >
+                          <span style={{ fontSize: '0.95rem', fontWeight: '800' }}>{stars}★</span>
+                          <span className="badge-count-pill">{count.active}/{count.total}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
