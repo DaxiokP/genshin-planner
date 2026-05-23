@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, FileUp, Sparkles, X, Check, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2, Pencil, Power, RotateCw } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
+import { WeaponCard } from './components/WeaponCard';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
 import { CharacterTargetModal } from './components/CharacterTargetModal';
 import { calculateRequirements } from './utils/plannerCalculator';
 import './App.css';
 import materialMapData from './maps/materialMap.json';
 import characterMapData from './maps/characterMap.json';
+import weaponMapData from './maps/weaponMap.json';
 import { supabase, fetchUserProfiles, saveProfileState, createCustomProfile, deleteUserProfile } from './supabase';
 import { AuthModal } from './components/AuthModal';
 import { DeletePlanConfirmationModal } from './components/DeletePlanConfirmationModal';
@@ -30,13 +32,22 @@ const materialMap: Record<string, MaterialMapEntry> = materialMapData as any;
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
 const characterMapRaw: Record<string, any> = characterMapData as any;
+const weaponMapRaw: Record<string, any> = weaponMapData as any;
 const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
+
 const charIndex: Record<string, string> = {};
 Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
 const lookupChar = (key: string) => {
   const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
   return characterMapRaw[charIndex[normalizedKey]] ?? null;
 };
+
+const weaponIndex: Record<string, string> = {};
+Object.keys(weaponMapRaw).forEach(k => { weaponIndex[normalize(k)] = k; });
+const lookupWeapon = (key: string) => {
+  return weaponMapRaw[weaponIndex[normalize(key)]] ?? null;
+};
+
 
 // Type definition for what we expect in the materials section
 type MaterialsData = Record<string, number>;
@@ -99,9 +110,14 @@ function App() {
   const [dropPlacement, setDropPlacement] = useState<'before' | 'after' | null>(null);
   const [activeTab, setActiveTab] = useState<TabType>('planner');
 
+  const [weaponSearch, setWeaponSearch] = useState<string>('');
+  const [selectedWeaponTypes, setSelectedWeaponTypes] = useState<string[]>(['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst']);
+  const [selectedStarRarities, setSelectedStarRarities] = useState<number[]>([5, 4, 3, 2, 1]);
+
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
+
   const [hoveredItem, setHoveredItem] = useState<{ key: string, data: MaterialMapEntry } | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isCharacterSelectModalOpen, setIsCharacterSelectModalOpen] = useState(false);
@@ -730,6 +746,82 @@ function App() {
       return rankA - rankB;
     });
 
+  const getWeaponName = (w: GoodWeapon) => {
+    const mapData = lookupWeapon(w.key);
+    return mapData?.name || w.key;
+  };
+
+  const getWeaponRarity = (w: GoodWeapon) => {
+    const mapData = lookupWeapon(w.key);
+    return mapData?.rarity || 1;
+  };
+
+  const toggleWeaponType = (type: string) => {
+    setSelectedWeaponTypes(prev =>
+      prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+    );
+  };
+
+  const toggleStarRarity = (rarity: number) => {
+    setSelectedStarRarities(prev =>
+      prev.includes(rarity) ? prev.filter(r => r !== rarity) : [...prev, rarity]
+    );
+  };
+
+  const filteredWeapons = weapons.filter(w => {
+    const mapData = lookupWeapon(w.key);
+    const displayName = mapData?.name || w.key;
+    const type = mapData?.type || '';
+    const rarity = mapData?.rarity || 1;
+
+    // Search query
+    if (weaponSearch.trim() !== '') {
+      const q = weaponSearch.toLowerCase();
+      const matchesSearch = displayName.toLowerCase().includes(q) || w.key.toLowerCase().includes(q);
+      if (!matchesSearch) return false;
+    }
+
+    // Type filter
+    if (type && !selectedWeaponTypes.includes(type)) {
+      return false;
+    }
+
+    // Rarity filter
+    if (!selectedStarRarities.includes(rarity)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const sortedWeapons = [...filteredWeapons].sort((a, b) => {
+    // 1. level descending
+    if (b.level !== a.level) return b.level - a.level;
+
+    // 2. rarity descending
+    const rarityA = getWeaponRarity(a);
+    const rarityB = getWeaponRarity(b);
+    if (rarityB !== rarityA) return rarityB - rarityA;
+
+    // 3. weapon name ascending
+    const nameA = getWeaponName(a);
+    const nameB = getWeaponName(b);
+    const nameComp = nameA.localeCompare(nameB);
+    if (nameComp !== 0) return nameComp;
+
+    // 4. equipped weapons before unequipped weapons
+    const eqA = a.location ? 1 : 0;
+    const eqB = b.location ? 1 : 0;
+    if (eqB !== eqA) return eqB - eqA;
+
+    // 5. refinement descending
+    if (b.refinement !== a.refinement) return b.refinement - a.refinement;
+
+    // 6. original import order as stable fallback
+    return weapons.indexOf(a) - weapons.indexOf(b);
+  });
+
+
   return (
     <div className="app-container">
       <header className="header">
@@ -1108,11 +1200,95 @@ function App() {
           )}
 
           {activeTab === 'weapons' && (
-            <section className="coming-soon">
-              <h2>Weapons</h2>
-              <p>Weapon tracking features will be added here soon.</p>
+            <section className="weapons-container">
+              {/* Filters Bar */}
+              <div className="weapons-filters-bar">
+                <div className="weapon-search-group">
+                  <div className="weapon-search-wrapper">
+                    <Search size={18} className="weapon-search-icon" />
+                    <input
+                      type="text"
+                      placeholder="Search weapons..."
+                      value={weaponSearch}
+                      onChange={(e) => setWeaponSearch(e.target.value)}
+                      className="weapon-search-input"
+                    />
+                    {weaponSearch && (
+                      <button
+                        onClick={() => setWeaponSearch('')}
+                        className="weapon-search-clear"
+                        title="Clear search"
+                      >
+                        <X size={14} />
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div className="weapon-filter-group">
+                  <span className="weapon-filter-label">Type:</span>
+                  <div className="weapon-filter-badges">
+                    {['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'].map(type => (
+                      <button
+                        key={type}
+                        className={`weapon-filter-badge type-${type.toLowerCase()} ${selectedWeaponTypes.includes(type) ? 'active' : ''}`}
+                        onClick={() => toggleWeaponType(type)}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                      >
+                        <img
+                          src={`${import.meta.env.BASE_URL}icons/${type.toLowerCase()}.png`}
+                          alt={type}
+                          className="weapon-filter-icon"
+                        />
+                        <span>{type}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="weapon-filter-group">
+                  <span className="weapon-filter-label">Rarity:</span>
+                  <div className="weapon-filter-badges">
+                    {[5, 4, 3, 2, 1].map(stars => (
+                      <button
+                        key={stars}
+                        className={`weapon-filter-badge rarity-${stars} ${selectedStarRarities.includes(stars) ? 'active' : ''}`}
+                        onClick={() => toggleStarRarity(stars)}
+                      >
+                        {stars}★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Weapons Grid */}
+              <div className="weapons-grid">
+                {sortedWeapons.map((weapon, idx) => {
+                  const mapData = lookupWeapon(weapon.key);
+                  const equippedChar = characters.find(c => c.key === weapon.location);
+                  return (
+                    <WeaponCard
+                      key={`${weapon.key}-${weapon.location}-${idx}`}
+                      weapon={weapon}
+                      weaponMapData={mapData}
+                      equippedCharacter={equippedChar}
+                    />
+                  );
+                })}
+              </div>
+
+              {/* Empty State */}
+              {sortedWeapons.length === 0 && (
+                <div className="weapons-empty-state">
+                  <Sword size={48} className="empty-icon" />
+                  <h3>No Weapons Found</h3>
+                  <p>Try adjusting your search query or filter criteria.</p>
+                </div>
+              )}
             </section>
           )}
+
 
           {activeTab === 'planner' && (
             <section className="planner-container">
