@@ -83,7 +83,19 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon,
         </div>
       </div>
 
-      <div className={`char-portrait-section bg-rarity-${charData.rarity}-solid bg-element-${elementClass}-gradient`}>
+      <div className="char-portrait-section">
+        {/* Namecard background */}
+        {charData.id && (
+          <img
+            src={`${import.meta.env.BASE_URL}namecards/${charData.id}.png`}
+            alt=""
+            aria-hidden="true"
+            className="char-namecard-bg"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
+        )}
+        <div className="char-namecard-overlay" />
+
         <div className="char-portrait-wrapper">
           {charData.id ? (
             <img
