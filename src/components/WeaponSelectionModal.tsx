@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { X, Search } from 'lucide-react';
+import { X, Search, Star } from 'lucide-react';
 import type { GoodWeapon } from '../App';
 import weaponMapData from '../maps/weaponMap.json';
 
@@ -38,6 +38,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<string | null>(null);
   const [filterRarities, setFilterRarities] = useState<number[]>([5, 4, 3]);
+  const [sortBy, setSortBy] = useState<'stars' | 'name'>('stars');
 
   const weaponTypes = ['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'];
   const rarities = [5, 4, 3];
@@ -82,23 +83,29 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
       return true;
     });
 
-    // 3. Sort: Rarity desc, then level desc, then alphabetical name
+    // 3. Sort: Rarity/stars desc (with level/alphabetical fallback) OR pure alphabetical (A-Z)
     result.sort((a, b) => {
       const infoA = lookupWeapon(a.key);
       const infoB = lookupWeapon(b.key);
+      const nameA = infoA?.name || a.key;
+      const nameB = infoB?.name || b.key;
       const rarityA = infoA?.rarity || 3;
       const rarityB = infoB?.rarity || 3;
 
-      if (rarityA !== rarityB) return rarityB - rarityA; // Rarity desc
-      if (a.level !== b.level) return b.level - a.level; // Level desc
-
-      const nameA = infoA?.name || a.key;
-      const nameB = infoB?.name || b.key;
-      return nameA.localeCompare(nameB); // Alphabetical name
+      if (sortBy === 'stars') {
+        if (rarityA !== rarityB) return rarityB - rarityA; // Rarity desc
+        if (a.level !== b.level) return b.level - a.level; // Level desc
+        return nameA.localeCompare(nameB);
+      } else {
+        const nameCompare = nameA.localeCompare(nameB);
+        if (nameCompare !== 0) return nameCompare;
+        if (a.level !== b.level) return b.level - a.level; // Level desc under same name
+        return a.originalIndex - b.originalIndex; // Stable sorting index fallback
+      }
     });
 
     return result;
-  }, [ownedWeapons, plannedItems, searchQuery, filterType, filterRarities]);
+  }, [ownedWeapons, plannedItems, searchQuery, filterType, filterRarities, sortBy]);
 
   if (!isOpen) return null;
 
@@ -124,7 +131,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
               <Search size={16} className="modal-search-icon" />
               <input 
                 type="text" 
-                placeholder="Search by weapon name..." 
+                placeholder="Search" 
                 className="modal-search-input"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -135,25 +142,51 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                 </button>
               )}
             </div>
+            
+            <button 
+              className="modal-sort-btn" 
+              onClick={() => setSortBy(prev => prev === 'stars' ? 'name' : 'stars')}
+            >
+              <Star size={16} fill={sortBy === 'stars' ? '#ffcc66' : 'none'} color={sortBy === 'stars' ? '#ffcc66' : 'currentColor'} />
+              <span style={{ margin: '0 4px', opacity: 0.5 }}>/</span>
+              <span style={{ fontWeight: sortBy === 'name' ? 'bold' : 'normal', color: sortBy === 'name' ? '#fff' : 'inherit' }}>Abc</span>
+            </button>
+          </div>
 
-            {/* Rarity filter checkboxes/pills */}
-            <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginLeft: '12px' }}>
+          <div className="modal-filter-elements" style={{ alignItems: 'center', gap: '8px' }}>
+            {weaponTypes.map(type => (
+              <button 
+                key={type}
+                className={`element-filter-btn ${filterType === type ? 'active' : ''}`}
+                onClick={() => setFilterType(prev => prev === type ? null : type)}
+                title={type}
+                style={{ width: '40px', height: '40px', padding: '6px' }}
+              >
+                <img 
+                  src={getWeaponTypeIconPath(type)} 
+                  alt={type} 
+                  style={{ width: '28px', height: '28px', objectFit: 'contain' }}
+                />
+              </button>
+            ))}
+            
+            {/* Vertical separator */}
+            <div style={{ width: '1px', height: '20px', background: 'var(--glass-border)', margin: '0 4px' }} />
+            
+            <div style={{ display: 'flex', gap: '6px' }}>
               {rarities.map(r => (
                 <button
                   key={r}
+                  className={`modal-sort-btn ${filterRarities.includes(r) ? 'active' : ''}`}
                   onClick={() => toggleRarityFilter(r)}
                   style={{
-                    padding: '4px 10px',
-                    borderRadius: '6px',
-                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderColor: filterRarities.includes(r) ? '#ffcc66' : 'var(--glass-border)',
                     background: filterRarities.includes(r)
-                      ? r === 5 ? 'rgba(255, 204, 102, 0.2)' : r === 4 ? 'rgba(123, 106, 153, 0.2)' : 'rgba(255,255,255,0.1)'
-                      : 'transparent',
-                    color: filterRarities.includes(r) ? '#fff' : 'rgba(255,255,255,0.4)',
-                    fontSize: '0.8rem',
+                      ? r === 5 ? 'rgba(255, 204, 102, 0.2)' : r === 4 ? 'rgba(123, 106, 153, 0.2)' : 'rgba(255,255,255,0.15)'
+                      : 'rgba(255,255,255,0.05)',
+                    color: filterRarities.includes(r) ? '#fff' : 'var(--text-secondary)',
                     fontWeight: 'bold',
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease'
+                    height: '36px'
                   }}
                 >
                   {r}★
@@ -161,48 +194,15 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
               ))}
             </div>
           </div>
-
-          <div className="modal-filter-elements" style={{ justifyContent: 'center' }}>
-            {weaponTypes.map(type => (
-              <button 
-                key={type}
-                className={`element-filter-btn ${filterType === type ? 'active' : ''}`}
-                onClick={() => setFilterType(prev => prev === type ? null : type)}
-                title={type}
-                style={{
-                  background: filterType === type ? 'rgba(255,255,255,0.1)' : 'transparent',
-                  padding: '6px',
-                  borderRadius: '8px',
-                  border: '1px solid transparent',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <img 
-                  src={getWeaponTypeIconPath(type)} 
-                  alt={type} 
-                  style={{ width: '24px', height: '24px', objectFit: 'contain' }} 
-                />
-              </button>
-            ))}
-          </div>
         </div>
 
-        <div className="modal-content" style={{ maxHeight: '55vh', overflowY: 'auto' }}>
+        <div className="modal-content">
           {filteredAndSortedWeapons.length === 0 ? (
-            <div style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '3rem' }}>
+            <div style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
               No available weapons found. (Level 90 or already planned weapons are hidden)
             </div>
           ) : (
-            <div className="char-select-grid" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
-              gap: '0.8rem',
-              padding: '0.5rem'
-            }}>
+            <div className="char-select-grid">
               {filteredAndSortedWeapons.map(w => {
                 const info = lookupWeapon(w.key);
                 if (!info) return null;
@@ -213,43 +213,13 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                     key={w.originalIndex}
                     className="char-select-item"
                     onClick={() => onSelect(w.originalIndex)}
-                    style={{
-                      cursor: 'pointer',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      background: 'rgba(255,255,255,0.02)',
-                      border: '1px solid rgba(255,255,255,0.04)',
-                      borderRadius: '8px',
-                      padding: '8px',
-                      transition: 'all 0.15s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.04)';
-                    }}
                   >
-                    <div className={`material-icon-wrapper bg-rarity-${rarity}`} style={{ 
-                      position: 'relative',
-                      width: '80px',
-                      height: '80px',
-                      borderRadius: '6px',
-                      overflow: 'hidden',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      border: '1px solid rgba(0,0,0,0.2)'
-                    }}>
+                    <div className={`material-icon-wrapper bg-rarity-${rarity}`} style={{ position: 'relative' }}>
                       <img
                         src={`${import.meta.env.BASE_URL}weapons/${info.id}.png`}
                         alt={info.name}
-                        style={{ width: '85%', height: '85%', objectFit: 'contain' }}
+                        className="material-icon"
+                        style={{ padding: '8px' }}
                         onError={(e) => {
                           const target = e.currentTarget;
                           if (!target.dataset.fallback) {
@@ -263,65 +233,43 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                       />
                       
                       {/* Weapon level and refine badges */}
-                      <div className="char-select-level-container" style={{
-                        position: 'absolute',
-                        bottom: '2px',
-                        left: '2px',
-                        right: '2px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        fontSize: '0.68rem',
-                        fontWeight: 'bold',
-                        color: '#fff',
-                        background: 'rgba(0,0,0,0.6)',
-                        padding: '1px 4px',
-                        borderRadius: '3px'
-                      }}>
-                        <span>Lv. {w.level}</span>
-                        <span style={{ color: '#ffcc66' }}>R{w.refinement}</span>
+                      <div className="char-select-level-container">
+                        <span className="char-select-level-text">Lv. {w.level}</span>
+                        <span className="char-select-constellation" style={{ background: '#ffcc66', color: '#1a1b24', fontWeight: 'bold' }}>
+                          R{w.refinement}
+                        </span>
                       </div>
+                      
+                      {/* Equipped Character Banner at the bottom-center inside the icon box */}
+                      {w.location && (
+                        <div style={{
+                          position: 'absolute',
+                          bottom: '4px',
+                          left: '50%',
+                          transform: 'translateX(-50%)',
+                          background: 'rgba(15, 17, 26, 0.85)',
+                          color: 'rgba(255, 255, 255, 0.95)',
+                          fontSize: '0.68rem',
+                          fontWeight: '700',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          whiteSpace: 'nowrap',
+                          maxWidth: '90%',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          zIndex: 2,
+                          pointerEvents: 'none'
+                        }}>
+                          {w.location}
+                        </div>
+                      )}
                     </div>
                     
-                    <div className="char-select-name" style={{
-                      marginTop: '6px',
-                      fontSize: '0.8rem',
-                      fontWeight: '600',
-                      color: '#fff',
-                      textAlign: 'center',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                      width: '100%'
-                    }}>
+                    <div className="char-select-name">
                       {info.name}
                     </div>
-
-                    {/* Location Badge (Equipped by...) */}
-                    {w.location ? (
-                      <span style={{
-                        fontSize: '0.65rem',
-                        color: 'rgba(255,255,255,0.4)',
-                        marginTop: '2px',
-                        fontStyle: 'italic',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                        width: '100%',
-                        textAlign: 'center'
-                      }}>
-                        {w.location}
-                      </span>
-                    ) : (
-                      <span style={{
-                        fontSize: '0.65rem',
-                        color: 'rgba(255,255,255,0.25)',
-                        marginTop: '2px',
-                        textAlign: 'center'
-                      }}>
-                        Inventory
-                      </span>
-                    )}
                   </div>
                 );
               })}
