@@ -196,7 +196,7 @@ export function calculateRequirements(
     }
 
     // 2. Weapon Ascension Requirements
-    const weaponReqs = weaponRequirementsMap[planned.key];
+    const weaponReqs = wInfo ? weaponRequirementsMap[wInfo.name] : weaponRequirementsMap[planned.key];
     if (weaponReqs && planned.desired.ascension > planned.current.ascension) {
       for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
         const stepCosts = weaponReqs.ascension[String(asc)] || [];
