@@ -110,7 +110,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
   if (!isOpen) return null;
 
   const toggleRarityFilter = (r: number) => {
-    setFilterRarities(prev => 
+    setFilterRarities(prev =>
       prev.includes(r) ? prev.filter(x => x !== r) : [...prev, r]
     );
   };
@@ -124,14 +124,14 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
             <X size={20} />
           </button>
         </div>
-        
+
         <div className="modal-filter-bar">
           <div className="modal-filter-top">
             <div className="modal-search-wrapper" style={{ flex: 1 }}>
               <Search size={16} className="modal-search-icon" />
-              <input 
-                type="text" 
-                placeholder="Search" 
+              <input
+                type="text"
+                placeholder="Search"
                 className="modal-search-input"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -142,9 +142,9 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                 </button>
               )}
             </div>
-            
-            <button 
-              className="modal-sort-btn" 
+
+            <button
+              className="modal-sort-btn"
               onClick={() => setSortBy(prev => prev === 'stars' ? 'name' : 'stars')}
             >
               <Star size={16} fill={sortBy === 'stars' ? '#ffcc66' : 'none'} color={sortBy === 'stars' ? '#ffcc66' : 'currentColor'} />
@@ -155,24 +155,40 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
 
           <div className="modal-filter-elements" style={{ alignItems: 'center', gap: '8px' }}>
             {weaponTypes.map(type => (
-              <button 
+              <button
                 key={type}
                 className={`element-filter-btn ${filterType === type ? 'active' : ''}`}
                 onClick={() => setFilterType(prev => prev === type ? null : type)}
                 title={type}
-                style={{ width: '40px', height: '40px', padding: '6px' }}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  padding: '6px',
+                  opacity: filterType === type ? 1 : 1,
+                  background: filterType === type ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.3)',
+                  borderColor: filterType === type ? '#ffcc66' : 'rgba(255, 255, 255, 0.05)',
+                  transition: 'all 0.15s ease'
+                }}
               >
-                <img 
-                  src={getWeaponTypeIconPath(type)} 
-                  alt={type} 
-                  style={{ width: '28px', height: '28px', objectFit: 'contain' }}
+                <img
+                  src={getWeaponTypeIconPath(type)}
+                  alt={type}
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    objectFit: 'contain',
+                    filter: filterType === type
+                      ? 'brightness(0) invert(1) sepia(1) saturate(10000%) hue-rotate(330deg) drop-shadow(0 0 4px rgba(255,204,102,0.4))'
+                      : 'brightness(0) invert(1) opacity(0.8) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))',
+                    transition: 'filter 0.15s ease'
+                  }}
                 />
               </button>
             ))}
-            
+
             {/* Vertical separator */}
             <div style={{ width: '1px', height: '20px', background: 'var(--glass-border)', margin: '0 4px' }} />
-            
+
             <div style={{ display: 'flex', gap: '6px' }}>
               {rarities.map(r => (
                 <button
@@ -231,7 +247,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                           }
                         }}
                       />
-                      
+
                       {/* Weapon level and refine badges */}
                       <div className="char-select-level-container">
                         <span className="char-select-level-text">Lv. {w.level}</span>
@@ -239,7 +255,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                           R{w.refinement}
                         </span>
                       </div>
-                      
+
                       {/* Equipped Character Banner at the bottom-center inside the icon box */}
                       {w.location && (
                         <div style={{
@@ -266,9 +282,25 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                         </div>
                       )}
                     </div>
-                    
-                    <div className="char-select-name">
-                      {info.name}
+
+                    <div className="char-select-name" style={{
+                      whiteSpace: 'normal',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      height: '34px',
+                      lineHeight: '1.2',
+                      padding: '4px 6px'
+                    }}>
+                      <span style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        width: '100%',
+                        textAlign: 'center'
+                      }}>{info.name}</span>
                     </div>
                   </div>
                 );
