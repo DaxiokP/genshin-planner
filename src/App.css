@@ -747,24 +747,29 @@ input[type=number] {
   pointer-events: none;
 }
 
-.bg-rarity-5-solid {
-  background: radial-gradient(circle at 70% 30%, #b8935c 0%, #7e5c33 100%);
+.target-modal-container.bg-rarity-5-solid {
+  border: 1px solid rgba(198, 150, 68, 0.85);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(198, 150, 68, 0.35);
 }
 
-.bg-rarity-4-solid {
-  background: radial-gradient(circle at 70% 30%, #856e9c 0%, #523f66 100%);
+.target-modal-container.bg-rarity-4-solid {
+  border: 1px solid rgba(148, 114, 196, 0.85);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(148, 114, 196, 0.35);
 }
 
-.bg-rarity-3-solid {
-  background: radial-gradient(circle at 70% 30%, #5c8b9c 0%, #355866 100%);
+.target-modal-container.bg-rarity-3-solid {
+  border: 1px solid rgba(92, 139, 156, 0.85);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(92, 139, 156, 0.35);
 }
 
-.bg-rarity-2-solid {
-  background: radial-gradient(circle at 70% 30%, #557c63 0%, #304e3b 100%);
+.target-modal-container.bg-rarity-2-solid {
+  border: 1px solid rgba(85, 124, 99, 0.85);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(85, 124, 99, 0.35);
 }
 
-.bg-rarity-1-solid {
-  background: radial-gradient(circle at 70% 30%, #656366 0%, #3d3b3e 100%);
+.target-modal-container.bg-rarity-1-solid {
+  border: 1px solid rgba(101, 99, 102, 0.85);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(101, 99, 102, 0.35);
 }
 
 
@@ -1255,8 +1260,24 @@ input[type=number] {
   max-width: 650px;
   flex-direction: row;
   overflow: hidden;
-  background: var(--bg-secondary);
   position: relative;
+  /* Premium Dark Nebula/Space background like game acquisition screens */
+  background: radial-gradient(circle at 60% 45%, #25293c 0%, #151825 60%, #0d0f17 100%) !important;
+}
+
+/* Splash art fills entire modal background under content, centered perfectly */
+.target-modal-splash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .target-modal-left {
@@ -1264,29 +1285,13 @@ input[type=number] {
   padding: 1.5rem;
   position: relative;
   z-index: 2;
-  background: linear-gradient(90deg, var(--bg-secondary) 60%, transparent 100%);
-}
-
-.target-modal-right {
-  width: 300px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
+  flex-direction: column;
+  /* Uniform translucent dark overlay to keep text highly legible while showing the character splash uniformly */
+  background: rgba(18, 18, 28, 0.7);
 }
 
-.target-modal-portrait {
-  height: 120%;
-  max-width: none;
-  object-fit: contain;
-  object-position: bottom right;
-  filter: drop-shadow(-5px 0px 15px rgba(0, 0, 0, 0.5));
-}
+
 
 .target-modal-header {
   padding: 0 0 1.5rem 0;

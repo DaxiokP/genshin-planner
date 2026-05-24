@@ -234,24 +234,21 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
     setDesiredTalents(prev => ({ ...prev, [key]: Math.max(prev[key], val) }));
   };
 
+  const splashSrc = `${import.meta.env.BASE_URL}splash_arts/${charInfo.id}.png`;
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className={`modal-container target-modal-container bg-rarity-${charInfo.rarity || 4}-solid`} onClick={e => e.stopPropagation()}>
-        
-        <div className="target-modal-right">
-          <img
-            src={`${import.meta.env.BASE_URL}characters/${charInfo.id}.png`}
-            alt={charInfo.name}
-            className="target-modal-portrait"
-            onError={(e) => {
-              const target = e.currentTarget;
-              if (!target.dataset.fallback) {
-                target.dataset.fallback = 'enka';
-                target.src = `https://enka.network/ui/UI_Gacha_AvatarImg_${charInfo.id}.png`;
-              }
-            }}
-          />
-        </div>
+      <div
+        className={`modal-container target-modal-container bg-rarity-${charInfo.rarity || 4}-solid`}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Splash art — multiply blend removes white PNG background */}
+        <img
+          src={splashSrc}
+          alt=""
+          aria-hidden="true"
+          className="target-modal-splash"
+        />
 
         <div className="target-modal-left">
           <div className="target-modal-header" style={{ display: 'flex', alignItems: 'center' }}>
@@ -268,120 +265,121 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
               C{currentData?.constellation || 0}
             </span>
           </div>
+
           <div className="modal-content" style={{ padding: 0 }}>
-          
-          <div className="target-row">
-            <div className="target-row-title">Lv.</div>
-            <div className="target-inputs-group">
-              <div className="target-input-col">
-                <span className="target-input-label">Current</span>
-                <LevelSelector 
-                  level={currentLevel} 
-                  ascension={currentAscension}
-                  minLevel={minCurrentLevel}
-                  minAscension={minCurrentAscension}
-                  onChange={handleCurrentLevelChange}
-                />
-              </div>
-              <div className="target-input-col">
-                <span className="target-input-label">Desired</span>
-                <LevelSelector 
-                  level={desiredLevel} 
-                  ascension={desiredAscension}
-                  minLevel={currentLevel}
-                  minAscension={currentAscension}
-                  onChange={handleDesiredLevelChange}
-                />
+            <div className="target-row">
+              <div className="target-row-title">Lv.</div>
+              <div className="target-inputs-group">
+                <div className="target-input-col">
+                  <span className="target-input-label">Current</span>
+                  <LevelSelector 
+                    level={currentLevel} 
+                    ascension={currentAscension}
+                    minLevel={minCurrentLevel}
+                    minAscension={minCurrentAscension}
+                    onChange={handleCurrentLevelChange}
+                  />
+                </div>
+                <div className="target-input-col">
+                  <span className="target-input-label">Desired</span>
+                  <LevelSelector 
+                    level={desiredLevel} 
+                    ascension={desiredAscension}
+                    minLevel={currentLevel}
+                    minAscension={currentAscension}
+                    onChange={handleDesiredLevelChange}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="target-row">
-            <div className="target-row-title">Normal Attack</div>
-            <div className="target-inputs-group">
-              <div className="target-input-col">
-                <span className="target-input-label">Current</span>
-                <NumberSpinner 
-                  value={currentTalents.auto} 
-                  min={minCurrentAuto} 
-                  max={getMaxTalentForAscension(currentAscension)} 
-                  onChange={v => handleCurrentTalentChange('auto', v)} 
-                />
-              </div>
-              <div className="target-input-col">
-                <span className="target-input-label">Desired</span>
-                <NumberSpinner 
-                  value={desiredTalents.auto} 
-                  min={currentTalents.auto} 
-                  max={getMaxTalentForAscension(desiredAscension)} 
-                  onChange={v => setDesiredTalents({...desiredTalents, auto: v})} 
-                />
+            <div className="target-row">
+              <div className="target-row-title">Normal Attack</div>
+              <div className="target-inputs-group">
+                <div className="target-input-col">
+                  <span className="target-input-label">Current</span>
+                  <NumberSpinner 
+                    value={currentTalents.auto} 
+                    min={minCurrentAuto} 
+                    max={getMaxTalentForAscension(currentAscension)} 
+                    onChange={v => handleCurrentTalentChange('auto', v)} 
+                  />
+                </div>
+                <div className="target-input-col">
+                  <span className="target-input-label">Desired</span>
+                  <NumberSpinner 
+                    value={desiredTalents.auto} 
+                    min={currentTalents.auto} 
+                    max={getMaxTalentForAscension(desiredAscension)} 
+                    onChange={v => setDesiredTalents({...desiredTalents, auto: v})} 
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="target-row">
-            <div className="target-row-title">Elemental Skill</div>
-            <div className="target-inputs-group">
-              <div className="target-input-col">
-                <span className="target-input-label">Current</span>
-                <NumberSpinner 
-                  value={currentTalents.skill + (isSkillBoosted ? 3 : 0)} 
-                  min={minCurrentSkill + (isSkillBoosted ? 3 : 0)} 
-                  max={getMaxTalentForAscension(currentAscension) + (isSkillBoosted ? 3 : 0)} 
-                  onChange={v => handleCurrentTalentChange('skill', v - (isSkillBoosted ? 3 : 0))} 
-                  isBoosted={isSkillBoosted}
-                />
-              </div>
-              <div className="target-input-col">
-                <span className="target-input-label">Desired</span>
-                <NumberSpinner 
-                  value={desiredTalents.skill + (isSkillBoosted ? 3 : 0)} 
-                  min={currentTalents.skill + (isSkillBoosted ? 3 : 0)} 
-                  max={getMaxTalentForAscension(desiredAscension) + (isSkillBoosted ? 3 : 0)} 
-                  onChange={v => setDesiredTalents({...desiredTalents, skill: v - (isSkillBoosted ? 3 : 0)})} 
-                  isBoosted={isSkillBoosted}
-                />
+            <div className="target-row">
+              <div className="target-row-title">Elemental Skill</div>
+              <div className="target-inputs-group">
+                <div className="target-input-col">
+                  <span className="target-input-label">Current</span>
+                  <NumberSpinner 
+                    value={currentTalents.skill + (isSkillBoosted ? 3 : 0)} 
+                    min={minCurrentSkill + (isSkillBoosted ? 3 : 0)} 
+                    max={getMaxTalentForAscension(currentAscension) + (isSkillBoosted ? 3 : 0)} 
+                    onChange={v => handleCurrentTalentChange('skill', v - (isSkillBoosted ? 3 : 0))} 
+                    isBoosted={isSkillBoosted}
+                  />
+                </div>
+                <div className="target-input-col">
+                  <span className="target-input-label">Desired</span>
+                  <NumberSpinner 
+                    value={desiredTalents.skill + (isSkillBoosted ? 3 : 0)} 
+                    min={currentTalents.skill + (isSkillBoosted ? 3 : 0)} 
+                    max={getMaxTalentForAscension(desiredAscension) + (isSkillBoosted ? 3 : 0)} 
+                    onChange={v => setDesiredTalents({...desiredTalents, skill: v - (isSkillBoosted ? 3 : 0)})} 
+                    isBoosted={isSkillBoosted}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="target-row">
-            <div className="target-row-title">Elemental Burst</div>
-            <div className="target-inputs-group">
-              <div className="target-input-col">
-                <span className="target-input-label">Current</span>
-                <NumberSpinner 
-                  value={currentTalents.burst + (isBurstBoosted ? 3 : 0)} 
-                  min={minCurrentBurst + (isBurstBoosted ? 3 : 0)} 
-                  max={getMaxTalentForAscension(currentAscension) + (isBurstBoosted ? 3 : 0)} 
-                  onChange={v => handleCurrentTalentChange('burst', v - (isBurstBoosted ? 3 : 0))} 
-                  isBoosted={isBurstBoosted}
-                />
-              </div>
-              <div className="target-input-col">
-                <span className="target-input-label">Desired</span>
-                <NumberSpinner 
-                  value={desiredTalents.burst + (isBurstBoosted ? 3 : 0)} 
-                  min={currentTalents.burst + (isBurstBoosted ? 3 : 0)} 
-                  max={getMaxTalentForAscension(desiredAscension) + (isBurstBoosted ? 3 : 0)} 
-                  onChange={v => setDesiredTalents({...desiredTalents, burst: v - (isBurstBoosted ? 3 : 0)})} 
-                  isBoosted={isBurstBoosted}
-                />
+            <div className="target-row">
+              <div className="target-row-title">Elemental Burst</div>
+              <div className="target-inputs-group">
+                <div className="target-input-col">
+                  <span className="target-input-label">Current</span>
+                  <NumberSpinner 
+                    value={currentTalents.burst + (isBurstBoosted ? 3 : 0)} 
+                    min={minCurrentBurst + (isBurstBoosted ? 3 : 0)} 
+                    max={getMaxTalentForAscension(currentAscension) + (isBurstBoosted ? 3 : 0)} 
+                    onChange={v => handleCurrentTalentChange('burst', v - (isBurstBoosted ? 3 : 0))} 
+                    isBoosted={isBurstBoosted}
+                  />
+                </div>
+                <div className="target-input-col">
+                  <span className="target-input-label">Desired</span>
+                  <NumberSpinner 
+                    value={desiredTalents.burst + (isBurstBoosted ? 3 : 0)} 
+                    min={currentTalents.burst + (isBurstBoosted ? 3 : 0)} 
+                    max={getMaxTalentForAscension(desiredAscension) + (isBurstBoosted ? 3 : 0)} 
+                    onChange={v => setDesiredTalents({...desiredTalents, burst: v - (isBurstBoosted ? 3 : 0)})} 
+                    isBoosted={isBurstBoosted}
+                  />
+                </div>
               </div>
             </div>
+          </div>{/* end modal-content */}
+
+          <div className="target-modal-actions">
+            <button className="action-btn btn-cancel" onClick={onCancel || onClose}>
+              <X size={24} />
+            </button>
+            <button className="action-btn btn-accept" onClick={handleAccept}>
+              <Check size={24} />
+            </button>
           </div>
-        </div>
-        <div className="target-modal-actions">
-          <button className="action-btn btn-cancel" onClick={onCancel || onClose}>
-            <X size={24} />
-          </button>
-          <button className="action-btn btn-accept" onClick={handleAccept}>
-            <Check size={24} />
-          </button>
-        </div>
+        </div>{/* end target-modal-left */}
       </div>
     </div>
-  </div>
   );
 };
