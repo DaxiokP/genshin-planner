@@ -1,7 +1,7 @@
 import materialMapData from '../maps/materialMap.json';
 import { calculateRequirements } from './plannerCalculator';
 import type { RequiredMaterial } from './plannerCalculator';
-import type { PlannedCharacter } from '../App';
+
 
 const materialMap = materialMapData as Record<string, {
   id: string;
@@ -117,6 +117,59 @@ export function calculateRemainingExpBooks(
 }
 
 /**
+ * Greedily subtracts the required weapon EXP from Ore inventory,
+ * returning the leftover Ores.
+ */
+export function calculateRemainingOres(
+  requiredMysticCount: number,
+  ownedMystic: number,
+  ownedFine: number,
+  ownedNormal: number
+): {
+  mysticenhancementore: number;
+  fineenhancementore: number;
+  enhancementore: number;
+} {
+  let expNeeded = requiredMysticCount * 10000;
+
+  // 1. Consume Mystic Enhancement Ore (10k EXP each)
+  let consumedMystic = Math.min(ownedMystic, Math.floor(expNeeded / 10000));
+  expNeeded -= consumedMystic * 10000;
+  if (expNeeded > 0 && ownedMystic > consumedMystic) {
+    consumedMystic += 1;
+    expNeeded = 0;
+  }
+
+  // 2. Consume Fine Enhancement Ore (2k EXP each)
+  let consumedFine = 0;
+  if (expNeeded > 0) {
+    consumedFine = Math.min(ownedFine, Math.floor(expNeeded / 2000));
+    expNeeded -= consumedFine * 2000;
+    if (expNeeded > 0 && ownedFine > consumedFine) {
+      consumedFine += 1;
+      expNeeded = 0;
+    }
+  }
+
+  // 3. Consume standard/Normal Enhancement Ore (400 EXP each)
+  let consumedNormal = 0;
+  if (expNeeded > 0) {
+    consumedNormal = Math.min(ownedNormal, Math.floor(expNeeded / 400));
+    expNeeded -= consumedNormal * 400;
+    if (expNeeded > 0 && ownedNormal > consumedNormal) {
+      consumedNormal += 1;
+      expNeeded = 0;
+    }
+  }
+
+  return {
+    mysticenhancementore: Math.max(0, ownedMystic - consumedMystic),
+    fineenhancementore: Math.max(0, ownedFine - consumedFine),
+    enhancementore: Math.max(0, ownedNormal - consumedNormal)
+  };
+}
+
+/**
  * Top-down requirement propagation and bottom-up craft execution algorithm.
  * Strictly calculates only the 'enough' convert materials needed to reach the
  * missing numbers of materials. If it can't make enough, it shows the max it can convert.
@@ -141,11 +194,11 @@ export function recalculateChainConversions(
     return 0;
   };
 
-  // Group by active craftable chain groups (100, 400, 500)
+  // Group by active craftable chain groups (100, 400, 500, 600)
   const activeChainGroups = new Set<string>();
   requirements.forEach(req => {
     const data = materialMap[req.key];
-    if (data && (data.sortGroup === 100 || data.sortGroup === 400 || data.sortGroup === 500) &&
+    if (data && (data.sortGroup === 100 || data.sortGroup === 400 || data.sortGroup === 500 || data.sortGroup === 600) &&
         data.sortGroup !== undefined && data.sortRank !== undefined && req.key !== 'crownofinsight') {
       activeChainGroups.add(`${data.sortGroup}_${data.sortRank}`);
     }
@@ -224,7 +277,15 @@ export function recalculateChainConversions(
   recalculatedReqs.forEach(req => {
     if (processedKeys.has(req.key)) return;
 
-    const estimatedKeys = new Set(['mora', 'heroswit', 'adventurersexperience', 'wanderersadvice']);
+    const estimatedKeys = new Set([
+      'mora',
+      'heroswit',
+      'adventurersexperience',
+      'wanderersadvice',
+      'mysticenhancementore',
+      'fineenhancementore',
+      'enhancementore'
+    ]);
     if (!estimatedKeys.has(req.key)) {
       const bonus = craftingBonuses[req.key] || 0;
       const owned = getOwnedCount(req.key) + bonus;
@@ -254,6 +315,25 @@ export function recalculateChainConversions(
     herosWitReq.owned = isEnough ? herosWitReq.required : Math.floor(totalExpOwned / 20000);
   }
 
+  // Recalculate Ore sufficiency based on total Ore EXP owned
+  const mysticOreReq = recalculatedReqs.find(r => r.key === 'mysticenhancementore');
+  if (mysticOreReq) {
+    const requiredExp = mysticOreReq.required * 10000;
+    const ownedMystic = getOwnedCount('mysticenhancementore');
+    const ownedFine = getOwnedCount('fineenhancementore');
+    const ownedNormal = getOwnedCount('enhancementore');
+
+    const totalExpOwned = ownedMystic * 10000 + ownedFine * 2000 + ownedNormal * 400;
+    const isEnough = totalExpOwned >= requiredExp;
+
+    mysticOreReq.isEnough = isEnough;
+    mysticOreReq.missing = isEnough ? 0 : Math.ceil((requiredExp - totalExpOwned) / 10000);
+
+    // If enough, clamp owned count to display required/required (clamped).
+    // Otherwise, show the equivalent Mystic Ore from total inventory Ore EXP.
+    mysticOreReq.owned = isEnough ? mysticOreReq.required : Math.floor(totalExpOwned / 10000);
+  }
+
   return {
     recalculatedReqs,
     crafts,
@@ -272,17 +352,13 @@ export interface SimulationResult {
  * Simulates character upgrade targets, virtual crafting inputs, and sufficiency states.
  */
 export function simulateUpgrade(
-  planned: PlannedCharacter,
-  target: {
-    level: number;
-    ascension: number;
-    talent: { auto: number; skill: number; burst: number };
-  },
+  planned: any,
+  target: any,
   materials: Record<string, number> | null,
   craftingBonuses: Record<string, number>
 ): SimulationResult {
-  // 1. Create draft planned character
-  const draftPlanned: PlannedCharacter = {
+  // 1. Create draft planned item
+  const draftPlanned = {
     ...planned,
     desired: target,
   };
@@ -319,7 +395,7 @@ export function simulateUpgrade(
 
   // 5. Evaluate sufficiency status
   const insufficientMaterials: string[] = [];
-  const estimatedKeys = new Set(['mora', 'heroswit', 'adventurersexperience', 'wanderersadvice']);
+  const estimatedKeys = new Set(['mora', 'heroswit', 'adventurersexperience', 'wanderersadvice', 'mysticenhancementore', 'fineenhancementore', 'enhancementore']);
   recalculatedReqs.forEach(mat => {
     if (!estimatedKeys.has(mat.key)) {
       if (!mat.isEnough) {
@@ -342,16 +418,19 @@ export function simulateUpgrade(
  * Persists the correct inventory mutations.
  */
 export function applyUpgradeInventoryMutations(
-  planned: PlannedCharacter,
-  target: {
-    level: number;
-    ascension: number;
-    talent: { auto: number; skill: number; burst: number };
-  },
+  planned: any,
+  target: any,
   materials: Record<string, number>,
   craftingBonuses: Record<string, number>,
   correctedMora: number,
-  correctedExp: { heroswit: number; adventurersexperience: number; wanderersadvice: number }
+  correctedExpOrOres: {
+    heroswit?: number;
+    adventurersexperience?: number;
+    wanderersadvice?: number;
+    mysticenhancementore?: number;
+    fineenhancementore?: number;
+    enhancementore?: number;
+  }
 ): Record<string, number> {
   const nextMaterials = { ...materials };
 
@@ -384,11 +463,17 @@ export function applyUpgradeInventoryMutations(
     setOwnedCount(key, remaining);
   });
 
-  // 4. Directly set corrected Mora and EXP counts
+  // 4. Directly set corrected Mora, EXP, or Ore counts
   setOwnedCount('mora', correctedMora);
-  setOwnedCount('heroswit', correctedExp.heroswit);
-  setOwnedCount('adventurersexperience', correctedExp.adventurersexperience);
-  setOwnedCount('wanderersadvice', correctedExp.wanderersadvice);
+  if (planned.type === 'weapon') {
+    if (correctedExpOrOres.mysticenhancementore !== undefined) setOwnedCount('mysticenhancementore', correctedExpOrOres.mysticenhancementore);
+    if (correctedExpOrOres.fineenhancementore !== undefined) setOwnedCount('fineenhancementore', correctedExpOrOres.fineenhancementore);
+    if (correctedExpOrOres.enhancementore !== undefined) setOwnedCount('enhancementore', correctedExpOrOres.enhancementore);
+  } else {
+    if (correctedExpOrOres.heroswit !== undefined) setOwnedCount('heroswit', correctedExpOrOres.heroswit);
+    if (correctedExpOrOres.adventurersexperience !== undefined) setOwnedCount('adventurersexperience', correctedExpOrOres.adventurersexperience);
+    if (correctedExpOrOres.wanderersadvice !== undefined) setOwnedCount('wanderersadvice', correctedExpOrOres.wanderersadvice);
+  }
 
   return nextMaterials;
 }

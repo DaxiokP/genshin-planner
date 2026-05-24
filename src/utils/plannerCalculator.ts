@@ -1,11 +1,26 @@
 import characterRequirementsMapData from '../maps/characterRequirementsMap.json';
+import weaponRequirementsMapData from '../maps/weaponRequirementsMap.json';
+import weaponExpMapData from '../maps/weaponExpMap.json';
+import weaponMapData from '../maps/weaponMap.json';
 import materialMapData from '../maps/materialMap.json';
-import type { PlannedCharacter } from '../App';
+
 
 const characterRequirementsMap = characterRequirementsMapData as Record<string, {
   ascension: Record<string, { key: string; name: string; count: number }[]>;
   talents: Record<string, { key: string; name: string; count: number }[]>;
 }>;
+
+const weaponRequirementsMap = weaponRequirementsMapData as Record<string, {
+  ascension: Record<string, { key: string; name: string; count: number }[]>;
+}>;
+
+const weaponExpMap = weaponExpMapData as Record<string, number[]>;
+
+const weaponMapRaw = weaponMapData as Record<string, any>;
+const weaponIndex: Record<string, string> = {};
+const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
+Object.keys(weaponMapRaw).forEach(k => { weaponIndex[normalize(k)] = k; });
+const lookupWeapon = (key: string) => weaponMapRaw[weaponIndex[normalize(key)]] ?? null;
 
 const materialMap = materialMapData as Record<string, {
   id: string;
@@ -118,6 +133,13 @@ function getCumulativeExp(level: number): number {
   return CUMULATIVE_EXP[level - 1] || 0;
 }
 
+function getWeaponCumulativeExp(rarity: number, level: number): number {
+  const expArray = weaponExpMap[String(rarity)] || weaponExpMap['4'];
+  if (level <= 1) return 0;
+  if (level >= 90) return expArray[89];
+  return expArray[level - 1] || 0;
+}
+
 export interface RequiredMaterial {
   key: string;
   name: string;
@@ -133,11 +155,11 @@ export interface RequiredMaterial {
 }
 
 /**
- * Calculates all material requirements (EXP books, Mora, Ascension items, and Talent costs)
- * for a planned character progression path.
+ * Calculates all material requirements (EXP books/ores, Mora, Ascension items, and Talent costs)
+ * for a planned progression path (character or weapon).
  */
 export function calculateRequirements(
-  planned: PlannedCharacter,
+  planned: any,
   materials: Record<string, number> | null
 ): RequiredMaterial[] {
   // If plan is temporarily disabled, return no requirements so they aren't calculated/summed
@@ -153,52 +175,85 @@ export function calculateRequirements(
     reqsAccumulator[k] = (reqsAccumulator[k] || 0) + count;
   };
 
-  // 1. Level & EXP Materials (Hero's Wit + Level-Up Mora)
-  if (planned.desired.level > planned.current.level) {
-    const expDelta = getCumulativeExp(planned.desired.level) - getCumulativeExp(planned.current.level);
-    if (expDelta > 0) {
-      // Equivalent whole Hero's Wits (rounded up)
-      const witsNeeded = Math.ceil(expDelta / 20000);
-      if (witsNeeded > 0) {
-        addMaterial('heroswit', witsNeeded);
-        // Level Mora cost: using Hero's Wits costs exactly 4000 Mora per book (equivalent to 1 Mora per 5 EXP gained)
-        addMaterial('mora', witsNeeded * 4000);
+  const isWeapon = planned.type === 'weapon';
+
+  if (isWeapon) {
+    // Weapon Requirements
+    const wInfo = lookupWeapon(planned.key);
+    const rarity = wInfo?.rarity || 4;
+
+    // 1. Level & EXP Materials (Mystic Enhancement Ore + Level-Up Mora)
+    if (planned.desired.level > planned.current.level) {
+      const expDelta = getWeaponCumulativeExp(rarity, planned.desired.level) - getWeaponCumulativeExp(rarity, planned.current.level);
+      if (expDelta > 0) {
+        const oresNeeded = Math.ceil(expDelta / 10000);
+        if (oresNeeded > 0) {
+          addMaterial('mysticenhancementore', oresNeeded);
+          // Level Mora cost for weapons: exactly 1 Mora for every 10 EXP points
+          addMaterial('mora', Math.round(expDelta / 10));
+        }
       }
     }
-  }
 
-  // Handle character lookup from requirements database
-  // Note: GOOD inventory maps traveler to Aether. We support Traveler, Aether, Lumine.
-  const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
-  const charReqs = characterRequirementsMap[charKey];
-
-  if (charReqs) {
-    // 2. Ascension Requirements
-    if (planned.desired.ascension > planned.current.ascension) {
+    // 2. Weapon Ascension Requirements
+    const weaponReqs = weaponRequirementsMap[planned.key];
+    if (weaponReqs && planned.desired.ascension > planned.current.ascension) {
       for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
-        const stepCosts = charReqs.ascension[asc] || [];
+        const stepCosts = weaponReqs.ascension[String(asc)] || [];
         stepCosts.forEach(item => {
           addMaterial(item.key, item.count);
         });
       }
     }
+  } else {
+    // Character Requirements
+    // 1. Level & EXP Materials (Hero's Wit + Level-Up Mora)
+    if (planned.desired.level > planned.current.level) {
+      const expDelta = getCumulativeExp(planned.desired.level) - getCumulativeExp(planned.current.level);
+      if (expDelta > 0) {
+        // Equivalent whole Hero's Wits (rounded up)
+        const witsNeeded = Math.ceil(expDelta / 20000);
+        if (witsNeeded > 0) {
+          addMaterial('heroswit', witsNeeded);
+          // Level Mora cost: using Hero's Wits costs exactly 4000 Mora per book (equivalent to 1 Mora per 5 EXP gained)
+          addMaterial('mora', witsNeeded * 4000);
+        }
+      }
+    }
 
-    // 3. Talent Requirements (auto, skill, burst)
-    const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
-    talentKeys.forEach(tKey => {
-      const curLvl = planned.current.talent[tKey];
-      const desLvl = planned.desired.talent[tKey];
-      if (desLvl > curLvl) {
-        for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
-          const stepCosts = charReqs.talents[lvl] || [];
+    // Handle character lookup from requirements database
+    // Note: GOOD inventory maps traveler to Aether. We support Traveler, Aether, Lumine.
+    const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
+    const charReqs = characterRequirementsMap[charKey];
+
+    if (charReqs) {
+      // 2. Ascension Requirements
+      if (planned.desired.ascension > planned.current.ascension) {
+        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+          const stepCosts = charReqs.ascension[asc] || [];
           stepCosts.forEach(item => {
             addMaterial(item.key, item.count);
           });
         }
       }
-    });
-  } else {
-    console.warn(`calculateRequirements: Requirements map missing for ${planned.key}`);
+
+      // 3. Talent Requirements (auto, skill, burst)
+      const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
+      talentKeys.forEach(tKey => {
+        const curLvl = planned.current.talent[tKey];
+        const desLvl = planned.desired.talent[tKey];
+        if (desLvl > curLvl) {
+          for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
+            const stepCosts = charReqs.talents[lvl] || [];
+            stepCosts.forEach(item => {
+              addMaterial(item.key, item.count);
+            });
+          }
+        }
+      });
+    } else {
+      console.warn(`calculateRequirements: Requirements map missing for ${planned.key}`);
+    }
   }
 
   // 4. Map, compare against GOOD materials inventory, and sort results
@@ -237,10 +292,10 @@ export function calculateRequirements(
     });
   });
 
-  // 4b. Apply material crafting up-conversion (alchemy) logic for groups 100, 400, 500
+  // 4b. Apply material crafting up-conversion (alchemy) logic for groups 100, 400, 500, 600
   const activeChains = new Set<string>();
   results.forEach(item => {
-    if ((item.sortGroup === 100 || item.sortGroup === 400 || item.sortGroup === 500) && 
+    if ((item.sortGroup === 100 || item.sortGroup === 400 || item.sortGroup === 500 || item.sortGroup === 600) && 
         item.sortGroup !== undefined && item.sortRank !== undefined) {
       activeChains.add(`${item.sortGroup}_${item.sortRank}`);
     }
@@ -335,17 +390,40 @@ export function calculateRequirements(
         const totalExpOwned = ownedWit * 20000 + ownedAdv * 5000 + ownedAdvice * 1000;
         item.isEnough = totalExpOwned >= requiredExp;
         item.missing = item.isEnough ? 0 : Math.ceil((requiredExp - totalExpOwned) / 20000);
+      } else if (item.key === 'mysticenhancementore') {
+        const requiredExp = item.required * 10000;
+        
+        let ownedMystic = item.owned;
+        let ownedFine = 0;
+        let ownedNormal = 0;
+        
+        if (materials) {
+          for (const goodKey of Object.keys(materials)) {
+            const gkLower = goodKey.toLowerCase();
+            if (gkLower === 'fineenhancementore') {
+              ownedFine = materials[goodKey];
+            } else if (gkLower === 'enhancementore') {
+              ownedNormal = materials[goodKey];
+            }
+          }
+        }
+        
+        const totalExpOwned = ownedMystic * 10000 + ownedFine * 2000 + ownedNormal * 400;
+        item.isEnough = totalExpOwned >= requiredExp;
+        item.missing = item.isEnough ? 0 : Math.ceil((requiredExp - totalExpOwned) / 10000);
       } else {
         item.isEnough = item.owned >= item.required;
       }
     }
   });
 
-  // 5. Sort materials: Hero's Wit first, Mora second. Then by custom category order, then rarity ascending, then sortRank, then name.
+  // 5. Sort materials: Mystic Ore, Hero's Wit first, Mora second. Then by custom category order, then rarity ascending, then sortRank, then name.
   return results.sort((a, b) => {
     const getCategoryWeight = (item: typeof a) => {
+      if (item.key === 'mysticenhancementore') return 0.5;
       if (item.key === 'heroswit') return 1;
       if (item.key === 'mora') return 2;
+      if (item.sortGroup === 600) return 2.5;
       if (item.sortGroup === 100) return 3;
       if (item.sortGroup === 700 && item.key !== 'crownofinsight') return 4;
       if (item.sortGroup === 300) return 5;
@@ -365,7 +443,7 @@ export function calculateRequirements(
 
     // Inside the same category:
     // For common drops, gemstones, and talent books: sort by rarity ascending
-    if (weightA === 3 || weightA === 4 || weightA === 7) {
+    if (weightA === 3 || weightA === 4 || weightA === 7 || weightA === 2.5) {
       if (a.rarity !== b.rarity) {
         return a.rarity - b.rarity;
       }
@@ -380,3 +458,4 @@ export function calculateRequirements(
     return a.name.localeCompare(b.name);
   });
 }
+

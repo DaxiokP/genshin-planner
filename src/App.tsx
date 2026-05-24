@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Upload, FileUp, Sparkles, X, Check, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2, Pencil, Power, RotateCw, ArrowUpNarrowWide, ArrowDownNarrowWide } from 'lucide-react';
+import { Upload, FileUp, Sparkles, X, Search, UserPlus, Sword, ListOrdered, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Trash2, Pencil, Power, RotateCw, ArrowUpNarrowWide, ArrowDownNarrowWide } from 'lucide-react';
 import { CharacterCard } from './components/CharacterCard';
 import { WeaponCard } from './components/WeaponCard';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
@@ -14,6 +14,10 @@ import { AuthModal } from './components/AuthModal';
 import { DeletePlanConfirmationModal } from './components/DeletePlanConfirmationModal';
 import { UpgradeCharacterModal } from './components/UpgradeCharacterModal';
 import { UpgradeEstimateCorrectionModal } from './components/UpgradeEstimateCorrectionModal';
+import { WeaponSelectionModal } from './components/WeaponSelectionModal';
+import { WeaponTargetModal } from './components/WeaponTargetModal';
+import { UpgradeWeaponModal } from './components/UpgradeWeaponModal';
+import { WeaponUpgradeEstimateCorrectionModal } from './components/WeaponUpgradeEstimateCorrectionModal';
 import { applyUpgradeInventoryMutations, hasSingleStar } from './utils/upgradeHelpers';
 import { moveItem } from './utils/plannerHelpers';
 import { PriorityManagerModal } from './components/PriorityManagerModal';
@@ -102,7 +106,11 @@ function App() {
   const [characters, setCharacters] = useState<GoodCharacter[]>([]);
   const [weapons, setWeapons] = useState<GoodWeapon[]>([]);
   const [artifacts, setArtifacts] = useState<GoodArtifact[]>([]);
-  const [plannedCharacters, setPlannedCharacters] = useState<PlannedCharacter[]>([]);
+  const [plannedItems, setPlannedItems] = useState<any[]>([]);
+  const plannedCharacters = useMemo(() => {
+    return plannedItems.filter(item => item.type === 'character' || !item.type) as PlannedCharacter[];
+  }, [plannedItems]);
+  
   const [isPriorityModalOpen, setIsPriorityModalOpen] = useState(false);
   const [canDragCardKey, setCanDragCardKey] = useState<string | null>(null);
   const [draggedCardKey, setDraggedCardKey] = useState<string | null>(null);
@@ -130,12 +138,25 @@ function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isCharacterSelectModalOpen, setIsCharacterSelectModalOpen] = useState(false);
   const [selectedCharacterKeyForTarget, setSelectedCharacterKeyForTarget] = useState<string | null>(null);
+  
+  const [isWeaponSelectModalOpen, setIsWeaponSelectModalOpen] = useState(false);
+  const [selectedWeaponIndexForTarget, setSelectedWeaponIndexForTarget] = useState<number | null>(null);
+  const [selectedWeaponKeyForTarget, setSelectedWeaponKeyForTarget] = useState<string | null>(null);
+  const [deletingWeaponId, setDeletingWeaponId] = useState<string | null>(null);
+
   const [openedTargetFromPlanner, setOpenedTargetFromPlanner] = useState(false);
   const [deletingCharacterKey, setDeletingCharacterKey] = useState<string | null>(null);
+  
   const [selectedUpgradeCharacterKey, setSelectedUpgradeCharacterKey] = useState<string | null>(null);
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
   const [isUpgradeCorrectionModalOpen, setIsUpgradeCorrectionModalOpen] = useState(false);
   const [upgradeDraftTarget, setUpgradeDraftTarget] = useState<any>(null);
+  
+  const [selectedUpgradeWeaponId, setSelectedUpgradeWeaponId] = useState<string | null>(null);
+  const [isUpgradeWeaponModalOpen, setIsUpgradeWeaponModalOpen] = useState(false);
+  const [isUpgradeWeaponCorrectionModalOpen, setIsUpgradeWeaponCorrectionModalOpen] = useState(false);
+  const [upgradeWeaponDraftTarget, setUpgradeWeaponDraftTarget] = useState<any>(null);
+  const [estimatedWeaponSpend, setEstimatedWeaponSpend] = useState<{ mora: number, mysticenhancementore: number }>({ mora: 0, mysticenhancementore: 0 });
   const [draftCraftingBonuses, setDraftCraftingBonuses] = useState<Record<string, number>>({});
   const [estimatedSpend, setEstimatedSpend] = useState<{ mora: number, heroswit: number }>({ mora: 0, heroswit: 0 });
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -407,6 +428,7 @@ function App() {
           let weaponsData = currentProfileData?.weapons || [];
           let artifactsData = currentProfileData?.artifacts || [];
           let plannedCharactersData = currentProfileData?.planned_characters || [];
+          let plannedItemsData = currentProfileData?.planned_items || [];
           let favoriteCharacterKeysData = currentProfileData?.favorite_character_keys || [];
 
           // Migration logic: If cloud profile is empty but local has data, migrate it!
@@ -420,7 +442,16 @@ function App() {
                 weaponsData = localData.weapons || [];
                 artifactsData = localData.artifacts || [];
                 plannedCharactersData = localData.planned_characters || [];
+                plannedItemsData = localData.planned_items || [];
                 favoriteCharacterKeysData = localData.favorite_character_keys || [];
+
+                if (plannedItemsData.length === 0 && plannedCharactersData.length > 0) {
+                  plannedItemsData = plannedCharactersData.map((item: any) => ({
+                    ...item,
+                    type: 'character',
+                    id: `character:${item.key}`
+                  }));
+                }
 
                 // Save directly to DB
                 await saveProfileState(user.id, targetProfile, {
@@ -429,6 +460,7 @@ function App() {
                   weapons: weaponsData,
                   artifacts: artifactsData,
                   planned_characters: plannedCharactersData,
+                  planned_items: plannedItemsData,
                   favorite_character_keys: favoriteCharacterKeysData
                 });
                 console.log(`Migrated local data to cloud for profile: ${targetProfile}`);
@@ -442,11 +474,19 @@ function App() {
             }
           }
 
+          if (plannedItemsData.length === 0 && plannedCharactersData.length > 0) {
+            plannedItemsData = plannedCharactersData.map((item: any) => ({
+              ...item,
+              type: 'character',
+              id: `character:${item.key}`
+            }));
+          }
+
           setMaterials(materialsData);
           setCharacters(charactersData);
           setWeapons(weaponsData);
           setArtifacts(artifactsData);
-          setPlannedCharacters(plannedCharactersData);
+          setPlannedItems(plannedItemsData);
           setFavoriteCharacterKeys(favoriteCharacterKeysData);
           setSyncStatus('synced');
         } else {
@@ -460,14 +500,24 @@ function App() {
             setCharacters(localData.characters || []);
             setWeapons(localData.weapons || []);
             setArtifacts(localData.artifacts || []);
-            setPlannedCharacters(localData.planned_characters || []);
+            
+            let plannedItemsData = localData.planned_items || [];
+            if (plannedItemsData.length === 0 && localData.planned_characters && localData.planned_characters.length > 0) {
+              plannedItemsData = localData.planned_characters.map((item: any) => ({
+                ...item,
+                type: 'character',
+                id: `character:${item.key}`
+              }));
+            }
+
+            setPlannedItems(plannedItemsData);
             setFavoriteCharacterKeys(localData.favorite_character_keys || []);
           } else {
             setMaterials(null);
             setCharacters([]);
             setWeapons([]);
             setArtifacts([]);
-            setPlannedCharacters([]);
+            setPlannedItems([]);
             setFavoriteCharacterKeys([]);
           }
           setSyncStatus('local');
@@ -504,7 +554,8 @@ function App() {
       characters,
       weapons,
       artifacts,
-      planned_characters: plannedCharacters,
+      planned_characters: plannedItems.filter(item => item.type === 'character' || !item.type),
+      planned_items: plannedItems,
       favorite_character_keys: favoriteCharacterKeys
     };
 
@@ -535,7 +586,7 @@ function App() {
         clearTimeout(saveTimeoutRef.current);
       }
     };
-  }, [materials, characters, weapons, artifacts, plannedCharacters, favoriteCharacterKeys, user, activeProfile, isLoadingProfile]);
+  }, [materials, characters, weapons, artifacts, plannedItems, favoriteCharacterKeys, user, activeProfile, isLoadingProfile]);
 
   const handleCardDragStart = (e: React.DragEvent, key: string) => {
     setDraggedCardKey(key);
@@ -560,8 +611,8 @@ function App() {
   const handleCardDrop = (e: React.DragEvent, targetKey: string) => {
     e.preventDefault();
     if (draggedCardKey && draggedCardKey !== targetKey && dropPlacement) {
-      const updated = moveItem(plannedCharacters, draggedCardKey, targetKey, dropPlacement);
-      setPlannedCharacters(updated);
+      const updated = moveItem(plannedItems, draggedCardKey, targetKey, dropPlacement);
+      setPlannedItems(updated);
     }
     setDraggedCardKey(null);
     setDragOverCardKey(null);
@@ -682,8 +733,8 @@ function App() {
     );
 
     setMaterials(mutatedMaterials);
-    setPlannedCharacters(prev => prev.map(p => {
-      if (p.key === selectedUpgradeCharacterKey) {
+    setPlannedItems(prev => prev.map(p => {
+      if ((p.type === 'character' || !p.type) && p.key === selectedUpgradeCharacterKey) {
         return {
           ...p,
           current: {
@@ -715,9 +766,80 @@ function App() {
     setDraftCraftingBonuses({});
   };
 
+  const handleWeaponUpgradeModalConfirm = (
+    target: { level: number; ascension: number },
+    craftingBonuses: Record<string, number>
+  ) => {
+    const planned = plannedItems.find(p => p.id === selectedUpgradeWeaponId);
+    if (!planned) return;
+
+    const draftWeapon = { ...planned, desired: target };
+    const reqs = calculateRequirements(draftWeapon, materials);
+    
+    const moraReq = reqs.find(r => r.key === 'mora')?.required || 0;
+    const mysticReq = reqs.find(r => r.key === 'mysticenhancementore')?.required || 0;
+
+    setUpgradeWeaponDraftTarget(target);
+    setDraftCraftingBonuses(craftingBonuses);
+    setEstimatedWeaponSpend({ mora: moraReq, mysticenhancementore: mysticReq });
+    setIsUpgradeWeaponCorrectionModalOpen(true);
+  };
+
+  const handleWeaponUpgradeFinalConfirmation = (
+    correctedMora: number,
+    correctedOres: {
+      mysticenhancementore: number;
+      fineenhancementore: number;
+      enhancementore: number;
+    }
+  ) => {
+    const planned = plannedItems.find(p => p.id === selectedUpgradeWeaponId);
+    if (!planned || !upgradeWeaponDraftTarget || !materials) return;
+
+    const mutatedMaterials = applyUpgradeInventoryMutations(
+      planned,
+      upgradeWeaponDraftTarget,
+      materials,
+      draftCraftingBonuses,
+      correctedMora,
+      correctedOres
+    );
+
+    setMaterials(mutatedMaterials);
+    setPlannedItems(prev => prev.map(p => {
+      if (p.id === selectedUpgradeWeaponId) {
+        return {
+          ...p,
+          current: {
+            level: upgradeWeaponDraftTarget.level,
+            ascension: upgradeWeaponDraftTarget.ascension
+          }
+        };
+      }
+      return p;
+    }));
+
+    setWeapons(prev => prev.map((w, idx) => {
+      if (idx === planned.weaponIndex) {
+        return {
+          ...w,
+          level: upgradeWeaponDraftTarget.level,
+          ascension: upgradeWeaponDraftTarget.ascension
+        };
+      }
+      return w;
+    }));
+
+    setIsUpgradeWeaponCorrectionModalOpen(false);
+    setIsUpgradeWeaponModalOpen(false);
+    setSelectedUpgradeWeaponId(null);
+    setUpgradeWeaponDraftTarget(null);
+    setDraftCraftingBonuses({});
+  };
+
   const togglePlannedCharacter = (key: string) => {
-    setPlannedCharacters(prev => prev.map(p => {
-      if (p.key === key) {
+    setPlannedItems(prev => prev.map(p => {
+      if ((p.type === 'character' || !p.type) && p.key === key) {
         return {
           ...p,
           enabled: p.enabled !== false ? false : true
@@ -1673,7 +1795,6 @@ function App() {
             </section>
           )}
 
-
           {activeTab === 'planner' && (
             <section className="planner-container">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
@@ -1689,7 +1810,10 @@ function App() {
                     <UserPlus size={20} />
                     <span>Add Character</span>
                   </button>
-                  <button className="planner-btn planner-btn-weapon">
+                  <button 
+                    className="planner-btn planner-btn-weapon"
+                    onClick={() => setIsWeaponSelectModalOpen(true)}
+                  >
                     <Sword size={20} />
                     <span>Add Weapon</span>
                   </button>
@@ -1700,462 +1824,957 @@ function App() {
                 </div>
               </div>
 
-              {plannedCharacters.length > 0 ? (
+              {plannedItems.length > 0 ? (
                 <div className="planner-grid">
-                  {plannedCharacters.map((planned) => {
-                    const charMapInfo = lookupChar(planned.key);
-                    const name = charMapInfo?.name || planned.key;
-                    const fontScale = name.length > 20 ? '0.8rem' : name.length > 12 ? '0.95rem' : '1.15rem';
-                    const elementClass = charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none';
+                  {plannedItems.map((planned) => {
+                    const isWeapon = planned.type === 'weapon';
+                    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
                     const requirements = calculateRequirements(planned, materials);
 
-                    return (
-                      <div
-                        key={planned.key}
-                        draggable={canDragCardKey === planned.key}
-                        onDragStart={(e) => handleCardDragStart(e, planned.key)}
-                        onDragOver={(e) => handleCardDragOver(e, planned.key)}
-                        onDragLeave={() => { setDragOverCardKey(null); setDropPlacement(null); }}
-                        onDrop={(e) => handleCardDrop(e, planned.key)}
-                        onDragEnd={() => { setDraggedCardKey(null); setDragOverCardKey(null); setDropPlacement(null); }}
-                        className={`character-card bg-element-${elementClass} ${
-                          draggedCardKey === planned.key ? 'dragging-card' : ''
-                        } ${
-                          dragOverCardKey === planned.key && dropPlacement === 'before' ? 'drop-before' : ''
-                        } ${
-                          dragOverCardKey === planned.key && dropPlacement === 'after' ? 'drop-after' : ''
-                        }`}
-                        style={{
-                          padding: 0,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          overflow: 'hidden',
-                          position: 'relative',
-                          filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
-                          transition: 'filter 0.3s ease, opacity 0.3s ease'
-                        }}
-                      >
-                        {/* Premium Rarity-Based Header Bar */}
+                    if (isWeapon) {
+                      const wInfo = lookupWeapon(planned.key) || {
+                        name: planned.key,
+                        rarity: 4,
+                        id: '',
+                        type: '',
+                      };
+                      const rarity = wInfo.rarity || 4;
+                      const displayName = wInfo.name || planned.key;
+                      const fontScale = displayName.length > 20 ? '0.8rem' : displayName.length > 12 ? '0.95rem' : '1.15rem';
+                      const headerGradient = rarity === 5
+                        ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
+                        : rarity === 4
+                        ? 'linear-gradient(to right, #7b6a99, #5a4b78)' // 4* Purple
+                        : 'linear-gradient(to right, #3d3f45, #2e3035)'; // 3* Gray
+
+                      return (
                         <div
-                          className="planner-card-header-draggable"
-                          onMouseDown={() => setCanDragCardKey(planned.key)}
-                          onMouseUp={() => setCanDragCardKey(null)}
+                          key={id}
+                          draggable={canDragCardKey === id}
+                          onDragStart={(e) => handleCardDragStart(e, id)}
+                          onDragOver={(e) => handleCardDragOver(e, id)}
+                          onDragLeave={() => { setDragOverCardKey(null); setDropPlacement(null); }}
+                          onDrop={(e) => handleCardDrop(e, id)}
+                          onDragEnd={() => { setDraggedCardKey(null); setDragOverCardKey(null); setDropPlacement(null); }}
+                          className={`character-card bg-rarity-${rarity} ${
+                            draggedCardKey === id ? 'dragging-card' : ''
+                          } ${
+                            dragOverCardKey === id && dropPlacement === 'before' ? 'drop-before' : ''
+                          } ${
+                            dragOverCardKey === id && dropPlacement === 'after' ? 'drop-after' : ''
+                          }`}
                           style={{
-                            background: charMapInfo?.rarity === 5
-                              ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
-                              : 'linear-gradient(to right, #7b6a99, #5a4b78)', // 4* Purple
-                            height: '46px',
+                            padding: 0,
                             display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            paddingLeft: '12px',
-                            paddingRight: '12px',
-                            borderBottom: '1px solid rgba(0,0,0,0.15)',
-                            position: 'relative'
+                            flexDirection: 'column',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
+                            transition: 'filter 0.3s ease, opacity 0.3s ease'
                           }}
                         >
-                          {/* Left Buttons (Edit, Upgrade) */}
-                          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                            <button
-                              onClick={() => {
-                                setOpenedTargetFromPlanner(true);
-                                setSelectedCharacterKeyForTarget(planned.key);
-                              }}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                background: '#eae3d2',
-                                color: '#4a3c31',
-                                border: 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                transition: 'all 0.15s ease',
-                                padding: 0,
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.opacity = '0.9';
-                                e.currentTarget.style.transform = 'scale(1.05)';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.opacity = '1';
-                                e.currentTarget.style.transform = 'scale(1)';
-                              }}
-                              title="Edit target levels"
-                            >
-                              <Pencil size={15} style={{ strokeWidth: 2.2 }} />
-                            </button>
-                            <button
-                              onClick={() => upgradePlannedCharacter(planned.key)}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                background: '#eae3d2',
-                                color: '#4a3c31',
-                                border: 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                transition: 'all 0.15s ease',
-                                padding: 0,
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.opacity = '0.9';
-                                e.currentTarget.style.transform = 'scale(1.05)';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.opacity = '1';
-                                e.currentTarget.style.transform = 'scale(1)';
-                              }}
-                              title="Mark as upgraded"
-                            >
-                              <Sparkles size={15} style={{ strokeWidth: 2.2 }} />
-                            </button>
-                          </div>
+                          {/* Premium Header Bar */}
+                          <div
+                            className="planner-card-header-draggable"
+                            onMouseDown={() => setCanDragCardKey(id)}
+                            onMouseUp={() => setCanDragCardKey(null)}
+                            style={{
+                              background: headerGradient,
+                              height: '46px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              paddingLeft: '12px',
+                              paddingRight: '12px',
+                              borderBottom: '1px solid rgba(0,0,0,0.15)',
+                              position: 'relative'
+                            }}
+                          >
+                            {/* Left Buttons (Edit, Upgrade) */}
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                              <button
+                                onClick={() => {
+                                  setOpenedTargetFromPlanner(true);
+                                  setSelectedWeaponIndexForTarget(planned.weaponIndex);
+                                  setSelectedWeaponKeyForTarget(planned.key);
+                                }}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#eae3d2',
+                                  color: '#4a3c31',
+                                  border: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.9';
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                }}
+                                title="Edit target levels"
+                              >
+                                <Pencil size={15} style={{ strokeWidth: 2.2 }} />
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setSelectedUpgradeWeaponId(id);
+                                  setIsUpgradeWeaponModalOpen(true);
+                                }}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#eae3d2',
+                                  color: '#4a3c31',
+                                  border: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.9';
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                }}
+                                title="Mark as upgraded"
+                              >
+                                <Sparkles size={15} style={{ strokeWidth: 2.2 }} />
+                              </button>
+                            </div>
 
-                          {/* Center Character Name */}
-                          <div style={{
-                            color: '#fff',
-                            fontFamily: "'Outfit', sans-serif",
-                            fontWeight: '700',
-                            fontSize: fontScale,
-                            letterSpacing: '0.01em',
-                            display: '-webkit-box',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flex: 1,
-                            textAlign: 'center',
-                            lineHeight: '1.15',
-                            padding: '0 4px',
-                            maxHeight: '38px',
-                            overflow: 'hidden',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            wordBreak: 'break-word'
-                          } as any}>
-                            <span>{name}</span>
-                          </div>
+                            {/* Center Weapon Name */}
+                            <div style={{
+                              color: '#fff',
+                              fontFamily: "'Outfit', sans-serif",
+                              fontWeight: '700',
+                              fontSize: fontScale,
+                              letterSpacing: '0.01em',
+                              display: '-webkit-box',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flex: 1,
+                              textAlign: 'center',
+                              lineHeight: '1.15',
+                              padding: '0 4px',
+                              maxHeight: '38px',
+                              overflow: 'hidden',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              wordBreak: 'break-word'
+                            } as any}>
+                              <span>{displayName}</span>
+                            </div>
 
-                          {/* Right Buttons (Standby, Delete) */}
-                          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                            <button
-                              onClick={() => togglePlannedCharacter(planned.key)}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                background: '#12131a',
-                                color: planned.enabled !== false ? '#fff' : '#555',
-                                border: planned.enabled !== false ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(255,255,255,0.05)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                transition: 'all 0.15s ease',
-                                padding: 0,
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.05)';
-                                if (planned.enabled !== false) {
-                                  e.currentTarget.style.color = '#ffcc66';
-                                } else {
-                                  e.currentTarget.style.color = '#777';
-                                }
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'scale(1)';
-                                e.currentTarget.style.color = planned.enabled !== false ? '#fff' : '#555';
-                              }}
-                              title={planned.enabled !== false ? "Put on Standby" : "Activate Plan"}
-                            >
-                              <Power size={14} style={{ strokeWidth: 2.5 }} />
-                            </button>
-                            <button
-                              onClick={() => removePlannedCharacter(planned.key)}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                background: '#eae3d2',
-                                color: '#4a3c31',
-                                border: 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                transition: 'all 0.15s ease',
-                                padding: 0,
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.opacity = '0.9';
-                                e.currentTarget.style.transform = 'scale(1.05)';
-                                e.currentTarget.style.color = '#ff3333';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.opacity = '1';
-                                e.currentTarget.style.transform = 'scale(1)';
-                                e.currentTarget.style.color = '#4a3c31';
-                              }}
-                              title="Remove plan"
-                            >
-                              <Trash2 size={14} style={{ strokeWidth: 2.2 }} />
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Card Body */}
-                        <div style={{
-                          padding: '1.25rem',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '0.75rem',
-                          flex: 1
-                        }}>
-                          {/* Symmetrical side-by-side flex row */}
-                          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                            {/* Enlarged premium avatar frame */}
-                            <div
-                              className={`bg-rarity-${charMapInfo?.rarity || 4}-solid bg-element-${elementClass}-gradient`}
-                              style={{
-                                width: '120px',
-                                height: '120px',
-                                borderRadius: '12px',
-                                overflow: 'hidden',
-                                position: 'relative',
-                                flexShrink: 0,
-                                border: '2px solid rgba(0,0,0,0.4)',
-                                boxShadow: '0 6px 12px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.08)'
-                              }}
-                            >
-                              <img
-                                src={`${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
-                                alt={charMapInfo?.name || planned.key}
-                                style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }}
-                                onError={(e) => {
-                                  const target = e.currentTarget;
-                                  if (!target.dataset.fallback) {
-                                    target.dataset.fallback = 'enka';
-                                    target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
-                                  } else if (!target.dataset.fallbackUi) {
-                                    target.dataset.fallbackUi = 'ui';
-                                    target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || planned.key}&background=random`;
+                            {/* Right Buttons (Standby, Delete) */}
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                              <button
+                                onClick={() => {
+                                  setPlannedItems(prev => prev.map(p => {
+                                    if (p.id === id) {
+                                      return { ...p, enabled: p.enabled !== false ? false : true };
+                                    }
+                                    return p;
+                                  }));
+                                }}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#12131a',
+                                  color: planned.enabled !== false ? '#fff' : '#555',
+                                  border: planned.enabled !== false ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(255,255,255,0.05)',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                  if (planned.enabled !== false) {
+                                    e.currentTarget.style.color = '#ffcc66';
+                                  } else {
+                                    e.currentTarget.style.color = '#777';
                                   }
                                 }}
-                              />
-                              {/* Character Constellation Overlay inside avatar frame */}
-                              <span
-                                className={`char-constellation bg-element-${elementClass}-dark`}
-                                style={{
-                                  position: 'absolute',
-                                  top: '4px',
-                                  right: '4px',
-                                  fontSize: '0.65rem',
-                                  padding: '1px 5px',
-                                  borderRadius: '4px',
-                                  fontWeight: '700',
-                                  boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
-                                  border: '1px solid rgba(255,255,255,0.1)'
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                  e.currentTarget.style.color = planned.enabled !== false ? '#fff' : '#555';
                                 }}
+                                title={planned.enabled !== false ? "Put on Standby" : "Activate Plan"}
                               >
-                                C{characters.find(c => c.key === planned.key)?.constellation || 0}
-                              </span>
-                            </div>
-
-                            {/* Centered Levels and Talents Column */}
-                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '28px' }}>
-                              {renderLevelsAndTalents(planned)}
+                                <Power size={14} style={{ strokeWidth: 2.5 }} />
+                              </button>
+                              <button
+                                onClick={() => setDeletingWeaponId(id)}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#eae3d2',
+                                  color: '#4a3c31',
+                                  border: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.9';
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                  e.currentTarget.style.color = '#ff3333';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                  e.currentTarget.style.color = '#4a3c31';
+                                }}
+                                title="Remove plan"
+                              >
+                                <Trash2 size={14} style={{ strokeWidth: 2.2 }} />
+                              </button>
                             </div>
                           </div>
 
-                          <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', margin: '0.15rem 0' }} />
-
-                          {requirements.length === 0 ? (
-                            <div style={{
-                              textAlign: 'center',
-                              padding: '1.25rem',
-                              background: 'rgba(76, 175, 80, 0.08)',
-                              border: '1px dashed rgba(76, 175, 80, 0.2)',
-                              borderRadius: '8px',
-                              color: '#a5d6a7',
-                              fontSize: '0.85rem',
-                              fontWeight: '500'
-                            }}>
-                              {planned.enabled === false ? "Plan on standby (Active power toggled off)" : "Target reached (No materials needed!)"}
-                            </div>
-                          ) : (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                              <div style={{
-                                fontSize: '0.8rem',
-                                fontWeight: '600',
-                                color: '#ffcc66',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                fontFamily: "'Outfit', sans-serif"
-                              }}>
-                                <span>Required Materials</span>
-                                {requirements.every(r => r.isEnough) ? (
-                                  <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
-                                ) : (
-                                  <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>
-                                )}
+                          {/* Card Body */}
+                          <div style={{
+                            padding: '1.25rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '0.75rem',
+                            flex: 1
+                          }}>
+                            {/* Symmetrical side-by-side flex row */}
+                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                              {/* Enlarged premium avatar frame */}
+                              <div
+                                className={`bg-rarity-${rarity}-solid`}
+                                style={{
+                                  width: '120px',
+                                  height: '120px',
+                                  borderRadius: '12px',
+                                  overflow: 'hidden',
+                                  position: 'relative',
+                                  flexShrink: 0,
+                                  border: '2px solid rgba(0,0,0,0.4)',
+                                  boxShadow: '0 6px 12px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.08)',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center'
+                                }}
+                              >
+                                <img
+                                  src={`${import.meta.env.BASE_URL}weapons/${wInfo.id}.png`}
+                                  alt={displayName}
+                                  style={{ width: '85%', height: '85%', objectFit: 'contain' }}
+                                  onError={(e) => {
+                                    const target = e.currentTarget;
+                                    if (!target.dataset.fallback) {
+                                      target.dataset.fallback = 'enka';
+                                      target.src = `https://enka.network/ui/UI_EquipIcon_${wInfo.id}.png`;
+                                    } else if (!target.dataset.fallbackUi) {
+                                      target.dataset.fallbackUi = 'ui';
+                                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=random`;
+                                    }
+                                  }}
+                                />
+                                {/* Refinement badge overlay */}
+                                <span
+                                  style={{
+                                    position: 'absolute',
+                                    top: '4px',
+                                    right: '4px',
+                                    fontSize: '0.65rem',
+                                    padding: '1px 5px',
+                                    borderRadius: '4px',
+                                    fontWeight: '700',
+                                    boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    background: 'rgba(0,0,0,0.65)',
+                                    color: '#ffcc66'
+                                  }}
+                                >
+                                  R{weapons[planned.weaponIndex]?.refinement || 1}
+                                </span>
                               </div>
 
-                              {/* Materials grid */}
-                              <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
-                                gap: '0.3rem'
-                              }}>
-                                {requirements.map((mat) => {
-                                  const isEnough = mat.isEnough ?? (mat.owned >= mat.required);
-                                  const pseudoRarity = mat.rarity || 1;
-                                  const originalEntry = materialMap[mat.key];
-                                  const isExpOrMora = mat.key === 'heroswit' || mat.key === 'mora';
-
-                                  return (
-                                    <div
-                                      key={mat.key}
-                                      style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        borderRadius: '6px',
-                                        overflow: 'hidden',
-                                        border: '1px solid rgba(255, 255, 255, 0.08)',
-                                        position: 'relative',
-                                        cursor: 'pointer',
-                                        aspectRatio: '50 / 62',
-                                        opacity: isEnough ? 0.45 : 1,
-                                        transition: 'opacity 0.2s ease',
-                                      }}
-                                      onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
-                                      onMouseLeave={() => setHoveredItem(null)}
-                                      onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
-                                    >
-                                      {/* Header bar with Required numbers (large) */}
-                                      <div style={{
-                                        height: '20px',
-                                        background: 'rgba(0, 0, 0, 0.6)',
-                                        display: 'flex',
+                              {/* Level indicators */}
+                              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '28px' }}>
+                                <div style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  fontFamily: "'Outfit', sans-serif",
+                                  gap: '4px',
+                                  width: '100%'
+                                }}>
+                                  <div style={{ color: '#ffcc66', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                    Levels
+                                  </div>
+                                  <div style={{
+                                    fontSize: '1.05rem',
+                                    fontWeight: '700',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    height: '24px',
+                                    width: '100%'
+                                  }}>
+                                    <div style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      width: '90px'
+                                    }}>
+                                      <span style={{
+                                        color: 'rgba(255,255,255,0.9)',
+                                        width: '32px',
+                                        textAlign: 'right',
+                                        fontSize: '0.95rem',
+                                        display: 'inline-flex',
                                         alignItems: 'center',
-                                        justifyContent: 'center',
-                                        fontSize: '0.8rem',
-                                        fontWeight: '700',
-                                        color: isEnough ? '#a5d6a7' : '#fff',
-                                        borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-                                        fontFamily: "'Outfit', sans-serif"
+                                        justifyContent: 'flex-end'
                                       }}>
-                                        {isEnough ? (
-                                          isExpOrMora ? `~${formatCompact(mat.required)}` : formatCompact(mat.required)
-                                        ) : (
-                                          isExpOrMora ? `~${formatCompact(mat.missing)}` : formatCompact(mat.missing)
+                                        {planned.current.level}
+                                        {hasSingleStar(planned.current.level, planned.current.ascension) && (
+                                          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
                                         )}
-                                      </div>
+                                      </span>
+                                      <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
+                                        ➔
+                                      </span>
+                                      <span style={{
+                                        color: planned.desired.level > planned.current.level ? '#ffcc66' : 'inherit',
+                                        width: '32px',
+                                        textAlign: 'left',
+                                        position: 'relative',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        fontSize: '0.95rem'
+                                      }}>
+                                        {planned.desired.level}
+                                        {hasSingleStar(planned.desired.level, planned.desired.ascension) && (
+                                          <span style={{
+                                            color: '#ffcc66',
+                                            fontSize: '0.8rem',
+                                            marginLeft: '2px'
+                                          }}>
+                                            ✦
+                                          </span>
+                                        )}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
-                                      {/* Icon Bottom Area */}
+                            <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', margin: '0.15rem 0' }} />
+
+                            {requirements.length === 0 ? (
+                              <div style={{
+                                textAlign: 'center',
+                                padding: '1.25rem',
+                                background: 'rgba(76, 175, 80, 0.08)',
+                                border: '1px dashed rgba(76, 175, 80, 0.2)',
+                                borderRadius: '8px',
+                                color: '#a5d6a7',
+                                fontSize: '0.85rem',
+                                fontWeight: '500'
+                              }}>
+                                {planned.enabled === false ? "Plan on standby (Active power toggled off)" : "Target reached (No materials needed!)"}
+                              </div>
+                            ) : (
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <div style={{
+                                  fontSize: '0.8rem',
+                                  fontWeight: '600',
+                                  color: '#ffcc66',
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                  fontFamily: "'Outfit', sans-serif"
+                                }}>
+                                  <span>Required Materials</span>
+                                  {requirements.every(r => r.isEnough) ? (
+                                    <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
+                                  ) : (
+                                    <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>
+                                  )}
+                                </div>
+
+                                {/* Materials grid */}
+                                <div style={{
+                                  display: 'grid',
+                                  gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
+                                  gap: '0.3rem'
+                                }}>
+                                  {requirements.map((mat) => {
+                                    const isEnough = mat.isEnough ?? (mat.owned >= mat.required);
+                                    const pseudoRarity = mat.rarity || 1;
+                                    const originalEntry = materialMap[mat.key];
+                                    const isOreOrMora = mat.key === 'mysticenhancementore' || mat.key === 'mora';
+
+                                    return (
                                       <div
-                                        className={`bg-rarity-${pseudoRarity}`}
+                                        key={mat.key}
                                         style={{
-                                          flex: 1,
+                                          display: 'flex',
+                                          flexDirection: 'column',
+                                          borderRadius: '6px',
+                                          overflow: 'hidden',
+                                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                                          position: 'relative',
+                                          cursor: 'pointer',
+                                          aspectRatio: '50 / 62',
+                                          opacity: isEnough ? 0.45 : 1,
+                                          transition: 'opacity 0.2s ease',
+                                        }}
+                                        onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
+                                        onMouseLeave={() => setHoveredItem(null)}
+                                        onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+                                      >
+                                        {/* Header bar with Required numbers */}
+                                        <div style={{
+                                          height: '20px',
+                                          background: 'rgba(0, 0, 0, 0.6)',
                                           display: 'flex',
                                           alignItems: 'center',
                                           justifyContent: 'center',
-                                          position: 'relative'
-                                        }}
-                                      >
-                                        <img
-                                          src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
-                                          alt={mat.name}
-                                          style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
-                                          onError={(e) => {
-                                            e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
-                                          }}
-                                        />
+                                          fontSize: '0.8rem',
+                                          fontWeight: '700',
+                                          color: isEnough ? '#a5d6a7' : '#fff',
+                                          borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                                          fontFamily: "'Outfit', sans-serif"
+                                        }}>
+                                          {isEnough ? (
+                                            isOreOrMora ? `~${formatCompact(mat.required)}` : formatCompact(mat.required)
+                                          ) : (
+                                            isOreOrMora ? `~${formatCompact(mat.missing)}` : formatCompact(mat.missing)
+                                          )}
+                                        </div>
 
-                                        {/* Owned sync badge pill overlaid bottom-left */}
-                                        {(() => {
-                                          if (!isExpOrMora && mat.converted !== undefined && mat.owned < mat.required) {
-                                            const convertValue = Math.min(mat.required - mat.owned, mat.converted);
-                                            if (convertValue > 0) {
-                                              return (
-                                                <div style={{
-                                                  position: 'absolute',
-                                                  bottom: '2px',
-                                                  left: '2px',
-                                                  background: 'rgba(15, 17, 26, 0.85)',
-                                                  borderRadius: '4px',
-                                                  padding: '1px 3px',
-                                                  display: 'flex',
-                                                  alignItems: 'center',
-                                                  gap: '2px',
-                                                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                                                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
-                                                  zIndex: 2
-                                                }}>
-                                                  <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
-                                                  <span style={{
-                                                    fontSize: '0.58rem',
-                                                    color: '#fff',
-                                                    fontWeight: '700',
-                                                    lineHeight: 1,
-                                                    fontFamily: "'Outfit', sans-serif"
-                                                  }}>
-                                                    {formatCompact(convertValue)}
-                                                  </span>
-                                                </div>
-                                              );
-                                            }
-                                          }
-                                          return null;
-                                        })()}
-
-                                        {/* Done overlay checkmark */}
-                                        {isEnough && (
-                                          <div style={{
-                                            position: 'absolute',
-                                            top: 0,
-                                            left: 0,
-                                            right: 0,
-                                            bottom: 0,
+                                        {/* Icon Bottom Area */}
+                                        <div
+                                          className={`bg-rarity-${pseudoRarity}`}
+                                          style={{
+                                            flex: 1,
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            background: 'rgba(0, 0, 0, 0.15)',
-                                            zIndex: 3
-                                          }}>
-                                            <Check size={22} color="#4caf50" style={{ strokeWidth: 4, filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))' }} />
-                                          </div>
-                                        )}
+                                            position: 'relative'
+                                          }}
+                                        >
+                                          <img
+                                            src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
+                                            alt={mat.name}
+                                            style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
+                                            onError={(e) => {
+                                              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
+                                            }}
+                                          />
+
+                                          {/* Owned sync badge pill overlaid bottom-left */}
+                                          {(() => {
+                                            if (!isOreOrMora && mat.converted !== undefined && mat.owned < mat.required) {
+                                              const convertValue = Math.min(mat.required - mat.owned, mat.converted);
+                                              if (convertValue > 0) {
+                                                return (
+                                                  <div style={{
+                                                    position: 'absolute',
+                                                    bottom: '2px',
+                                                    left: '2px',
+                                                    background: 'rgba(15, 17, 26, 0.85)',
+                                                    borderRadius: '4px',
+                                                    padding: '1px 3px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '2px',
+                                                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+                                                    zIndex: 2
+                                                  }}>
+                                                    <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
+                                                    <span style={{ fontSize: '0.55rem', color: '#fff', fontWeight: '700', lineHeight: 1, fontFamily: "'Outfit', sans-serif" }}>
+                                                      {formatCompact(convertValue)}
+                                                    </span>
+                                                  </div>
+                                                );
+                                              }
+                                            }
+                                            return null;
+                                          })()}
+                                        </div>
                                       </div>
-                                    </div>
-                                  );
-                                })}
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    } else {
+                      // Character Card Card
+                      const charMapInfo = lookupChar(planned.key);
+                      const name = charMapInfo?.name || planned.key;
+                      const fontScale = name.length > 20 ? '0.8rem' : name.length > 12 ? '0.95rem' : '1.15rem';
+                      const elementClass = charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none';
+
+                      return (
+                        <div
+                          key={id}
+                          draggable={canDragCardKey === id}
+                          onDragStart={(e) => handleCardDragStart(e, id)}
+                          onDragOver={(e) => handleCardDragOver(e, id)}
+                          onDragLeave={() => { setDragOverCardKey(null); setDropPlacement(null); }}
+                          onDrop={(e) => handleCardDrop(e, id)}
+                          onDragEnd={() => { setDraggedCardKey(null); setDragOverCardKey(null); setDropPlacement(null); }}
+                          className={`character-card bg-element-${elementClass} ${
+                            draggedCardKey === id ? 'dragging-card' : ''
+                          } ${
+                            dragOverCardKey === id && dropPlacement === 'before' ? 'drop-before' : ''
+                          } ${
+                            dragOverCardKey === id && dropPlacement === 'after' ? 'drop-after' : ''
+                          }`}
+                          style={{
+                            padding: 0,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
+                            transition: 'filter 0.3s ease, opacity 0.3s ease'
+                          }}
+                        >
+                          {/* Premium Rarity-Based Header Bar */}
+                          <div
+                            className="planner-card-header-draggable"
+                            onMouseDown={() => setCanDragCardKey(id)}
+                            onMouseUp={() => setCanDragCardKey(null)}
+                            style={{
+                              background: charMapInfo?.rarity === 5
+                                ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
+                                : 'linear-gradient(to right, #7b6a99, #5a4b78)', // 4* Purple
+                              height: '46px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              paddingLeft: '12px',
+                              paddingRight: '12px',
+                              borderBottom: '1px solid rgba(0,0,0,0.15)',
+                              position: 'relative'
+                            }}
+                          >
+                            {/* Left Buttons (Edit, Upgrade) */}
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                              <button
+                                onClick={() => {
+                                  setOpenedTargetFromPlanner(true);
+                                  setSelectedCharacterKeyForTarget(planned.key);
+                                }}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#eae3d2',
+                                  color: '#4a3c31',
+                                  border: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.9';
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                }}
+                                title="Edit target levels"
+                              >
+                                <Pencil size={15} style={{ strokeWidth: 2.2 }} />
+                              </button>
+                              <button
+                                onClick={() => upgradePlannedCharacter(planned.key)}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#eae3d2',
+                                  color: '#4a3c31',
+                                  border: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.9';
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                }}
+                                title="Mark as upgraded"
+                              >
+                                <Sparkles size={15} style={{ strokeWidth: 2.2 }} />
+                              </button>
+                            </div>
+
+                            {/* Center Character Name */}
+                            <div style={{
+                              color: '#fff',
+                              fontFamily: "'Outfit', sans-serif",
+                              fontWeight: '700',
+                              fontSize: fontScale,
+                              letterSpacing: '0.01em',
+                              display: '-webkit-box',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flex: 1,
+                              textAlign: 'center',
+                              lineHeight: '1.15',
+                              padding: '0 4px',
+                              maxHeight: '38px',
+                              overflow: 'hidden',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              wordBreak: 'break-word'
+                            } as any}>
+                              <span>{name}</span>
+                            </div>
+
+                            {/* Right Buttons (Standby, Delete) */}
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                              <button
+                                onClick={() => togglePlannedCharacter(planned.key)}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#12131a',
+                                  color: planned.enabled !== false ? '#fff' : '#555',
+                                  border: planned.enabled !== false ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(255,255,255,0.05)',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                  if (planned.enabled !== false) {
+                                    e.currentTarget.style.color = '#ffcc66';
+                                  } else {
+                                    e.currentTarget.style.color = '#777';
+                                  }
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                  e.currentTarget.style.color = planned.enabled !== false ? '#fff' : '#555';
+                                }}
+                                title={planned.enabled !== false ? "Put on Standby" : "Activate Plan"}
+                              >
+                                <Power size={14} style={{ strokeWidth: 2.5 }} />
+                              </button>
+                              <button
+                                onClick={() => removePlannedCharacter(planned.key)}
+                                style={{
+                                  width: '32px',
+                                  height: '32px',
+                                  borderRadius: '50%',
+                                  background: '#eae3d2',
+                                  color: '#4a3c31',
+                                  border: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.15s ease',
+                                  padding: 0,
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.9';
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                  e.currentTarget.style.color = '#ff3333';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                  e.currentTarget.style.color = '#4a3c31';
+                                }}
+                                title="Remove plan"
+                              >
+                                <Trash2 size={14} style={{ strokeWidth: 2.2 }} />
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Card Body */}
+                          <div style={{
+                            padding: '1.25rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '0.75rem',
+                            flex: 1
+                          }}>
+                            {/* Symmetrical side-by-side flex row */}
+                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                              {/* Enlarged premium avatar frame */}
+                              <div
+                                className={`bg-rarity-${charMapInfo?.rarity || 4}-solid bg-element-${elementClass}-gradient`}
+                                style={{
+                                  width: '120px',
+                                  height: '120px',
+                                  borderRadius: '12px',
+                                  overflow: 'hidden',
+                                  position: 'relative',
+                                  flexShrink: 0,
+                                  border: '2px solid rgba(0,0,0,0.4)',
+                                  boxShadow: '0 6px 12px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.08)'
+                                }}
+                              >
+                                <img
+                                  src={`${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
+                                  alt={charMapInfo?.name || planned.key}
+                                  style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }}
+                                  onError={(e) => {
+                                    const target = e.currentTarget;
+                                    if (!target.dataset.fallback) {
+                                      target.dataset.fallback = 'enka';
+                                      target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
+                                    } else if (!target.dataset.fallbackUi) {
+                                      target.dataset.fallbackUi = 'ui';
+                                      target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || planned.key}&background=random`;
+                                    }
+                                  }}
+                                />
+                                {/* Character Constellation Overlay inside avatar frame */}
+                                <span
+                                  className={`char-constellation bg-element-${elementClass}-dark`}
+                                  style={{
+                                    position: 'absolute',
+                                    top: '4px',
+                                    right: '4px',
+                                    fontSize: '0.65rem',
+                                    padding: '1px 5px',
+                                    borderRadius: '4px',
+                                    fontWeight: '700',
+                                    boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                                    border: '1px solid rgba(255,255,255,0.1)'
+                                  }}
+                                >
+                                  C{characters.find(c => c.key === planned.key)?.constellation || 0}
+                                </span>
+                              </div>
+
+                              {/* Centered Levels and Talents Column */}
+                              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '28px' }}>
+                                {renderLevelsAndTalents(planned)}
                               </div>
                             </div>
-                          )}
+
+                            <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', margin: '0.15rem 0' }} />
+
+                            {requirements.length === 0 ? (
+                              <div style={{
+                                textAlign: 'center',
+                                padding: '1.25rem',
+                                background: 'rgba(76, 175, 80, 0.08)',
+                                border: '1px dashed rgba(76, 175, 80, 0.2)',
+                                borderRadius: '8px',
+                                color: '#a5d6a7',
+                                fontSize: '0.85rem',
+                                fontWeight: '500'
+                              }}>
+                                {planned.enabled === false ? "Plan on standby (Active power toggled off)" : "Target reached (No materials needed!)"}
+                              </div>
+                            ) : (
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <div style={{
+                                  fontSize: '0.8rem',
+                                  fontWeight: '600',
+                                  color: '#ffcc66',
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                  fontFamily: "'Outfit', sans-serif"
+                                }}>
+                                  <span>Required Materials</span>
+                                  {requirements.every(r => r.isEnough) ? (
+                                    <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
+                                  ) : (
+                                    <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>
+                                  )}
+                                </div>
+
+                                {/* Materials grid */}
+                                <div style={{
+                                  display: 'grid',
+                                  gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
+                                  gap: '0.3rem'
+                                }}>
+                                  {requirements.map((mat) => {
+                                    const isEnough = mat.isEnough ?? (mat.owned >= mat.required);
+                                    const pseudoRarity = mat.rarity || 1;
+                                    const originalEntry = materialMap[mat.key];
+                                    const isExpOrMora = mat.key === 'heroswit' || mat.key === 'mora';
+
+                                    return (
+                                      <div
+                                        key={mat.key}
+                                        style={{
+                                          display: 'flex',
+                                          flexDirection: 'column',
+                                          borderRadius: '6px',
+                                          overflow: 'hidden',
+                                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                                          position: 'relative',
+                                          cursor: 'pointer',
+                                          aspectRatio: '50 / 62',
+                                          opacity: isEnough ? 0.45 : 1,
+                                          transition: 'opacity 0.2s ease',
+                                        }}
+                                        onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
+                                        onMouseLeave={() => setHoveredItem(null)}
+                                        onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+                                      >
+                                        {/* Header bar with Required numbers (large) */}
+                                        <div style={{
+                                          height: '20px',
+                                          background: 'rgba(0, 0, 0, 0.6)',
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          fontSize: '0.8rem',
+                                          fontWeight: '700',
+                                          color: isEnough ? '#a5d6a7' : '#fff',
+                                          borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                                          fontFamily: "'Outfit', sans-serif"
+                                        }}>
+                                          {isEnough ? (
+                                            isExpOrMora ? `~${formatCompact(mat.required)}` : formatCompact(mat.required)
+                                          ) : (
+                                            isExpOrMora ? `~${formatCompact(mat.missing)}` : formatCompact(mat.missing)
+                                          )}
+                                        </div>
+
+                                        {/* Icon Bottom Area */}
+                                        <div
+                                          className={`bg-rarity-${pseudoRarity}`}
+                                          style={{
+                                            flex: 1,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            position: 'relative'
+                                          }}
+                                        >
+                                          <img
+                                            src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
+                                            alt={mat.name}
+                                            style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
+                                            onError={(e) => {
+                                              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
+                                            }}
+                                          />
+
+                                          {/* Owned sync badge pill overlaid bottom-left */}
+                                          {(() => {
+                                            if (!isExpOrMora && mat.converted !== undefined && mat.owned < mat.required) {
+                                              const convertValue = Math.min(mat.required - mat.owned, mat.converted);
+                                              if (convertValue > 0) {
+                                                return (
+                                                  <div style={{
+                                                    position: 'absolute',
+                                                    bottom: '2px',
+                                                    left: '2px',
+                                                    background: 'rgba(15, 17, 26, 0.85)',
+                                                    borderRadius: '4px',
+                                                    padding: '1px 3px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '2px',
+                                                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+                                                    zIndex: 2
+                                                  }}>
+                                                    <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
+                                                    <span style={{ fontSize: '0.55rem', color: '#fff', fontWeight: '700', lineHeight: 1, fontFamily: "'Outfit', sans-serif" }}>
+                                                      {formatCompact(convertValue)}
+                                                    </span>
+                                                  </div>
+                                                );
+                                              }
+                                            }
+                                            return null;
+                                          })()}
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
+                      );
+                    }
                   })}
                 </div>
               ) : (
-                <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px dashed var(--glass-border)' }}>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Your planner is empty.</p>
-                  <button
-                    className="planner-btn planner-btn-character"
-                    style={{ margin: '0 auto' }}
-                    onClick={() => setIsCharacterSelectModalOpen(true)}
-                  >
-                    <UserPlus size={20} /> Add your first character
-                  </button>
+                <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px dashed var(--glass-border)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Your planner is empty. Add a character or a weapon to get started.</p>
+                  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                    <button
+                      className="planner-btn planner-btn-character"
+                      onClick={() => setIsCharacterSelectModalOpen(true)}
+                    >
+                      <UserPlus size={20} /> Add Character
+                    </button>
+                    <button
+                      className="planner-btn planner-btn-weapon"
+                      onClick={() => setIsWeaponSelectModalOpen(true)}
+                    >
+                      <Sword size={20} /> Add Weapon
+                    </button>
+                  </div>
                 </div>
               )}
             </section>
@@ -2210,24 +2829,88 @@ function App() {
 
       <CharacterTargetModal
         isOpen={selectedCharacterKeyForTarget !== null}
-        onClose={() => setSelectedCharacterKeyForTarget(null)}
+        onClose={() => {
+          setSelectedCharacterKeyForTarget(null);
+          setOpenedTargetFromPlanner(false);
+        }}
         onCancel={openedTargetFromPlanner ? undefined : () => {
           setSelectedCharacterKeyForTarget(null);
           setIsCharacterSelectModalOpen(true);
         }}
         characterKey={selectedCharacterKeyForTarget}
         currentData={characters.find(c => c.key === selectedCharacterKeyForTarget)}
+        plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? plannedItems.find(p => (p.type === 'character' || !p.type) && p.key === selectedCharacterKeyForTarget) : undefined}
         onAccept={(planned) => {
-          setPlannedCharacters(prev => {
-            const exists = prev.findIndex(p => p.key === planned.key);
+          setPlannedItems(prev => {
+            const characterPlan = {
+              ...planned,
+              type: 'character',
+              id: `character:${planned.key}`,
+              enabled: true
+            };
+            const exists = prev.findIndex(p => (p.type === 'character' || !p.type) && p.key === planned.key);
             if (exists >= 0) {
               const next = [...prev];
-              next[exists] = planned;
+              characterPlan.enabled = prev[exists].enabled !== false;
+              next[exists] = characterPlan;
               return next;
             }
-            return [...prev, planned];
+            return [...prev, characterPlan];
           });
           setSelectedCharacterKeyForTarget(null);
+          setOpenedTargetFromPlanner(false);
+        }}
+      />
+
+      <WeaponSelectionModal
+        isOpen={isWeaponSelectModalOpen}
+        onClose={() => setIsWeaponSelectModalOpen(false)}
+        ownedWeapons={weapons}
+        plannedItems={plannedItems}
+        onSelect={(idx) => {
+          setIsWeaponSelectModalOpen(false);
+          setSelectedWeaponIndexForTarget(idx);
+          setSelectedWeaponKeyForTarget(weapons[idx].key);
+        }}
+      />
+
+      <WeaponTargetModal
+        isOpen={selectedWeaponIndexForTarget !== null && selectedWeaponKeyForTarget !== null}
+        onClose={() => {
+          setSelectedWeaponIndexForTarget(null);
+          setSelectedWeaponKeyForTarget(null);
+          setOpenedTargetFromPlanner(false);
+        }}
+        onCancel={openedTargetFromPlanner ? undefined : () => {
+          setSelectedWeaponIndexForTarget(null);
+          setSelectedWeaponKeyForTarget(null);
+          setIsWeaponSelectModalOpen(true);
+        }}
+        weaponIndex={selectedWeaponIndexForTarget}
+        weaponKey={selectedWeaponKeyForTarget}
+        currentData={selectedWeaponIndexForTarget !== null ? weapons[selectedWeaponIndexForTarget] : undefined}
+        plannedData={openedTargetFromPlanner && selectedWeaponIndexForTarget !== null ? plannedItems.find(p => p.type === 'weapon' && p.weaponIndex === selectedWeaponIndexForTarget) : undefined}
+        onAccept={(planned) => {
+          setPlannedItems(prev => {
+            const weaponPlan = {
+              ...planned,
+              id: `weapon:${planned.weaponIndex}`,
+              enabled: true
+            };
+            if (openedTargetFromPlanner) {
+              const exists = prev.findIndex(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex);
+              if (exists >= 0) {
+                const next = [...prev];
+                weaponPlan.enabled = prev[exists].enabled !== false;
+                next[exists] = weaponPlan;
+                return next;
+              }
+            }
+            return [...prev, weaponPlan];
+          });
+          setSelectedWeaponIndexForTarget(null);
+          setSelectedWeaponKeyForTarget(null);
+          setOpenedTargetFromPlanner(false);
         }}
       />
 
@@ -2238,14 +2921,44 @@ function App() {
       />
 
       {deletingCharacterKey && (
-        <DeletePlanConfirmationModal
-          characterKey={deletingCharacterKey}
-          onClose={() => setDeletingCharacterKey(null)}
-          onConfirm={() => {
-            setPlannedCharacters(prev => prev.filter(p => p.key !== deletingCharacterKey));
-            setDeletingCharacterKey(null);
-          }}
-        />
+        (() => {
+          const charData = lookupChar(deletingCharacterKey);
+          return (
+            <DeletePlanConfirmationModal
+              itemName={charData?.name || deletingCharacterKey}
+              itemRarity={charData?.rarity || 5}
+              itemIconSrc={`${import.meta.env.BASE_URL}characters/${charData?.id}.png`}
+              onClose={() => setDeletingCharacterKey(null)}
+              onConfirm={() => {
+                setPlannedItems(prev => prev.filter(p => !( (p.type === 'character' || !p.type) && p.key === deletingCharacterKey)));
+                setDeletingCharacterKey(null);
+              }}
+            />
+          );
+        })()
+      )}
+
+      {deletingWeaponId && (
+        (() => {
+          const weaponPlan = plannedItems.find(p => p.id === deletingWeaponId);
+          if (!weaponPlan) return null;
+          const wInfo = lookupWeapon(weaponPlan.key);
+          const rarity = wInfo?.rarity || 4;
+          const name = wInfo?.name || weaponPlan.key;
+          const iconSrc = `${import.meta.env.BASE_URL}weapons/${wInfo?.id}.png`;
+          return (
+            <DeletePlanConfirmationModal
+              itemName={name}
+              itemRarity={rarity}
+              itemIconSrc={iconSrc}
+              onClose={() => setDeletingWeaponId(null)}
+              onConfirm={() => {
+                setPlannedItems(prev => prev.filter(p => p.id !== deletingWeaponId));
+                setDeletingWeaponId(null);
+              }}
+            />
+          );
+        })()
       )}
 
       {isUpgradeModalOpen && selectedUpgradeCharacterKey && (
@@ -2272,11 +2985,41 @@ function App() {
         />
       )}
 
+      {isUpgradeWeaponModalOpen && selectedUpgradeWeaponId && (
+        (() => {
+          const planned = plannedItems.find(p => p.id === selectedUpgradeWeaponId);
+          if (!planned) return null;
+          return (
+            <UpgradeWeaponModal
+              isOpen={isUpgradeWeaponModalOpen}
+              onClose={() => {
+                setIsUpgradeWeaponModalOpen(false);
+                setSelectedUpgradeWeaponId(null);
+              }}
+              planned={planned}
+              currentData={weapons[planned.weaponIndex]}
+              materials={materials}
+              onUpgradeClick={handleWeaponUpgradeModalConfirm}
+            />
+          );
+        })()
+      )}
+
+      {isUpgradeWeaponCorrectionModalOpen && selectedUpgradeWeaponId && (
+        <WeaponUpgradeEstimateCorrectionModal
+          isOpen={isUpgradeWeaponCorrectionModalOpen}
+          onClose={() => setIsUpgradeWeaponCorrectionModalOpen(false)}
+          materials={materials}
+          estimatedSpend={estimatedWeaponSpend}
+          onConfirm={handleWeaponUpgradeFinalConfirmation}
+        />
+      )}
+
       <PriorityManagerModal
         isOpen={isPriorityModalOpen}
-        plannedCharacters={plannedCharacters}
+        plannedItems={plannedItems}
         onClose={() => setIsPriorityModalOpen(false)}
-        onSave={(ordered) => setPlannedCharacters(ordered)}
+        onSave={(ordered) => setPlannedItems(ordered)}
       />
     </div>
   );

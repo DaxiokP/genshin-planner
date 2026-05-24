@@ -1,47 +1,32 @@
 import React from 'react';
-import characterMapData from '../maps/characterMap.json';
 
-const characterMapRaw: Record<string, any> = characterMapData as any;
-
-const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
-
-const lookupChar = (key: string) => {
-  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
-  return characterMapRaw[charIndex[normalizedKey]] ?? null;
-};
 
 interface DeletePlanConfirmationModalProps {
-  characterKey: string;
+  itemName: string;
+  itemRarity: number;
+  itemIconSrc: string;
   onClose: () => void;
   onConfirm: () => void;
 }
 
 export const DeletePlanConfirmationModal: React.FC<DeletePlanConfirmationModalProps> = ({
-  characterKey,
+  itemName,
+  itemRarity,
+  itemIconSrc,
   onClose,
   onConfirm,
 }) => {
-  const charData = lookupChar(characterKey) || {
-    name: characterKey,
-    rarity: 5,
-    element: 'None',
-    id: '',
-  };
-
-  const elementClass = charData.element ? charData.element.toLowerCase() : 'none';
-  const rarity = charData.rarity || 5;
-
-  // Dynamic header nameplate colors matching the 4* and 5* logic
-  const nameplateGradient = rarity === 4
+  // Dynamic header nameplate colors matching 3*, 4*, and 5* logic
+  const nameplateGradient = itemRarity === 5
+    ? 'linear-gradient(135deg, #8c6a4a 0%, #735438 100%)'
+    : itemRarity === 4
     ? 'linear-gradient(135deg, #7b6a99 0%, #5a4b78 100%)'
-    : 'linear-gradient(135deg, #8c6a4a 0%, #735438 100%)';
+    : 'linear-gradient(135deg, #3d3f45 0%, #2e3035 100%)';
 
   return (
     <div className="modal-overlay" onClick={onClose} style={{ zIndex: 1100 }}>
       <div
-        className={`modal-content delete-confirm-modal bg-element-${elementClass} bg-element-${elementClass}-gradient`}
+        className="modal-content delete-confirm-modal"
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: '380px',
@@ -54,32 +39,37 @@ export const DeletePlanConfirmationModal: React.FC<DeletePlanConfirmationModalPr
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
+          background: '#1b1d28',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
         }}
       >
-        {/* Character Name Badge */}
+        {/* Item Name Badge */}
         <div
           style={{
             background: nameplateGradient,
             color: '#fff',
             padding: '6px 20px',
             borderRadius: '20px',
-            fontSize: '1.25rem',
+            fontSize: '1.15rem',
             fontWeight: '700',
             letterSpacing: '0.02em',
             boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
             marginBottom: '1.5rem',
             display: 'inline-block',
             border: '1px solid rgba(255,255,255,0.1)',
+            maxWidth: '100%',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
           }}
         >
-          {charData.name}
+          {itemName}
         </div>
 
-        {/* Character Large Portrait Avatar Frame */}
+        {/* Large Portrait Avatar Frame */}
         <div
-          className={`bg-rarity-${rarity}`}
+          className={`bg-rarity-${itemRarity}`}
           style={{
             width: '100px',
             height: '100px',
@@ -96,36 +86,23 @@ export const DeletePlanConfirmationModal: React.FC<DeletePlanConfirmationModalPr
             position: 'relative',
           }}
         >
-          {charData.id ? (
-            <img
-              src={`${import.meta.env.BASE_URL}characters/${charData.id}.png`}
-              alt={charData.name}
-              style={{
-                width: '110%',
-                height: '110%',
-                objectFit: 'contain',
-                objectPosition: 'bottom',
-                transform: 'scale(1.05) translateY(2px)',
-              }}
-              onError={(e) => {
-                const target = e.currentTarget;
-                if (!target.dataset.fallback) {
-                  target.dataset.fallback = 'enka';
-                  target.src = `https://enka.network/ui/UI_AvatarIcon_${charData.id}.png`;
-                } else if (!target.dataset.fallbackUi) {
-                  target.dataset.fallbackUi = 'ui';
-                  target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(charData.name)}&background=random&color=fff&rounded=true&font-size=0.4`;
-                }
-              }}
-            />
-          ) : (
-            <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'rgba(255,255,255,0.7)' }}>
-              {charData.name[0]}
-            </div>
-          )}
+          <img
+            src={itemIconSrc}
+            alt={itemName}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              objectPosition: 'bottom',
+              transform: 'scale(1.15) translateY(2px)',
+            }}
+            onError={(e) => {
+              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(itemName)}&background=random&color=fff&rounded=true&font-size=0.4`;
+            }}
+          />
         </div>
 
-        {/* Sub-title Warning Message */}
+        {/* Warning Message */}
         <div
           style={{
             fontSize: '1rem',
@@ -136,7 +113,7 @@ export const DeletePlanConfirmationModal: React.FC<DeletePlanConfirmationModalPr
             fontWeight: '500',
           }}
         >
-          Delete Plan for <strong style={{ color: '#fff', fontWeight: '700' }}>{charData.name}</strong>. Continue?
+          Delete Plan for <strong style={{ color: '#fff', fontWeight: '700' }}>{itemName}</strong>. Continue?
         </div>
 
         {/* Buttons Decline / Accept Group */}
@@ -203,3 +180,4 @@ export const DeletePlanConfirmationModal: React.FC<DeletePlanConfirmationModalPr
     </div>
   );
 };
+

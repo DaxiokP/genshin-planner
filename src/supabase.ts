@@ -19,6 +19,7 @@ export interface PlannerState {
   weapons: any[];
   artifacts: any[];
   planned_characters: any[];
+  planned_items?: any[];
   favorite_character_keys: string[];
 }
 
@@ -56,6 +57,7 @@ export async function saveProfileState(
       weapons: state.weapons,
       artifacts: state.artifacts,
       planned_characters: state.planned_characters,
+      planned_items: state.planned_items || [],
       favorite_character_keys: state.favorite_character_keys || [],
       updated_at: new Date().toISOString()
     }, {

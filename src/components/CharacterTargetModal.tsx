@@ -11,6 +11,7 @@ interface CharacterTargetModalProps {
   onCancel?: () => void;
   characterKey: string | null;
   currentData: GoodCharacter | undefined;
+  plannedData?: PlannedCharacter;
   onAccept: (planned: PlannedCharacter) => void;
 }
 
@@ -143,6 +144,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   onCancel,
   characterKey,
   currentData,
+  plannedData,
   onAccept,
 }) => {
   const [currentLevel, setCurrentLevel] = useState(1);
@@ -173,15 +175,25 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
         burst: currentData.talent?.burst || 1,
       });
 
-      setDesiredLevel(Math.max(90, currentData.level || 1));
-      setDesiredAscension(Math.max(6, currentData.ascension || 0));
-      setDesiredTalents({
-        auto: Math.max(9, currentData.talent?.auto || 1),
-        skill: Math.max(9, currentData.talent?.skill || 1),
-        burst: Math.max(9, currentData.talent?.burst || 1),
-      });
+      if (plannedData) {
+        setDesiredLevel(plannedData.desired.level);
+        setDesiredAscension(plannedData.desired.ascension);
+        setDesiredTalents({
+          auto: plannedData.desired.talent.auto,
+          skill: plannedData.desired.talent.skill,
+          burst: plannedData.desired.talent.burst,
+        });
+      } else {
+        setDesiredLevel(Math.max(90, currentData.level || 1));
+        setDesiredAscension(Math.max(6, currentData.ascension || 0));
+        setDesiredTalents({
+          auto: Math.max(9, currentData.talent?.auto || 1),
+          skill: Math.max(9, currentData.talent?.skill || 1),
+          burst: Math.max(9, currentData.talent?.burst || 1),
+        });
+      }
     }
-  }, [currentData, characterKey]);
+  }, [currentData, characterKey, plannedData]);
 
   useEffect(() => {
     const maxTalent = getMaxTalentForAscension(desiredAscension);
