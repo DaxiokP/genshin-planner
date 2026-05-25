@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS public.user_planners (
     weapons JSONB DEFAULT '[]'::jsonb NOT NULL,
     artifacts JSONB DEFAULT '[]'::jsonb NOT NULL,
     planned_characters JSONB DEFAULT '[]'::jsonb NOT NULL,
+    planned_items JSONB DEFAULT '[]'::jsonb NOT NULL,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
     PRIMARY KEY (user_id, profile_name)
 );

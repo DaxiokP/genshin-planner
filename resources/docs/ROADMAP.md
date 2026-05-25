@@ -79,6 +79,10 @@ Goal: Filtering, refinement, and routes.
     - Display equipped weapons directly on the character cards in the planner.
 - [x] **Enhanced Weapon View**
     - Show which character is currently using a specific weapon.
+- [x] **Global Sequential Inventory Allocation & Summary Panel**
+    - Consume materials and craftable stock sequentially based on active priority order.
+    - Compile a left-side aggregate Summary panel listing missing items and mapping them to weekly domain farming schedules.
+    - Real-time recalculations when cards are reordered, edited, or toggled on standby.
 - [ ] **Optimization Algorithms**
     - (Planned) Auto-calculate the best domain farming route based on current priorities.
 

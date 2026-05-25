@@ -46,8 +46,9 @@ graph TD
 ### 2. State Management & Dual Persistence
 
 State is centralized in `App.tsx` using React's `useState` hooks combined with a dual-persistence storage layer:
-- **Offline Guest Mode**: When the user is logged out, the app functions purely offline. All state (materials, characters, weapons, artifacts, planned characters) is read and saved locally using a single unified Local Storage namespace key: `genshin_planner_local_data`. In guest mode, the profile dropdown switcher is fully hidden.
-- **Supabase Cloud Sync Mode**: When the user logs in, the app connects to the Supabase client. State is dynamically read from and saved to the cloud database table, debouncing database writes to prevent write limits and UI hiccups during intensive operations.
+- **Unified State Structure**: Progression planning uses `plannedItems` (representing a unified list of both characters and weapons). On loading, legacy profiles containing only `planned_characters` are transparently migrated by appending `type: "character"` and converting them to `plannedItems`.
+- **Offline Guest Mode**: When the user is logged out, the app functions purely offline. All state (materials, characters, weapons, artifacts, planned items) is read and saved locally using a single unified Local Storage namespace key: `genshin_planner_local_data`. In guest mode, the profile dropdown switcher is fully hidden.
+- **Supabase Cloud Sync Mode**: When the user logs in, the app connects to the Supabase client. State is dynamically read from and saved to the cloud database table, debouncing database writes to prevent write limits and UI hiccups during intensive operations. To maintain backwards compatibility, the client syncs the character-only subset to `planned_characters` and the complete unified sequence to `planned_items`.
 
 ### 3. Authentication & Username Mapping Layer
 
@@ -69,7 +70,8 @@ User profiles are stored in the Supabase PostgreSQL database under the `user_pla
   - `characters` (JSONB): Owned characters list.
   - `weapons` (JSONB): Owned weapons list.
   - `artifacts` (JSONB): Custom artifacts list.
-  - `planned_characters` (JSONB): Target planning cards and level boosts.
+  - `planned_characters` (JSONB): Target character planning cards (maintained for legacy client compatibility).
+  - `planned_items` (JSONB): Unified planning array containing both character and weapon planning cards sequentially to preserve priorities and enable global inventory allocation.
   - `updated_at` (TIMESTAMP WITH TIME ZONE): Tracks modification times.
 - **Keys & Triggers**:
   - Compound Primary Key: `(user_id, profile_name)` ensures multiple unique profiles can exist within the same account.
@@ -89,23 +91,27 @@ The app is built around the **Genshin Optimizer Data (GOOD)** format.
 - It maps lowercase internal keys (e.g., `creaturesurveyingnotes`) to human-readable names and game IDs via the `src/maps/materialMap.json`.
 
 ### 7. UI & Modal Navigation Flow
-- `CharacterSelectionModal`: Renders owned characters with their current level and constellation-boosted talents.
-- `CharacterTargetModal`: Handles the setting of current and desired character states.
-- **Sequential Back Navigation**: When canceling/closing the `CharacterTargetModal` via the close button, the UI returns to the `CharacterSelectionModal` seamlessly rather than dismissing entirely to the dashboard, enhancing user workflow.
-- **Planner Back Redirection Flow**: If the `CharacterTargetModal` is launched directly from the Planner's character card (via the Edit button), closing or canceling the modal redirects back to the Planner tab (`openedTargetFromPlanner` logic), bypassing the selection modal.
+- **Modals Parity**:
+  - `CharacterSelectionModal` / `WeaponSelectionModal`: Renders owned characters/weapons with current stats (levels, constellation talents, or refinements), filtering by category and rarity.
+  - `CharacterTargetModal` / `WeaponTargetModal`: Handles the configuration of current and desired states.
+- **Sequential Back Navigation**: When canceling/closing a target modal via the close button, the UI returns to the selection modal seamlessly rather than dismissing entirely to the dashboard, enhancing user workflow.
+- **Planner Back Redirection Flow**: If a target modal is launched directly from a Planner card (via the Edit button), closing or canceling the modal redirects back to the Planner tab (`openedTargetFromPlanner` logic), bypassing the selection modal.
 - **Planner Card Dual Controls & Headers**:
-  - **Edit Button**: Launches the `CharacterTargetModal` for the designated planned character.
-  - **Upgrade Button**: Triggers `upgradePlannedCharacter`, launching an editable, multi-stage upgrade wizard.
+  - **Edit Button**: Launches the target modal for the designated planned item.
+  - **Upgrade Button**: Launches an editable, multi-stage upgrade/crafting wizard.
   - **Power Toggle**: Puts planning on standby (grayscale/opacity overlay across the *entire* card header and body, excluding material totals from requirements) or reactivates plans.
-  - **Delete Button**: Discards the planned character card.
+  - **Delete Button**: Discards the planned card.
   - **Draggable Title Affordance**: Clicking and dragging the card's header bar initiates a native HTML5 drag event to reorder elements.
 
 ### 9. Priority Manager Modal & Reordering Grid Flow
 
-The app features two robust ways to reorder progression cards and customize priority weighting:
+The app features two robust ways to reorder progression cards and customize priority weighting across a mixed list of characters and weapons:
+- **Unique Item Identities**:
+  - *Characters* are unique in the game and identified by their unique string key (e.g. `Furina`).
+  - *Weapons* are not unique; duplicate plans can exist. Weapons are uniquely identified in the planner using a dynamic ID schema: `weapon:${weaponIndex}`, mapping to their index in the user's owned weapons array.
 - **Priority Manager Modal (`PriorityManagerModal.tsx`)**:
   - Launches from the header tab's "Manage Priority" action button.
-  - Hosts a vertical list of planned characters. Standby cards (`enabled === false`) are styled in a faded state.
+  - Hosts a vertical list of mixed planned items (characters and weapons). Standby cards (`enabled === false`) are styled in a faded state. Weapons display their custom avatar, refinement badge, and rarity borders.
   - Dragging rows swaps their visual draft order immediately for real-time feedback.
   - Order numbers next to elements remain unchanged (representing the original *saved* order) during draft swaps, only updating to reflect the new sequence once the user clicks "Save".
 - **Direct Grid Card Drag-and-Drop**:
@@ -114,24 +120,24 @@ The app features two robust ways to reorder progression cards and customize prio
   - **Reordering Utilities (`src/utils/plannerHelpers.ts`)**:
     - `reorderByKeys(items, orderedKeys)`: Re-sequences elements by matching keys.
     - `moveItem(items, fromKey, toKey, placement)`: Inserts elements at specified positions based on target coordinates.
-  - **State Autosave**: Drag reordering updates the `plannedCharacters` array directly, triggering the standard debounced LocalStorage/Supabase cloud background sync to persist changes permanently.
+  - **State Autosave**: Drag reordering updates the unified `planned_items` array directly, triggering the standard debounced LocalStorage/Supabase cloud background sync to persist changes permanently.
 
 
-### 8. Editable Character Upgrade & Crafting Flow (`src/utils/upgradeHelpers.ts`, `src/components/*Modal.tsx`)
+### 8. Editable Item Upgrade & Crafting Flow (`src/utils/upgradeHelpers.ts`, `src/components/*Modal.tsx`)
 
 The instant upgrade confirm dialog is replaced by a two-stage alchemical and resource reconciliation workflow:
 - **Alchemical Calculation Engine (`upgradeHelpers.ts`)**:
   - *Top-Down Propagation*: Calculates material shortages starting at the highest tier and recursively propagates missing amounts as demands ($3 \times$ ingredients) to lower-rarity tiers.
-  - *Bottom-Up Simulation*: Resolves conversions to craft exactly what is missing, falling back to the maximum possible conversion if inventory is insufficient.
+  - *Bottom-Up Simulation*: Resolves conversions to craft exactly what is missing, falling back to the maximum possible conversion if inventory is insufficient. Covers groups `100` (monster drops), `400` (talent books), `500` (gemstones), and `600` (weapon domain ascension materials).
   - *Deduction & Clamping*: Performs the final subtraction of base requirements and consumed craft ingredients, adds manual crafting bonuses, and clamps inventory counts at `0`.
-- **Upgrade Customization Modal (`UpgradeCharacterModal.tsx`)**:
-  - *Target Level Selectors*: Houses dynamic sliders/spinners for levels and talents, displaying constellation talent boosts (+3) in light blue. Modifies target levels and dynamically re-simulates material/craft metrics in real-time.
-  - *Live Materials Calculator*: Renders progress bars formatted as `#Owned / #Required` (clamped to `#Required / #Required` if sufficient). Estimated cards (Mora and Hero's Wit) are formatted as `#Owned / ~#Required` and dynamically switch to green/red borders based on actual sufficiency.
+- **Upgrade Customization Modals (`UpgradeCharacterModal.tsx` / `UpgradeWeaponModal.tsx`)**:
+  - *Target Level Selectors*: Houses dynamic controllers for level targets (and talents for characters, displaying constellation boosts in light blue), updating calculations in real-time.
+  - *Live Materials Calculator*: Renders progress bars formatted as `#Owned / #Required` (clamped if sufficient). Estimated cards (Mora, Hero's Wit, and Mystic Enhancement Ore) are formatted as `#Owned / ~#Required` and dynamically switch to green/red borders based on equivalent sufficiency.
   - *Craft Panel*: Filters and lists only active conversions with `count > 0`.
-  - *Crafting Bonus Panel*: Displays all tiers of talent and monster drops in active chains, allowing manual entry of Sucrose or Albedo double yields.
-- **Mora & EXP Correction Modal (`UpgradeEstimateCorrectionModal.tsx`)**:
+  - *Crafting Bonus Panel*: Displays all tiers of talent, weapon, or monster drops in active chains, allowing manual entry of double yield bonuses.
+- **Mora, EXP & Ore Correction Modals (`UpgradeEstimateCorrectionModal.tsx` / `WeaponUpgradeEstimateCorrectionModal.tsx`)**:
   - Prompts the user to verify/correct estimated resource remaining values before final mutation.
-  - Uses `calculateRemainingExpBooks` to greedily deduct Hero's Wit, then Adventurer's Experience, and lastly Wanderer's Advice.
+  - Uses `calculateRemainingExpBooks` or `calculateRemainingOres` to greedily deduct resources from highest to lowest tier (Hero's Wit ➔ Adventurer's ➔ Wanderer's or Mystic ➔ Fine ➔ Enhancement Ore).
 
 ## Design Patterns
 
@@ -153,6 +159,21 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
   * Subtle transparent backgrounds (`rgba(X, Y, Z, 0.15)`) glow beautifully with solid bottom borders matching their respective themed elements, preserving high-fidelity native icons without stencils.
 - **Multi-Tier Level sorting Cascade (Level > Rarity > Alphabetic)**:
   * Restructures characters list ordering under a three-tiered tie-breaking rule. Sharing identical levels delegates sorting to native character rarity (respecting the active sort order multiplier), and then to display names alphabetically (A-Z ascending) for clean visual grids.
+- **Weapon Selection UI Parity & Overlays**:
+  * *Layout Parity*: Shares the `.char-select-grid`, `.char-select-item`, and `.char-select-name` styling directly with character selection grids.
+  * *Gold Refinement Badges*: Displays refinement gold badges (`R1`-`R5` themed with `#ffcc66`) positioned dynamically in the top-left of the icon box using `.char-select-level-container`.
+  * *Equipped Character Banners*: Overlays a semi-translucent dark badge at the bottom-center of the icon wrapper (`.material-icon-wrapper`) indicating the name of the equipped character using that weapon, hiding the badge entirely for unequipped inventory weapons.
+  * *Silent Silhouette Filters*: Weapon category filters use standard web icons with a CSS silhouette filter (`brightness(0) invert(1)`) to display a crisp soft-white in the inactive state and a warm sepia/gold glow when isolated/active.
+  * *Search & Star/Abc Sorting Toggle*: Positions sorting toggles (`Star/Abc`) next to the top search bar, using Star as the default sort cascade.
+  * *2-Line Text Name Wrapping*: Employs vertical Webkit clamping to wrap long weapon names to exactly two lines, centered cleanly, inside a fixed-height (`34px`) text wrapper to keep grid alignment perfectly straight.
+
+### 11. Global Inventory Allocation & Summary Panel (`src/utils/plannerCalculator.ts`, `src/App.tsx`)
+
+To handle complex resource planning across multiple items, the app implements a global sequential allocation engine:
+- **Sequential Resource Consumption**: Materials and craftable stock are consumed sequentially based on the active priority order of the planner cards. High-priority cards consume available inventory first, and subsequent cards plan around the remaining quantities, preventing double-counting of resources.
+- **Left-Side Summary Panel**: A dynamic panel rendered on the Planner page that compiles aggregate totals of missing materials across all enabled progression plans.
+- **Domain Schedule Mapping**: The Summary panel maps missing materials to their respective weekly in-game domains, enabling players to see at a glance which days they need to farm (e.g., Monday/Thursday, Tuesday/Friday, Wednesday/Saturday).
+- **Reactive Recalculations**: All allocation states, sufficiency highlights (green/red borders), and summary listings are updated instantly in the UI when planner items are reordered, toggled on/off, or edited.
 
 
 
