@@ -170,10 +170,32 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
 ### 11. Global Inventory Allocation & Summary Panel (`src/utils/plannerCalculator.ts`, `src/App.tsx`)
 
 To handle complex resource planning across multiple items, the app implements a global sequential allocation engine:
-- **Sequential Resource Consumption**: Materials and craftable stock are consumed sequentially based on the active priority order of the planner cards. High-priority cards consume available inventory first, and subsequent cards plan around the remaining quantities, preventing double-counting of resources.
+- **Sequential Resource Consumption**: 
+  - The calculator (`src/utils/plannerCalculator.ts`) clones the user's current inventory into a mutable `tempInventory` workspace.
+  - Enabled planner items (`enabled === true`) are processed one-by-one according to their priority index in the `plannedItems` array.
+  - For each item, the calculator evaluates required materials (levels and talents/refinements) and greedily deducts them from `tempInventory`.
+  - The calculator tracks both the *base* required amount and the *remaining* deficit for each item. Cards render their borders (green for fully satisfied, red for incomplete) based on whether the local card deficits are fully satisfied after earlier allocations.
+  - Standby plans (`enabled === false`) bypass the inventory deduction pipeline completely, freeing resources for lower-priority active items in real time.
 - **Left-Side Summary Panel**: A dynamic panel rendered on the Planner page that compiles aggregate totals of missing materials across all enabled progression plans.
 - **Domain Schedule Mapping**: The Summary panel maps missing materials to their respective weekly in-game domains, enabling players to see at a glance which days they need to farm (e.g., Monday/Thursday, Tuesday/Friday, Wednesday/Saturday).
 - **Reactive Recalculations**: All allocation states, sufficiency highlights (green/red borders), and summary listings are updated instantly in the UI when planner items are reordered, toggled on/off, or edited.
+
+### 12. Daily Domains Materials Farmable Tracker (`src/components/DailyDomainsTracker.tsx`)
+
+Integrated at the top of the Summary panel, this component shows what materials are farmable today and in upcoming days:
+- **Server Reset Timezone (Portugal WET/WEST aware)**: 
+  - Official game servers reset at exactly **3:00 AM UTC** for the Europe region (equivalent to 3:00 AM WET in Portuguese winter, or 4:00 AM WEST in summer).
+  - The tracker computes the current server day by subtracting 3 hours from the current UTC timestamp: `new Date(Date.now() - 3 * 60 * 60 * 1000).getUTCDay()`. This guarantees the active day boundaries transition exactly at the 3:00 AM server reset boundary.
+- **Interactive Forward Navigation**:
+  - The user can navigate through upcoming days of the week using left and right chevron icons.
+  - **No Past-Navigation Boundary**: Left chevron is programmatically disabled when `selectedDayOffset === 0` (today), preventing users from navigating back to historical days.
+  - Display labels dynamically swap from the literal day name (e.g., "Tuesday") to a localized "Today" banner when viewing the current server day.
+- **Domain Loot Pooling & Sunday Catch-All**:
+  - Links items to their weekly availability schedules (e.g., weapon materials on Mon/Thu, talent books on Tue/Fri, etc.).
+  - **Sunday Catch-All Rule**: On Sundays, all domains are unlocked in-game. The tracker automatically pools and displays all missing domain-locked materials under the Sunday view.
+- **High-Density Style Parity**:
+  - Material tiles inside the tracker use the exact same `.material-cell`, `.material-icon-wrapper`, and `.material-icon` layout styles as the general Missing Materials categories.
+  - This ensures icon borders, rarity backgrounds, and 50px dimensions perfectly align with the rest of the application.
 
 
 

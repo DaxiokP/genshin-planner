@@ -9,6 +9,8 @@ A premium web application to optimize and plan character materials for Genshin I
 ## Key Features
 
 - 🎒 **Inventory-Aware Material Planning**: Import inventory directly using standard community **Genshin Optimizer Data (GOOD)** formats (via Akasha Scanner, Inventory Kamera, etc.) or manually edit material counters.
+- 📊 **Global Sequential Inventory Allocation**: Allocates available inventory and craftable assets sequentially across enabled planner cards in order of priority. High-priority cards consume resources first, letting subsequent plans calculate exact deficits and preventing double-counting.
+- 📆 **Daily Domains Material Tracker**: Integrates a live, interactive day-by-day domain planner mapping missing materials to weekly domain schedules. Features a local-time (Portugal UTC 3:00 AM) server reset countdown and a forward-locked chevron navigator.
 - ✨ **Constellation Talent Level Boosts**: Automatically boosts Elemental Skill (+3 at C3+) and Elemental Burst (+3 at C5+) talent levels to mirror actual game behavior, styled in a premium sky blue theme.
 - 👥 **Multi-Profile Shared Accounts**: Dynamically create, swap, and manage multiple planners under a single account. Easily switch between your planner and your partner's planner in real time.
 - 🔒 **Clean Username Authentication**: Sign up and log in using a simple Username (e.g. `daxiok`) without exposing personal emails or dealing with email confirmation limits.

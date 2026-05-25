@@ -459,3 +459,451 @@ export function calculateRequirements(
   });
 }
 
+function consumeCharExp(amountNeeded: number, virtualInventory: Record<string, number>) {
+  let remainingExp = amountNeeded;
+
+  const books = [
+    { key: 'wanderersadvice', exp: 1000 },
+    { key: 'adventurersexperience', exp: 5000 },
+    { key: 'heroswit', exp: 20000 }
+  ];
+
+  for (const book of books) {
+    const ownedCount = virtualInventory[book.key] || 0;
+    const expAvailable = ownedCount * book.exp;
+    if (expAvailable <= remainingExp) {
+      virtualInventory[book.key] = 0;
+      remainingExp -= expAvailable;
+    } else {
+      const countToConsume = Math.ceil(remainingExp / book.exp);
+      virtualInventory[book.key] = Math.max(0, ownedCount - countToConsume);
+      remainingExp = 0;
+      break;
+    }
+  }
+}
+
+function consumeWeaponExp(amountNeeded: number, virtualInventory: Record<string, number>) {
+  let remainingExp = amountNeeded;
+
+  const ores = [
+    { key: 'enhancementore', exp: 400 },
+    { key: 'fineenhancementore', exp: 2000 },
+    { key: 'mysticenhancementore', exp: 10000 }
+  ];
+
+  for (const ore of ores) {
+    const ownedCount = virtualInventory[ore.key] || 0;
+    const expAvailable = ownedCount * ore.exp;
+    if (expAvailable <= remainingExp) {
+      virtualInventory[ore.key] = 0;
+      remainingExp -= expAvailable;
+    } else {
+      const countToConsume = Math.ceil(remainingExp / ore.exp);
+      virtualInventory[ore.key] = Math.max(0, ownedCount - countToConsume);
+      remainingExp = 0;
+      break;
+    }
+  }
+}
+
+export function getDomainMaterialWeekdayGroup(
+  key: string,
+  sortGroup?: number,
+  sortRank?: number
+): 'Monday/Thursday' | 'Tuesday/Friday' | 'Wednesday/Saturday' | null {
+  if (sortGroup === 600 && sortRank !== undefined) {
+    const mod = sortRank % 3;
+    if (mod === 1) return 'Monday/Thursday';
+    if (mod === 2) return 'Tuesday/Friday';
+    if (mod === 0) return 'Wednesday/Saturday';
+  }
+
+  if (sortGroup === 500 && key !== 'crownofinsight') {
+    const lowerKey = key.toLowerCase();
+    const monThu = ['freedom', 'prosperity', 'transience', 'admonition', 'equity', 'contention', 'moonlight'];
+    const tueFri = ['resistance', 'diligence', 'elegance', 'ingenuity', 'justice', 'kindling', 'elysium'];
+    const wedSat = ['ballad', 'gold', 'light', 'praxis', 'order', 'conflict', 'vagrancy'];
+
+    if (monThu.some(name => lowerKey.includes(name))) return 'Monday/Thursday';
+    if (tueFri.some(name => lowerKey.includes(name))) return 'Tuesday/Friday';
+    if (wedSat.some(name => lowerKey.includes(name))) return 'Wednesday/Saturday';
+  }
+
+  return null;
+}
+
+export function getRawCardRequirements(planned: any): Record<string, number> {
+  const reqsAccumulator: Record<string, number> = {};
+
+  const addMaterial = (key: string, count: number) => {
+    const k = key.toLowerCase();
+    reqsAccumulator[k] = (reqsAccumulator[k] || 0) + count;
+  };
+
+  const isWeapon = planned.type === 'weapon';
+
+  if (isWeapon) {
+    const wInfo = lookupWeapon(planned.key);
+    const rarity = wInfo?.rarity || 4;
+
+    if (planned.desired.level > planned.current.level) {
+      const expDelta = getWeaponCumulativeExp(rarity, planned.desired.level) - getWeaponCumulativeExp(rarity, planned.current.level);
+      if (expDelta > 0) {
+        const oresNeeded = Math.ceil(expDelta / 10000);
+        if (oresNeeded > 0) {
+          addMaterial('mysticenhancementore', oresNeeded);
+          addMaterial('mora', Math.round(expDelta / 10));
+        }
+      }
+    }
+
+    const weaponReqs = wInfo ? weaponRequirementsMap[wInfo.name] : weaponRequirementsMap[planned.key];
+    if (weaponReqs && planned.desired.ascension > planned.current.ascension) {
+      for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+        const stepCosts = weaponReqs.ascension[String(asc)] || [];
+        stepCosts.forEach(item => {
+          addMaterial(item.key, item.count);
+        });
+      }
+    }
+  } else {
+    if (planned.desired.level > planned.current.level) {
+      const expDelta = getCumulativeExp(planned.desired.level) - getCumulativeExp(planned.current.level);
+      if (expDelta > 0) {
+        const witsNeeded = Math.ceil(expDelta / 20000);
+        if (witsNeeded > 0) {
+          addMaterial('heroswit', witsNeeded);
+          addMaterial('mora', witsNeeded * 4000);
+        }
+      }
+    }
+
+    const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
+    const charReqs = characterRequirementsMap[charKey];
+
+    if (charReqs) {
+      if (planned.desired.ascension > planned.current.ascension) {
+        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+          const stepCosts = charReqs.ascension[asc] || [];
+          stepCosts.forEach(item => {
+            addMaterial(item.key, item.count);
+          });
+        }
+      }
+
+      const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
+      talentKeys.forEach(tKey => {
+        const curLvl = planned.current.talent[tKey];
+        const desLvl = planned.desired.talent[tKey];
+        if (desLvl > curLvl) {
+          for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
+            const stepCosts = charReqs.talents[lvl] || [];
+            stepCosts.forEach(item => {
+              addMaterial(item.key, item.count);
+            });
+          }
+        }
+      });
+    }
+  }
+
+  return reqsAccumulator;
+}
+
+export interface PlannerSimulationResult {
+  requirements: Record<string, RequiredMaterial[]>;
+  summaryMissing: RequiredMaterial[];
+  domainMissing: Record<string, RequiredMaterial[]>;
+}
+
+export function simulatePlannerInventory(
+  plannedItems: any[],
+  materials: Record<string, number> | null
+): PlannerSimulationResult {
+  const virtualInventory: Record<string, number> = {};
+  if (materials) {
+    Object.entries(materials).forEach(([key, val]) => {
+      virtualInventory[key.toLowerCase()] = val;
+    });
+  }
+
+  // Pre-index alchemical chains
+  const chains: Record<string, { key: string; sortGroup: number; sortRank: number; rarity: number }[]> = {};
+  Object.entries(materialMap).forEach(([key, data]) => {
+    if (data.sortGroup !== undefined && data.sortRank !== undefined && 
+        (data.sortGroup === 100 || data.sortGroup === 400 || data.sortGroup === 500 || data.sortGroup === 600)) {
+      const chainKey = `${data.sortGroup}_${data.sortRank}`;
+      if (!chains[chainKey]) chains[chainKey] = [];
+      chains[chainKey].push({
+        key,
+        sortGroup: data.sortGroup,
+        sortRank: data.sortRank,
+        rarity: data.rarity
+      });
+    }
+  });
+
+  Object.values(chains).forEach(chain => {
+    chain.sort((a, b) => a.rarity - b.rarity);
+  });
+
+  const requirements: Record<string, RequiredMaterial[]> = {};
+
+  plannedItems.forEach(planned => {
+    const isWeapon = planned.type === 'weapon';
+    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+
+    if (planned.enabled === false) {
+      requirements[id] = [];
+      return;
+    }
+
+    const cardReqs = getRawCardRequirements(planned);
+    const cardResults: RequiredMaterial[] = [];
+    const processedChainKeys = new Set<string>();
+
+    const activeChains = new Set<string>();
+    Object.keys(cardReqs).forEach(key => {
+      const data = materialMap[key];
+      if (data && data.sortGroup !== undefined && data.sortRank !== undefined && 
+          (data.sortGroup === 100 || data.sortGroup === 400 || data.sortGroup === 500 || data.sortGroup === 600)) {
+        activeChains.add(`${data.sortGroup}_${data.sortRank}`);
+      }
+    });
+
+    activeChains.forEach(chainKey => {
+      const chain = chains[chainKey];
+      let surplus = 0;
+      
+      const forwardResults = chain.map(cItem => {
+        processedChainKeys.add(cItem.key);
+        const required = cardReqs[cItem.key] || 0;
+        const owned = virtualInventory[cItem.key] || 0;
+        const converted = Math.floor(surplus / 3);
+        const available = owned + converted;
+        const isEnough = available >= required;
+        const missing = isEnough ? 0 : required - available;
+        surplus = isEnough ? (available - required) : 0;
+        
+        return {
+          key: cItem.key,
+          owned,
+          required,
+          converted,
+          isEnough,
+          missing
+        };
+      });
+
+      let neededFromBelow = 0;
+      for (let k = chain.length - 1; k >= 0; k--) {
+        const res = forwardResults[k];
+        const totalNeeded = res.required + neededFromBelow;
+        const consumed = Math.min(res.owned, totalNeeded);
+        virtualInventory[res.key] = res.owned - consumed;
+        const remainingNeeded = totalNeeded - consumed;
+        neededFromBelow = Math.min(remainingNeeded, res.converted) * 3;
+      }
+
+      forwardResults.forEach(res => {
+        if (res.required > 0) {
+          const mapData = materialMap[res.key];
+          const name = mapData?.name || res.key;
+          const rarity = mapData?.rarity || 3;
+          const iconId = mapData?.id || '202';
+          
+          cardResults.push({
+            key: res.key,
+            name,
+            required: res.required,
+            owned: res.owned,
+            missing: res.missing,
+            rarity,
+            iconId,
+            sortGroup: mapData?.sortGroup,
+            sortRank: mapData?.sortRank,
+            isEnough: res.isEnough,
+            converted: res.converted
+          });
+        }
+      });
+    });
+
+    Object.entries(cardReqs).forEach(([key, required]) => {
+      if (processedChainKeys.has(key)) return;
+
+      if (key === 'heroswit') {
+        const requiredExp = required * 20000;
+        const ownedWit = virtualInventory['heroswit'] || 0;
+        const ownedAdv = virtualInventory['adventurersexperience'] || 0;
+        const ownedAdvice = virtualInventory['wanderersadvice'] || 0;
+        
+        const totalExpOwned = ownedWit * 20000 + ownedAdv * 5000 + ownedAdvice * 1000;
+        const isEnough = totalExpOwned >= requiredExp;
+        const missing = isEnough ? 0 : Math.ceil((requiredExp - totalExpOwned) / 20000);
+        
+        const expToConsume = Math.min(totalExpOwned, requiredExp);
+        consumeCharExp(expToConsume, virtualInventory);
+        
+        const mapData = materialMap[key];
+        cardResults.push({
+          key,
+          name: mapData?.name || key,
+          required,
+          owned: isEnough ? required : Math.floor(totalExpOwned / 20000),
+          missing,
+          rarity: mapData?.rarity || 4,
+          iconId: mapData?.id || 'heroswit',
+          sortGroup: mapData?.sortGroup,
+          sortRank: mapData?.sortRank,
+          isEnough
+        });
+      } else if (key === 'mysticenhancementore') {
+        const requiredExp = required * 10000;
+        const ownedMystic = virtualInventory['mysticenhancementore'] || 0;
+        const ownedFine = virtualInventory['fineenhancementore'] || 0;
+        const ownedNormal = virtualInventory['enhancementore'] || 0;
+        
+        const totalExpOwned = ownedMystic * 10000 + ownedFine * 2000 + ownedNormal * 400;
+        const isEnough = totalExpOwned >= requiredExp;
+        const missing = isEnough ? 0 : Math.ceil((requiredExp - totalExpOwned) / 10000);
+        
+        const expToConsume = Math.min(totalExpOwned, requiredExp);
+        consumeWeaponExp(expToConsume, virtualInventory);
+        
+        const mapData = materialMap[key];
+        cardResults.push({
+          key,
+          name: mapData?.name || key,
+          required,
+          owned: isEnough ? required : Math.floor(totalExpOwned / 10000),
+          missing,
+          rarity: mapData?.rarity || 3,
+          iconId: mapData?.id || 'mysticenhancementore',
+          sortGroup: mapData?.sortGroup,
+          sortRank: mapData?.sortRank,
+          isEnough
+        });
+      } else {
+        const owned = virtualInventory[key] || 0;
+        const isEnough = owned >= required;
+        const missing = isEnough ? 0 : required - owned;
+        
+        const consumed = Math.min(owned, required);
+        virtualInventory[key] = owned - consumed;
+        
+        const mapData = materialMap[key];
+        cardResults.push({
+          key,
+          name: mapData?.name || key,
+          required,
+          owned,
+          missing,
+          rarity: mapData?.rarity || 3,
+          iconId: mapData?.id || '202',
+          sortGroup: mapData?.sortGroup,
+          sortRank: mapData?.sortRank,
+          isEnough
+        });
+      }
+    });
+
+    requirements[id] = calculateRequirementsSort(cardResults);
+  });
+
+  // Consolidate overall missing materials
+  const summaryAccumulator: Record<string, number> = {};
+  Object.values(requirements).forEach(cardReqs => {
+    cardReqs.forEach(req => {
+      if (req.missing > 0) {
+        summaryAccumulator[req.key] = (summaryAccumulator[req.key] || 0) + req.missing;
+      }
+    });
+  });
+
+  const summaryMissingList: RequiredMaterial[] = [];
+  Object.entries(summaryAccumulator).forEach(([key, missing]) => {
+    const mapData = materialMap[key];
+    const name = mapData?.name || key;
+    const rarity = mapData?.rarity || 3;
+    const iconId = mapData?.id || '202';
+    
+    summaryMissingList.push({
+      key,
+      name,
+      required: missing,
+      owned: 0,
+      missing,
+      rarity,
+      iconId,
+      sortGroup: mapData?.sortGroup,
+      sortRank: mapData?.sortRank,
+      isEnough: false
+    });
+  });
+
+  const summaryMissing = calculateRequirementsSort(summaryMissingList);
+
+  // Group missing domain materials by weekday schedule
+  const domainMissing: Record<string, RequiredMaterial[]> = {
+    'Monday/Thursday': [],
+    'Tuesday/Friday': [],
+    'Wednesday/Saturday': []
+  };
+
+  summaryMissing.forEach(item => {
+    const day = getDomainMaterialWeekdayGroup(item.key, item.sortGroup, item.sortRank);
+    if (day) {
+      domainMissing[day].push(item);
+    }
+  });
+
+  return {
+    requirements,
+    summaryMissing,
+    domainMissing
+  };
+}
+
+function calculateRequirementsSort(results: RequiredMaterial[]): RequiredMaterial[] {
+  return results.sort((a, b) => {
+    const getCategoryWeight = (item: typeof a) => {
+      if (item.key === 'mysticenhancementore') return 0.5;
+      if (item.key === 'heroswit') return 1;
+      if (item.key === 'mora') return 2;
+      if (item.sortGroup === 600) return 2.5;
+      if (item.sortGroup === 100) return 3;
+      if (item.sortGroup === 700 && item.key !== 'crownofinsight') return 4;
+      if (item.sortGroup === 300) return 5;
+      if (item.sortGroup === 400) return 6;
+      if (item.sortGroup === 500 && item.key !== 'crownofinsight') return 7;
+      if (item.sortGroup === 200) return 8;
+      if (item.key === 'crownofinsight') return 9;
+      return 10;
+    };
+
+    const weightA = getCategoryWeight(a);
+    const weightB = getCategoryWeight(b);
+
+    if (weightA !== weightB) {
+      return weightA - weightB;
+    }
+
+    if (weightA === 3 || weightA === 4 || weightA === 7 || weightA === 2.5) {
+      if (a.rarity !== b.rarity) {
+        return a.rarity - b.rarity;
+      }
+    }
+
+    const rankA = a.sortRank ?? 0;
+    const rankB = b.sortRank ?? 0;
+    if (rankA !== rankB) {
+      return rankA - rankB;
+    }
+
+    return a.name.localeCompare(b.name);
+  });
+}
+
+

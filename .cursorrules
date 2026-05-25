@@ -2,6 +2,15 @@
 
 This file defines the behavior and conventions for AI agents interacting with this repository.
 
+## Documentation Files Map
+When asked to view, review, or update documentation .md files in the repository, you can locate them at:
+- **General Project Overview & Features**: [README.md](file:///Users/daxiok/projects/genshin-planner/README.md) (root directory)
+- **Local Dev & Supabase Setup**: [SETUP.md](file:///Users/daxiok/projects/genshin-planner/SETUP.md) (root directory)
+- **Game Mechanics & Business Logic**: [DOMAIN_KNOWLEDGE.md](file:///Users/daxiok/projects/genshin-planner/DOMAIN_KNOWLEDGE.md) (root directory)
+- **Technical Architecture**: [ARCHITECTURE.md](file:///Users/daxiok/projects/genshin-planner/resources/docs/ARCHITECTURE.md) (`resources/docs/ARCHITECTURE.md`)
+- **Development Context & Evolution**: [CONTEXT.md](file:///Users/daxiok/projects/genshin-planner/resources/docs/CONTEXT.md) (`resources/docs/CONTEXT.md`)
+- **Project Roadmap**: [ROADMAP.md](file:///Users/daxiok/projects/genshin-planner/resources/docs/ROADMAP.md) (`resources/docs/ROADMAP.md`)
+
 ## Project Context
 - **Domain**: Genshin Impact Material Planning.
 - **Data Format**: GOOD (Genshin Optimizer Data) JSON.
@@ -12,6 +21,13 @@ This file defines the behavior and conventions for AI agents interacting with th
 1. **Source of Truth**: Always refer to `src/materialMap.json` for material metadata.
 2. **Data Pipeline**: If material data is missing or incorrect, suggest updating `generateMap.cjs` or `downloadIcons.cjs` before modifying `App.tsx`.
 3. **Key Matching**: Always use `.toLowerCase()` when matching keys from GOOD format to `materialMap.json`.
+4. **Global Sequential Allocation**: Core inventory sequential allocation is computed in `src/utils/plannerCalculator.ts`. Remember that enabled planner cards consume inventory sequentially based on their active priority. Disabled/standby cards must not consume resources.
+5. **Dual Persistence & Sync**: State must dynamically sync to Supabase for logged-in users under both `planned_characters` (legacy) and `planned_items` (unified), but must always fallback seamlessly to local storage under `genshin_planner_local_data` for guest users.
+6. **Username Authentication Layer**: Authentication relies on alphanumeric usernames rather than exposing emails. When calling Supabase signup/signin APIs, map the input username to `${username}.planner@gmail.com` internally to bypass email verification rules while keeping all user-facing views 100% email-free.
+7. **Unique Item Identities**: 
+    - *Characters* are unique in the game and identified by their unique string key (e.g. `Furina`).
+    - *Weapons* are not unique (duplicate plans are possible). Always identify planned weapons using a dynamic ID schema: `weapon:${weaponIndex}`, mapping to their index in the user's owned weapons array. Never identify weapons by string keys alone.
+8. **Constellation Presentation Layer**: Constellation talent level adjustments (+3 Elemental Skill at C3+, +3 Elemental Burst at C5+) are presentation-layer-only features. The under-the-hood storage/database schema must always preserve the **base** talent level (1 to 10). Do not write boosted talent levels directly to state.
 
 ## Coding Standards
 1. **Framework**: React (Functional Components with Hooks).
@@ -19,13 +35,19 @@ This file defines the behavior and conventions for AI agents interacting with th
     - Use vanilla CSS in `src/App.css`.
     - Use CSS variables for rarity colors (`--rarity-1` to `--rarity-5`).
     - Follow the `bg-rarity-[N]` class convention for item backgrounds.
+    - Missing material categories and daily domains tiles must use standard high-density layout sizes (`50px` width cell wrappers) to maintain design harmony.
+    - Prevent Layout Shifts: Always enforce static, explicit button and pill widths for roster filter buttons, element badges, and sort toggles to freeze layout geometries.
+    - Centered Page Headers: Math-center page navigation tabs using a 3-column CSS Grid (`1fr auto 1fr`) on the `.header` so that dynamic sync status badges on the right do not shift the tabs.
+    - Card-Wide Standby Fading: Apply grayscale and opacity filters to the entire outer card container element (header, title, action buttons, and body) when a planned item is disabled, ensuring the entire plan fades together in a single transition.
 3. **Icons**: Use `lucide-react` for UI icons.
 4. **Localization**: Use `item.name` from the map if available; otherwise, use the capitalized key.
 
 ## Agent Behavior
 1. **Read-First**: Before making changes, you MUST read the following documentation:
-   - **Architecture & Tech Stack**: `resources/docs/ARCHITECTURE.md`
-   - **Game Mechanics & Business Logic**: `DOMAIN_KNOWLEDGE.md`
-2. **Roadmap Aware**: (If applicable) Check `resources/docs/ROADMAP.md` to see current work-in-progress.
+   - **Architecture & Tech Stack**: [ARCHITECTURE.md](file:///Users/daxiok/projects/genshin-planner/resources/docs/ARCHITECTURE.md)
+   - **Game Mechanics & Business Logic**: [DOMAIN_KNOWLEDGE.md](file:///Users/daxiok/projects/genshin-planner/DOMAIN_KNOWLEDGE.md)
+   - **Development Context**: [CONTEXT.md](file:///Users/daxiok/projects/genshin-planner/resources/docs/CONTEXT.md)
+2. **Roadmap Aware**: (If applicable) Check [ROADMAP.md](file:///Users/daxiok/projects/genshin-planner/resources/docs/ROADMAP.md) to see current work-in-progress.
 3. **No Placeholders**: Never use placeholder images. Use the `import.meta.env.BASE_URL` + `/icons/` path for local assets, or fallback to UI-avatars if an icon is missing.
 4. **Compile and Verify**: After finalizing all changes, run a build or compile step (e.g., `npm run build` or `npx tsc`) to ensure there are no compilation or type errors in the project.
+

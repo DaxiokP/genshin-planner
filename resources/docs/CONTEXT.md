@@ -52,6 +52,15 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
   * Weapon type category filter buttons use highly visible soft-white inactive silhouettes and glowing gold active silhouettes, positioned next to the rarity filter on the second row.
   * Search and Star/Abc sorting toggles are aligned on the top row, supporting instant sorted cascades.
   * Names support 2-line centered wrapping with custom WebkitLineClamps and fixed-height alignments to keep the selection grid visually clean.
+- **Global Inventory Allocation & Summary Panel**:
+  * Material consumption and alchemical crafting cascades are computed sequentially across enabled planner cards in order of priority.
+  * Earlier cards exhaust available inventory first, while subsequent cards display calculated deficits, completely preventing resource double-counting.
+  * Compiles a left-side aggregate Summary panel listing all missing items and mapping them to weekly domain farming schedules.
+- **Daily Domain Materials Farmable Tracker**:
+  * Renders at the top of the Summary panel, displaying a real-time UTC-relative 3:00 AM reset countdown (fully compatible with Europe/Portugal daylight savings transitions).
+  * Uses left and right chevrons to navigate days of the week, displaying the day's name (or "Today" for the active server day).
+  * Prevents navigating back to past days by programmatically disabling the left chevron at index 0.
+  * Correctly groups and pools all farmable missing materials under Sunday catch-all configurations.
 ## Coding Conventions for Agents
 - **Consistency**: Keep core state coordinates and layout structures in `App.tsx`, and split standalone visual forms/modals into `src/components/` (e.g. `AuthModal.tsx`).
 - **Styling**: Prefer vanilla CSS in `App.css` and use standard CSS variables. Ensure new components maintain the glassmorphic dark theme, incorporating premium transition speeds and active state highlighting.
