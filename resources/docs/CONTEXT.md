@@ -81,6 +81,7 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
 
 ## Coding Conventions for Agents
 - **Consistency**: Keep core state coordinates and layout structures in `App.tsx`, and split standalone visual forms/modals into `src/components/` (e.g. `AuthModal.tsx`).
+- **Automated Testing**: For mathematical models (calculations, alchemical crafting cascades, sequential priority allocation) and import sync reconciliations, prioritize writing/maintaining unit tests under `src/utils/__tests__/`. We use Vitest in a pure Node environment. Avoid complex UI component tests or E2E scripts to keep setup and maintenance minimal for this 2-person project, focusing strictly on high-value "brain" logic.
 - **Styling**: Prefer vanilla CSS in `App.css` and use standard CSS variables. Ensure new components maintain the glassmorphic dark theme, incorporating premium transition speeds and active state highlighting.
 - **Naming**: Use camelCase for variables/functions and PascalCase for components.
 - **Error Handling**: Always provide user-facing error messages (displayed in modals or headers) for file parsing, authentication rate limits, and network connection errors.

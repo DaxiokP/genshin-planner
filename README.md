@@ -59,6 +59,17 @@ npm run dev
 ```
 Open the printed local URL (typically [http://localhost:5173](http://localhost:5173)) in your browser.
 
+### Running Unit Tests
+
+To run the Vitest-based mathematical and logic unit tests:
+```bash
+# Run tests once
+npm run test
+
+# Run tests in interactive watch mode
+npm run test:watch
+```
+
 ### Building for Production
 
 Compile optimized static resources:

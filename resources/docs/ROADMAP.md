@@ -92,6 +92,7 @@ Goal: Optimization Algorithms for the planner, and improving the user experience
     - [x] Mouse hover over material improves — Tooltips now anchor stably to the right of the hovered tile (`x = rect.right + 12, y = rect.top`) via `<TooltipBox>` in `App.tsx`, with viewport clamping. Removed all `onMouseMove` jitter.
     - [x] Improve weapon card to match the character card style — Both card body rows fixed at `146px` height; avatar frames, dividers, and "Required Materials" headers align pixel-perfectly. Weapon icon backgrounds now use `weapon-rarity-*` gradient classes matching card header colours.
     - [x] Visually improve the planner numbers representation — Level and talent rows render a single value (e.g. `90`) instead of `90 ➔ 90` when current equals desired.
+    - [x] **Automated Testing Suite ("Lazy & Effective" Setup)** — Installed Vitest under pure Node execution. Created automated unit test suites in `src/utils/__tests__/` to validate core requirement calculations, EXP/Ore equivalency models, alchemical cascading crafting, and duplicate weapon import synchronization, preventing regression bugs.
 - [ ] **Improve Inventory page**
     - Better sorting and filtering
     - Better UI (button to clear import, import new file, etc)

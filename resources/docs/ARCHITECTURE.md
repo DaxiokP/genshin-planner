@@ -9,6 +9,7 @@ This document outlines the technical architecture, data flow, and design pattern
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Database & Auth**: [Supabase](https://supabase.com/) (Auth & PostgreSQL Database with JSONB support)
 - **Deployment**: Optimized for Static Site Hosting (GitHub Pages) with CI/CD environment integration
+- **Testing**: [Vitest](https://vitest.dev/) (Lightweight, zero-config TypeScript unit testing suite)
 
 ## High-Level Architecture
 
@@ -243,6 +244,7 @@ A reusable modal that intercepts mouse click events on material requirement grid
 ## Directory Structure
 
 - `/src`: React components, hooks, Supabase configuration, and material maps.
+  - `/utils/__tests__`: Automated test suites validating calculation formulas, alchemical chains, inventory allocations, and import sync algorithms.
 - `/public`: Static assets including the processed `/icons` folder.
 - `/resources`: Data processing scripts and architecture documentation.
 - `/`: Configuration files, linting guidelines, environment setups, and workflow builds.

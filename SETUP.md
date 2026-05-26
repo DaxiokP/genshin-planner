@@ -56,6 +56,16 @@ npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+### Unit Testing
+To run the automated mathematical and logic unit tests:
+```bash
+# Run all tests once
+npm run test
+
+# Run tests in interactive watch mode for live feedback during edits
+npm run test:watch
+```
+
 ### Production Build
 To create an optimized bundle for deployment:
 ```bash
