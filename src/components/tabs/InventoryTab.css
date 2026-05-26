@@ -1,0 +1,133 @@
+.materials-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.materials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.clear-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+/* Mora Currency Banner */
+.mora-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: linear-gradient(135deg, #2a2d3a 0%, #1e2029 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 4px;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.mora-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #a07745 0%, #c6964b 50%, #9a7340 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.mora-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.mora-count-input {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e8e4dc;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 20px 0 12px;
+  min-width: 140px;
+  letter-spacing: 0.5px;
+}
+
+.mora-count-input:focus {
+  color: #fff;
+}
+
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.material-info {
+  width: 100%;
+  background: rgba(200, 200, 210, 0.18);
+  border-radius: 0 0 6px 6px;
+}
+
+.material-count-input {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  background: transparent;
+  padding: 4px 2px;
+  border: none;
+  border-radius: 0 0 6px 6px;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  transition: all 0.15s ease;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.material-count-input::-webkit-outer-spin-button,
+.material-count-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.material-count-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.search-bar {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  color: white;
+  width: 300px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-bar:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+

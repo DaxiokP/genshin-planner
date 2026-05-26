@@ -1,3 +1,4 @@
+import './CharactersTab.css';
 import React, { useMemo } from 'react';
 import { Search, X, User, ArrowUpNarrowWide, ArrowDownNarrowWide } from 'lucide-react';
 import { CharacterCard } from '../CharacterCard';

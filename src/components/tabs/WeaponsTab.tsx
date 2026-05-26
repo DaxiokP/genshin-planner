@@ -1,3 +1,4 @@
+import './WeaponsTab.css';
 import React, { useMemo } from 'react';
 import { Search, X, Sword } from 'lucide-react';
 import { WeaponCard } from '../WeaponCard';

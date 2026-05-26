@@ -1,3 +1,4 @@
+import './PlannerTab.css';
 import React, { useState } from 'react';
 import { UserPlus, Sword, ListOrdered, Pencil, Sparkles, Power, Trash2, RotateCw } from 'lucide-react';
 import { SummaryPanel } from '../SummaryPanel';

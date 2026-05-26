@@ -1,3 +1,4 @@
+import './SummaryPanel.css';
 import React from 'react';
 import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import materialMapData from '../maps/materialMap.json';

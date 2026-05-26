@@ -1,0 +1,140 @@
+/* Planner Page */
+.planner-container {
+  animation: fadeIn 0.5s ease-out;
+  padding: 2rem 0;
+}
+
+.planner-container h2 {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.planner-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.planner-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.planner-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 1.6rem;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.planner-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.planner-btn-character {
+  border-color: rgba(94, 189, 140, 0.3);
+}
+
+.planner-btn-character:hover {
+  background: rgba(94, 189, 140, 0.12);
+  border-color: rgba(94, 189, 140, 0.5);
+  color: #6ecea0;
+}
+
+.planner-btn-weapon {
+  border-color: rgba(189, 149, 94, 0.3);
+}
+
+.planner-btn-weapon:hover {
+  background: rgba(189, 149, 94, 0.12);
+  border-color: rgba(189, 149, 94, 0.5);
+  color: #d4a95a;
+}
+
+.planner-btn-priority {
+  border-color: rgba(152, 114, 196, 0.3);
+}
+
+.planner-btn-priority:hover {
+  background: rgba(152, 114, 196, 0.12);
+  border-color: rgba(152, 114, 196, 0.5);
+  color: #b88ee0;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.upload-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.upload-card:hover,
+.upload-card.drag-active {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.upload-card.drag-active {
+  background: rgba(94, 129, 189, 0.1);
+}
+
+.upload-icon {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.upload-label {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.upload-label:hover {
+  background-color: var(--accent-hover);
+  animation: pulse-glow 2s infinite;
+}
+
+.upload-input {
+  display: none;
+}
+
+.upload-hint {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+

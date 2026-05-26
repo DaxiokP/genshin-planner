@@ -1,3 +1,4 @@
+import './InventoryTab.css';
 import React from 'react';
 import { Search, X } from 'lucide-react';
 import materialMapData from '../../maps/materialMap.json';
