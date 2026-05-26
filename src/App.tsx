@@ -21,6 +21,8 @@ import { WeaponUpgradeEstimateCorrectionModal } from './components/WeaponUpgrade
 import { applyUpgradeInventoryMutations, hasSingleStar } from './utils/upgradeHelpers';
 import { moveItem } from './utils/plannerHelpers';
 import { PriorityManagerModal } from './components/PriorityManagerModal';
+import { QuickInventoryModal } from './components/QuickInventoryModal';
+
 
 
 type MaterialMapEntry = {
@@ -123,6 +125,15 @@ function App() {
   const [activeTab, setActiveTab] = useState<TabType>('planner');
   const [selectedDayOffset, setSelectedDayOffset] = useState<number>(0);
   const [timeToReset, setTimeToReset] = useState<string>('');
+
+  const [isQuickInventoryOpen, setIsQuickInventoryOpen] = useState(false);
+  const [selectedQuickInventoryMaterial, setSelectedQuickInventoryMaterial] = useState<string | null>(null);
+
+  const handleOpenQuickInventory = (key: string) => {
+    setSelectedQuickInventoryMaterial(key);
+    setIsQuickInventoryOpen(true);
+  };
+
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -375,9 +386,11 @@ function App() {
       <div
         key={item.key}
         className="summary-material-tile"
+        onClick={() => handleOpenQuickInventory(item.key)}
         onMouseEnter={() => originalEntry && setHoveredItem({ key: item.key, data: originalEntry })}
         onMouseLeave={() => setHoveredItem(null)}
         onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+        style={{ cursor: 'pointer' }}
       >
         <div className="summary-tile-count">
           {displayMissing}
@@ -2459,6 +2472,7 @@ function App() {
                                               opacity: isEnough ? 0.45 : 1,
                                               transition: 'opacity 0.2s ease',
                                             }}
+                                            onClick={() => handleOpenQuickInventory(mat.key)}
                                             onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
                                             onMouseLeave={() => setHoveredItem(null)}
                                             onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
@@ -2874,6 +2888,7 @@ function App() {
                                               opacity: isEnough ? 0.45 : 1,
                                               transition: 'opacity 0.2s ease',
                                             }}
+                                            onClick={() => handleOpenQuickInventory(mat.key)}
                                             onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
                                             onMouseLeave={() => setHoveredItem(null)}
                                             onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
@@ -3225,6 +3240,19 @@ function App() {
         plannedItems={plannedItems}
         onClose={() => setIsPriorityModalOpen(false)}
         onSave={(ordered) => setPlannedItems(ordered)}
+      />
+
+      <QuickInventoryModal
+        isOpen={isQuickInventoryOpen}
+        onClose={() => {
+          setIsQuickInventoryOpen(false);
+          setSelectedQuickInventoryMaterial(null);
+        }}
+        materialKey={selectedQuickInventoryMaterial}
+        materials={materials}
+        onSave={(updated) => setMaterials(updated)}
+        setHoveredItem={setHoveredItem}
+        setMousePos={setMousePos}
       />
     </div>
   );

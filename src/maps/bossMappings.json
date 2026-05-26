@@ -1,0 +1,1296 @@
+{
+  "perpetualcaliber": {
+    "enemyName": "Aeonblight Drake",
+    "drops": [
+      "perpetualcaliber"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "lightguidingtetrahedron": {
+    "enemyName": "Algorithm of Semi-Intransient Matrix of Overseer Network",
+    "drops": [
+      "lightguidingtetrahedron"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver"
+    ]
+  },
+  "lightlesssilkstring": {
+    "enemyName": "All-Devouring Narwhal",
+    "drops": [
+      "lightlesssilkstring",
+      "lightlesseyeofthemaelstrom",
+      "lightlessmass"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "lightlesseyeofthemaelstrom": {
+    "enemyName": "All-Devouring Narwhal",
+    "drops": [
+      "lightlesssilkstring",
+      "lightlesseyeofthemaelstrom",
+      "lightlessmass"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "lightlessmass": {
+    "enemyName": "All-Devouring Narwhal",
+    "drops": [
+      "lightlesssilkstring",
+      "lightlesseyeofthemaelstrom",
+      "lightlessmass"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "hurricaneseed": {
+    "enemyName": "Anemo Hypostasis",
+    "drops": [
+      "hurricaneseed"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver"
+    ]
+  },
+  "dragonlordscrown": {
+    "enemyName": "Azhdaha",
+    "drops": [
+      "dragonlordscrown",
+      "bloodjadebranch",
+      "gildedscale"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "bloodjadebranch": {
+    "enemyName": "Azhdaha",
+    "drops": [
+      "dragonlordscrown",
+      "bloodjadebranch",
+      "gildedscale"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "gildedscale": {
+    "enemyName": "Azhdaha",
+    "drops": [
+      "dragonlordscrown",
+      "bloodjadebranch",
+      "gildedscale"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "dragonheirsfalsefin": {
+    "enemyName": "Rimebiter Bathysmal Vishap",
+    "drops": [
+      "dragonheirsfalsefin"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "tuskofmonoceroscaeli": {
+    "enemyName": "Childe",
+    "drops": [
+      "tuskofmonoceroscaeli",
+      "shardofafoullegacy",
+      "shadowofthewarrior"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "shardofafoullegacy": {
+    "enemyName": "Childe",
+    "drops": [
+      "tuskofmonoceroscaeli",
+      "shardofafoullegacy",
+      "shadowofthewarrior"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "shadowofthewarrior": {
+    "enemyName": "Childe",
+    "drops": [
+      "tuskofmonoceroscaeli",
+      "shardofafoullegacy",
+      "shadowofthewarrior"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "crystallinebloom": {
+    "enemyName": "Cryo Hypostasis",
+    "drops": [
+      "crystallinebloom"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "hoarfrostcore": {
+    "enemyName": "Cryo Regisvine",
+    "drops": [
+      "hoarfrostcore"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "quelledcreeper": {
+    "enemyName": "Dendro Hypostasis",
+    "drops": [
+      "quelledcreeper"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver"
+    ]
+  },
+  "lightningprism": {
+    "enemyName": "Electro Hypostasis",
+    "drops": [
+      "lightningprism"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "thunderclapfruitcore": {
+    "enemyName": "Electro Regisvine",
+    "drops": [
+      "thunderclapfruitcore"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "emperorsresolution": {
+    "enemyName": "Emperor of Fire and Iron",
+    "drops": [
+      "emperorsresolution"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "tourbillondevice": {
+    "enemyName": "Experimental Field Generator",
+    "drops": [
+      "tourbillondevice"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "radiantantler": {
+    "enemyName": "Frostnight Herra",
+    "drops": [
+      "radiantantler"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "basaltpillar": {
+    "enemyName": "Geo Hypostasis",
+    "drops": [
+      "basaltpillar"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "overripeflamegranate": {
+    "enemyName": "Gluttonous Yumkasaur Mountain King",
+    "drops": [
+      "overripeflamegranate"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver"
+    ]
+  },
+  "riftbornregalia": {
+    "enemyName": "Golden Wolflord",
+    "drops": [
+      "riftbornregalia"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "markofthebindingblessing": {
+    "enemyName": "Goldflame Qucusaur Tyrant",
+    "drops": [
+      "markofthebindingblessing"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "worldspanfern": {
+    "enemyName": "Guardian of Apep's Oasis",
+    "drops": [
+      "worldspanfern",
+      "primordialgreenbloom",
+      "everamber"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver"
+    ]
+  },
+  "primordialgreenbloom": {
+    "enemyName": "Guardian of Apep's Oasis",
+    "drops": [
+      "worldspanfern",
+      "primordialgreenbloom",
+      "everamber"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver"
+    ]
+  },
+  "everamber": {
+    "enemyName": "Guardian of Apep's Oasis",
+    "drops": [
+      "worldspanfern",
+      "primordialgreenbloom",
+      "everamber"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver"
+    ]
+  },
+  "dewofrepudiation": {
+    "enemyName": "Hydro Hypostasis",
+    "drops": [
+      "dewofrepudiation"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "waterthatfailedtotranscend": {
+    "enemyName": "Hydro Tulpa",
+    "drops": [
+      "waterthatfailedtotranscend"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "artificedspareclockworkcomponentcoppelia": {
+    "enemyName": "Icewind Suite",
+    "drops": [
+      "artificedspareclockworkcomponentcoppelia",
+      "artificedspareclockworkcomponentcoppelius"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "artificedspareclockworkcomponentcoppelius": {
+    "enemyName": "Icewind Suite",
+    "drops": [
+      "artificedspareclockworkcomponentcoppelia",
+      "artificedspareclockworkcomponentcoppelius"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "evergloomring": {
+    "enemyName": "Iniquitous Baptist",
+    "drops": [
+      "evergloomring"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "majestichookedbeak": {
+    "enemyName": "Jadeplume Terrorshroom",
+    "drops": [
+      "majestichookedbeak"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver"
+    ]
+  },
+  "precisionkuuvahkistampingdie": {
+    "enemyName": "Knuckle Duckle",
+    "drops": [
+      "precisionkuuvahkistampingdie"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "moltenmoment": {
+    "enemyName": "La Signora",
+    "drops": [
+      "moltenmoment",
+      "hellfirebutterfly",
+      "ashenheart"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "hellfirebutterfly": {
+    "enemyName": "La Signora",
+    "drops": [
+      "moltenmoment",
+      "hellfirebutterfly",
+      "ashenheart"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "ashenheart": {
+    "enemyName": "La Signora",
+    "drops": [
+      "moltenmoment",
+      "hellfirebutterfly",
+      "ashenheart"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "sparklessstatuecore": {
+    "enemyName": "Lava Dragon Statue",
+    "drops": [
+      "sparklessstatuecore"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "fragmentofagoldenmelody": {
+    "enemyName": "Legatus Golem",
+    "drops": [
+      "fragmentofagoldenmelody"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "erodedhorn": {
+    "enemyName": "Lord of Eroded Primal Fire",
+    "drops": [
+      "erodedhorn",
+      "erodedsunfire",
+      "erodedscalefeather"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "erodedsunfire": {
+    "enemyName": "Lord of Eroded Primal Fire",
+    "drops": [
+      "erodedhorn",
+      "erodedsunfire",
+      "erodedscalefeather"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "erodedscalefeather": {
+    "enemyName": "Lord of Eroded Primal Fire",
+    "drops": [
+      "erodedhorn",
+      "erodedsunfire",
+      "erodedscalefeather"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "remnantofthedreadwing": {
+    "enemyName": "Lord of the Hidden Depths: Whisperer of Nightmares",
+    "drops": [
+      "remnantofthedreadwing"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "tailofboreas": {
+    "enemyName": "Lupus Boreas, Dominator of Wolves",
+    "drops": [
+      "tailofboreas",
+      "ringofboreas",
+      "spiritlocketofboreas"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "ringofboreas": {
+    "enemyName": "Lupus Boreas, Dominator of Wolves",
+    "drops": [
+      "tailofboreas",
+      "ringofboreas",
+      "spiritlocketofboreas"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "spiritlocketofboreas": {
+    "enemyName": "Lupus Boreas, Dominator of Wolves",
+    "drops": [
+      "tailofboreas",
+      "ringofboreas",
+      "spiritlocketofboreas"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "mudraofthemaleficgeneral": {
+    "enemyName": "Magatsu Mitake Narukami no Mikoto",
+    "drops": [
+      "mudraofthemaleficgeneral",
+      "tearsofthecalamitousgod",
+      "themeaningofaeons"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "tearsofthecalamitousgod": {
+    "enemyName": "Magatsu Mitake Narukami no Mikoto",
+    "drops": [
+      "mudraofthemaleficgeneral",
+      "tearsofthecalamitousgod",
+      "themeaningofaeons"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "themeaningofaeons": {
+    "enemyName": "Magatsu Mitake Narukami no Mikoto",
+    "drops": [
+      "mudraofthemaleficgeneral",
+      "tearsofthecalamitousgod",
+      "themeaningofaeons"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "marionettecore": {
+    "enemyName": "Maguu Kenki",
+    "drops": [
+      "marionettecore"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "fontemerunihorn": {
+    "enemyName": "Millennial Pearl Seahorse",
+    "drops": [
+      "fontemerunihorn"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "cleansingheart": {
+    "enemyName": "Oceanid",
+    "drops": [
+      "cleansingheart"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "perpetualheart": {
+    "enemyName": "Perpetual Mechanical Array",
+    "drops": [
+      "perpetualheart"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "juvenilejade": {
+    "enemyName": "Primo Geovishap",
+    "drops": [
+      "juvenilejade"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "smolderingpearl": {
+    "enemyName": "Pyro Hypostasis",
+    "drops": [
+      "smolderingpearl"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "everflameseed": {
+    "enemyName": "Pyro Regisvine",
+    "drops": [
+      "everflameseed"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "lightbearingscalefeather": {
+    "enemyName": "Radiant Moonfly",
+    "drops": [
+      "lightbearingscalefeather"
+    ],
+    "gems": [
+      "nagadusemeraldgemstone",
+      "nagadusemeraldchunk",
+      "nagadusemeraldfragment",
+      "nagadusemeraldsliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "prismaticseveredtail": {
+    "enemyName": "Radiant Moongecko",
+    "drops": [
+      "prismaticseveredtail"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "runicfang": {
+    "enemyName": "Ruin Serpent",
+    "drops": [
+      "runicfang"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "goldinscribedsecretsourcecore": {
+    "enemyName": "Secret Source Automaton: Configuration Device",
+    "drops": [
+      "goldinscribedsecretsourcecore"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "secretsourceairflowaccumulator": {
+    "enemyName": "Secret Source Automaton: Overseer Device",
+    "drops": [
+      "secretsourceairflowaccumulator"
+    ],
+    "gems": [
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "pseudostamens": {
+    "enemyName": "Setekh Wenut",
+    "drops": [
+      "pseudostamens"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver"
+    ]
+  },
+  "puppetstrings": {
+    "enemyName": "Shouki no Kami, the Prodigal",
+    "drops": [
+      "puppetstrings",
+      "mirrorofmushin",
+      "dakasbell"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "mirrorofmushin": {
+    "enemyName": "Shouki no Kami, the Prodigal",
+    "drops": [
+      "puppetstrings",
+      "mirrorofmushin",
+      "dakasbell"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "dakasbell": {
+    "enemyName": "Shouki no Kami, the Prodigal",
+    "drops": [
+      "puppetstrings",
+      "mirrorofmushin",
+      "dakasbell"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "cloudseamscale": {
+    "enemyName": "Solitary Suanni",
+    "drops": [
+      "cloudseamscale"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "dvalinsplume": {
+    "enemyName": "Stormterror",
+    "drops": [
+      "dvalinsplume",
+      "dvalinsclaw",
+      "dvalinssigh"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "dvalinsclaw": {
+    "enemyName": "Stormterror",
+    "drops": [
+      "dvalinsplume",
+      "dvalinsclaw",
+      "dvalinssigh"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "dvalinssigh": {
+    "enemyName": "Stormterror",
+    "drops": [
+      "dvalinsplume",
+      "dvalinsclaw",
+      "dvalinssigh"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
+  },
+  "cyclicmilitarykuuvahkicore": {
+    "enemyName": "Super-Heavy Landrover: Mechanized Fortress",
+    "drops": [
+      "cyclicmilitarykuuvahkicore"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  },
+  "ensnaringgaze": {
+    "enemyName": "Tenebrous Papilla: Type I",
+    "drops": [
+      "ensnaringgaze"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver"
+    ]
+  },
+  "maskofthevirtuousdoctor": {
+    "enemyName": "The Doctor",
+    "drops": [
+      "maskofthevirtuousdoctor"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "ascendedsampleknight": {
+    "enemyName": "The Game Before the Gate",
+    "drops": [
+      "ascendedsampleknight",
+      "ascendedsamplerook",
+      "ascendedsamplequeen"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "ascendedsamplerook": {
+    "enemyName": "The Game Before the Gate",
+    "drops": [
+      "ascendedsampleknight",
+      "ascendedsamplerook",
+      "ascendedsamplequeen"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "ascendedsamplequeen": {
+    "enemyName": "The Game Before the Gate",
+    "drops": [
+      "ascendedsampleknight",
+      "ascendedsamplerook",
+      "ascendedsamplequeen"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "fadingcandle": {
+    "enemyName": "The Knave",
+    "drops": [
+      "fadingcandle",
+      "silkenfeather",
+      "denialandjudgment"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "silkenfeather": {
+    "enemyName": "The Knave",
+    "drops": [
+      "fadingcandle",
+      "silkenfeather",
+      "denialandjudgment"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "denialandjudgment": {
+    "enemyName": "The Knave",
+    "drops": [
+      "fadingcandle",
+      "silkenfeather",
+      "denialandjudgment"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
+  },
+  "stormbeads": {
+    "enemyName": "Thunder Manifestation",
+    "drops": [
+      "stormbeads"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "talismanoftheenigmaticland": {
+    "enemyName": "Wayward Hermetic Spiritspeaker",
+    "drops": [
+      "talismanoftheenigmaticland"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
+  }
+}
