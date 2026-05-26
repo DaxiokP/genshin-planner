@@ -67,6 +67,13 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
   * Implements bidirectional live math updates between *Inventory* and *Add/Subtract* (Delta) fields, preventing key locking, supporting $60,000$ Mora leyline triggers, and clamping at $0$.
   * Structures section columns using content-snug flex wrappers and dynamic grids ($3\text{--}4$ groups $\rightarrow 2 \times 2$, $5\text{--}6$ groups $\rightarrow 3 \times 2$, $7\text{--}9$ groups $\rightarrow 3 \times 3$) to maintain extreme visual symmetry and tightness.
   * Preserves global mouse tracking tooltips on modal item icon hovers.
+- **Modularization & Hook Decomposition**:
+  * Cleanly split the giant 3,000+ line `App.tsx` and `App.css` god-files into a modular technical layout.
+  * Centralized auth, profile state selectors, legacy data migrations, and debounced Supabase database upserts inside the custom React hook `src/hooks/useAppSync.ts`.
+  * Created dedicated page tab views inside `src/components/tabs/` (`PlannerTab.tsx`, `InventoryTab.tsx`, `CharactersTab.tsx`, `WeaponsTab.tsx`) and `src/components/SummaryPanel.tsx`.
+  * Decoupled CSS styling into 5 component-specific CSS stylesheets (`PlannerTab.css`, `InventoryTab.css`, `CharactersTab.css`, `WeaponsTab.css`, `SummaryPanel.css`), reducing the global `App.css` to global variables, animations, and modals.
+  * Enforced strict type-safety interfaces (`src/types.ts`) and isolated filter/formatting utility helpers (`src/utils/filterHelpers.ts`, `src/utils/formatHelpers.ts`) to avoid circular import loops while maintaining 100% visual layout parity and perfect compile integrity.
+
 ## Coding Conventions for Agents
 - **Consistency**: Keep core state coordinates and layout structures in `App.tsx`, and split standalone visual forms/modals into `src/components/` (e.g. `AuthModal.tsx`).
 - **Styling**: Prefer vanilla CSS in `App.css` and use standard CSS variables. Ensure new components maintain the glassmorphic dark theme, incorporating premium transition speeds and active state highlighting.
@@ -76,4 +83,3 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
 ## Common Pitfalls
 - **Key Mismatches**: The GOOD format uses PascalCase (e.g., `SlimeSecretions`), while the internal `src/maps/materialMap.json` often uses lowercase (e.g., `slimesecretions`). Always use `.toLowerCase()` when comparing keys.
 - **Missing Icons**: If an icon is missing, the app should fallback to a generated avatar with the item's initials.
-

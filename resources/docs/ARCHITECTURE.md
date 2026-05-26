@@ -4,8 +4,8 @@ This document outlines the technical architecture, data flow, and design pattern
 
 ## Tech Stack
 - **Framework**: [Vite](https://vitejs.dev/) + [React](https://react.dev/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: Vanilla CSS (Standard CSS variables for theming)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strictly-typed interfaces)
+- **Styling**: Vanilla CSS (Component-scoped stylesheets + global variable tokens)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Database & Auth**: [Supabase](https://supabase.com/) (Auth & PostgreSQL Database with JSONB support)
 - **Deployment**: Optimized for Static Site Hosting (GitHub Pages) with CI/CD environment integration
@@ -26,12 +26,25 @@ graph TD
     end
 
     subgraph App [Frontend - src/]
-        Data -->|Import| Main[App.tsx]
-        Main -->|Uses| CSS[App.css]
+        Data -->|Import| SyncHook[hooks/useAppSync.ts]
+        SyncHook <-->|Offline Storage| LocalStorage[LocalStorage]
+        SyncHook <-->|Username Mapping & Auth| Auth
+        SyncHook <-->|Debounced Upsert / Fetch| DB
+        
+        Main[App.tsx] <-->|Central States| SyncHook
         Main -->|Renders| UI[React UI Components]
-        GOOD[GOOD JSON Import] -->|Sets State| Main
-        Main <-->|Username Mapping & Auth| Auth
-        Main <-->|Debounced Upsert / Fetch| DB
+        
+        subgraph Tabs [Modular Page Tabs - src/components/tabs/]
+            PlannerTab[PlannerTab.tsx] -->|Styled by| PlannerCSS[PlannerTab.css]
+            CharactersTab[CharactersTab.tsx] -->|Styled by| CharactersCSS[CharactersTab.css]
+            WeaponsTab[WeaponsTab.tsx] -->|Styled by| WeaponsCSS[WeaponsTab.css]
+            InventoryTab[InventoryTab.tsx] -->|Styled by| InventoryCSS[InventoryTab.css]
+        end
+        
+        Main -->|Routes to| Tabs
+        Main -->|Uses| SummaryPanel[components/SummaryPanel.tsx]
+        SummaryPanel -->|Styled by| SummaryCSS[SummaryPanel.css]
+        Main -->|Uses| GlobalCSS[App.css]
     end
 ```
 
@@ -43,14 +56,27 @@ graph TD
 - `resources/scripts/generateMap.cjs`: Aggregates material metadata (rarity, sources, names) into `src/maps/materialMap.json`.
 - `resources/scripts/fixIcons.cjs`: Ensures icon consistency and proper file extensions.
 
-### 2. State Management & Dual Persistence
+### 2. State & Sync Custom Hook (`src/hooks/useAppSync.ts`)
 
-State is centralized in `App.tsx` using React's `useState` hooks combined with a dual-persistence storage layer:
-- **Unified State Structure**: Progression planning uses `plannedItems` (representing a unified list of both characters and weapons). On loading, legacy profiles containing only `planned_characters` are transparently migrated by appending `type: "character"` and converting them to `plannedItems`.
-- **Offline Guest Mode**: When the user is logged out, the app functions purely offline. All state (materials, characters, weapons, artifacts, planned items) is read and saved locally using a single unified Local Storage namespace key: `genshin_planner_local_data`. In guest mode, the profile dropdown switcher is fully hidden.
-- **Supabase Cloud Sync Mode**: When the user logs in, the app connects to the Supabase client. State is dynamically read from and saved to the cloud database table, debouncing database writes to prevent write limits and UI hiccups during intensive operations. To maintain backwards compatibility, the client syncs the character-only subset to `planned_characters` and the complete unified sequence to `planned_items`.
+Centralizes data retrieval, authentication states, and dual-persistence mechanisms:
+- **Authentication State**: Manages active user profile login states (`user`, `setUser`) and Supabase sessions.
+- **Offline Guest Mode**: When the user is logged out, the hook automatically reads and writes configurations locally under the unified Local Storage namespace key `genshin_planner_local_data`.
+- **Supabase Cloud Sync Mode**: When signed in, the hook connects to the Supabase client, fetches profile lists, tracks profile switcher indices, and handles debounced auto-saving to PostgreSQL.
+- **Legacy Profiles Migration**: Transparently handles the transformation of character-only data by appending `type: "character"` and converting them to the sequential `plannedItems` format.
 
-### 3. Authentication & Username Mapping Layer
+### 3. Modular Page Tabs (`src/components/tabs/`)
+
+Separates the page views to eliminate the giant inline layout switches inside the root file:
+- **`<InventoryTab>`**: Extracted to handle standard inventory filtering, Mora banner adjustments, and item count bindings. Styled by its own isolated `InventoryTab.css`.
+- **`<CharactersTab>`**: Handles character filters (elements, weapons, star rarities), sorting lists, and Owned character cards. Styled by `CharactersTab.css`.
+- **`<WeaponsTab>`**: Manages name filtering, star selection grids, category silhouettes, and character weapon equips. Styled by `WeaponsTab.css`.
+- **`<PlannerTab>`**: Encapsulated the main drag-and-drop planned grid, levels/talents transition rows, power standby states, and modal trigger props. Styled by `PlannerTab.css`.
+
+### 4. Stylesheet Decomposition & Variables (`src/App.css`)
+- Component styling is strictly modularized into **5 dedicated CSS stylesheets** stored alongside their respective components.
+- `src/App.css` is reserved purely for root custom properties (rarity colors `--rarity-1` to `--rarity-5`, glassmorphic variable tokens), header grids, navigation tabs, and global modal animations, keeping global styles compact.
+
+### 5. Authentication & Username Mapping Layer
 
 To provide a seamless, email-free user experience, the planner uses a transparent username-to-email mapping pattern:
 - **Registration & Sign-In**: The user registers and signs in using an alphanumeric Username (e.g. `daxiok`).
@@ -59,7 +85,7 @@ To provide a seamless, email-free user experience, the planner uses a transparen
   > Using `@gmail.com` with a custom `.planner` suffix satisfies Supabase's mandatory MX record checks for new registrations without requiring actual emails.
 - **Clean Representation**: All email details are kept completely hidden from the user interface. The header displays and parses the pure username (extracted by splitting the email at the `@` symbol).
 
-### 4. Database Schema & Row Level Security
+### 6. Database Schema & Row Level Security
 
 User profiles are stored in the Supabase PostgreSQL database under the `user_planners` table.
 
@@ -78,19 +104,14 @@ User profiles are stored in the Supabase PostgreSQL database under the `user_pla
 - **Row Level Security (RLS)**:
   - Enabled on `user_planners` to restrict reads, upserts, and deletes only to authenticated requests where `auth.uid() = user_id`.
 
-### 5. Multi-Profile Switcher & Deletion Safety
+### 7. Multi-Profile Switcher & Deletion Safety
 
 A shared account can host multiple character configurations (e.g. your planner vs your partner's planner):
 - **Dynamic Creation**: Users can create custom profiles on-demand via the dropdown menu. A capitalized profile is initialized with a blank state.
 - **Row-Level Actions**: The dropdown profile rows host a selection action and a red hover trash icon (`Trash2`) for profile deletion.
 - **Deletion Safety Boundary Check**: To prevent accounts from becoming profile-less, the deletion action is strictly safety-locked. The delete button is programmatically hidden and prevented if `profiles.length === 1`, ensuring the last remaining profile can never be deleted.
 
-### 6. GOOD Data Format
-
-The app is built around the **Genshin Optimizer Data (GOOD)** format.
-- It maps lowercase internal keys (e.g., `creaturesurveyingnotes`) to human-readable names and game IDs via the `src/maps/materialMap.json`.
-
-### 7. UI & Modal Navigation Flow
+### 8. UI & Modal Navigation Flow
 - **Modals Parity**:
   - `CharacterSelectionModal` / `WeaponSelectionModal`: Renders owned characters/weapons with current stats (levels, constellation talents, or refinements), filtering by category and rarity.
   - `CharacterTargetModal` / `WeaponTargetModal`: Handles the configuration of current and desired states.
@@ -111,19 +132,18 @@ The app features two robust ways to reorder progression cards and customize prio
   - *Weapons* are not unique; duplicate plans can exist. Weapons are uniquely identified in the planner using a dynamic ID schema: `weapon:${weaponIndex}`, mapping to their index in the user's owned weapons array.
 - **Priority Manager Modal (`PriorityManagerModal.tsx`)**:
   - Launches from the header tab's "Manage Priority" action button.
-  - Hosts a vertical list of mixed planned items (characters and weapons). Standby cards (`enabled === false`) are styled in a faded state. Weapons display their custom avatar, refinement badge, and rarity borders.
+  - Hosts a visual grid list of mixed planned items (characters and weapons). Standby cards (`enabled === false`) are styled in a faded state.
   - Dragging rows swaps their visual draft order immediately for real-time feedback.
-  - Order numbers next to elements remain unchanged (representing the original *saved* order) during draft swaps, only updating to reflect the new sequence once the user clicks "Save".
+  - Order numbers next to elements remain unchanged during draft swaps, only updating to reflect the new sequence once saved.
 - **Direct Grid Card Drag-and-Drop**:
-  - **Header-Only Restriction**: Card dragging can only be initiated by clicking and dragging on the card's title/name bar, preventing conflicts with buttons, scrollbars, or text selections in the body.
-  - **Horizontal Split Drops**: Calculates the mouse coordinates relative to the target card's bounding box. Hovering on the left half overlays a glowing golden border on the left (`drop-before` pseudo-element) to insert the card *before* the target; hovering on the right half overlays a gold border on the right (`drop-after` pseudo-element) to insert it *after* the target.
+  - **Header-Only Restriction**: Card dragging can only be initiated by clicking and dragging on the card's title/name bar, preventing conflicts with body clicks.
+  - **Horizontal Split Drops**: Hovering on the left half overlays a glowing golden border (`drop-before` state) to insert the card *before* the target; hovering on the right half overlays a gold border (`drop-after` state) to insert it *after* the target.
   - **Reordering Utilities (`src/utils/plannerHelpers.ts`)**:
     - `reorderByKeys(items, orderedKeys)`: Re-sequences elements by matching keys.
     - `moveItem(items, fromKey, toKey, placement)`: Inserts elements at specified positions based on target coordinates.
   - **State Autosave**: Drag reordering updates the unified `planned_items` array directly, triggering the standard debounced LocalStorage/Supabase cloud background sync to persist changes permanently.
 
-
-### 8. Editable Item Upgrade & Crafting Flow (`src/utils/upgradeHelpers.ts`, `src/components/*Modal.tsx`)
+### 10. Editable Item Upgrade & Crafting Flow (`src/utils/upgradeHelpers.ts`, `src/components/*Modal.tsx`)
 
 The instant upgrade confirm dialog is replaced by a two-stage alchemical and resource reconciliation workflow:
 - **Alchemical Calculation Engine (`upgradeHelpers.ts`)**:
@@ -137,35 +157,35 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
   - *Crafting Bonus Panel*: Displays all tiers of talent, weapon, or monster drops in active chains, allowing manual entry of double yield bonuses.
 - **Mora, EXP & Ore Correction Modals (`UpgradeEstimateCorrectionModal.tsx` / `WeaponUpgradeEstimateCorrectionModal.tsx`)**:
   - Prompts the user to verify/correct estimated resource remaining values before final mutation.
-  - Uses `calculateRemainingExpBooks` or `calculateRemainingOres` to greedily deduct resources from highest to lowest tier (Hero's Wit ➔ Adventurer's ➔ Wanderer's or Mystic ➔ Fine ➔ Enhancement Ore).
+  - Uses `calculateRemainingExpBooks` or `calculateRemainingOres` to greedily deduct resources from highest to lowest tier.
 
 ## Design Patterns
 
 - **Local-First with Cloud Sync**: All processing and rendering occur dynamically on the client, with background syncing to Supabase for authenticated users, combining low-latency responses with multi-device persistence.
-- **Top-Down & Bottom-Up Alchemical Cascading**: Separates the requirement propagation phase (top-down) from alchemical conversion execution (bottom-up), allowing exact tracking of crafted items and inventory consumption without cascading surplus explosion.
-- **Equivalent EXP Sufficiency Evaluation**: Hero's Wit sufficiency is calculated across all three tiers of EXP books (Hero's Wit = 20k, Adventurer's = 5k, Wanderer's = 1k). If the equivalent EXP is sufficient, the Hero's Wit card displays as green with clamped progress (`#Required / ~#Required`), and the deficit is greedily subtracted from lower-tier books.
-- **Dynamic Rarity Styling**: CSS variables are used for rarity-based background colors (`bg-rarity-1` through `bg-rarity-5`). Additionally, planner card nameplate headers dynamically shift their linear background gradients based on character database rarity: a signature purple (`#7b6a99`) for 4★ characters and a signature gold-brown (`#8c6a4a`) for 5★ characters.
+- **Top-Down & Bottom-Up Alchemical Cascading**: Separates the requirement propagation phase (top-down) from alchemical conversion execution (bottom-up), preventing cascading surplus explosion.
+- **Equivalent EXP Sufficiency Evaluation**: Hero's Wit and Mystic Ore sufficiency is evaluated across all equivalent EXP/Ore tiers. Satisfied items display green, and unsatisfied ones display red.
+- **Dynamic Rarity Styling**: CSS variables are used for rarity-based background colors (`bg-rarity-1` through `bg-rarity-5`). Card headers dynamically shift their linear background gradients based on character rarity: a signature purple for 4★ and a signature gold-brown for 5★.
 - **High-Density Compact Grid Layout**: Material grids in planner cards render as highly dense grids utilizing `50px` width cells with a strict aspect ratio. Numbers are structured cleanly above the graphic assets, maximizing display room (supporting 5+ columns per row).
 - **Centered Artwork Crop Zoom**: To isolate transparent margins of standard asset files, material images employ `transform: scale(1.35)` and `transform-origin: center` properties, with the parent boundaries clipped via `overflow: hidden`, guaranteeing highly focused in-game artwork.
 - **Strict Domain Material Sorting**: Calculations and grids strictly sort required materials by game category (Mora ➔ XP ➔ Gems ➔ Specialties ➔ Drops ➔ Boss ➔ Weekly ➔ Crowns), maintaining domain expectations.
 - **Lazy Mapping**: The app merges static metadata (`materialMap`) with dynamic user data (`materials`) at render time.
-- **Constellation Boost Presentation Pattern**: To mirror native game behavior, talent levels displayed in selection and input screens are dynamically adjusted (+3 to Elemental Skill for C3+, +3 to Elemental Burst for C5+). These are visually highlighted with a premium sky blue theme. In the input controllers, the UI maps display values back to standard **base** talent levels before state storage, ensuring calculations and schema are cleanly separated from constellation logic.
-- **Locked Center Grid Page Header Navigation**: Swaps the `.header` from a flexbox layout to a 3-column CSS Grid (`1fr auto 1fr`). This forces the tab navigation links to sit strictly in the mathematical center of the viewport. Sync controls are aligned right via `justify-content: flex-end` and `justify-self: end`. When the cloud sync badge sizes change dynamically during saving operations, the width differences are swallowed within the right column and do not shift the center tabs.
-- **Dynamic Header Text Scaling & Aligned Leveled Cards**: Planner grid cards keep their headers strictly aligned at a fixed `height: '46px'` to maintain a visually unified grid level. Very long character and weapon names are gracefully wrapped and fitted using dynamic font scaling (`fontScale` of `0.8rem` vs `0.95rem` vs `1.15rem` based on character length) and multiline clamp styles (`display: '-webkit-box'`, `WebkitLineClamp: 2`, `lineHeight: '1.15'`), preventing overlapping or out-of-bounds spillages.
+- **Constellation Boost Presentation Pattern**: To mirror native game behavior, talent levels displayed in selection and input screens are dynamically adjusted (+3 to Elemental Skill for C3+, +3 to Elemental Burst for C5+). In the input controllers, the UI maps display values back to standard **base** talent levels before state storage, ensuring calculations and schema are cleanly separated from constellation logic.
+- **Locked Center Grid Page Header Navigation**: Swaps the `.header` from a flexbox layout to a 3-column CSS Grid (`1fr auto 1fr`). This forces the tab navigation links to sit strictly in the mathematical center of the viewport, ensuring dynamic sync controls on the right do not shift the center tabs.
+- **Dynamic Header Text Scaling & Aligned Leveled Cards**: Planner grid cards keep their headers strictly aligned at a fixed `height: '46px'`. Very long names are gracefully wrapped and fitted using dynamic font scaling (`fontScale` of `0.8rem` vs `0.95rem` vs `1.15rem`) and multiline clamp styles.
 - **Planner Tab Default Landing State**: The initial tab state defaults to `'planner'` rather than `'inventory'`, prioritizing active visual progression cards immediately upon page loads and browser refreshes.
 - **Contiguous Badge Filter Groups with Locked Geometry**:
   * Unified segment filter groups are wrapped inside a contiguous `.filter-button-group` flexbox container, sharing borders perfectly.
   * Static button widths (`96px`/`92px`/`88px`/`110px`/`135px`) and a locked `.badge-count-pill` width (`44px`) are strictly enforced via `!important` overrides in `App.css` to freeze filter positions and eliminate layout shifts when selection states update.
   * Subtle transparent backgrounds (`rgba(X, Y, Z, 0.15)`) glow beautifully with solid bottom borders matching their respective themed elements, preserving high-fidelity native icons without stencils.
 - **Multi-Tier Level sorting Cascade (Level > Rarity > Alphabetic)**:
-  * Restructures characters list ordering under a three-tiered tie-breaking rule. Sharing identical levels delegates sorting to native character rarity (respecting the active sort order multiplier), and then to display names alphabetically (A-Z ascending) for clean visual grids.
+  * Restructures characters list ordering under a three-tiered tie-breaking rule: Level ➔ Rarity ➔ Display name (A-Z) fallback.
 - **Weapon Selection UI Parity & Overlays**:
   * *Layout Parity*: Shares the `.char-select-grid`, `.char-select-item`, and `.char-select-name` styling directly with character selection grids.
   * *Gold Refinement Badges*: Displays refinement gold badges (`R1`-`R5` themed with `#ffcc66`) positioned dynamically in the top-left of the icon box using `.char-select-level-container`.
-  * *Equipped Character Banners*: Overlays a semi-translucent dark badge at the bottom-center of the icon wrapper (`.material-icon-wrapper`) indicating the name of the equipped character using that weapon, hiding the badge entirely for unequipped inventory weapons.
+  * *Equipped Character Banners*: Overlays a semi-translucent dark badge at the bottom-center of the icon wrapper indicating the name of the equipped character using that weapon.
   * *Silent Silhouette Filters*: Weapon category filters use standard web icons with a CSS silhouette filter (`brightness(0) invert(1)`) to display a crisp soft-white in the inactive state and a warm sepia/gold glow when isolated/active.
   * *Search & Star/Abc Sorting Toggle*: Positions sorting toggles (`Star/Abc`) next to the top search bar, using Star as the default sort cascade.
-  * *2-Line Text Name Wrapping*: Employs vertical Webkit clamping to wrap long weapon names to exactly two lines, centered cleanly, inside a fixed-height (`34px`) text wrapper to keep grid alignment perfectly straight.
+  * *2-Line Text Name Wrapping*: Employs vertical Webkit clamping to wrap long weapon names to exactly two lines, centered cleanly, inside a fixed-height (`34px`) text wrapper.
 - **Dynamic Content-Snug Grid Layout**: The Quick Inventory Modal utilizes custom `fit-content` layout behaviors alongside dynamic `.grid-cols-X` rules to render exactly $2 \times 2$, $3 \times 2$, or $3 \times 3$ grid arrays based on resolved section sizes, preventing black margin blank spaces or pushed fields.
 - **Bidirectional State Value Sync**: Bidirectional state maps bind "Inventory" and "Add/Subtract" input fields live, continuously propagating delta offsets ($\text{Delta} = \text{Inventory} - \text{Original}$) and clamping minimum levels safely to $0$ on negative bounds.
 
@@ -206,6 +226,7 @@ A reusable modal that intercepts mouse click events on material requirement grid
 - **Bidirectional Value Binding**: Input changes dynamically re-evaluate total deficits and live sequentially allocated stock in the background, updating active calculations instantly.
 - **Mora Leyline Quick-Action Trigger**: Modifies current Mora state by adding $60,000$ to both draft and delta states.
 - **Autosave Interceptors**: Binds saving clicks directly to active profile persistence loops (LocalStorage or debounced Supabase sync workers).
+- **Global Tooltips**: Renders details/sources on hovers.
 
 ## Directory Structure
 
@@ -213,4 +234,3 @@ A reusable modal that intercepts mouse click events on material requirement grid
 - `/public`: Static assets including the processed `/icons` folder.
 - `/resources`: Data processing scripts and architecture documentation.
 - `/`: Configuration files, linting guidelines, environment setups, and workflow builds.
-
