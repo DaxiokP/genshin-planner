@@ -61,6 +61,12 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
   * Uses left and right chevrons to navigate days of the week, displaying the day's name (or "Today" for the active server day).
   * Prevents navigating back to past days by programmatically disabling the left chevron at index 0.
   * Correctly groups and pools all farmable missing materials under Sunday catch-all configurations.
+- **Planner-Only Quick Inventory Modal**:
+  * Integrates a localized, context-aware quick editor launched directly by clicking material requirement icons across Character/Weapon cards and summary panels.
+  * Displays title values using pure material/boss names (e.g. removing the "Quick Edit:" prefix).
+  * Implements bidirectional live math updates between *Inventory* and *Add/Subtract* (Delta) fields, preventing key locking, supporting $60,000$ Mora leyline triggers, and clamping at $0$.
+  * Structures section columns using content-snug flex wrappers and dynamic grids ($3\text{--}4$ groups $\rightarrow 2 \times 2$, $5\text{--}6$ groups $\rightarrow 3 \times 2$, $7\text{--}9$ groups $\rightarrow 3 \times 3$) to maintain extreme visual symmetry and tightness.
+  * Preserves global mouse tracking tooltips on modal item icon hovers.
 ## Coding Conventions for Agents
 - **Consistency**: Keep core state coordinates and layout structures in `App.tsx`, and split standalone visual forms/modals into `src/components/` (e.g. `AuthModal.tsx`).
 - **Styling**: Prefer vanilla CSS in `App.css` and use standard CSS variables. Ensure new components maintain the glassmorphic dark theme, incorporating premium transition speeds and active state highlighting.

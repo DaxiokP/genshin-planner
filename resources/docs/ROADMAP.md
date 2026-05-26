@@ -10,7 +10,7 @@ This document tracks the project milestones and future development plans.
 
 ---
 
-## Phase 1: Ownership & Planner Core (In Progress)
+## Phase 1: Ownership & Planner Core (Completed)
 Goal: Move from a static inventory view to a dynamic planning tool.
 
 - [x] **Own Characters Implementation**
@@ -47,13 +47,9 @@ Goal: Stability, cross-device persistence, and shared account workflows.
     - Compound primary key constraints on `(user_id, profile_name)` to allow flexible profile rows.
     - Automated GitHub Actions deployment workflows injecting Supabase keys for ready-to-run builds on GitHub Pages.
 
-## Phase 3: Global Databases & Requirements (In Progress)
+## Phase 3: Global Databases & Requirements (Completed)
 Goal: Expanding the scope of planning.
 
-- [ ] **Global Character DB**
-    - Allow adding characters that aren't in the user's import file.
-- [ ] **Global Weapon DB**
-    - Allow adding any weapon to the planner.
 - [x] **Requirements Visualization**
     - Show the exact materials needed to level up a character or weapon with full cost tracking and inventory integrations.
 - [x] **Inventory-Aware Upgrades & Crafting Simulations**
@@ -61,9 +57,8 @@ Goal: Expanding the scope of planning.
     - Added top-down Cascading requirement propagation and bottom-up craft simulators.
     - Integrated dynamic progress bars, all-tier alchemical bonus sliders, and a final Mora/EXP verification modal.
 
-
 ## Phase 4: Advanced UX & Optimization (Completed)
-Goal: Filtering, refinement, and routes.
+Goal: Filtering, refinement, and optimization.
 
 - [x] **Enhanced Filtering & Contiguous Badge Groups**
     - Filter characters and weapons by weapon type, element, and rarity, all selected by default.
@@ -83,13 +78,70 @@ Goal: Filtering, refinement, and routes.
     - Consume materials and craftable stock sequentially based on active priority order.
     - Compile a left-side aggregate Summary panel listing missing items and mapping them to weekly domain farming schedules.
     - Real-time recalculations when cards are reordered, edited, or toggled on standby.
+- [x] **Planner-Only Quick Inventory Modal**
+    - Click material requirement icons on Character/Weapon planner cards and global summary tiles to edit inventory counts or delta values in place.
+    - Implemented content-snug containers and dynamic grid rules ($3\text{--}4$ groups $\rightarrow 2 \times 2$, $5\text{--}6$ groups $\rightarrow 3 \times 2$, $7\text{--}9$ groups $\rightarrow 3 \times 3$) for layout symmetry.
+    - Added bi-directional synchronization mathematics, input-clamping safety bounds, a quick-action $+60,000$ Mora leyline trigger, and global mouse-tracking tooltip integration.
+
+## Phase 5: Optimization Algorithms (In Progress)
+Goal: Optimization Algorithms for the planner, and improving the user experience.
+
+- [ ] **Planner improves**
+    - Remove maxed out characters from the select target modal, since you upgrade/ level up characters which are already at max level and max talents
+    - Update planner on Good file import - If a user imports a good file, the characters and weapons on the planner should automatically update and match the values from the import file
+    - Mouse hover over material improves (sticky tooltip so it does not block other UI components)
+    - Improve weapon card to match the character card style (same icon and labels placementes)
+- [ ] **Improve Inventory page**
+    - Better sorting and filtering
+    - Better UI (button to clear import, import new file, etc)
+- [ ] **Manage planner priority**
+    - Change the priority modal to a different layout
+- [ ] **Allow "Custom" Character or Weapons on the planner**
+    - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
+    - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)
+- [ ] **Toggle to highlight "Ready to upgrade" characters/weapons**
+    - If a toggle is enabled, it will highlight characters/weapons that are "Ready to upgrade"
+
+## Phase 6: Add characters/weapons not in Good file (In Progress)
+Goal: Allow users to add characters and weapons to the planner that aren't in their import file.
+
+- [ ] **Add Character not in Good file**
+    - Allow adding characters that aren't in the user's import file but are characters from the game
+- [ ] **Add Weapon not in Good file**
+    - Allow adding weapons that aren't in the user's import file but are weapons from the game
+
+## Phase 7: Keep track with game releases (In Progress)
+Goal: Keep track with the new characters and weapons that are released in the game, and update the web page to reflect the changes.
+
+- [ ] **Update character data**
+    - Get the latest character data from the game and update the web page to reflect the changes.
+- [ ] **Update weapon data**
+    - Get the latest weapon data from the game and update the web page to reflect the changes.
+
+
+## Phase X: Future Ideas
+Goal: Implement additional features that are not related to the planner, but would be useful for users.
+
+- [ ] **Add week schedule view**
+    - Create a new button+modal that shows a week timeline that shows which character or weapon is available to farm for materials on that specific day
+        - Example: Monday - Character A and Weapon B need materials that can be farmed on Monday, so show Character A and Weapon B in a list under Monday
+        - Example: Tuesday - Character C and Weapon D need materials that can be farmed on Tuesday, so show Character C and Weapon D in a list under Tuesday
+        - if we hover over a character/weapon card, it should show a tooltip that shows which materials we can farm
 - [ ] **Optimization Algorithms**
-    - (Planned) Auto-calculate the best domain farming route based on current priorities.
+    - Auto-calculate the best domain farming route based on current priorities.
+    - Best days to farm for materials for characters and weapons.
+- [ ] **Inspect characters and weapons**
+    - Allow users to inspect a character and see their stats, talents, weapon details, skill scaling and artifact builds.
+    - This requires us to get the character data from the import file, and use our own API for the character data.
+- [ ] **Artifacts**
+    - Add a section for artifacts where users can track their artifacts.
+- [ ] **Global Character DB**
+    - Add all characters to the a different page, where we can check the material and talent book requirements for each character without needing to import the character first. 
+- [ ] **Global Weapon DB**
+    - Add all weapons to the a different page, where we can check the material requirements for each weapon without needing to import the weapon first.
 
 ---
 
-## Future Ideas
+## Notes & Ideas
 - "Ready to Ascend" notifications.
-- Visual breakdown of "Mora needed" vs "Mora owned".
-- Optimization Algorithms (Auto-calculate best domain farming routes).
 

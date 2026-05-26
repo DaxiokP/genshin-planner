@@ -166,6 +166,8 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
   * *Silent Silhouette Filters*: Weapon category filters use standard web icons with a CSS silhouette filter (`brightness(0) invert(1)`) to display a crisp soft-white in the inactive state and a warm sepia/gold glow when isolated/active.
   * *Search & Star/Abc Sorting Toggle*: Positions sorting toggles (`Star/Abc`) next to the top search bar, using Star as the default sort cascade.
   * *2-Line Text Name Wrapping*: Employs vertical Webkit clamping to wrap long weapon names to exactly two lines, centered cleanly, inside a fixed-height (`34px`) text wrapper to keep grid alignment perfectly straight.
+- **Dynamic Content-Snug Grid Layout**: The Quick Inventory Modal utilizes custom `fit-content` layout behaviors alongside dynamic `.grid-cols-X` rules to render exactly $2 \times 2$, $3 \times 2$, or $3 \times 3$ grid arrays based on resolved section sizes, preventing black margin blank spaces or pushed fields.
+- **Bidirectional State Value Sync**: Bidirectional state maps bind "Inventory" and "Add/Subtract" input fields live, continuously propagating delta offsets ($\text{Delta} = \text{Inventory} - \text{Original}$) and clamping minimum levels safely to $0$ on negative bounds.
 
 ### 11. Global Inventory Allocation & Summary Panel (`src/utils/plannerCalculator.ts`, `src/App.tsx`)
 
@@ -197,7 +199,13 @@ Integrated at the top of the Summary panel, this component shows what materials 
   - Material tiles inside the tracker use the exact same `.material-cell`, `.material-icon-wrapper`, and `.material-icon` layout styles as the general Missing Materials categories.
   - This ensures icon borders, rarity backgrounds, and 50px dimensions perfectly align with the rest of the application.
 
+### 13. Planner-Only Quick Inventory Modal (`src/components/QuickInventoryModal.tsx`)
 
+A reusable modal that intercepts mouse click events on material requirement grids inside character cards, weapon cards, or the Planner Summary panel. It enables instant editing of inventory stats without leaving the current progression view:
+- **Automatic Group Resolution**: Groups boss materials, weekly items, and related elemental gem families dynamically based on game data.
+- **Bidirectional Value Binding**: Input changes dynamically re-evaluate total deficits and live sequentially allocated stock in the background, updating active calculations instantly.
+- **Mora Leyline Quick-Action Trigger**: Modifies current Mora state by adding $60,000$ to both draft and delta states.
+- **Autosave Interceptors**: Binds saving clicks directly to active profile persistence loops (LocalStorage or debounced Supabase sync workers).
 
 ## Directory Structure
 

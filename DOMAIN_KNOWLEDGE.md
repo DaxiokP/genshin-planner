@@ -105,4 +105,38 @@ Weapon leveling requires enhancement ores. There are three tiers of enhancement 
 * **Ore Equivalence Rule**: If a player lacks the required number of Mystic Enhancement Ores but has enough total equivalent experience across all three ore tiers, the Mystic Enhancement Ore requirement is treated as **satisfied** (colored green).
 * **Greedy Deduction Pattern**: Deficit Mystic Ores are greedily covered by consuming Fine Enhancement Ores first, and standard Enhancement Ores second, clamping base counts cleanly at `0`.
 
+---
 
+## Planner-Only Quick Inventory Modal
+
+The application implements a localized, inventory-aware quick editor called the **Planner-Only Quick Inventory Modal**. This allows users to update material inventory or delta metrics seamlessly by clicking any required-material icon within Character Cards, Weapon Cards, or global Planner Summary tiles.
+
+### 1. Context Resolution & Title Structure
+When an icon is clicked, the modal determines its context to build a coherent group representation:
+* **Mora & EXP Items**: Resolve into localized cards featuring single-row item chains.
+* **Boss Materials (Weekly / Normal)**: Group the world boss items together with all matched elemental gem families (resolved dynamically from `src/maps/bossMappings.json`). The modal title displays only the boss encounter name (e.g. `Shouki no Kami, the Prodigal` or `Solitary Suanni`).
+* **Crafting Materials**: Resolve standard multi-tier alchemical ingredients into unified high-to-low rarity rows (e.g., Arrowheads or Insignias).
+* **Specialties & Rare Items**: Resolve singletons into clean, centered item cards.
+
+### 2. Flexible Grid Layout System
+To prevent visual stretching and black space gaps, the groups inside the modal wrapper are laid out in a tight, content-snug grid system:
+* **3 to 4 groups**: Organizes into a **2x2 grid** (`.grid-cols-2`).
+* **5 to 6 groups**: Organizes into a **3x2 grid** (`.grid-cols-3`).
+* **7 to 9 groups**: Organizes into a **3x3 grid** (`.grid-cols-3`).
+* **Snug Sizing**: Flex and grid containers use `.width-fit-content` rules to automatically shrink wrapping panels snugly to fit their exact material columns (e.g. a narrow 1-item boss material card alongside wider 4-item gem families).
+
+### 3. Bi-directional Input Synchronization
+Both "Inventory" and "Add/Subtract" (Delta) inputs are updated in real-time using bidirectional state synchronization formulas:
+* **Inventory Changes**: Modifying the *Inventory* field automatically computes:
+  $$\text{Delta} = \text{Inventory} - \text{Original}$$
+* **Delta Changes**: Modifying the *Add/Subtract* field automatically computes:
+  $$\text{Inventory} = \max(0, \text{Original} + \text{Delta})$$
+* **Clamping**: Negative inventory drafts are clamped at `0` automatically, re-evaluating the delta mathematically. Empty inputs are treated as `0` without causing cursor locking.
+
+### 4. Mora Leyline Action
+Mora editing features a quick-action helper button to simulate a Leyline crop run:
+* **Leyline Amount**: Adds `+60,000` Mora to both the draft *Inventory* count and *Add/Subtract* delta value instantly.
+
+### 5. Interaction Integrity
+* **Tooltips**: Retains global mouse hover tracking so users can review individual material cards and sources by hovering over any material icon inside the modal.
+* **Autosave**: Saving is debounced and synchronized automatically with active profile persistence configurations (local storage guest or cloud database sync).
