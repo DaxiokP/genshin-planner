@@ -159,6 +159,14 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
   - Prompts the user to verify/correct estimated resource remaining values before final mutation.
   - Uses `calculateRemainingExpBooks` or `calculateRemainingOres` to greedily deduct resources from highest to lowest tier.
 
+### 11. GOOD Import Planner Reconciliation (`src/utils/plannerImportSync.ts`)
+
+A standalone utility module that keeps the planned items list in sync whenever the user imports a new GOOD JSON file:
+- **Function**: `reconcilePlannedItemsWithGOOD(plannedItems, goodData)`
+- **Logic**: Matches each planned character (by `key`) and weapon (by `weaponIndex`) to its counterpart in the new import. If the imported level/talents meet or exceed the plan's current state, the plan's `current` values are advanced to match.
+- Plans are never duplicated — existing entries are updated in place, preserving priority order and `enabled` state.
+- Called inside `processFile()` in `App.tsx` immediately after a successful GOOD import parse.
+
 ## Design Patterns
 
 - **Local-First with Cloud Sync**: All processing and rendering occur dynamically on the client, with background syncing to Supabase for authenticated users, combining low-latency responses with multi-device persistence.
@@ -188,8 +196,12 @@ The instant upgrade confirm dialog is replaced by a two-stage alchemical and res
   * *2-Line Text Name Wrapping*: Employs vertical Webkit clamping to wrap long weapon names to exactly two lines, centered cleanly, inside a fixed-height (`34px`) text wrapper.
 - **Dynamic Content-Snug Grid Layout**: The Quick Inventory Modal utilizes custom `fit-content` layout behaviors alongside dynamic `.grid-cols-X` rules to render exactly $2 \times 2$, $3 \times 2$, or $3 \times 3$ grid arrays based on resolved section sizes, preventing black margin blank spaces or pushed fields.
 - **Bidirectional State Value Sync**: Bidirectional state maps bind "Inventory" and "Add/Subtract" input fields live, continuously propagating delta offsets ($\text{Delta} = \text{Inventory} - \text{Original}$) and clamping minimum levels safely to $0$ on negative bounds.
+- **Stable Right-Anchored Tooltip System**: Material tooltips anchor to the right edge of the hovered tile using a bounding-rect snapshot (`x = rect.right + 12`, `y = rect.top`) fired on `onMouseEnter`. The `<TooltipBox>` component in `App.tsx` self-clamps its rendered position within the viewport via `Math.min` guards. All `onMouseMove` → `setMousePos` handlers are absent to eliminate layout thrashing and tooltip jitter.
+- **Symmetric Planner Card Layout**: Both character and weapon planner card body rows use a fixed `height: '146px'` container. The 120×120px avatar frames center symmetrically within that row, and the levels/talents column uses `justifyContent: 'flex-start'` + `height: '100%'` so text aligns from the top identically across card types. This ensures the divider line and "Required Materials" header pixel-align across adjacent cards.
+- **Weapon-Rarity Icon Gradients**: Weapon avatar frames in the planner use dedicated `.weapon-rarity-*` CSS classes (defined in `PlannerTab.css`) whose gradient values intentionally mirror the card header `headerGradient` inline values, providing visual cohesion between the icon background and the nameplate banner above it.
+- **Show Done Selection Filter**: The Character Selection Modal defaults to hiding characters whose current state already meets or exceeds their planned target. A "Show Done" toggle reveals them in a dimmed state with a DONE badge overlay. This prevents cluttering the selection grid with already-completed plans.
 
-### 11. Global Inventory Allocation & Summary Panel (`src/utils/plannerCalculator.ts`, `src/App.tsx`)
+### 12. Global Inventory Allocation & Summary Panel (`src/utils/plannerCalculator.ts`, `src/App.tsx`)
 
 To handle complex resource planning across multiple items, the app implements a global sequential allocation engine:
 - **Sequential Resource Consumption**: 
@@ -202,7 +214,7 @@ To handle complex resource planning across multiple items, the app implements a 
 - **Domain Schedule Mapping**: The Summary panel maps missing materials to their respective weekly in-game domains, enabling players to see at a glance which days they need to farm (e.g., Monday/Thursday, Tuesday/Friday, Wednesday/Saturday).
 - **Reactive Recalculations**: All allocation states, sufficiency highlights (green/red borders), and summary listings are updated instantly in the UI when planner items are reordered, toggled on/off, or edited.
 
-### 12. Daily Domains Materials Farmable Tracker (`src/components/DailyDomainsTracker.tsx`)
+### 13. Daily Domains Materials Farmable Tracker (`src/components/DailyDomainsTracker.tsx`)
 
 Integrated at the top of the Summary panel, this component shows what materials are farmable today and in upcoming days:
 - **Server Reset Timezone (Portugal WET/WEST aware)**: 
@@ -219,7 +231,7 @@ Integrated at the top of the Summary panel, this component shows what materials 
   - Material tiles inside the tracker use the exact same `.material-cell`, `.material-icon-wrapper`, and `.material-icon` layout styles as the general Missing Materials categories.
   - This ensures icon borders, rarity backgrounds, and 50px dimensions perfectly align with the rest of the application.
 
-### 13. Planner-Only Quick Inventory Modal (`src/components/QuickInventoryModal.tsx`)
+### 14. Planner-Only Quick Inventory Modal (`src/components/QuickInventoryModal.tsx`)
 
 A reusable modal that intercepts mouse click events on material requirement grids inside character cards, weapon cards, or the Planner Summary panel. It enables instant editing of inventory stats without leaving the current progression view:
 - **Automatic Group Resolution**: Groups boss materials, weekly items, and related elemental gem families dynamically based on game data.

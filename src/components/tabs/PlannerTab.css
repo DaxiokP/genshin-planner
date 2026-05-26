@@ -138,3 +138,25 @@
   color: var(--text-secondary);
 }
 
+/* Rarity Backgrounds matching the Card Headers in Planner Tab */
+.weapon-rarity-5 {
+  background: linear-gradient(160deg, #8c6a4a 0%, #735438 100%) !important;
+}
+
+.weapon-rarity-4 {
+  background: linear-gradient(160deg, #7b6a99 0%, #5a4b78 100%) !important;
+}
+
+.weapon-rarity-3 {
+  background: linear-gradient(160deg, #3d3f45 0%, #2e3035 100%) !important;
+}
+
+.weapon-rarity-2 {
+  background: linear-gradient(160deg, #3d3f45 0%, #2e3035 100%) !important;
+}
+
+.weapon-rarity-1 {
+  background: linear-gradient(160deg, #3d3f45 0%, #2e3035 100%) !important;
+}
+
+

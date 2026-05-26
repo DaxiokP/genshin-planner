@@ -20,6 +20,17 @@ interface CharacterSelectionModalProps {
   onSelect: (characterKey: string) => void;
 }
 
+const isDoneCharacter = (char: GoodCharacter) => {
+  const talents = char.talent || { auto: 1, skill: 1, burst: 1 };
+  return (
+    char.level >= 90 &&
+    char.ascension >= 6 &&
+    (talents.auto || 1) >= 10 &&
+    (talents.skill || 1) >= 10 &&
+    (talents.burst || 1) >= 10
+  );
+};
+
 export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = ({
   isOpen,
   onClose,
@@ -29,6 +40,7 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'stars' | 'name'>('stars');
   const [filterElement, setFilterElement] = useState<string | null>(null);
+  const [showDone, setShowDone] = useState(false);
 
   const elements = ['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo'];
 
@@ -54,8 +66,22 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
       });
     }
 
+    const totalMatching = result.length;
+    const doneCount = result.filter(isDoneCharacter).length;
+    const allMatchingAreDone = totalMatching > 0 && doneCount === totalMatching;
+
+    // Filter out done characters if showDone is false
+    if (!showDone) {
+      result = result.filter(char => !isDoneCharacter(char));
+    }
+
     // Sort
     result.sort((a, b) => {
+      // Put completed characters at the end when showing them
+      const doneA = isDoneCharacter(a);
+      const doneB = isDoneCharacter(b);
+      if (doneA !== doneB) return doneA ? 1 : -1;
+
       const infoA = lookupChar(a.key);
       const infoB = lookupChar(b.key);
       const nameA = infoA?.name || a.key;
@@ -73,10 +99,15 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
       }
     });
 
-    return result;
-  }, [ownedCharacters, filterElement, searchQuery, sortBy]);
+    return {
+      characters: result,
+      allMatchingAreDone
+    };
+  }, [ownedCharacters, filterElement, searchQuery, sortBy, showDone]);
 
   if (!isOpen) return null;
+
+  const { characters: list, allMatchingAreDone } = filteredAndSortedCharacters;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -114,6 +145,13 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
               <span style={{ margin: '0 4px', opacity: 0.5 }}>/</span>
               <span style={{ fontWeight: sortBy === 'name' ? 'bold' : 'normal', color: sortBy === 'name' ? '#fff' : 'inherit' }}>Abc</span>
             </button>
+
+            <button 
+              className={`modal-toggle-done-btn ${showDone ? 'active' : ''}`}
+              onClick={() => setShowDone(prev => !prev)}
+            >
+              <span>Show Done</span>
+            </button>
           </div>
 
           <div className="modal-filter-elements">
@@ -131,21 +169,24 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
         </div>
 
         <div className="modal-content">
-          {filteredAndSortedCharacters.length === 0 ? (
+          {list.length === 0 ? (
             <div style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
-              No characters found.
+              {allMatchingAreDone 
+                ? "All matching characters completed! Toggle 'Show Done' to view them." 
+                : "No characters found."}
             </div>
           ) : (
             <div className="char-select-grid">
-              {filteredAndSortedCharacters.map(char => {
+              {list.map(char => {
                 const charInfo = lookupChar(char.key);
                 if (!charInfo) return null;
                 const rarity = charInfo.rarity || 4;
+                const isDone = isDoneCharacter(char);
 
                 return (
                   <div
                     key={char.key}
-                    className="char-select-item"
+                    className={`char-select-item ${isDone ? 'done' : ''}`}
                     onClick={() => onSelect(char.key)}
                   >
                     <div className={`material-icon-wrapper bg-rarity-${rarity}`} style={{ position: 'relative' }}>
@@ -165,6 +206,11 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
                           }
                         }}
                       />
+                      {isDone && (
+                        <div className="char-select-done-badge" title="Completed">
+                          ✓
+                        </div>
+                      )}
                       <div className="char-select-level-container">
                         <span className="char-select-level-text">Lv. {char.level}</span>
                         <span className="char-select-constellation">C{char.constellation || 0}</span>

@@ -94,9 +94,14 @@ export const SummaryPanel: React.FC<SummaryPanelProps> = ({
         key={item.key}
         className="summary-material-tile"
         onClick={() => handleOpenQuickInventory(item.key)}
-        onMouseEnter={() => originalEntry && setHoveredItem({ key: item.key, data: originalEntry })}
+        onMouseEnter={(e) => {
+          if (originalEntry) {
+            setHoveredItem({ key: item.key, data: originalEntry });
+            const rect = e.currentTarget.getBoundingClientRect();
+            setMousePos({ x: rect.right + 12, y: rect.top });
+          }
+        }}
         onMouseLeave={() => setHoveredItem(null)}
-        onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
         style={{ cursor: 'pointer' }}
       >
         <div className="summary-tile-count">

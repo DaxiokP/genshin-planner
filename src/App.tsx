@@ -24,6 +24,7 @@ import { PlannerTab } from './components/tabs/PlannerTab';
 import { CharactersTab } from './components/tabs/CharactersTab';
 import { WeaponsTab } from './components/tabs/WeaponsTab';
 import { InventoryTab } from './components/tabs/InventoryTab';
+import { syncPlannedItemsWithGoodImport } from './utils/plannerImportSync';
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
 const characterMapRaw: Record<string, any> = characterMapData as any;
@@ -222,10 +223,18 @@ function App() {
           return;
         }
 
+        const synchronizedPlannedItems = syncPlannedItemsWithGoodImport(
+          plannedItems,
+          data.characters || [],
+          data.weapons || [],
+          weapons
+        );
+
         setMaterials(data.materials);
         setCharacters(data.characters || []);
         setWeapons(data.weapons || []);
         setArtifacts(data.artifacts || []);
+        setPlannedItems(synchronizedPlannedItems);
       } catch (err) {
         setError('Failed to parse JSON file.');
         console.error(err);
@@ -709,36 +718,10 @@ function App() {
 
       {/* Global Mouse Tracker Tooltip */}
       {hoveredItem && (
-        <div
-          className="tooltip-box global"
-          style={{
-            left: mousePos.x + 20,
-            top: mousePos.y + 15,
-            position: 'fixed'
-          }}
-        >
-          <div className="tooltip-header">
-            <span className="tooltip-name">{hoveredItem.data.name || hoveredItem.key}</span>
-            <div className={`tooltip-icon-wrapper bg-rarity-${hoveredItem.data.rarity || 1}`}>
-              <img
-                src={hoveredItem.data.localExt ? `${import.meta.env.BASE_URL}icons/${hoveredItem.data.id}${hoveredItem.data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`}
-                alt=""
-                onError={(e) => {
-                  e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
-                }}
-              />
-            </div>
-          </div>
-          {hoveredItem.data.sources && hoveredItem.data.sources.filter((src: string) => !src.includes('Placeholder')).length > 0 && (
-            <div className="tooltip-sources">
-              {hoveredItem.data.sources
-                .filter((src: string) => !src.includes('Placeholder'))
-                .map((src: string, i: number) => (
-                  <div key={i} className="tooltip-source-item">{src}</div>
-                ))}
-            </div>
-          )}
-        </div>
+        <TooltipBox
+          hoveredItem={hoveredItem}
+          mousePos={mousePos}
+        />
       )}
 
       <CharacterSelectionModal
@@ -964,3 +947,79 @@ function App() {
 }
 
 export default App;
+
+interface TooltipBoxProps {
+  hoveredItem: { key: string; data: any };
+  mousePos: { x: number; y: number };
+}
+
+const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos }) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [pos, setPos] = React.useState({ x: mousePos.x, y: mousePos.y });
+  const [measured, setMeasured] = React.useState(false);
+
+  React.useLayoutEffect(() => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width || 220;
+    const height = rect.height || 150;
+
+    let x = mousePos.x;
+    let y = mousePos.y;
+
+    // If it overflows right, render it to the left of the anchor
+    if (x + width > window.innerWidth - 16) {
+      // Shift left by width + 24 to place on the left of the material tile
+      x = mousePos.x - width - 24;
+      if (x < 16) {
+        x = window.innerWidth - width - 16;
+      }
+    }
+
+    if (y + height > window.innerHeight - 16) {
+      y = window.innerHeight - height - 16;
+    }
+
+    if (x < 16) x = 16;
+    if (y < 16) y = 16;
+
+    setPos({ x, y });
+    setMeasured(true);
+  }, [mousePos, hoveredItem]);
+
+  return (
+    <div
+      ref={ref}
+      className="tooltip-box global"
+      style={{
+        left: pos.x,
+        top: pos.y,
+        position: 'fixed',
+        visibility: measured ? 'visible' : 'hidden',
+        pointerEvents: 'none'
+      }}
+    >
+      <div className="tooltip-header">
+        <span className="tooltip-name">{hoveredItem.data.name || hoveredItem.key}</span>
+        <div className={`tooltip-icon-wrapper bg-rarity-${hoveredItem.data.rarity || 1}`}>
+          <img
+            src={hoveredItem.data.localExt ? `${import.meta.env.BASE_URL}icons/${hoveredItem.data.id}${hoveredItem.data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`}
+            alt=""
+            onError={(e) => {
+              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
+            }}
+          />
+        </div>
+      </div>
+      {hoveredItem.data.sources && hoveredItem.data.sources.filter((src: string) => !src.includes('Placeholder')).length > 0 && (
+        <div className="tooltip-sources">
+          {hoveredItem.data.sources
+            .filter((src: string) => !src.includes('Placeholder'))
+            .map((src: string, i: number) => (
+              <div key={i} className="tooltip-source-item">{src}</div>
+            ))}
+        </div>
+      )}
+    </div>
+  );
+};

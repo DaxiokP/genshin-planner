@@ -348,9 +348,14 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
                               <div 
                                 key={`header-${key}`} 
                                 className={`quick-inventory-icon-cell ${isMoraItem ? 'mora-cell' : ''}`}
-                                onMouseEnter={() => originalEntry && setHoveredItem({ key, data: originalEntry })}
+                                onMouseEnter={(e) => {
+                                  if (originalEntry) {
+                                    setHoveredItem({ key, data: originalEntry });
+                                    const rect = e.currentTarget.getBoundingClientRect();
+                                    setMousePos({ x: rect.right + 12, y: rect.top });
+                                  }
+                                }}
                                 onMouseLeave={() => setHoveredItem(null)}
-                                onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
                               >
                                 <div className={`bg-rarity-${rarity} quick-inventory-compact-icon-wrapper`}>
                                   <img

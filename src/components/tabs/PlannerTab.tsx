@@ -199,32 +199,52 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
             position: 'relative'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'center' }}>
-              <span style={{ ...fontStyle, width: '32px', textAlign: 'right' }}>{cur}</span>
-              <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.75rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>➔</span>
-              <span style={{
-                color: isBoosted ? boostedColor : (diff ? '#ffcc66' : textColor),
-                fontWeight: isBoosted || diff ? 'bold' : '500',
-                width: '32px',
-                textAlign: 'left',
-                position: 'relative',
-                display: 'inline-flex',
-                alignItems: 'center'
-              }}>
-                {des}
-
-                {/* Label: absolutely positioned on the right to preserve centering */}
-                <span style={{
-                  color: labelColor,
-                  fontSize: '0.75rem',
-                  position: 'absolute',
-                  left: '100%',
-                  marginLeft: '12px',
-                  whiteSpace: 'nowrap',
-                  fontWeight: '500'
-                }}>
-                  {label}
+              {cur === des ? (
+                <span style={{ ...fontStyle, width: '90px', textAlign: 'center', position: 'relative' }}>
+                  {cur}
+                  {/* Label: absolutely positioned on the right to preserve centering */}
+                  <span style={{
+                    color: labelColor,
+                    fontSize: '0.75rem',
+                    position: 'absolute',
+                    left: '100%',
+                    marginLeft: '12px',
+                    whiteSpace: 'nowrap',
+                    fontWeight: '500'
+                  }}>
+                    {label}
+                  </span>
                 </span>
-              </span>
+              ) : (
+                <>
+                  <span style={{ ...fontStyle, width: '32px', textAlign: 'right' }}>{cur}</span>
+                  <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.75rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>➔</span>
+                  <span style={{
+                    color: isBoosted ? boostedColor : (diff ? '#ffcc66' : textColor),
+                    fontWeight: isBoosted || diff ? 'bold' : '500',
+                    width: '32px',
+                    textAlign: 'left',
+                    position: 'relative',
+                    display: 'inline-flex',
+                    alignItems: 'center'
+                  }}>
+                    {des}
+
+                    {/* Label: absolutely positioned on the right to preserve centering */}
+                    <span style={{
+                      color: labelColor,
+                      fontSize: '0.75rem',
+                      position: 'absolute',
+                      left: '100%',
+                      marginLeft: '12px',
+                      whiteSpace: 'nowrap',
+                      fontWeight: '500'
+                    }}>
+                      {label}
+                    </span>
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -261,43 +281,60 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
             justifyContent: 'center',
             width: '90px'
           }}>
-            <span style={{
-              color: 'rgba(255,255,255,0.9)',
-              width: '32px',
-              textAlign: 'right',
-              fontSize: '0.95rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end'
-            }}>
-              {planned.current.level}
-              {hasSingleStar(planned.current.level, planned.current.ascension) && (
-                <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
-              )}
-            </span>
-            <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
-              ➔
-            </span>
-            <span style={{
-              color: planned.desired.level > planned.current.level ? '#ffcc66' : 'inherit',
-              width: '32px',
-              textAlign: 'left',
-              position: 'relative',
-              display: 'inline-flex',
-              alignItems: 'center',
-              fontSize: '0.95rem'
-            }}>
-              {planned.desired.level}
-              {hasSingleStar(planned.desired.level, planned.desired.ascension) && (
+            {planned.current.level === planned.desired.level && planned.current.ascension === planned.desired.ascension ? (
+              <span style={{
+                color: 'rgba(255,255,255,0.9)',
+                fontSize: '0.95rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {planned.current.level}
+                {hasSingleStar(planned.current.level, planned.current.ascension) && (
+                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
+                )}
+              </span>
+            ) : (
+              <>
                 <span style={{
-                  color: '#ffcc66',
-                  fontSize: '0.8rem',
-                  marginLeft: '2px'
+                  color: 'rgba(255,255,255,0.9)',
+                  width: '32px',
+                  textAlign: 'right',
+                  fontSize: '0.95rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end'
                 }}>
-                  ✦
+                  {planned.current.level}
+                  {hasSingleStar(planned.current.level, planned.current.ascension) && (
+                    <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
+                  )}
                 </span>
-              )}
-            </span>
+                <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
+                  ➔
+                </span>
+                <span style={{
+                  color: planned.desired.level > planned.current.level ? '#ffcc66' : 'inherit',
+                  width: '32px',
+                  textAlign: 'left',
+                  position: 'relative',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  fontSize: '0.95rem'
+                }}>
+                  {planned.desired.level}
+                  {hasSingleStar(planned.desired.level, planned.desired.ascension) && (
+                    <span style={{
+                      color: '#ffcc66',
+                      fontSize: '0.8rem',
+                      marginLeft: '2px'
+                    }}>
+                      ✦
+                    </span>
+                  )}
+                </span>
+              </>
+            )}
           </div>
         </div>
 
@@ -557,10 +594,10 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                         flex: 1
                       }}>
                         {/* Symmetrical side-by-side flex row */}
-                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', height: '146px' }}>
                           {/* Enlarged avatar frame */}
                           <div
-                            className={`bg-rarity-${rarity}-solid`}
+                            className={`weapon-rarity-${rarity}`}
                             style={{
                               width: '120px',
                               height: '120px',
@@ -578,7 +615,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             <img
                               src={`${import.meta.env.BASE_URL}weapons/${wInfo.id}.png`}
                               alt={displayName}
-                              style={{ width: '85%', height: '85%', objectFit: 'contain' }}
+                              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 if (!target.dataset.fallback) {
@@ -611,14 +648,15 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                           </div>
 
                           {/* Level indicators */}
-                          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '28px' }}>
+                          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: '100%', paddingRight: '28px' }}>
                             <div style={{
                               display: 'flex',
                               flexDirection: 'column',
                               alignItems: 'center',
-                              justifyContent: 'center',
+                              justifyContent: 'flex-start',
                               fontFamily: "'Outfit', sans-serif",
                               gap: '4px',
+                              marginTop: '0.35rem',
                               width: '100%'
                             }}>
                               <div style={{ color: '#ffcc66', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -639,43 +677,60 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                   justifyContent: 'center',
                                   width: '90px'
                                 }}>
-                                  <span style={{
-                                    color: 'rgba(255,255,255,0.9)',
-                                    width: '32px',
-                                    textAlign: 'right',
-                                    fontSize: '0.95rem',
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-end'
-                                  }}>
-                                    {planned.current.level}
-                                    {hasSingleStar(planned.current.level, planned.current.ascension) && (
-                                      <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
-                                    )}
-                                  </span>
-                                  <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
-                                    ➔
-                                  </span>
-                                  <span style={{
-                                    color: planned.desired.level > planned.current.level ? '#ffcc66' : 'inherit',
-                                    width: '32px',
-                                    textAlign: 'left',
-                                    position: 'relative',
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    fontSize: '0.95rem'
-                                  }}>
-                                    {planned.desired.level}
-                                    {hasSingleStar(planned.desired.level, planned.desired.ascension) && (
+                                  {planned.current.level === planned.desired.level && planned.current.ascension === planned.desired.ascension ? (
+                                    <span style={{
+                                      color: 'rgba(255,255,255,0.9)',
+                                      fontSize: '0.95rem',
+                                      display: 'inline-flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center'
+                                    }}>
+                                      {planned.current.level}
+                                      {hasSingleStar(planned.current.level, planned.current.ascension) && (
+                                        <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
+                                      )}
+                                    </span>
+                                  ) : (
+                                    <>
                                       <span style={{
-                                        color: '#ffcc66',
-                                        fontSize: '0.8rem',
-                                        marginLeft: '2px'
+                                        color: 'rgba(255,255,255,0.9)',
+                                        width: '32px',
+                                        textAlign: 'right',
+                                        fontSize: '0.95rem',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-end'
                                       }}>
-                                        ✦
+                                        {planned.current.level}
+                                        {hasSingleStar(planned.current.level, planned.current.ascension) && (
+                                          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginLeft: '2px' }}>✦</span>
+                                        )}
                                       </span>
-                                    )}
-                                  </span>
+                                      <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.85rem', width: '26px', textAlign: 'center', fontWeight: 'bold' }}>
+                                        ➔
+                                      </span>
+                                      <span style={{
+                                        color: planned.desired.level > planned.current.level ? '#ffcc66' : 'inherit',
+                                        width: '32px',
+                                        textAlign: 'left',
+                                        position: 'relative',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        fontSize: '0.95rem'
+                                      }}>
+                                        {planned.desired.level}
+                                        {hasSingleStar(planned.desired.level, planned.desired.ascension) && (
+                                          <span style={{
+                                            color: '#ffcc66',
+                                            fontSize: '0.8rem',
+                                            marginLeft: '2px'
+                                          }}>
+                                            ✦
+                                          </span>
+                                        )}
+                                      </span>
+                                    </>
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -744,9 +799,14 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                       transition: 'opacity 0.2s ease',
                                     }}
                                     onClick={() => handleOpenQuickInventory(mat.key)}
-                                    onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
+                                    onMouseEnter={(e) => {
+                                      if (originalEntry) {
+                                        setHoveredItem({ key: mat.key, data: originalEntry });
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        setMousePos({ x: rect.right + 12, y: rect.top });
+                                      }
+                                    }}
                                     onMouseLeave={() => setHoveredItem(null)}
-                                    onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
                                   >
                                     <div style={{
                                       height: '20px',
@@ -1002,7 +1062,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                         flex: 1
                       }}>
                         {/* Symmetrical side-by-side flex row */}
-                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', height: '146px' }}>
                           {/* Enlarged avatar frame */}
                           <div
                             className={`bg-rarity-${charMapInfo?.rarity || 4}-solid bg-element-${elementClass}-gradient`}
@@ -1052,7 +1112,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                           </div>
 
                           {/* Centered Levels and Talents Column */}
-                          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingRight: '28px' }}>
+                          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: '100%', paddingRight: '28px' }}>
                             {renderLevelsAndTalents(planned)}
                           </div>
                         </div>
@@ -1119,9 +1179,14 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                       transition: 'opacity 0.2s ease',
                                     }}
                                     onClick={() => handleOpenQuickInventory(mat.key)}
-                                    onMouseEnter={() => originalEntry && setHoveredItem({ key: mat.key, data: originalEntry })}
+                                    onMouseEnter={(e) => {
+                                      if (originalEntry) {
+                                        setHoveredItem({ key: mat.key, data: originalEntry });
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        setMousePos({ x: rect.right + 12, y: rect.top });
+                                      }
+                                    }}
                                     onMouseLeave={() => setHoveredItem(null)}
-                                    onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
                                   >
                                     <div style={{
                                       height: '20px',

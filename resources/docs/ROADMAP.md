@@ -86,16 +86,18 @@ Goal: Filtering, refinement, and optimization.
 ## Phase 5: Optimization Algorithms (In Progress)
 Goal: Optimization Algorithms for the planner, and improving the user experience.
 
-- [ ] **Planner improves**
-    - Remove maxed out characters from the select target modal, since you upgrade/ level up characters which are already at max level and max talents
-    - Update planner on Good file import - If a user imports a good file, the characters and weapons on the planner should automatically update and match the values from the import file
-    - Mouse hover over material improves (sticky tooltip so it does not block other UI components)
-    - Improve weapon card to match the character card style (same icon and labels placementes)
+- [x] **Planner improves**
+    - [x] Remove maxed out characters from the select target modal — Added "Show Done" toggle to `CharacterSelectionModal.tsx`; completed characters are hidden by default and marked with a DONE badge when revealed.
+    - [x] Update planner on Good file import — `reconcilePlannedItemsWithGOOD()` in `src/utils/plannerImportSync.ts` auto-syncs planned current levels/talents after each GOOD import.
+    - [x] Mouse hover over material improves — Tooltips now anchor stably to the right of the hovered tile (`x = rect.right + 12, y = rect.top`) via `<TooltipBox>` in `App.tsx`, with viewport clamping. Removed all `onMouseMove` jitter.
+    - [x] Improve weapon card to match the character card style — Both card body rows fixed at `146px` height; avatar frames, dividers, and "Required Materials" headers align pixel-perfectly. Weapon icon backgrounds now use `weapon-rarity-*` gradient classes matching card header colours.
+    - [x] Visually improve the planner numbers representation — Level and talent rows render a single value (e.g. `90`) instead of `90 ➔ 90` when current equals desired.
 - [ ] **Improve Inventory page**
     - Better sorting and filtering
     - Better UI (button to clear import, import new file, etc)
 - [ ] **Manage planner priority**
     - Change the priority modal to a different layout
+    - Fix the priority list not showing correctly the position of the characters
 - [ ] **Allow "Custom" Character or Weapons on the planner**
     - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
     - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)
