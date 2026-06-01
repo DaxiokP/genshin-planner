@@ -1,6 +1,6 @@
 import './InventoryTab.css';
 import React from 'react';
-import { Search, X, Trash2, Upload } from 'lucide-react';
+import { Search, Trash2, Upload } from 'lucide-react';
 import materialMapData from '../../maps/materialMap.json';
 import { ClearInventoryConfirmationModal } from '../ClearInventoryConfirmationModal';
 
