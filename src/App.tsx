@@ -91,7 +91,13 @@ function App() {
   }, [plannedItems, materials]);
 
   const [isPriorityModalOpen, setIsPriorityModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabType>('planner');
+  const [activeTab, setActiveTab] = useState<TabType>(() => {
+    return (localStorage.getItem('genshin_planner_active_tab') as TabType) || 'planner';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('genshin_planner_active_tab', activeTab);
+  }, [activeTab]);
   const [selectedDayOffset, setSelectedDayOffset] = useState<number>(0);
   const [timeToReset, setTimeToReset] = useState<string>('');
 

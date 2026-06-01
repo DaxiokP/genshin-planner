@@ -9,21 +9,49 @@
   margin-bottom: 2rem;
 }
 
-.clear-btn {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid var(--glass-border);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+.inventory-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.8rem 1.4rem;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
 }
 
-.clear-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
+.inventory-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.inventory-btn-import {
+  border-color: rgba(94, 189, 140, 0.3);
+}
+
+.inventory-btn-import:hover {
+  background: rgba(94, 189, 140, 0.12);
+  border-color: rgba(94, 189, 140, 0.5);
+  color: #6ecea0;
+}
+
+.inventory-btn-clear {
+  padding: 0.8rem;
+  border-color: rgba(239, 83, 80, 0.3);
+  color: #ef5350;
+}
+
+.inventory-btn-clear:hover {
+  background: rgba(239, 83, 80, 0.12);
+  border-color: rgba(239, 83, 80, 0.5);
+  color: #ff8a80;
 }
 
 /* Mora Currency Banner */
@@ -130,4 +158,38 @@
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-glow);
 }
+
+.category-filter {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+  min-width: 180px;
+  transition: all 0.2s ease;
+}
+
+.category-filter:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.category-filter option {
+  background: #1e2029;
+  color: white;
+  padding: 8px;
+}
+
+
 

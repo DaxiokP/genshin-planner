@@ -93,9 +93,12 @@ Goal: Optimization Algorithms for the planner, and improving the user experience
     - [x] Improve weapon card to match the character card style — Both card body rows fixed at `146px` height; avatar frames, dividers, and "Required Materials" headers align pixel-perfectly. Weapon icon backgrounds now use `weapon-rarity-*` gradient classes matching card header colours.
     - [x] Visually improve the planner numbers representation — Level and talent rows render a single value (e.g. `90`) instead of `90 ➔ 90` when current equals desired.
     - [x] **Automated Testing Suite ("Lazy & Effective" Setup)** — Installed Vitest under pure Node execution. Created automated unit test suites in `src/utils/__tests__/` to validate core requirement calculations, EXP/Ore equivalency models, alchemical cascading crafting, and duplicate weapon import synchronization, preventing regression bugs.
-- [ ] **Improve Inventory page**
-    - Better sorting and filtering
-    - Better UI (button to clear import, import new file, etc)
+    - [x] **Active Tab Persistence** — The active tab is now persisted to `localStorage` under `genshin_planner_active_tab`, so the user's last-viewed tab is restored on page reload.
+- [x] **Improve Inventory page**
+    - [x] Better sorting and filtering — Materials now sort by `sortGroup` → `sortRank` → `rarity (descending)`. A `<select>` category dropdown filters by group (Character & Weapon, Weekly Boss, Gems, Talent Books, etc.).
+    - [x] Better UI — "Import Materials" button (with Upload icon) replaces the old import logic; "Clear Inventory" is now a red Trash icon button that triggers a custom in-app confirmation modal (`ClearInventoryConfirmationModal.tsx`) instead of a browser dialog. Button styles aligned with the `.planner-btn` pattern.
+- [ ] **Global Import Data & Settings**
+    - [ ] Add a Settings page or global action for "Big Import" (Characters, Weapons, Materials) to keep the Inventory page strictly for materials.
 - [ ] **Manage planner priority**
     - Change the priority modal to a different layout
     - Fix the priority list not showing correctly the position of the characters

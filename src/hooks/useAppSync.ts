@@ -13,13 +13,21 @@ export function useAppSync() {
   // --- Supabase Authentication & Syncing State ---
   const [user, setUser] = useState<any>(null);
   const [profiles, setProfiles] = useState<any[]>([]);
-  const [activeProfile, setActiveProfile] = useState<string>('');
+  const [activeProfile, setActiveProfile] = useState<string>(() => {
+    return localStorage.getItem('genshin_planner_active_profile') || '';
+  });
   const [isAddingProfile, setIsAddingProfile] = useState(false);
   const [newProfileName, setNewProfileName] = useState('');
   const [isCreatingProfile, setIsCreatingProfile] = useState(false);
   const [syncStatus, setSyncStatus] = useState<'local' | 'syncing' | 'synced' | 'error'>('local');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    if (activeProfile) {
+      localStorage.setItem('genshin_planner_active_profile', activeProfile);
+    }
+  }, [activeProfile]);
 
   const isSavingBlocked = useRef(false);
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
