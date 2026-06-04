@@ -5,6 +5,7 @@ import { SummaryPanel } from '../SummaryPanel';
 import { formatCompact } from '../../utils/formatHelpers';
 import { hasSingleStar } from '../../utils/upgradeHelpers';
 import { moveItem } from '../../utils/plannerHelpers';
+import { calculateRequirements } from '../../utils/plannerCalculator';
 import materialMapData from '../../maps/materialMap.json';
 import characterMapData from '../../maps/characterMap.json';
 import weaponMapData from '../../maps/weaponMap.json';
@@ -397,7 +398,9 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
               {plannedItems.map((planned) => {
                 const isWeapon = planned.type === 'weapon';
                 const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
-                const requirements = simulation.requirements[id] || [];
+                const requirements = planned.enabled !== false
+                  ? (simulation.requirements[id] || [])
+                  : calculateRequirements({ ...planned, enabled: true }, null);
 
                 if (isWeapon) {
                   const wInfo = lookupWeapon(planned.key) || {
@@ -750,7 +753,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             fontSize: '0.85rem',
                             fontWeight: '500'
                           }}>
-                            {planned.enabled === false ? "Plan on standby (Active power toggled off)" : "Target reached (No materials needed!)"}
+                            {planned.enabled === false ? "Plan disabled (Active power toggled off)" : "Target reached (No materials needed!)"}
                           </div>
                         ) : (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -764,7 +767,9 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                               fontFamily: "'Outfit', sans-serif"
                             }}>
                               <span>Required Materials</span>
-                              {requirements.every((r: any) => r.isEnough) ? (
+                              {planned.enabled === false ? (
+                                <span style={{ fontSize: '0.7rem', color: '#9e9e9e', background: 'rgba(255, 255, 255, 0.1)', padding: '1px 6px', borderRadius: '4px' }}>Disabled</span>
+                              ) : requirements.every((r: any) => r.isEnough) ? (
                                 <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
                               ) : (
                                 <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>
@@ -1130,7 +1135,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             fontSize: '0.85rem',
                             fontWeight: '500'
                           }}>
-                            {planned.enabled === false ? "Plan on standby (Active power toggled off)" : "Target reached (No materials needed!)"}
+                            {planned.enabled === false ? "Plan disabled (Active power toggled off)" : "Target reached (No materials needed!)"}
                           </div>
                         ) : (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -1144,7 +1149,9 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                               fontFamily: "'Outfit', sans-serif"
                             }}>
                               <span>Required Materials</span>
-                              {requirements.every((r: any) => r.isEnough) ? (
+                              {planned.enabled === false ? (
+                                <span style={{ fontSize: '0.7rem', color: '#9e9e9e', background: 'rgba(255, 255, 255, 0.1)', padding: '1px 6px', borderRadius: '4px' }}>Disabled</span>
+                              ) : requirements.every((r: any) => r.isEnough) ? (
                                 <span style={{ fontSize: '0.7rem', color: '#81c784', background: 'rgba(76, 175, 80, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>Ready</span>
                               ) : (
                                 <span style={{ fontSize: '0.7rem', color: '#ffb74d', background: 'rgba(255, 183, 77, 0.12)', padding: '1px 6px', borderRadius: '4px' }}>In Progress</span>

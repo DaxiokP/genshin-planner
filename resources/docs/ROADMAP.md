@@ -87,25 +87,28 @@ Goal: Filtering, refinement, and optimization.
 Goal: Optimization Algorithms for the planner, and improving the user experience.
 
 - [x] **Planner improves**
-    - [x] Remove maxed out characters from the select target modal — Added "Show Done" toggle to `CharacterSelectionModal.tsx`; completed characters are hidden by default and marked with a DONE badge when revealed.
-    - [x] Update planner on Good file import — `reconcilePlannedItemsWithGOOD()` in `src/utils/plannerImportSync.ts` auto-syncs planned current levels/talents after each GOOD import.
-    - [x] Mouse hover over material improves — Tooltips now anchor stably to the right of the hovered tile (`x = rect.right + 12, y = rect.top`) via `<TooltipBox>` in `App.tsx`, with viewport clamping. Removed all `onMouseMove` jitter.
-    - [x] Improve weapon card to match the character card style — Both card body rows fixed at `146px` height; avatar frames, dividers, and "Required Materials" headers align pixel-perfectly. Weapon icon backgrounds now use `weapon-rarity-*` gradient classes matching card header colours.
-    - [x] Visually improve the planner numbers representation — Level and talent rows render a single value (e.g. `90`) instead of `90 ➔ 90` when current equals desired.
-    - [x] **Automated Testing Suite ("Lazy & Effective" Setup)** — Installed Vitest under pure Node execution. Created automated unit test suites in `src/utils/__tests__/` to validate core requirement calculations, EXP/Ore equivalency models, alchemical cascading crafting, and duplicate weapon import synchronization, preventing regression bugs.
-    - [x] **Active Tab Persistence** — The active tab is now persisted to `localStorage` under `genshin_planner_active_tab`, so the user's last-viewed tab is restored on page reload.
+    - Remove maxed out characters from the select target modal — Added "Show Done" toggle to `CharacterSelectionModal.tsx`; completed characters are hidden by default and marked with a DONE badge when revealed.
+    - Update planner on Good file import — `reconcilePlannedItemsWithGOOD()` in `src/utils/plannerImportSync.ts` auto-syncs planned current levels/talents after each GOOD import.
+    - Mouse hover over material improves — Tooltips now anchor stably to the right of the hovered tile (`x = rect.right + 12, y = rect.top`) via `<TooltipBox>` in `App.tsx`, with viewport clamping. Removed all `onMouseMove` jitter.
+    - Improve weapon card to match the character card style — Both card body rows fixed at `146px` height; avatar frames, dividers, and "Required Materials" headers align pixel-perfectly. Weapon icon backgrounds now use `weapon-rarity-*` gradient classes matching card header colours.
+    - Visually improve the planner numbers representation — Level and talent rows render a single value (e.g. `90`) instead of `90 ➔ 90` when current equals desired.
+    - Automated Testing Suite ("Lazy & Effective" Setup) — Installed Vitest under pure Node execution. Created automated unit test suites in `src/utils/__tests__/` to validate core requirement calculations, EXP/Ore equivalency models, alchemical cascading crafting, and duplicate weapon import synchronization, preventing regression bugs.
+    - Active Tab Persistence — The active tab is now persisted to `localStorage` under `genshin_planner_active_tab`, so the user's last-viewed tab is restored on page reload.
 - [x] **Improve Inventory page**
-    - [x] Better sorting and filtering — Materials now sort by `sortGroup` → `sortRank` → `rarity (descending)`. A `<select>` category dropdown filters by group (Character & Weapon, Weekly Boss, Gems, Talent Books, etc.).
-    - [x] Better UI — "Import Materials" button (with Upload icon) replaces the old import logic; "Clear Inventory" is now a red Trash icon button that triggers a custom in-app confirmation modal (`ClearInventoryConfirmationModal.tsx`) instead of a browser dialog. Button styles aligned with the `.planner-btn` pattern.
+    - Better sorting and filtering — Materials now sort by `sortGroup` → `sortRank` → `rarity (descending)`. A `<select>` category dropdown filters by group (Character & Weapon, Weekly Boss, Gems, Talent Books, etc.).
+    - Better UI — "Import Materials" button (with Upload icon) replaces the old import logic; "Clear Inventory" is now a red Trash icon button that triggers a custom in-app confirmation modal (`ClearInventoryConfirmationModal.tsx`) instead of a browser dialog. Button styles aligned with the `.planner-btn` pattern.
 - [x] **Global Import Data & Settings**
-    - [x] Add an **Account Settings** page (`AccountSettingsTab.tsx`) accessible from the profile dropdown in the header.
-    - [x] **Profiles section**: View, create, rename, and delete profiles from the settings page.
-    - [x] **Profile Data section**: Import a GOOD format file (Characters, Weapons, Materials, Artifacts) and clear all imported data per profile.
-    - [x] Remove the full-screen "Upload Wall" that blocked new users — empty accounts now land on the Planner directly.
-    - [x] Updated empty states in `CharactersTab` and `WeaponsTab` to guide users to Account Settings when no import data is found.
-- [ ] **Manage planner priority**
-    - Change the priority modal to a different layout
-    - Fix the priority list not showing correctly the position of the characters
+    - Add an Account Settings page (`AccountSettingsTab.tsx`) accessible from the profile dropdown in the header.
+    - Profiles section - View, create, rename, and delete profiles from the settings page.
+    - Profile Data section - Import a GOOD format file (Characters, Weapons, Materials, Artifacts) and clear all imported data per profile.
+    - Remove the full-screen "Upload Wall" that blocked new users — empty accounts now land on the Planner directly.
+    - Updated empty states in `CharactersTab` and `WeaponsTab` to guide users to Account Settings when no import data is found.
+- [x] **Manage planner priority**
+    - Redesigned the priority modal with an adaptive multi-column layout (≤30 items → 10 rows/col, 30–60 items → 15 rows/col, >60 items → single scrollable column).
+    - Fixed a bug where character priority positions were always displayed as `0` (caused by a key mismatch between `savedOrder` and `id` construction).
+    - Reduced row item padding and increased icon zoom (135 % for characters, 110 % for weapons) for a compact, tight grid feel.
+    - Disabled planner cards now display their required materials calculated against an empty (0) inventory, with a grey "Disabled" badge replacing the old status tags. Material icons remain fully clickable.
+    - Quick Inventory modal inputs now auto-select their contents on focus for fast overriding.
 - [ ] **Allow "Custom" Character or Weapons on the planner**
     - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
     - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)

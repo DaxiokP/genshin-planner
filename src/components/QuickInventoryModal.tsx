@@ -381,6 +381,7 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
                                 className={`quick-inventory-compact-input ${key === 'mora' ? 'mora-input' : ''}`}
                                 value={draftCounts[key] ?? ''}
                                 onChange={(e) => handleInventoryChange(key, e.target.value)}
+                                onFocus={(e) => e.target.select()}
                               />
                             </div>
                           ))}
@@ -396,6 +397,7 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
                                 className={`quick-inventory-compact-input ${key === 'mora' ? 'mora-input' : ''}`}
                                 value={draftDeltas[key] ?? ''}
                                 onChange={(e) => handleDeltaChange(key, e.target.value)}
+                                onFocus={(e) => e.target.select()}
                                 placeholder="0"
                                 style={{
                                   color: (parseInt(draftDeltas[key]) || 0) > 0 ? '#1b5e20' : (parseInt(draftDeltas[key]) || 0) < 0 ? '#b71c1c' : '#111111',

@@ -141,6 +141,8 @@ The app features two robust ways to reorder progression cards and customize prio
 - **Priority Manager Modal (`PriorityManagerModal.tsx`)**:
   - Launches from the header tab's "Manage Priority" action button.
   - Hosts a visual grid list of mixed planned items (characters and weapons). Standby cards (`enabled === false`) are styled in a faded state.
+  - **Adaptive Multi-Column Layout**: When the total count of planned items is ≤60, items are arranged into side-by-side vertical columns. Columns are filled top-to-bottom, left-to-right. Row limits per column: <30 items → 10 rows, 30–60 items → 15 rows. When >60 items, the modal reverts to a single scrollable column. Modal `maxWidth` adjusts dynamically (`280px × numCols + 60px`).
+  - **Correct Priority Numbers**: `savedOrder` is initialised using the same `id` construction used at render time (`p.id || (p.type === 'weapon' ? \`weapon:${p.weaponIndex}\` : \`character:${p.key}\`)`), ensuring `savedOrder.indexOf(id)` resolves correctly for both characters and weapons.
   - Dragging rows swaps their visual draft order immediately for real-time feedback.
   - Order numbers next to elements remain unchanged during draft swaps, only updating to reflect the new sequence once saved.
 - **Direct Grid Card Drag-and-Drop**:
@@ -212,6 +214,8 @@ A standalone utility module that keeps the planned items list in sync whenever t
 - **Scoped Material-Only GOOD Import**: The "Import Materials" button in the Inventory tab opens a file picker that reads only the `materials` object from a GOOD JSON file, merging it into the current inventory state without touching `characters` or `weapons`. This prevents unintended data overrides.
 - **Inventory Category Filtering via `sortGroup`**: The category `<select>` dropdown maps UI labels (e.g. "Weekly Boss", "Gems") directly to numeric `sortGroup` values in `materialMap.json`. The value `'0'` is the "All" catch-all; any other value filters the rendered list to entries whose `sortGroup` matches exactly.
 - **Custom Confirmation Modals over Native Dialogs**: Destructive actions (e.g., clearing inventory, deleting plans) use fully custom React modals instead of `window.confirm`, maintaining visual consistency with the app's dark-mode glassmorphism aesthetic.
+- **Adaptive Priority Modal Column Layout**: `PriorityManagerModal` distributes planned items into horizontal columns rather than a single vertical scroll list when the total count is ≤60. A helper at render time slices `plannedItems` into chunks of `rowsPerColumn` (10 for <30 items, 15 for 30–60 items) and renders them in a `display: flex; flex-direction: column; flex-wrap: wrap` container. The modal's `maxWidth` is derived as `280px × numCols + 60px` so the overlay grows naturally without overflow.
+- **Disabled Card Zero-Inventory Simulation**: When rendering a planner card whose `enabled` flag is `false`, `PlannerTab.tsx` calls `calculateRequirements(item, null)` (passing `null` instead of the live `tempInventory`). Inside `plannerCalculator.ts` this causes all inventory lookups to resolve to `0`, producing a full "from scratch" requirement list that is displayed to the user. A grey **Disabled** badge is shown in the card header; no inventory is deducted and the card is excluded from the global sequential allocation pipeline.
 
 ### 12. Global Inventory Allocation & Summary Panel (`src/utils/plannerCalculator.ts`, `src/App.tsx`)
 
@@ -248,6 +252,7 @@ Integrated at the top of the Summary panel, this component shows what materials 
 A reusable modal that intercepts mouse click events on material requirement grids inside character cards, weapon cards, or the Planner Summary panel. It enables instant editing of inventory stats without leaving the current progression view:
 - **Automatic Group Resolution**: Groups boss materials, weekly items, and related elemental gem families dynamically based on game data.
 - **Bidirectional Value Binding**: Input changes dynamically re-evaluate total deficits and live sequentially allocated stock in the background, updating active calculations instantly.
+- **Auto-Select on Focus**: Both the *Inventory* and *Add/Subtract* number inputs call `e.target.select()` on focus, auto-highlighting the current value so the user can immediately type a replacement without first clearing the field manually.
 - **Mora Leyline Quick-Action Trigger**: Modifies current Mora state by adding $60,000$ to both draft and delta states.
 - **Autosave Interceptors**: Binds saving clicks directly to active profile persistence loops (LocalStorage or debounced Supabase sync workers).
 - **Global Tooltips**: Renders details/sources on hovers.
