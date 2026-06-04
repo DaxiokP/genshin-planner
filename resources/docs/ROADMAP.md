@@ -97,8 +97,12 @@ Goal: Optimization Algorithms for the planner, and improving the user experience
 - [x] **Improve Inventory page**
     - [x] Better sorting and filtering — Materials now sort by `sortGroup` → `sortRank` → `rarity (descending)`. A `<select>` category dropdown filters by group (Character & Weapon, Weekly Boss, Gems, Talent Books, etc.).
     - [x] Better UI — "Import Materials" button (with Upload icon) replaces the old import logic; "Clear Inventory" is now a red Trash icon button that triggers a custom in-app confirmation modal (`ClearInventoryConfirmationModal.tsx`) instead of a browser dialog. Button styles aligned with the `.planner-btn` pattern.
-- [ ] **Global Import Data & Settings**
-    - [ ] Add a Settings page or global action for "Big Import" (Characters, Weapons, Materials) to keep the Inventory page strictly for materials.
+- [x] **Global Import Data & Settings**
+    - [x] Add an **Account Settings** page (`AccountSettingsTab.tsx`) accessible from the profile dropdown in the header.
+    - [x] **Profiles section**: View, create, rename, and delete profiles from the settings page.
+    - [x] **Profile Data section**: Import a GOOD format file (Characters, Weapons, Materials, Artifacts) and clear all imported data per profile.
+    - [x] Remove the full-screen "Upload Wall" that blocked new users — empty accounts now land on the Planner directly.
+    - [x] Updated empty states in `CharactersTab` and `WeaponsTab` to guide users to Account Settings when no import data is found.
 - [ ] **Manage planner priority**
     - Change the priority modal to a different layout
     - Fix the priority list not showing correctly the position of the characters

@@ -248,10 +248,19 @@ export const WeaponsTab: React.FC<WeaponsTabProps> = ({
       </div>
 
       {/* Empty State */}
-      {sortedWeapons.length === 0 && (
+      {weapons.length === 0 && (
         <div className="weapons-empty-state">
           <Sword size={48} className="empty-icon" />
           <h3>No Weapons Found</h3>
+          <p>No weapons found in import.</p>
+          <p style={{ marginTop: '0.5rem', color: 'var(--text-secondary)' }}>Go to <strong>Account Settings</strong> to import your GOOD format JSON file.</p>
+        </div>
+      )}
+
+      {weapons.length > 0 && sortedWeapons.length === 0 && (
+        <div className="weapons-empty-state">
+          <Sword size={48} className="empty-icon" />
+          <h3>No Matches</h3>
           <p>Try adjusting your search query or filter criteria.</p>
         </div>
       )}

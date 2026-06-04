@@ -149,3 +149,21 @@ export async function deleteUserProfile(userId: string, profileName: string) {
   }
   return data;
 }
+
+// Rename an existing profile
+export async function updateProfileName(userId: string, oldName: string, newName: string) {
+  if (!supabase) return null;
+  
+  const { data, error } = await supabase
+    .from('user_planners')
+    .update({ profile_name: newName.trim() })
+    .eq('user_id', userId)
+    .eq('profile_name', oldName)
+    .select();
+
+  if (error) {
+    console.error(`Error renaming profile from ${oldName} to ${newName}:`, error);
+    throw error;
+  }
+  return data?.[0] || null;
+}

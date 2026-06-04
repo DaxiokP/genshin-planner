@@ -41,7 +41,9 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
   - **Offline Storage**: Guest (logged out) users are saved under a single Local Storage namespace: `genshin_planner_local_data`. In this offline-only mode, the profile dropdown switcher is fully hidden.
   - **Supabase Cloud Sync**: Signed-in users automatically sync their dynamic profile configurations (including `planned_items`) with a Supabase cloud database instance in a debounced, crash-safe background worker.
 - **Username Auth Layer**: Logins use clean, alphanumeric usernames rather than exposing emails. Client-side controllers transparently handle MX-valid Gmail mapping under the hood (`username ➔ username.planner@gmail.com`) to register smoothly on Supabase, while keeping all user-facing components clean and strictly username-oriented.
-- **Dynamic Switcher & Deletion**: Authenticated accounts can swap, create, and delete multiple custom profiles directly from the navigation bar. Deletion uses event propagation controls to avoid switching profiles, and is strictly boundary-checked (hidden when only one profile remains) to ensure account integrity.
+- **Account Settings & Profile Management**: Profile operations (create, rename, delete) and GOOD data import/clear have been moved out of the header dropdown and into a dedicated `AccountSettingsTab` page. The header profile dropdown now only handles quick profile switching and provides a link to Account Settings. This keeps the header clean and gives users a proper settings context.
+- **Dynamic Switcher (Header)**: Authenticated accounts can swap profiles directly from the header dropdown. The dropdown is fully hidden in offline guest mode.
+- **No Upload Wall on First Load**: New users (or users with no imported GOOD data) are no longer blocked by a fullscreen upload screen. The app loads directly to the Planner tab. Empty states in `CharactersTab` and `WeaponsTab` display a contextual message directing users to *Account Settings* to import their GOOD file. This keeps the onboarding flow non-blocking and intuitive.
 - **Data Scraping**: The project uses custom scripts (`resources/scripts/downloadIcons.cjs`, `resources/scripts/generateMap.cjs`) to extract data from game databases. If material data is missing, these scripts should be updated rather than hardcoding data in `App.tsx`.
 - **Contiguous Locked Filters & Transparent Elemental Fills**:
   * Character and Weapon filter panels are built with contiguous, joined `.filter-button-group` boxes without text labels (icons-only for weapons/elements).
@@ -75,8 +77,8 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
 - **Modularization & Hook Decomposition**:
   * Cleanly split the giant 3,000+ line `App.tsx` and `App.css` god-files into a modular technical layout.
   * Centralized auth, profile state selectors, legacy data migrations, and debounced Supabase database upserts inside the custom React hook `src/hooks/useAppSync.ts`.
-  * Created dedicated page tab views inside `src/components/tabs/` (`PlannerTab.tsx`, `InventoryTab.tsx`, `CharactersTab.tsx`, `WeaponsTab.tsx`) and `src/components/SummaryPanel.tsx`.
-  * Decoupled CSS styling into 5 component-specific CSS stylesheets (`PlannerTab.css`, `InventoryTab.css`, `CharactersTab.css`, `WeaponsTab.css`, `SummaryPanel.css`), reducing the global `App.css` to global variables, animations, and modals.
+  * Created dedicated page tab views inside `src/components/tabs/` (`PlannerTab.tsx`, `InventoryTab.tsx`, `CharactersTab.tsx`, `WeaponsTab.tsx`, `AccountSettingsTab.tsx`) and `src/components/SummaryPanel.tsx`.
+  * Decoupled CSS styling into 6 component-specific CSS stylesheets (`PlannerTab.css`, `InventoryTab.css`, `CharactersTab.css`, `WeaponsTab.css`, `SummaryPanel.css`, `AccountSettingsTab.css`), reducing the global `App.css` to global variables, animations, and modals.
   * Enforced strict type-safety interfaces (`src/types.ts`) and isolated filter/formatting utility helpers (`src/utils/filterHelpers.ts`, `src/utils/formatHelpers.ts`) to avoid circular import loops while maintaining 100% visual layout parity and perfect compile integrity.
 
 ## Coding Conventions for Agents

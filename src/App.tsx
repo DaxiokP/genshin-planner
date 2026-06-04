@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Upload, FileUp, Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, User, Loader2, Sparkles, Trash2 } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, Loader2, Sparkles, Settings } from 'lucide-react';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
 import { CharacterTargetModal } from './components/CharacterTargetModal';
 import { calculateRequirements, simulatePlannerInventory } from './utils/plannerCalculator';
 import './App.css';
 import characterMapData from './maps/characterMap.json';
 import weaponMapData from './maps/weaponMap.json';
-import { supabase, fetchUserProfiles, createCustomProfile, deleteUserProfile } from './supabase';
+import { supabase, createCustomProfile, deleteUserProfile } from './supabase';
 import type { PlannedCharacter } from './types';
 import { AuthModal } from './components/AuthModal';
 import { DeletePlanConfirmationModal } from './components/DeletePlanConfirmationModal';
@@ -25,6 +25,7 @@ import { CharactersTab } from './components/tabs/CharactersTab';
 import { WeaponsTab } from './components/tabs/WeaponsTab';
 import { InventoryTab } from './components/tabs/InventoryTab';
 import { syncPlannedItemsWithGoodImport } from './utils/plannerImportSync';
+import { AccountSettingsTab } from './components/tabs/AccountSettingsTab';
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
 const characterMapRaw: Record<string, any> = characterMapData as any;
@@ -47,7 +48,7 @@ const lookupWeapon = (key: string) => {
 
 export type { GoodCharacter, GoodWeapon, GoodArtifact, PlannedCharacter, MaterialsData } from './types';
 
-type TabType = 'planner' | 'characters' | 'weapons' | 'inventory';
+type TabType = 'planner' | 'characters' | 'weapons' | 'inventory' | 'settings';
 
 function App() {
   const {
@@ -69,12 +70,6 @@ function App() {
     setProfiles,
     activeProfile,
     setActiveProfile,
-    isAddingProfile,
-    setIsAddingProfile,
-    newProfileName,
-    setNewProfileName,
-    isCreatingProfile,
-    setIsCreatingProfile,
     syncStatus,
     isAuthModalOpen,
     setIsAuthModalOpen,
@@ -144,9 +139,6 @@ function App() {
   const [characterSortBy, setCharacterSortBy] = useState<'level' | 'name'>('level');
   const [characterSortOrder, setCharacterSortOrder] = useState<'asc' | 'desc'>('desc');
 
-
-  const [isDragging, setIsDragging] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
   const [hoveredItem, setHoveredItem] = useState<{ key: string, data: any } | null>(null);
@@ -174,42 +166,10 @@ function App() {
   const [estimatedWeaponSpend, setEstimatedWeaponSpend] = useState<{ mora: number, mysticenhancementore: number }>({ mora: 0, mysticenhancementore: 0 });
   const [draftCraftingBonuses, setDraftCraftingBonuses] = useState<Record<string, number>>({});
   const [estimatedSpend, setEstimatedSpend] = useState<{ mora: number, heroswit: number }>({ mora: 0, heroswit: 0 });
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-
-
-
-
-;
-
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) processFile(file);
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      processFile(e.dataTransfer.files[0]);
-    }
-  };
 
   const processFile = (file: File) => {
-    setError(null);
     if (!file.name.endsWith('.json')) {
-      setError('Please upload a valid JSON file.');
+      alert('Please upload a valid JSON file.');
       return;
     }
 
@@ -220,12 +180,12 @@ function App() {
         const data = JSON.parse(content);
 
         if (data.format !== 'GOOD') {
-          setError('Invalid file format. Make sure you upload a GOOD format JSON.');
+          alert('Invalid file format. Make sure you upload a GOOD format JSON.');
           return;
         }
 
         if (!data.materials) {
-          setError('No materials found in this file.');
+          alert('No materials found in this file.');
           return;
         }
 
@@ -242,11 +202,18 @@ function App() {
         setArtifacts(data.artifacts || []);
         setPlannedItems(synchronizedPlannedItems);
       } catch (err) {
-        setError('Failed to parse JSON file.');
+        alert('Failed to parse JSON file.');
         console.error(err);
       }
     };
     reader.readAsText(file);
+  };
+
+  const clearGoodData = () => {
+    setMaterials({});
+    setCharacters([]);
+    setWeapons([]);
+    setArtifacts([]);
   };
 
   const handleUpgradeModalConfirm = (
@@ -425,30 +392,10 @@ function App() {
                 syncStatus === 'local' ? 'Data saved in local browser storage only.' :
                   'Error synchronizing data with database.'
           }>
-            {syncStatus === 'synced' && (
-              <>
-                <Cloud size={16} />
-                <span>Cloud Synced</span>
-              </>
-            )}
-            {syncStatus === 'syncing' && (
-              <>
-                <Loader2 size={16} className="animate-spin" />
-                <span>Syncing...</span>
-              </>
-            )}
-            {syncStatus === 'local' && (
-              <>
-                <CloudOff size={16} />
-                <span>Local Saving</span>
-              </>
-            )}
-            {syncStatus === 'error' && (
-              <>
-                <CloudLightning size={16} />
-                <span>Sync Error</span>
-              </>
-            )}
+            {syncStatus === 'synced' && <Cloud size={16} />}
+            {syncStatus === 'syncing' && <Loader2 size={16} className="animate-spin" />}
+            {syncStatus === 'local' && <CloudOff size={16} />}
+            {syncStatus === 'error' && <CloudLightning size={16} />}
           </div>
 
           {user && (
@@ -477,130 +424,40 @@ function App() {
                         <span>{p.profile_name}</span>
                         {activeProfile === p.profile_name && <span style={{ color: '#ffcc66', marginLeft: '6px' }}>✓</span>}
                       </button>
-
-                      {profiles.length > 1 && (
-                        <button
-                          className="profile-delete-btn"
-                          title={`Delete profile ${p.profile_name}`}
-                          onClick={async (e) => {
-                            e.stopPropagation();
-                            if (window.confirm(`Are you sure you want to delete the profile "${p.profile_name}"? This action cannot be undone.`)) {
-                              try {
-                                await deleteUserProfile(user.id, p.profile_name);
-                                const updated = await fetchUserProfiles(user.id);
-                                setProfiles(updated);
-
-                                // If the deleted profile was active, switch to another one
-                                if (activeProfile === p.profile_name) {
-                                  const fallback = updated.find((prof: any) => prof.profile_name !== p.profile_name);
-                                  if (fallback) {
-                                    setActiveProfile(fallback.profile_name);
-                                  }
-                                }
-                              } catch (err: any) {
-                                alert(err.message || 'Failed to delete profile.');
-                              }
-                            }
-                          }}
-                        >
-                          <Trash2 size={13} />
-                        </button>
-                      )}
                     </div>
                   ))}
 
                   <div className="profile-dropdown-divider"></div>
 
-                  {!isAddingProfile ? (
-                    <button
-                      className="profile-dropdown-add-btn"
-                      onClick={() => {
-                        setIsAddingProfile(true);
-                        setNewProfileName('');
-                      }}
-                    >
-                      <span>+ Create Profile</span>
-                    </button>
-                  ) : (
-                    <form
-                      className="profile-dropdown-add-form"
-                      onSubmit={async (e) => {
-                        e.preventDefault();
-                        const trimmed = newProfileName.trim();
-                        if (!trimmed) return;
-                        if (profiles.some(p => p.profile_name.toLowerCase() === trimmed.toLowerCase())) {
-                          alert('A profile with this name already exists.');
-                          return;
-                        }
-                        setIsCreatingProfile(true);
-                        try {
-                          const newProfile = await createCustomProfile(user.id, trimmed);
-                          if (newProfile) {
-                            const updatedProfiles = await fetchUserProfiles(user.id);
-                            setProfiles(updatedProfiles);
-                            setActiveProfile(trimmed);
-                            setIsAddingProfile(false);
-                            setIsProfileDropdownOpen(false);
-                          }
-                        } catch (err: any) {
-                          alert(err.message || 'Failed to create profile.');
-                        } finally {
-                          setIsCreatingProfile(false);
-                        }
-                      }}
-                    >
-                      <input
-                        type="text"
-                        required
-                        maxLength={15}
-                        placeholder="Profile name..."
-                        value={newProfileName}
-                        onChange={(e) => setNewProfileName(e.target.value)}
-                        className="profile-add-input"
-                        disabled={isCreatingProfile}
-                        autoFocus
-                      />
-                      <div className="profile-add-actions">
-                        <button
-                          type="submit"
-                          className="profile-add-btn-confirm"
-                          disabled={isCreatingProfile}
-                        >
-                          Add
-                        </button>
-                        <button
-                          type="button"
-                          className="profile-add-btn-cancel"
-                          onClick={() => setIsAddingProfile(false)}
-                          disabled={isCreatingProfile}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </form>
-                  )}
+                  <button
+                    className="profile-dropdown-item-btn"
+                    onClick={() => {
+                      setActiveTab('settings');
+                      setIsProfileDropdownOpen(false);
+                    }}
+                  >
+                    <Settings size={14} style={{ marginRight: '6px' }} />
+                    <span>Account Settings</span>
+                  </button>
+
+                  <button
+                    className="profile-dropdown-item-btn"
+                    onClick={async () => {
+                      if (supabase) {
+                        await supabase.auth.signOut();
+                      }
+                      setIsProfileDropdownOpen(false);
+                    }}
+                  >
+                    <LogOut size={14} style={{ marginRight: '6px' }} />
+                    <span>Sign Out</span>
+                  </button>
                 </div>
               )}
             </div>
           )}
 
-          {user ? (
-            <button
-              className="user-menu-btn"
-              onClick={async () => {
-                if (supabase) {
-                  await supabase.auth.signOut();
-                }
-              }}
-              title={`Logged in as ${user.email.split('@')[0].split('.')[0]}. Click to Log Out.`}
-            >
-              <User size={16} />
-              <span style={{ maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {user.email.split('@')[0].split('.')[0]}
-              </span>
-              <LogOut size={14} style={{ marginLeft: '4px' }} />
-            </button>
-          ) : (
+          {!user && (
             <button
               className="auth-trigger-btn"
               onClick={() => setIsAuthModalOpen(true)}
@@ -612,115 +469,96 @@ function App() {
         </div>
       </header>
 
-      {!materials ? (
-        <section
-          className={`upload-section ${isDragging ? 'drag-active' : ''}`}
-        >
-          <div
-            className={`upload-card ${isDragging ? 'drag-active' : ''}`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <FileUp size={48} className="upload-icon mx-auto" />
-            <h2>Import your data</h2>
-            <p className="upload-hint mb-4">Upload your GOOD format .json export file</p>
+      <div className="tab-content">
+        {activeTab === 'inventory' && (
+          <InventoryTab
+            materials={materials}
+            setMaterials={setMaterials}
+            search={search}
+            setSearch={setSearch}
+            setHoveredItem={setHoveredItem}
+            setMousePos={setMousePos}
+          />
+        )}
 
-            {error && <div style={{ color: 'var(--danger)', margin: '1rem 0' }}>{error}</div>}
+        {activeTab === 'characters' && (
+          <CharactersTab
+            characters={characters}
+            weapons={weapons}
+            artifacts={artifacts}
+            favoriteCharacterKeys={favoriteCharacterKeys}
+            toggleFavoriteCharacter={toggleFavoriteCharacter}
+            characterSearch={characterSearch}
+            setCharacterSearch={setCharacterSearch}
+            selectedCharacterWeaponTypes={selectedCharacterWeaponTypes}
+            setSelectedCharacterWeaponTypes={setSelectedCharacterWeaponTypes}
+            selectedCharacterElements={selectedCharacterElements}
+            setSelectedCharacterElements={setSelectedCharacterElements}
+            selectedCharacterRarities={selectedCharacterRarities}
+            setSelectedCharacterRarities={setSelectedCharacterRarities}
+            characterSortBy={characterSortBy}
+            setCharacterSortBy={setCharacterSortBy}
+            characterSortOrder={characterSortOrder}
+            setCharacterSortOrder={setCharacterSortOrder}
+          />
+        )}
 
-            <input
-              type="file"
-              accept=".json"
-              ref={fileInputRef}
-              className="upload-input"
-              onChange={handleFileUpload}
-              id="file-upload"
-            />
-            <label htmlFor="file-upload" className="upload-label">
-              <Upload size={18} style={{ display: 'inline', marginRight: '8px' }} />
-              Browse Files
-            </label>
-            <p className="upload-hint mt-2">or drag and drop here</p>
-          </div>
-        </section>
-      ) : (
-        <div className="tab-content">
-          {activeTab === 'inventory' && (
-            <InventoryTab
-              materials={materials}
-              setMaterials={setMaterials}
-              search={search}
-              setSearch={setSearch}
-              setHoveredItem={setHoveredItem}
-              setMousePos={setMousePos}
-            />
-          )}
+        {activeTab === 'weapons' && (
+          <WeaponsTab
+            weapons={weapons}
+            characters={characters}
+            weaponSearch={weaponSearch}
+            setWeaponSearch={setWeaponSearch}
+            selectedWeaponTypes={selectedWeaponTypes}
+            setSelectedWeaponTypes={setSelectedWeaponTypes}
+            selectedStarRarities={selectedStarRarities}
+            setSelectedStarRarities={setSelectedStarRarities}
+          />
+        )}
 
-          {activeTab === 'characters' && (
-            <CharactersTab
-              characters={characters}
-              weapons={weapons}
-              artifacts={artifacts}
-              favoriteCharacterKeys={favoriteCharacterKeys}
-              toggleFavoriteCharacter={toggleFavoriteCharacter}
-              characterSearch={characterSearch}
-              setCharacterSearch={setCharacterSearch}
-              selectedCharacterWeaponTypes={selectedCharacterWeaponTypes}
-              setSelectedCharacterWeaponTypes={setSelectedCharacterWeaponTypes}
-              selectedCharacterElements={selectedCharacterElements}
-              setSelectedCharacterElements={setSelectedCharacterElements}
-              selectedCharacterRarities={selectedCharacterRarities}
-              setSelectedCharacterRarities={setSelectedCharacterRarities}
-              characterSortBy={characterSortBy}
-              setCharacterSortBy={setCharacterSortBy}
-              characterSortOrder={characterSortOrder}
-              setCharacterSortOrder={setCharacterSortOrder}
-            />
-          )}
+        {activeTab === 'planner' && (
+          <PlannerTab
+            plannedItems={plannedItems}
+            setPlannedItems={setPlannedItems}
+            simulation={simulation}
+            characters={characters}
+            weapons={weapons}
+            selectedDayOffset={selectedDayOffset}
+            setSelectedDayOffset={setSelectedDayOffset}
+            timeToReset={timeToReset}
+            handleOpenQuickInventory={handleOpenQuickInventory}
+            setHoveredItem={setHoveredItem}
+            setMousePos={setMousePos}
+            setIsCharacterSelectModalOpen={setIsCharacterSelectModalOpen}
+            setIsWeaponSelectModalOpen={setIsWeaponSelectModalOpen}
+            setIsPriorityModalOpen={setIsPriorityModalOpen}
+            setOpenedTargetFromPlanner={setOpenedTargetFromPlanner}
+            setSelectedWeaponIndexForTarget={setSelectedWeaponIndexForTarget}
+            setSelectedWeaponKeyForTarget={setSelectedWeaponKeyForTarget}
+            setSelectedCharacterKeyForTarget={setSelectedCharacterKeyForTarget}
+            setSelectedUpgradeWeaponId={setSelectedUpgradeWeaponId}
+            setIsUpgradeWeaponModalOpen={setIsUpgradeWeaponModalOpen}
+            setSelectedUpgradeCharacterKey={setSelectedUpgradeCharacterKey}
+            setIsUpgradeModalOpen={setIsUpgradeModalOpen}
+            setDeletingWeaponId={setDeletingWeaponId}
+            setDeletingCharacterKey={setDeletingCharacterKey}
+          />
+        )}
 
-          {activeTab === 'weapons' && (
-            <WeaponsTab
-              weapons={weapons}
-              characters={characters}
-              weaponSearch={weaponSearch}
-              setWeaponSearch={setWeaponSearch}
-              selectedWeaponTypes={selectedWeaponTypes}
-              setSelectedWeaponTypes={setSelectedWeaponTypes}
-              selectedStarRarities={selectedStarRarities}
-              setSelectedStarRarities={setSelectedStarRarities}
-            />
-          )}
-
-          {activeTab === 'planner' && (
-            <PlannerTab
-              plannedItems={plannedItems}
-              setPlannedItems={setPlannedItems}
-              simulation={simulation}
-              characters={characters}
-              weapons={weapons}
-              selectedDayOffset={selectedDayOffset}
-              setSelectedDayOffset={setSelectedDayOffset}
-              timeToReset={timeToReset}
-              handleOpenQuickInventory={handleOpenQuickInventory}
-              setHoveredItem={setHoveredItem}
-              setMousePos={setMousePos}
-              setIsCharacterSelectModalOpen={setIsCharacterSelectModalOpen}
-              setIsWeaponSelectModalOpen={setIsWeaponSelectModalOpen}
-              setIsPriorityModalOpen={setIsPriorityModalOpen}
-              setOpenedTargetFromPlanner={setOpenedTargetFromPlanner}
-              setSelectedWeaponIndexForTarget={setSelectedWeaponIndexForTarget}
-              setSelectedWeaponKeyForTarget={setSelectedWeaponKeyForTarget}
-              setSelectedCharacterKeyForTarget={setSelectedCharacterKeyForTarget}
-              setSelectedUpgradeWeaponId={setSelectedUpgradeWeaponId}
-              setIsUpgradeWeaponModalOpen={setIsUpgradeWeaponModalOpen}
-              setSelectedUpgradeCharacterKey={setSelectedUpgradeCharacterKey}
-              setIsUpgradeModalOpen={setIsUpgradeModalOpen}
-              setDeletingWeaponId={setDeletingWeaponId}
-              setDeletingCharacterKey={setDeletingCharacterKey}
-            />
-          )}
-        </div>
-      )}
+        {activeTab === 'settings' && (
+          <AccountSettingsTab
+            user={user}
+            profiles={profiles}
+            activeProfile={activeProfile}
+            setActiveProfile={setActiveProfile}
+            setProfiles={setProfiles}
+            deleteUserProfile={deleteUserProfile}
+            createCustomProfile={createCustomProfile}
+            processFile={processFile}
+            clearGoodData={clearGoodData}
+          />
+        )}
+      </div>
 
       {/* Global Mouse Tracker Tooltip */}
       {hoveredItem && (

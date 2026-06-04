@@ -345,6 +345,7 @@ export const CharactersTab: React.FC<CharactersTabProps> = ({
           <User size={48} className="empty-icon" />
           <h3>No Characters Found</h3>
           <p>No characters found in import.</p>
+          <p style={{ marginTop: '0.5rem', color: 'var(--text-secondary)' }}>Go to <strong>Account Settings</strong> to import your GOOD format JSON file.</p>
         </div>
       )}
 

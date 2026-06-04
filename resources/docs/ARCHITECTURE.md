@@ -36,10 +36,11 @@ graph TD
         Main -->|Renders| UI[React UI Components]
         
         subgraph Tabs [Modular Page Tabs - src/components/tabs/]
-            PlannerTab[PlannerTab.tsx] -->|Styled by| PlannerCSS[PlannerTab.css]
-            CharactersTab[CharactersTab.tsx] -->|Styled by| CharactersCSS[CharactersTab.css]
-            WeaponsTab[WeaponsTab.tsx] -->|Styled by| WeaponsCSS[WeaponsTab.css]
-            InventoryTab[InventoryTab.tsx] -->|Styled by| InventoryCSS[InventoryTab.css]
+            PlannerTab[PlannerTab.tsx] ---> |Styled by| PlannerCSS[PlannerTab.css]
+            CharactersTab[CharactersTab.tsx] ---> |Styled by| CharactersCSS[CharactersTab.css]
+            WeaponsTab[WeaponsTab.tsx] ---> |Styled by| WeaponsCSS[WeaponsTab.css]
+            InventoryTab[InventoryTab.tsx] ---> |Styled by| InventoryCSS[InventoryTab.css]
+            AccountSettingsTab[AccountSettingsTab.tsx] ---> |Styled by| AccountSettingsCSS[AccountSettingsTab.css]
         end
         
         Main -->|Routes to| Tabs
@@ -69,12 +70,15 @@ Centralizes data retrieval, authentication states, and dual-persistence mechanis
 
 Separates the page views to eliminate the giant inline layout switches inside the root file:
 - **`<InventoryTab>`**: Handles material inventory filtering, sorting, category filtering, and item count bindings. Materials are sourced entirely from `materialMap.json` (not the imported state), so all known materials appear even with zero counts. Sorting cascades `sortGroup` → `sortRank` → `rarity (descending)`. A category `<select>` dropdown filters by `sortGroup`. Import is scoped strictly to the `materials` key of a GOOD file. The "Clear Inventory" action uses a custom `ClearInventoryConfirmationModal`. Styled by its own isolated `InventoryTab.css`.
-- **`<CharactersTab>`**: Handles character filters (elements, weapons, star rarities), sorting lists, and Owned character cards. Styled by `CharactersTab.css`.
-- **`<WeaponsTab>`**: Manages name filtering, star selection grids, category silhouettes, and character weapon equips. Styled by `WeaponsTab.css`.
+- **`<CharactersTab>`**: Handles character filters (elements, weapons, star rarities), sorting lists, and Owned character cards. Shows a guide to Account Settings in the empty state when no characters are imported. Styled by `CharactersTab.css`.
+- **`<WeaponsTab>`**: Manages name filtering, star selection grids, category silhouettes, and character weapon equips. Distinguishes between "no import data" (shows Account Settings guidance) and "no search matches" (shows filter hint). Styled by `WeaponsTab.css`.
 - **`<PlannerTab>`**: Encapsulated the main drag-and-drop planned grid, levels/talents transition rows, power standby states, and modal trigger props. Styled by `PlannerTab.css`.
+- **`<AccountSettingsTab>`**: Dedicated settings page accessible via the profile dropdown in the header. Contains two sections:
+  - **Profiles**: Lists all profiles under the account with inline rename, create, and delete actions. Uses `updateProfileName` from `src/supabase.ts` for renames.
+  - **Profile Data**: Allows importing a full GOOD format JSON file (characters, weapons, materials, artifacts) and clearing all imported data for the active profile while preserving Planner targets. Button styles mirror the Inventory tab's ghost button aesthetic.
 
 ### 4. Stylesheet Decomposition & Variables (`src/App.css`)
-- Component styling is strictly modularized into **5 dedicated CSS stylesheets** stored alongside their respective components.
+- Component styling is strictly modularized into **6 dedicated CSS stylesheets** stored alongside their respective components.
 - `src/App.css` is reserved purely for root custom properties (rarity colors `--rarity-1` to `--rarity-5`, glassmorphic variable tokens), header grids, navigation tabs, and global modal animations, keeping global styles compact.
 
 ### 5. Authentication & Username Mapping Layer
@@ -105,12 +109,15 @@ User profiles are stored in the Supabase PostgreSQL database under the `user_pla
 - **Row Level Security (RLS)**:
   - Enabled on `user_planners` to restrict reads, upserts, and deletes only to authenticated requests where `auth.uid() = user_id`.
 
-### 7. Multi-Profile Switcher & Deletion Safety
+### 7. Multi-Profile Switcher & Account Settings
 
 A shared account can host multiple character configurations (e.g. your planner vs your partner's planner):
-- **Dynamic Creation**: Users can create custom profiles on-demand via the dropdown menu. A capitalized profile is initialized with a blank state.
-- **Row-Level Actions**: The dropdown profile rows host a selection action and a red hover trash icon (`Trash2`) for profile deletion.
+- **Account Settings Page**: Full profile management (create, rename, delete) and GOOD data import/clear are handled in the dedicated `AccountSettingsTab` page, accessible via the profile dropdown in the header.
+- **Header Dropdown Shortcut**: The profile dropdown in the header shows a list of profiles for quick switching, and includes an "Account Settings" link to navigate to the full settings page.
+- **Dynamic Creation**: New profiles can be created from the Account Settings page. A capitalized profile is initialized with a blank state.
+- **Inline Renaming**: Profiles can be renamed in place using the `updateProfileName` Supabase function (added to `src/supabase.ts`), which updates the `profile_name` column across all rows matching `(user_id, old_name)`.
 - **Deletion Safety Boundary Check**: To prevent accounts from becoming profile-less, the deletion action is strictly safety-locked. The delete button is programmatically hidden and prevented if `profiles.length === 1`, ensuring the last remaining profile can never be deleted.
+- **No Upload Wall**: New users (with no imported data) are no longer blocked by a fullscreen upload prompt. They land on the Planner tab directly, with empty-state guidance in `CharactersTab` and `WeaponsTab` pointing them to Account Settings.
 
 ### 8. UI & Modal Navigation Flow
 - **Modals Parity**:
