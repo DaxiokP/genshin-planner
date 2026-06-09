@@ -611,6 +611,28 @@
       "prithivatopazsliver"
     ]
   },
+  "elixiroftheheretic": {
+    "enemyName": "The Doctor",
+    "drops": [
+      "maskofthevirtuousdoctor",
+      "madmansrestraint",
+      "elixiroftheheretic"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
   "erodedhorn": {
     "enemyName": "Lord of Eroded Primal Fire",
     "drops": [
@@ -897,6 +919,40 @@
       "agnidusagatesliver"
     ]
   },
+  "plumeofthefallenwatcher": {
+    "enemyName": "Watchers: Fallen Vigil",
+    "drops": [
+      "plumeofthefallenwatcher"
+    ],
+    "gems": [
+      "prithivatopazgemstone",
+      "prithivatopazchunk",
+      "prithivatopazfragment",
+      "prithivatopazsliver"
+    ]
+  },
+  "profanedsprout": {
+    "enemyName": "Il Dottore",
+    "drops": [
+      "counterfeitresin",
+      "twistedwitheredbranch",
+      "profanedsprout"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
   "prismaticseveredtail": {
     "enemyName": "Radiant Moongecko",
     "drops": [
@@ -1105,6 +1161,28 @@
       "varunadalazuritesliver"
     ]
   },
+  "counterfeitresin": {
+    "enemyName": "Il Dottore",
+    "drops": [
+      "counterfeitresin",
+      "twistedwitheredbranch",
+      "profanedsprout"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
   "cyclicmilitarykuuvahkicore": {
     "enemyName": "Super-Heavy Landrover: Mechanized Fortress",
     "drops": [
@@ -1141,10 +1219,34 @@
       "vayudaturquoisesliver"
     ]
   },
+  "madmansrestraint": {
+    "enemyName": "The Doctor",
+    "drops": [
+      "maskofthevirtuousdoctor",
+      "madmansrestraint",
+      "elixiroftheheretic"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
   "maskofthevirtuousdoctor": {
     "enemyName": "The Doctor",
     "drops": [
-      "maskofthevirtuousdoctor"
+      "maskofthevirtuousdoctor",
+      "madmansrestraint",
+      "elixiroftheheretic"
     ],
     "gems": [
       "shivadajadegemstone",
@@ -1291,6 +1393,28 @@
       "shivadajadechunk",
       "shivadajadefragment",
       "shivadajadesliver"
+    ]
+  },
+  "twistedwitheredbranch": {
+    "enemyName": "Il Dottore",
+    "drops": [
+      "counterfeitresin",
+      "twistedwitheredbranch",
+      "profanedsprout"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
     ]
   }
 }

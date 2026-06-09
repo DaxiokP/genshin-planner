@@ -350,7 +350,11 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                         src={`${import.meta.env.BASE_URL}weapons/${info.id}.png`}
                         alt={info.name}
                         className="material-icon"
-                        style={{ padding: '8px' }}
+                        style={{
+                          padding: '8px 8px 0 8px',
+                          transform: 'scale(1.2) translateY(4px)',
+                          transformOrigin: 'bottom center'
+                        }}
                         onError={(e) => {
                           const target = e.currentTarget;
                           if (!target.dataset.fallback) {
