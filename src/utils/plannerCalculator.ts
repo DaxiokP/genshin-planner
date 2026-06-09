@@ -514,9 +514,9 @@ export function getDomainMaterialWeekdayGroup(
 ): 'Monday/Thursday' | 'Tuesday/Friday' | 'Wednesday/Saturday' | null {
   if (sortGroup === 600 && sortRank !== undefined) {
     const mod = sortRank % 3;
-    if (mod === 1) return 'Monday/Thursday';
-    if (mod === 2) return 'Tuesday/Friday';
-    if (mod === 0) return 'Wednesday/Saturday';
+    if (mod === 2) return 'Monday/Thursday';
+    if (mod === 0) return 'Tuesday/Friday';
+    if (mod === 1) return 'Wednesday/Saturday';
   }
 
   if (sortGroup === 500 && key !== 'crownofinsight') {
