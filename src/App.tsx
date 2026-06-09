@@ -619,10 +619,20 @@ function App() {
         onClose={() => setIsWeaponSelectModalOpen(false)}
         ownedWeapons={weapons}
         plannedItems={plannedItems}
-        onSelect={(idx) => {
+        onSelect={(idx, key) => {
           setIsWeaponSelectModalOpen(false);
-          setSelectedWeaponIndexForTarget(idx);
-          setSelectedWeaponKeyForTarget(weapons[idx].key);
+          if (idx === -1 && key) {
+            // Find a unique negative weaponIndex
+            const customWeapons = plannedItems.filter(p => p.type === 'weapon' && p.weaponIndex < 0);
+            const nextIdx = customWeapons.length > 0
+              ? Math.min(...customWeapons.map(p => p.weaponIndex)) - 1
+              : -1;
+            setSelectedWeaponIndexForTarget(nextIdx);
+            setSelectedWeaponKeyForTarget(key);
+          } else {
+            setSelectedWeaponIndexForTarget(idx);
+            setSelectedWeaponKeyForTarget(weapons[idx].key);
+          }
         }}
       />
 

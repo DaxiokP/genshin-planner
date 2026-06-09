@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { X, Search, Star } from 'lucide-react';
+import { X, Search, Star, Calendar } from 'lucide-react';
 import type { GoodCharacter } from '../App';
 import characterMapData from '../maps/characterMap.json';
 
@@ -11,6 +11,19 @@ Object.keys(characterMap).forEach(k => { charIndex[normalize(k)] = k; });
 const lookupChar = (key: string) => {
   const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
   return characterMap[charIndex[normalizedKey]] ?? null;
+};
+
+const parseVersion = (v: string | number | undefined): [number, number] => {
+  if (v === undefined || v === null) return [0, 0];
+  const parts = String(v).split('.').map(p => parseInt(p) || 0);
+  return [parts[0] || 0, parts[1] || 0];
+};
+
+const compareVersions = (v1: string | number | undefined, v2: string | number | undefined): number => {
+  const [major1, minor1] = parseVersion(v1);
+  const [major2, minor2] = parseVersion(v2);
+  if (major1 !== major2) return major1 - major2;
+  return minor1 - minor2;
 };
 
 interface CharacterSelectionModalProps {
@@ -37,15 +50,79 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
   ownedCharacters,
   onSelect,
 }) => {
+  const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>('owned');
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<'stars' | 'name'>('stars');
+  const [sortBy, setSortBy] = useState<'stars' | 'name' | 'release'>('stars');
   const [filterElement, setFilterElement] = useState<string | null>(null);
   const [showDone, setShowDone] = useState(false);
 
   const elements = ['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo'];
 
   const filteredAndSortedCharacters = useMemo(() => {
-    let result = [...ownedCharacters];
+    let result: GoodCharacter[] = [];
+
+    if (viewMode === 'owned') {
+      result = [...ownedCharacters];
+    } else if (viewMode === 'unowned') {
+      // Get all characters from characterMap that are not owned
+      Object.keys(characterMap).forEach(key => {
+        const info = characterMap[key];
+        if (!info) return;
+
+        // Skip placeholder characters
+        if (['MannequinBoy', 'MannequinGirl', 'PlayerBoy', 'PlayerGirl'].includes(info.id) && key !== 'Aether' && key !== 'Lumine') {
+          return;
+        }
+
+        const ownedMatch = ownedCharacters.find(c => {
+          const cNorm = normalize(c.key);
+          const keyNorm = normalize(key);
+          return cNorm === keyNorm || (cNorm === 'traveler' && keyNorm === 'aether');
+        });
+
+        if (!ownedMatch) {
+          result.push({
+            key: key,
+            level: 1,
+            constellation: 0,
+            ascension: 0,
+            talent: { auto: 1, skill: 1, burst: 1 }
+          });
+        }
+      });
+    } else {
+      // Get all characters from characterMap
+      Object.keys(characterMap).forEach(key => {
+        const info = characterMap[key];
+        if (!info) return;
+
+        // Skip placeholder characters
+        if (['MannequinBoy', 'MannequinGirl', 'PlayerBoy', 'PlayerGirl'].includes(info.id) && key !== 'Aether' && key !== 'Lumine') {
+          return;
+        }
+
+        const ownedMatch = ownedCharacters.find(c => {
+          const cNorm = normalize(c.key);
+          const keyNorm = normalize(key);
+          return cNorm === keyNorm || (cNorm === 'traveler' && keyNorm === 'aether');
+        });
+
+        if (ownedMatch) {
+          result.push({
+            ...ownedMatch,
+            key: key // Keep characterMap key consistency
+          });
+        } else {
+          result.push({
+            key: key,
+            level: 1,
+            constellation: 0,
+            ascension: 0,
+            talent: { auto: 1, skill: 1, burst: 1 }
+          });
+        }
+      });
+    }
 
     // Filter by element
     if (filterElement) {
@@ -88,10 +165,18 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
       const nameB = infoB?.name || b.key;
       const starsA = infoA?.rarity || 4;
       const starsB = infoB?.rarity || 4;
+      const versionA = infoA?.version;
+      const versionB = infoB?.version;
 
       if (sortBy === 'stars') {
         if (starsA !== starsB) return starsB - starsA; // Higher stars first
         // If same stars, fall back to level or name
+        if (a.level !== b.level) return b.level - a.level;
+        return nameA.localeCompare(nameB);
+      } else if (sortBy === 'release') {
+        const vComp = compareVersions(versionB, versionA); // Descending (newest first)
+        if (vComp !== 0) return vComp;
+        if (starsA !== starsB) return starsB - starsA; // Rarity fallback
         if (a.level !== b.level) return b.level - a.level;
         return nameA.localeCompare(nameB);
       } else {
@@ -103,7 +188,7 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
       characters: result,
       allMatchingAreDone
     };
-  }, [ownedCharacters, filterElement, searchQuery, sortBy, showDone]);
+  }, [ownedCharacters, filterElement, searchQuery, sortBy, showDone, viewMode]);
 
   if (!isOpen) return null;
 
@@ -116,6 +201,30 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
           <h2>Select Character</h2>
           <button className="modal-close-btn" onClick={onClose}>
             <X size={20} />
+          </button>
+        </div>
+        
+        <div className="modal-view-mode-tabs" style={{ display: 'flex', gap: '8px', padding: '1rem 1.5rem 0 1.5rem' }}>
+          <button 
+            className={`modal-toggle-done-btn ${viewMode === 'owned' ? 'active' : ''}`}
+            onClick={() => { setViewMode('owned'); if (sortBy === 'release') setSortBy('stars'); }}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            Owned Characters
+          </button>
+          <button 
+            className={`modal-toggle-done-btn ${viewMode === 'unowned' ? 'active' : ''}`}
+            onClick={() => { setViewMode('unowned'); setSortBy('release'); }}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            Not Owned Characters
+          </button>
+          <button 
+            className={`modal-toggle-done-btn ${viewMode === 'all' ? 'active' : ''}`}
+            onClick={() => { setViewMode('all'); if (sortBy === 'release') setSortBy('stars'); }}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            All Game Database
           </button>
         </div>
         
@@ -139,11 +248,17 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
             
             <button 
               className="modal-sort-btn" 
-              onClick={() => setSortBy(prev => prev === 'stars' ? 'name' : 'stars')}
+              onClick={() => setSortBy(prev => {
+                if (prev === 'stars') return 'name';
+                if (prev === 'name') return 'release';
+                return 'stars';
+              })}
             >
               <Star size={16} fill={sortBy === 'stars' ? '#ffcc66' : 'none'} color={sortBy === 'stars' ? '#ffcc66' : 'currentColor'} />
               <span style={{ margin: '0 4px', opacity: 0.5 }}>/</span>
               <span style={{ fontWeight: sortBy === 'name' ? 'bold' : 'normal', color: sortBy === 'name' ? '#fff' : 'inherit' }}>Abc</span>
+              <span style={{ margin: '0 4px', opacity: 0.5 }}>/</span>
+              <Calendar size={16} color={sortBy === 'release' ? '#ffcc66' : 'currentColor'} />
             </button>
 
             <button 

@@ -74,17 +74,82 @@ npm run build
 
 ---
 
-## 5. Data Pipeline (Advanced)
-If you need to update the material icons or mapping data from the game database:
+## 5. Data Pipeline
 
-- **Update Icons**: `node resources/scripts/downloadIcons.cjs`
-- **Update Character Icons**: `node resources/scripts/downloadCharacterIcons.cjs`
-- **Update Weapon Icons**: `node resources/scripts/downloadWeaponIcons.cjs`
-- **Regenerate Mappings**: `node resources/scripts/generateMap.cjs`
+All game data (characters, weapons, materials, requirements, and assets) is generated from `genshin-db` and stored as JSON maps in `src/maps/`. A single unified command regenerates everything:
+
+```bash
+npm run update-data
+```
+
+This runs all generator scripts in sequence and downloads any new character/weapon assets (splash arts, namecards, icons). You should run this whenever a new game version is released.
+
+> [!NOTE]
+> Individual scripts under `resources/scripts/` can also be run manually if you only need to update one part of the pipeline (e.g. `node resources/scripts/generateCharacterMap.cjs`).
 
 ---
 
-## 6. Configuring Supabase Cloud Sync (Optional / Recommended)
+## 6. Updating for a New Game Version (e.g. 6.7, 7.0, …)
+
+When a new Genshin Impact patch releases new characters or weapons, follow these steps to bring the planner up to date:
+
+### Step 1 — Update `genshin-db`
+Check if a newer version of `genshin-db` is available that includes the new patch data:
+```bash
+npm show genshin-db version         # see latest published version
+npm install genshin-db@latest       # install it
+```
+Verify the new version covers your target patch (e.g. `5.2.11` covered version `6.6`). If the package hasn't been updated yet, wait until it is — do **not** hardcode data manually.
+
+### Step 2 — Regenerate All Maps & Assets
+```bash
+npm run update-data
+```
+This will:
+- Regenerate `src/maps/characterMap.json` with any new characters (including their `version` field for release-date sorting).
+- Regenerate `src/maps/weaponMap.json` with any new weapons.
+- Regenerate `src/maps/weaponRequirementsMap.json` with ascension costs for new weapons.
+- Regenerate `src/maps/materialMap.json` with any new materials.
+- Download missing character splash arts → `public/splash_arts/`
+- Download missing character namecards → `public/namecards/`
+- Download missing character icons → `public/characters/`
+- Download missing weapon icons → `public/icons/`
+
+### Step 3 — Verify the Build
+```bash
+npm run build
+```
+Fix any TypeScript errors before continuing.
+
+### Step 4 — Run Tests
+```bash
+npm run test
+```
+All 8 tests must pass. If calculations break, check `src/utils/plannerCalculator.ts` and `src/utils/upgradeHelpers.ts` for any assumptions that may have changed.
+
+### Step 5 — Smoke-Test in the Browser
+```bash
+npm run dev
+```
+1. Open the planner at `http://localhost:5173/genshin-planner/`.
+2. Open the **Add Character** modal → switch to **Not Owned Characters**.
+3. Confirm the newest version's characters appear at the top of the list (sorted by Release Date).
+4. Select one, confirm the target modal opens with Level 1 / C0 / Talents 1/1/1 defaults.
+5. Repeat for **Add Weapon** → **Not Owned Weapons**.
+
+### Step 6 — Commit the Updates
+```bash
+git add src/maps/ public/characters/ public/splash_arts/ public/namecards/ public/icons/ package.json package-lock.json
+git commit -m "chore: update data to Genshin version X.Y"
+git push
+```
+
+> [!TIP]
+> The GitHub Actions CI/CD pipeline will automatically build and deploy to GitHub Pages after the push. No manual deployment step is needed.
+
+---
+
+## 7. Configuring Supabase Cloud Sync (Optional / Recommended)
 
 To enable Username authentication and multi-profile cloud synchronization, follow these steps to connect your own Supabase instance:
 

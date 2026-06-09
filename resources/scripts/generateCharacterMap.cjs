@@ -19,7 +19,8 @@ characters.forEach(name => {
         element: data.elementText,
         weaponType: data.weaponText,
         icon: data.images.mihoyo_icon,
-        id: data.images.filename_icon.replace('UI_AvatarIcon_', '')
+        id: data.images.filename_icon.replace('UI_AvatarIcon_', ''),
+        version: data.version
     };
 });
 

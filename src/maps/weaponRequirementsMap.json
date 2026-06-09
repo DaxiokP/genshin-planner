@@ -679,6 +679,142 @@
       ]
     }
   },
+  "Angelos' Heptades": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 10000
+        },
+        {
+          "key": "artfuldevicefragment",
+          "name": "Artful Device Fragment",
+          "count": 5
+        },
+        {
+          "key": "fadedflaminghilt",
+          "name": "Faded Flaming Hilt",
+          "count": 5
+        },
+        {
+          "key": "brokendriveshaft",
+          "name": "Broken Drive Shaft",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "artfuldevicereplica",
+          "name": "Artful Device Replica",
+          "count": 5
+        },
+        {
+          "key": "fadedflaminghilt",
+          "name": "Faded Flaming Hilt",
+          "count": 18
+        },
+        {
+          "key": "brokendriveshaft",
+          "name": "Broken Drive Shaft",
+          "count": 12
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "artfuldevicereplica",
+          "name": "Artful Device Replica",
+          "count": 9
+        },
+        {
+          "key": "fracturedflaminghilt",
+          "name": "Fractured Flaming Hilt",
+          "count": 9
+        },
+        {
+          "key": "reinforceddriveshaft",
+          "name": "Reinforced Drive Shaft",
+          "count": 9
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 45000
+        },
+        {
+          "key": "artfuldeviceinheritance",
+          "name": "Artful Device Inheritance",
+          "count": 5
+        },
+        {
+          "key": "fracturedflaminghilt",
+          "name": "Fractured Flaming Hilt",
+          "count": 18
+        },
+        {
+          "key": "reinforceddriveshaft",
+          "name": "Reinforced Drive Shaft",
+          "count": 14
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 55000
+        },
+        {
+          "key": "artfuldeviceinheritance",
+          "name": "Artful Device Inheritance",
+          "count": 9
+        },
+        {
+          "key": "jeweledflaminghilt",
+          "name": "Jeweled Flaming Hilt",
+          "count": 14
+        },
+        {
+          "key": "precisiondriveshaft",
+          "name": "Precision Drive Shaft",
+          "count": 9
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 65000
+        },
+        {
+          "key": "artfuldevicewish",
+          "name": "Artful Device Wish",
+          "count": 6
+        },
+        {
+          "key": "jeweledflaminghilt",
+          "name": "Jeweled Flaming Hilt",
+          "count": 27
+        },
+        {
+          "key": "precisiondriveshaft",
+          "name": "Precision Drive Shaft",
+          "count": 18
+        }
+      ]
+    }
+  },
   "Apprentice's Notes": {
     "ascension": {
       "1": [
@@ -768,7 +904,9 @@
           "name": "Stained Mask",
           "count": 3
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Aqua Simulacra": {
@@ -2356,7 +2494,9 @@
           "name": "Sealed Scroll",
           "count": 3
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Blackcliff Agate": {
@@ -5759,6 +5899,142 @@
       ]
     }
   },
+  "Disaster and Remorse": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 10000
+        },
+        {
+          "key": "tileofdecarabianstower",
+          "name": "Tile of Decarabian's Tower",
+          "count": 5
+        },
+        {
+          "key": "lightlessbone",
+          "name": "Lightless Bone",
+          "count": 5
+        },
+        {
+          "key": "whopperflowernectar",
+          "name": "Whopperflower Nectar",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "debrisofdecarabianscity",
+          "name": "Debris of Decarabian's City",
+          "count": 5
+        },
+        {
+          "key": "lightlessbone",
+          "name": "Lightless Bone",
+          "count": 18
+        },
+        {
+          "key": "whopperflowernectar",
+          "name": "Whopperflower Nectar",
+          "count": 12
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "debrisofdecarabianscity",
+          "name": "Debris of Decarabian's City",
+          "count": 9
+        },
+        {
+          "key": "glowingremains",
+          "name": "Glowing Remains",
+          "count": 9
+        },
+        {
+          "key": "shimmeringnectar",
+          "name": "Shimmering Nectar",
+          "count": 9
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 45000
+        },
+        {
+          "key": "fragmentofdecarabiansepic",
+          "name": "Fragment of Decarabian's Epic",
+          "count": 5
+        },
+        {
+          "key": "glowingremains",
+          "name": "Glowing Remains",
+          "count": 18
+        },
+        {
+          "key": "shimmeringnectar",
+          "name": "Shimmering Nectar",
+          "count": 14
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 55000
+        },
+        {
+          "key": "fragmentofdecarabiansepic",
+          "name": "Fragment of Decarabian's Epic",
+          "count": 9
+        },
+        {
+          "key": "radiantexoskeleton",
+          "name": "Radiant Exoskeleton",
+          "count": 14
+        },
+        {
+          "key": "energynectar",
+          "name": "Energy Nectar",
+          "count": 9
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 65000
+        },
+        {
+          "key": "scatteredpieceofdecarabiansdream",
+          "name": "Scattered Piece of Decarabian's Dream",
+          "count": 6
+        },
+        {
+          "key": "radiantexoskeleton",
+          "name": "Radiant Exoskeleton",
+          "count": 27
+        },
+        {
+          "key": "energynectar",
+          "name": "Energy Nectar",
+          "count": 18
+        }
+      ]
+    }
+  },
   "Dodoco Tales": {
     "ascension": {
       "1": [
@@ -6256,7 +6532,9 @@
           "name": "Sharp Arrowhead",
           "count": 3
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Earth Shaker": {
@@ -10611,6 +10889,142 @@
       ]
     }
   },
+  "Golden Frostbound Oath": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 10000
+        },
+        {
+          "key": "emberoflongnightflint",
+          "name": "Ember of Long Night Flint",
+          "count": 5
+        },
+        {
+          "key": "fadedflaminghilt",
+          "name": "Faded Flaming Hilt",
+          "count": 5
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "afterglowoflongnightflint",
+          "name": "Afterglow of Long Night Flint",
+          "count": 5
+        },
+        {
+          "key": "fadedflaminghilt",
+          "name": "Faded Flaming Hilt",
+          "count": 18
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 12
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "afterglowoflongnightflint",
+          "name": "Afterglow of Long Night Flint",
+          "count": 9
+        },
+        {
+          "key": "fracturedflaminghilt",
+          "name": "Fractured Flaming Hilt",
+          "count": 9
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 9
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 45000
+        },
+        {
+          "key": "flareoflongnightflint",
+          "name": "Flare of Long Night Flint",
+          "count": 5
+        },
+        {
+          "key": "fracturedflaminghilt",
+          "name": "Fractured Flaming Hilt",
+          "count": 18
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 14
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 55000
+        },
+        {
+          "key": "flareoflongnightflint",
+          "name": "Flare of Long Night Flint",
+          "count": 9
+        },
+        {
+          "key": "jeweledflaminghilt",
+          "name": "Jeweled Flaming Hilt",
+          "count": 14
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 9
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 65000
+        },
+        {
+          "key": "blazeoflongnightflint",
+          "name": "Blaze of Long Night Flint",
+          "count": 6
+        },
+        {
+          "key": "jeweledflaminghilt",
+          "name": "Jeweled Flaming Hilt",
+          "count": 27
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 18
+        }
+      ]
+    }
+  },
   "Hakushin Ring": {
     "ascension": {
       "1": [
@@ -11380,7 +11794,9 @@
           "name": "Silver Raven Insignia",
           "count": 3
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Hunter's Path": {
@@ -11744,7 +12160,9 @@
           "name": "Sealed Scroll",
           "count": 4
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Iron Sting": {
@@ -16324,7 +16742,9 @@
           "name": "Slime Secretions",
           "count": 4
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Otherworldly Story": {
@@ -16688,7 +17108,9 @@
           "name": "Stained Mask",
           "count": 4
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Polar Star": {
@@ -21586,7 +22008,9 @@
           "name": "Silver Raven Insignia",
           "count": 4
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Sequence of Solitude": {
@@ -22358,7 +22782,9 @@
           "name": "Sharp Arrowhead",
           "count": 4
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Skyrider Greatsword": {
@@ -29522,7 +29948,9 @@
           "name": "Slime Secretions",
           "count": 3
         }
-      ]
+      ],
+      "5": [],
+      "6": []
     }
   },
   "Wavebreaker's Fin": {

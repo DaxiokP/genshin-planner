@@ -1,7 +1,7 @@
 const genshindb = require('genshin-db');
 const fs = require('fs');
 
-const goodData = JSON.parse(fs.readFileSync('../genshin_export_2026-03-31_01-18.json', 'utf8'));
+// const goodData = JSON.parse(fs.readFileSync('../genshin_export_2026-03-31_01-18.json', 'utf8'));
 
 // The definitive Set of permitted item names
 const allowedNames = new Set([

@@ -134,12 +134,14 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
         setCurrentAscension(plannedData.current.ascension);
         setDesiredLevel(plannedData.desired.level);
         setDesiredAscension(plannedData.desired.ascension);
-      } else if (currentData) {
-        // Add flow
-        setCurrentLevel(currentData.level);
-        setCurrentAscension(currentData.ascension);
-        setDesiredLevel(Math.max(90, currentData.level));
-        setDesiredAscension(Math.max(6, currentData.ascension));
+      } else {
+        // Add flow (owned or custom)
+        const curLvl = currentData?.level || 1;
+        const curAsc = currentData?.ascension || 0;
+        setCurrentLevel(curLvl);
+        setCurrentAscension(curAsc);
+        setDesiredLevel(Math.max(90, curLvl));
+        setDesiredAscension(Math.max(6, curAsc));
       }
     }
   }, [isOpen, currentData, plannedData]);

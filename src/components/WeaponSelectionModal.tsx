@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { X, Search, Star } from 'lucide-react';
+import { X, Search, Star, Calendar } from 'lucide-react';
 import type { GoodWeapon } from '../App';
 import weaponMapData from '../maps/weaponMap.json';
 
@@ -9,12 +9,25 @@ const weaponIndex: Record<string, string> = {};
 Object.keys(weaponMapRaw).forEach(k => { weaponIndex[normalize(k)] = k; });
 const lookupWeapon = (key: string) => weaponMapRaw[weaponIndex[normalize(key)]] ?? null;
 
+const parseVersion = (v: string | number | undefined): [number, number] => {
+  if (v === undefined || v === null) return [0, 0];
+  const parts = String(v).split('.').map(p => parseInt(p) || 0);
+  return [parts[0] || 0, parts[1] || 0];
+};
+
+const compareVersions = (v1: string | number | undefined, v2: string | number | undefined): number => {
+  const [major1, minor1] = parseVersion(v1);
+  const [major2, minor2] = parseVersion(v2);
+  if (major1 !== major2) return major1 - major2;
+  return minor1 - minor2;
+};
+
 interface WeaponSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   ownedWeapons: GoodWeapon[];
   plannedItems: any[]; // planned_items to identify which weapon indexes are already planned
-  onSelect: (weaponIndex: number) => void;
+  onSelect: (weaponIndex: number, weaponKey?: string) => void;
 }
 
 const getWeaponTypeIconPath = (type: string) => {
@@ -35,77 +48,149 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
   plannedItems,
   onSelect,
 }) => {
+  const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>('owned');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<string | null>(null);
   const [filterRarities, setFilterRarities] = useState<number[]>([5, 4, 3]);
-  const [sortBy, setSortBy] = useState<'stars' | 'name'>('stars');
+  const [sortBy, setSortBy] = useState<'stars' | 'name' | 'release'>('stars');
 
   const weaponTypes = ['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'];
   const rarities = [5, 4, 3];
 
   const filteredAndSortedWeapons = useMemo(() => {
-    // 1. Iterate owned weapons with array index mapping
-    const mapped = ownedWeapons.map((w, idx) => ({ ...w, originalIndex: idx }));
+    let result: any[] = [];
 
-    // 2. Filter out already planned weapons or level 90 weapons
+    // Filter out already planned owned weapons
     const plannedIndexes = new Set(
       plannedItems
         .filter(item => item.type === 'weapon')
         .map(item => item.weaponIndex)
     );
 
-    let result = mapped.filter(w => {
-      // Exclude level 90
-      if (w.level === 90) return false;
-      // Exclude already planned copy
-      if (plannedIndexes.has(w.originalIndex)) return false;
+    if (viewMode === 'owned') {
+      const mapped = ownedWeapons.map((w, idx) => ({ ...w, originalIndex: idx }));
 
-      const info = lookupWeapon(w.key);
-      if (!info) return false;
+      result = mapped.filter(w => {
+        // Exclude level 90
+        if (w.level === 90) return false;
+        // Exclude already planned copy
+        if (plannedIndexes.has(w.originalIndex)) return false;
 
-      // Exclude 1* and 2* weapons
-      if (info.rarity < 3) return false;
+        const info = lookupWeapon(w.key);
+        if (!info) return false;
 
-      // Filter by type
-      if (filterType && info.type !== filterType) return false;
+        // Exclude 1* and 2* weapons
+        if (info.rarity < 3) return false;
 
-      // Filter by rarity
-      if (!filterRarities.includes(info.rarity)) return false;
+        // Filter by type
+        if (filterType && info.type !== filterType) return false;
 
-      // Filter by search query
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const displayName = info.name.toLowerCase();
-        const keyName = w.key.toLowerCase();
-        if (!displayName.includes(q) && !keyName.includes(q)) return false;
-      }
+        // Filter by rarity
+        if (!filterRarities.includes(info.rarity)) return false;
 
-      return true;
-    });
+        // Filter by search query
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase();
+          const displayName = info.name.toLowerCase();
+          const keyName = w.key.toLowerCase();
+          if (!displayName.includes(q) && !keyName.includes(q)) return false;
+        }
 
-    // 3. Sort: Rarity/stars desc (with level/alphabetical fallback) OR pure alphabetical (A-Z)
-    result.sort((a, b) => {
-      const infoA = lookupWeapon(a.key);
-      const infoB = lookupWeapon(b.key);
-      const nameA = infoA?.name || a.key;
-      const nameB = infoB?.name || b.key;
-      const rarityA = infoA?.rarity || 3;
-      const rarityB = infoB?.rarity || 3;
+        return true;
+      });
 
-      if (sortBy === 'stars') {
-        if (rarityA !== rarityB) return rarityB - rarityA; // Rarity desc
-        if (a.level !== b.level) return b.level - a.level; // Level desc
-        return nameA.localeCompare(nameB);
-      } else {
-        const nameCompare = nameA.localeCompare(nameB);
-        if (nameCompare !== 0) return nameCompare;
-        if (a.level !== b.level) return b.level - a.level; // Level desc under same name
-        return a.originalIndex - b.originalIndex; // Stable sorting index fallback
-      }
-    });
+      result.sort((a, b) => {
+        const infoA = lookupWeapon(a.key);
+        const infoB = lookupWeapon(b.key);
+        const nameA = infoA?.name || a.key;
+        const nameB = infoB?.name || b.key;
+        const rarityA = infoA?.rarity || 3;
+        const rarityB = infoB?.rarity || 3;
+
+        if (sortBy === 'stars') {
+          if (rarityA !== rarityB) return rarityB - rarityA; // Rarity desc
+          if (a.level !== b.level) return b.level - a.level; // Level desc
+          return nameA.localeCompare(nameB);
+        } else if (sortBy === 'release') {
+          const versionA = infoA?.version;
+          const versionB = infoB?.version;
+          const vComp = compareVersions(versionB, versionA);
+          if (vComp !== 0) return vComp;
+          if (rarityA !== rarityB) return rarityB - rarityA;
+          if (a.level !== b.level) return b.level - a.level;
+          return nameA.localeCompare(nameB);
+        } else {
+          const nameCompare = nameA.localeCompare(nameB);
+          if (nameCompare !== 0) return nameCompare;
+          if (a.level !== b.level) return b.level - a.level; // Level desc under same name
+          return a.originalIndex - b.originalIndex; // Stable sorting index fallback
+        }
+      });
+    } else {
+      // viewMode === 'unowned' || viewMode === 'all'
+      Object.keys(weaponMapRaw).forEach(wKey => {
+        const info = weaponMapRaw[wKey];
+        if (!info) return;
+
+        // Exclude 1* and 2* weapons
+        if (info.rarity < 3) return;
+
+        // If unowned view mode, exclude owned weapons
+        if (viewMode === 'unowned') {
+          const isOwned = ownedWeapons.some(ow => normalize(ow.key) === normalize(wKey));
+          if (isOwned) return;
+        }
+
+        // Filter by type
+        if (filterType && info.type !== filterType) return;
+
+        // Filter by rarity
+        if (!filterRarities.includes(info.rarity)) return;
+
+        // Filter by search query
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase();
+          const displayName = info.name.toLowerCase();
+          const keyName = wKey.toLowerCase();
+          if (!displayName.includes(q) && !keyName.includes(q)) return;
+        }
+
+        result.push({
+          key: wKey,
+          level: 1,
+          ascension: 0,
+          refinement: 1,
+          location: '',
+          originalIndex: -1 // Special custom marker
+        });
+      });
+
+      result.sort((a, b) => {
+        const infoA = lookupWeapon(a.key);
+        const infoB = lookupWeapon(b.key);
+        const nameA = infoA?.name || a.key;
+        const nameB = infoB?.name || b.key;
+        const rarityA = infoA?.rarity || 3;
+        const rarityB = infoB?.rarity || 3;
+
+        if (sortBy === 'stars') {
+          if (rarityA !== rarityB) return rarityB - rarityA; // Rarity desc
+          return nameA.localeCompare(nameB);
+        } else if (sortBy === 'release') {
+          const versionA = infoA?.version;
+          const versionB = infoB?.version;
+          const vComp = compareVersions(versionB, versionA);
+          if (vComp !== 0) return vComp;
+          if (rarityA !== rarityB) return rarityB - rarityA;
+          return nameA.localeCompare(nameB);
+        } else {
+          return nameA.localeCompare(nameB);
+        }
+      });
+    }
 
     return result;
-  }, [ownedWeapons, plannedItems, searchQuery, filterType, filterRarities, sortBy]);
+  }, [ownedWeapons, plannedItems, searchQuery, filterType, filterRarities, sortBy, viewMode]);
 
   if (!isOpen) return null;
 
@@ -122,6 +207,30 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
           <h2>Select Weapon</h2>
           <button className="modal-close-btn" onClick={onClose}>
             <X size={20} />
+          </button>
+        </div>
+
+        <div className="modal-view-mode-tabs" style={{ display: 'flex', gap: '8px', padding: '1rem 1.5rem 0 1.5rem' }}>
+          <button 
+            className={`modal-toggle-done-btn ${viewMode === 'owned' ? 'active' : ''}`}
+            onClick={() => { setViewMode('owned'); if (sortBy === 'release') setSortBy('stars'); }}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            Owned Weapons
+          </button>
+          <button 
+            className={`modal-toggle-done-btn ${viewMode === 'unowned' ? 'active' : ''}`}
+            onClick={() => { setViewMode('unowned'); setSortBy('release'); }}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            Not Owned Weapons
+          </button>
+          <button 
+            className={`modal-toggle-done-btn ${viewMode === 'all' ? 'active' : ''}`}
+            onClick={() => { setViewMode('all'); if (sortBy === 'release') setSortBy('stars'); }}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            All Game Database
           </button>
         </div>
 
@@ -145,11 +254,17 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
 
             <button
               className="modal-sort-btn"
-              onClick={() => setSortBy(prev => prev === 'stars' ? 'name' : 'stars')}
+              onClick={() => setSortBy(prev => {
+                if (prev === 'stars') return 'name';
+                if (prev === 'name') return 'release';
+                return 'stars';
+              })}
             >
               <Star size={16} fill={sortBy === 'stars' ? '#ffcc66' : 'none'} color={sortBy === 'stars' ? '#ffcc66' : 'currentColor'} />
               <span style={{ margin: '0 4px', opacity: 0.5 }}>/</span>
               <span style={{ fontWeight: sortBy === 'name' ? 'bold' : 'normal', color: sortBy === 'name' ? '#fff' : 'inherit' }}>Abc</span>
+              <span style={{ margin: '0 4px', opacity: 0.5 }}>/</span>
+              <Calendar size={16} color={sortBy === 'release' ? '#ffcc66' : 'currentColor'} />
             </button>
           </div>
 
@@ -226,9 +341,9 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
 
                 return (
                   <div
-                    key={w.originalIndex}
+                    key={viewMode === 'owned' ? w.originalIndex : w.key}
                     className="char-select-item"
-                    onClick={() => onSelect(w.originalIndex)}
+                    onClick={() => onSelect(w.originalIndex, w.key)}
                   >
                     <div className={`material-icon-wrapper bg-rarity-${rarity}`} style={{ position: 'relative' }}>
                       <img

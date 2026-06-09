@@ -118,18 +118,28 @@ Goal: Allow users to add characters and weapons to the planner that aren't in th
 - [ ] **Allow "Custom" Character or Weapons on the planner**
     - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
     - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)
-- [ ] **Add Character not in Good file**
-    - Allow adding characters that aren't in the user's import file but are characters from the game
-- [ ] **Add Weapon not in Good file**
-    - Allow adding weapons that aren't in the user's import file but are weapons from the game
+- [x] **Add Character not in Good file**
+    - Added a "Not Owned Characters" tab to `CharacterSelectionModal.tsx` that lists all game characters not present in the user's imported GOOD file.
+    - Unowned characters default to Level 1, C0, and talents 1/1/1 when selected for planning.
+    - `CharacterTargetModal.tsx` initializes from Level 1 when the selected character has no GOOD data.
+- [x] **Add Weapon not in Good file**
+    - Added a "Not Owned Weapons" tab to `WeaponSelectionModal.tsx` that lists all game weapons not present in the user's owned weapons array.
+    - Unowned weapons default to Level 1 and R1 when selected for planning.
+    - `WeaponTargetModal.tsx` initializes from Level 1 when `weaponIndex === -1` (no GOOD data).
+    - Unowned weapon plans are assigned unique negative `weaponIndex` values (starting from `-1` descending) in `App.tsx` to prevent ID collisions with real owned weapons.
 
-## Phase 7: Keep track with game releases (In Progress)
+## Phase 7: Keep track with game releases (Completed)
 Goal: Keep track with the new characters and weapons that are released in the game, and update the web page to reflect the changes.
 
-- [ ] **Update character data**
-    - Get the latest character data from the game and update the web page to reflect the changes.
-- [ ] **Update weapon data**
-    - Get the latest weapon data from the game and update the web page to reflect the changes.
+- [x] **Automated data update pipeline**
+    - Created `resources/scripts/updateData.cjs` — a unified coordinator script that regenerates all data maps and downloads new character/weapon assets in one command: `npm run update-data`.
+    - Created `resources/scripts/generateWeaponRequirementsMap.cjs` to automate building `src/maps/weaponRequirementsMap.json` from `genshin-db`.
+    - Updated `generateCharacterMap.cjs` and `generateWeaponMap.cjs` to extract and include the `version` field (e.g. `"6.6"`) from `genshin-db` entries, enabling release-date sorting in the UI.
+    - Updated `genshin-db` to `5.2.11` to include version 6.6 characters and weapons (Linnea, Lohen, Nicole, Prune, and new weapons).
+- [x] **Update character data**
+    - Running `npm run update-data` regenerates `characterMap.json`, downloads new splash arts, icons, and namecards for all new characters.
+- [x] **Update weapon data**
+    - Running `npm run update-data` regenerates `weaponMap.json` and `weaponRequirementsMap.json` with all new weapons and their ascension requirements.
 
 
 ## Phase X: Future Ideas

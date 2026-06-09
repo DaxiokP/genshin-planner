@@ -878,6 +878,18 @@
     "sortRank": 312,
     "localExt": ".png"
   },
+  "counterfeitresin": {
+    "id": "113087",
+    "name": "Counterfeit Resin",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Il Dottore Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
   "crownofinsight": {
     "id": "104319",
     "name": "Crown of Insight",
@@ -1343,6 +1355,18 @@
     "sortRank": 15112,
     "localExt": ".png"
   },
+  "elixiroftheheretic": {
+    "id": "113083",
+    "name": "Elixir of the Heretic",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Doctor Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
   "emberoflongnightflint": {
     "id": "114077",
     "name": "Ember of Long Night Flint",
@@ -1448,6 +1472,19 @@
     "sortRank": 15114,
     "localExt": ".png"
   },
+  "etherwingmoth": {
+    "id": "101272",
+    "name": "Etherwing Moth",
+    "rarity": 1,
+    "sources": [
+      "Recommendation: Found on Windrest Peak and Temple of Space",
+      "Recommendation: Found in Millhaven and the Pillar Hall Central Zone",
+      "Go to collect"
+    ],
+    "sortGroup": 700,
+    "sortRank": 311,
+    "localExt": ".png"
+  },
   "everamber": {
     "id": "113048",
     "name": "Everamber",
@@ -1480,6 +1517,18 @@
     ],
     "sortGroup": 300,
     "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "fadedflaminghilt": {
+    "id": "112140",
+    "name": "Faded Flaming Hilt",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Domain Keepers",
+      "Stardust Exchange"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10146,
     "localExt": ".png"
   },
   "fadedredsatin": {
@@ -1652,6 +1701,19 @@
     ],
     "sortGroup": 100,
     "sortRank": 10145,
+    "localExt": ".png"
+  },
+  "fracturedflaminghilt": {
+    "id": "112141",
+    "name": "Fractured Flaming Hilt",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lv. 40+ Domain Keepers",
+      "Stardust Exchange",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10146,
     "localExt": ".png"
   },
   "fragileboneshard": {
@@ -2376,6 +2438,19 @@
     ],
     "sortGroup": 600,
     "sortRank": 15107,
+    "localExt": ".png"
+  },
+  "jeweledflaminghilt": {
+    "id": "112142",
+    "name": "Jeweled Flaming Hilt",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 60+ Domain Keepers",
+      "Stardust Exchange: Craft after exchanging",
+      "Placeholder - Craftable Amount: {0}"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10146,
     "localExt": ".png"
   },
   "jueyunchili": {
@@ -3641,6 +3716,17 @@
     ],
     "sortGroup": 700,
     "sortRank": 317,
+    "localExt": ".png"
+  },
+  "plumeofthefallenwatcher": {
+    "id": "113086",
+    "name": "Plume of the Fallen Watcher",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Watchers: Fallen Vigil"
+    ],
+    "sortGroup": 300,
+    "sortRank": 11101,
     "localExt": ".png"
   },
   "polarizingprism": {

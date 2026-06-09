@@ -166,32 +166,34 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   const isBurstBoosted = constellation >= 5;
 
   useEffect(() => {
-    if (currentData) {
-      setCurrentLevel(currentData.level || 1);
-      setCurrentAscension(currentData.ascension || 0);
-      setCurrentTalents({
-        auto: currentData.talent?.auto || 1,
-        skill: currentData.talent?.skill || 1,
-        burst: currentData.talent?.burst || 1,
-      });
+    const curLevel = currentData?.level || 1;
+    const curAsc = currentData?.ascension || 0;
+    const curTalents = {
+      auto: currentData?.talent?.auto || 1,
+      skill: currentData?.talent?.skill || 1,
+      burst: currentData?.talent?.burst || 1,
+    };
 
-      if (plannedData) {
-        setDesiredLevel(plannedData.desired.level);
-        setDesiredAscension(plannedData.desired.ascension);
-        setDesiredTalents({
-          auto: plannedData.desired.talent.auto,
-          skill: plannedData.desired.talent.skill,
-          burst: plannedData.desired.talent.burst,
-        });
-      } else {
-        setDesiredLevel(Math.max(90, currentData.level || 1));
-        setDesiredAscension(Math.max(6, currentData.ascension || 0));
-        setDesiredTalents({
-          auto: Math.max(9, currentData.talent?.auto || 1),
-          skill: Math.max(9, currentData.talent?.skill || 1),
-          burst: Math.max(9, currentData.talent?.burst || 1),
-        });
-      }
+    setCurrentLevel(curLevel);
+    setCurrentAscension(curAsc);
+    setCurrentTalents(curTalents);
+
+    if (plannedData) {
+      setDesiredLevel(plannedData.desired.level);
+      setDesiredAscension(plannedData.desired.ascension);
+      setDesiredTalents({
+        auto: plannedData.desired.talent.auto,
+        skill: plannedData.desired.talent.skill,
+        burst: plannedData.desired.talent.burst,
+      });
+    } else {
+      setDesiredLevel(Math.max(90, curLevel));
+      setDesiredAscension(Math.max(6, curAsc));
+      setDesiredTalents({
+        auto: Math.max(9, curTalents.auto),
+        skill: Math.max(9, curTalents.skill),
+        burst: Math.max(9, curTalents.burst),
+      });
     }
   }, [currentData, characterKey, plannedData]);
 

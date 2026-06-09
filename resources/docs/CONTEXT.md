@@ -46,7 +46,7 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
 - **Account Settings & Profile Management**: Profile operations (create, rename, delete) and GOOD data import/clear have been moved out of the header dropdown and into a dedicated `AccountSettingsTab` page. The header profile dropdown now only handles quick profile switching and provides a link to Account Settings. This keeps the header clean and gives users a proper settings context.
 - **Dynamic Switcher (Header)**: Authenticated accounts can swap profiles directly from the header dropdown. The dropdown is fully hidden in offline guest mode.
 - **No Upload Wall on First Load**: New users (or users with no imported GOOD data) are no longer blocked by a fullscreen upload screen. The app loads directly to the Planner tab. Empty states in `CharactersTab` and `WeaponsTab` display a contextual message directing users to *Account Settings* to import their GOOD file. This keeps the onboarding flow non-blocking and intuitive.
-- **Data Scraping**: The project uses custom scripts (`resources/scripts/downloadIcons.cjs`, `resources/scripts/generateMap.cjs`) to extract data from game databases. If material data is missing, these scripts should be updated rather than hardcoding data in `App.tsx`.
+- **Data Scraping & Update Automation**: The project uses custom scripts (`resources/scripts/`) to extract data from `genshin-db` and download game assets. The unified coordinator script `resources/scripts/updateData.cjs` (run via `npm run update-data`) regenerates all maps (`materialMap.json`, `characterMap.json`, `weaponMap.json`, `weaponRequirementsMap.json`) and downloads new character/weapon assets in one step. The generator scripts also extract a `version` field (e.g. `"6.6"`) from each entry for release-date sorting. If data is missing or outdated after a game update, run `npm run update-data` rather than hardcoding anything in `App.tsx`.
 - **Contiguous Locked Filters & Transparent Elemental Fills**:
   * Character and Weapon filter panels are built with contiguous, joined `.filter-button-group` boxes without text labels (icons-only for weapons/elements).
   * Selection uses the smart `handleFilterToggle` logic: first click isolates, other clicks additively select, and clicking the last active resets to all active.
@@ -59,8 +59,13 @@ The **Genshin Planner** is a specialized tool for Genshin Impact players. Unlike
   * Level and refinement R1-R5 are aligned in the top-left using `.char-select-level-container` and custom gold-colored refinement badges.
   * Equipped characters are overlaid in a clean, semi-translucent dark badge at the bottom-center inside the icon wrapper (`.material-icon-wrapper`), hiding completely for unequipped inventory weapons.
   * Weapon type category filter buttons use highly visible soft-white inactive silhouettes and glowing gold active silhouettes, positioned next to the rarity filter on the second row.
-  * Search and Star/Abc sorting toggles are aligned on the top row, supporting instant sorted cascades.
+  * Search and Star/Abc/Release Date sorting toggles are aligned on the top row, supporting instant sorted cascades.
   * Names support 2-line centered wrapping with custom WebkitLineClamps and fixed-height alignments to keep the selection grid visually clean.
+- **Unowned Character & Weapon Planning**:
+  * Both `CharacterSelectionModal` and `WeaponSelectionModal` expose a **"Not Owned" tab** listing all in-game entries absent from the user's GOOD import.
+  * Switching to the *Not Owned* tab automatically sets the sort order to **Release Date** (newest patch version first), making it easy to spot the latest characters and weapons.
+  * Characters and weapons selected from the *Not Owned* tab are treated as virtual entries: characters initialize at Level 1, C0, talents 1/1/1; weapons initialize at Level 1, R1.
+  * Unowned weapon plans receive a **negative `weaponIndex`** (starting from `-1`, descending) assigned in `App.tsx` to prevent ID collisions with real owned weapon indices.
 - **Global Inventory Allocation & Summary Panel**:
   * Material consumption and alchemical crafting cascades are computed sequentially across enabled planner cards in order of priority.
   * Earlier cards exhaust available inventory first, while subsequent cards display calculated deficits, completely preventing resource double-counting.

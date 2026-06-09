@@ -9,11 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "update-data": "node resources/scripts/updateData.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
-    "genshin-db": "^5.2.9",
+    "genshin-db": "^5.2.11",
     "lucide-react": "^1.7.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

@@ -15,10 +15,13 @@ This document outlines the technical architecture, data flow, and design pattern
 
 ```mermaid
 graph TD
-    subgraph Scripts [Data Pipeline - Root]
-        A[resources/scripts/downloadIcons.cjs] -->|Images| Public[public/icons/]
-        B[resources/scripts/generateMap.cjs] -->|Mapping| Data[src/maps/materialMap.json]
-        C[resources/scripts/fixIcons.cjs] -->|Cleanup| Public
+    subgraph Scripts [Data Pipeline - resources/scripts/]
+        A[downloadIcons.cjs] -->|Images| Public[public/icons/]
+        B[generateMap.cjs] -->|Mapping| MatData[src/maps/materialMap.json]
+        D[generateCharacterMap.cjs] -->|"characterMap + version"| CharData[src/maps/characterMap.json]
+        E[generateWeaponMap.cjs] -->|"weaponMap + version"| WeapData[src/maps/weaponMap.json]
+        F[generateWeaponRequirementsMap.cjs] -->|Requirements| WeapReqData[src/maps/weaponRequirementsMap.json]
+        G["updateData.cjs (npm run update-data)"] --> B & D & E & F & A
     end
 
     subgraph Supabase [Backend - Cloud Sync]
@@ -27,7 +30,10 @@ graph TD
     end
 
     subgraph App [Frontend - src/]
-        Data -->|Import| SyncHook[hooks/useAppSync.ts]
+        MatData -->|Import| SyncHook[hooks/useAppSync.ts]
+        CharData -->|Import| SyncHook
+        WeapData -->|Import| SyncHook
+        WeapReqData -->|Import| SyncHook
         SyncHook <-->|Offline Storage| LocalStorage[LocalStorage]
         SyncHook <-->|Username Mapping & Auth| Auth
         SyncHook <-->|Debounced Upsert / Fetch| DB
@@ -56,7 +62,10 @@ graph TD
 
 - `resources/scripts/downloadIcons.cjs`: Fetches material icons from external sources.
 - `resources/scripts/generateMap.cjs`: Aggregates material metadata (rarity, sources, names) into `src/maps/materialMap.json`.
-- `resources/scripts/fixIcons.cjs`: Ensures icon consistency and proper file extensions.
+- `resources/scripts/generateCharacterMap.cjs`: Generates `src/maps/characterMap.json` from `genshin-db`, including the `version` field (e.g. `"6.6"`) for each character, used for release-date sorting.
+- `resources/scripts/generateWeaponMap.cjs`: Generates `src/maps/weaponMap.json` from `genshin-db`, including the `version` field for each weapon.
+- `resources/scripts/generateWeaponRequirementsMap.cjs`: Generates `src/maps/weaponRequirementsMap.json` with full weapon ascension material requirements.
+- `resources/scripts/updateData.cjs`: **Unified coordinator script** — run via `npm run update-data`. Executes all map generation scripts in sequence and downloads new assets (character splash arts, namecards, weapon icons, element icons) for any newly added game content.
 
 ### 2. State & Sync Custom Hook (`src/hooks/useAppSync.ts`)
 
@@ -121,8 +130,9 @@ A shared account can host multiple character configurations (e.g. your planner v
 
 ### 8. UI & Modal Navigation Flow
 - **Modals Parity**:
-  - `CharacterSelectionModal` / `WeaponSelectionModal`: Renders owned characters/weapons with current stats (levels, constellation talents, or refinements), filtering by category and rarity.
-  - `CharacterTargetModal` / `WeaponTargetModal`: Handles the configuration of current and desired states.
+  - `CharacterSelectionModal` / `WeaponSelectionModal`: Each renders a **three-tab view mode** — *Owned* (characters/weapons from the GOOD import), *Not Owned* (all game entries absent from the import), and *All Game Database* (every game entry, merging owned and unowned). Unowned entries display at default stats (Level 1, C0/R1, talents 1/1/1).
+  - **Sorting Cycle**: A top-right sort button cycles through three modes: ★ Rarity (Stars) → Abc (Alphabetical) → 📅 Release Date (by `version` field, newest first). Switching to the *Not Owned* tab automatically sets sorting to Release Date; switching to *Owned* or *All Game Database* resets sorting to Rarity.
+  - `CharacterTargetModal` / `WeaponTargetModal`: Handles the configuration of current and desired states. When the selected entry is unowned (no GOOD data), inputs initialize at Level 1 / C0 / talents 1/1/1 (characters) or Level 1 / R1 (weapons).
 - **Sequential Back Navigation**: When canceling/closing a target modal via the close button, the UI returns to the selection modal seamlessly rather than dismissing entirely to the dashboard, enhancing user workflow.
 - **Planner Back Redirection Flow**: If a target modal is launched directly from a Planner card (via the Edit button), closing or canceling the modal redirects back to the Planner tab (`openedTargetFromPlanner` logic), bypassing the selection modal.
 - **Planner Card Dual Controls & Headers**:
@@ -137,7 +147,8 @@ A shared account can host multiple character configurations (e.g. your planner v
 The app features two robust ways to reorder progression cards and customize priority weighting across a mixed list of characters and weapons:
 - **Unique Item Identities**:
   - *Characters* are unique in the game and identified by their unique string key (e.g. `Furina`).
-  - *Weapons* are not unique; duplicate plans can exist. Weapons are uniquely identified in the planner using a dynamic ID schema: `weapon:${weaponIndex}`, mapping to their index in the user's owned weapons array.
+  - *Owned Weapons* are not unique; duplicate plans can exist. Owned weapons are uniquely identified in the planner using a dynamic ID schema: `weapon:${weaponIndex}`, mapping to their index in the user's owned weapons array.
+  - *Unowned/Custom Weapons* (weapons added from the "Not Owned" tab) are assigned **negative `weaponIndex` values** starting from `-1` and descending (`-1`, `-2`, `-3`, …). This distinguishes them from any real index in the owned array and prevents ID collisions. When a new unowned weapon is planned, `App.tsx` derives the next index as `Math.min(...existingNegativeIndexes) - 1`.
 - **Priority Manager Modal (`PriorityManagerModal.tsx`)**:
   - Launches from the header tab's "Manage Priority" action button.
   - Hosts a visual grid list of mixed planned items (characters and weapons). Standby cards (`enabled === false`) are styled in a faded state.

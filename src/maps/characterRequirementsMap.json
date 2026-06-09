@@ -21116,6 +21116,347 @@
       ]
     }
   },
+  "Linnea": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "prithivatopazsliver",
+          "name": "Prithiva Topaz Sliver",
+          "count": 1
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 3
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "prithivatopazfragment",
+          "name": "Prithiva Topaz Fragment",
+          "count": 3
+        },
+        {
+          "key": "plumeofthefallenwatcher",
+          "name": "Plume of the Fallen Watcher",
+          "count": 2
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 10
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "prithivatopazfragment",
+          "name": "Prithiva Topaz Fragment",
+          "count": 6
+        },
+        {
+          "key": "plumeofthefallenwatcher",
+          "name": "Plume of the Fallen Watcher",
+          "count": 4
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 20
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "prithivatopazchunk",
+          "name": "Prithiva Topaz Chunk",
+          "count": 3
+        },
+        {
+          "key": "plumeofthefallenwatcher",
+          "name": "Plume of the Fallen Watcher",
+          "count": 8
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 30
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "prithivatopazchunk",
+          "name": "Prithiva Topaz Chunk",
+          "count": 6
+        },
+        {
+          "key": "plumeofthefallenwatcher",
+          "name": "Plume of the Fallen Watcher",
+          "count": 12
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 45
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "prithivatopazgemstone",
+          "name": "Prithiva Topaz Gemstone",
+          "count": 6
+        },
+        {
+          "key": "plumeofthefallenwatcher",
+          "name": "Plume of the Fallen Watcher",
+          "count": 20
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 60
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofvagrancy",
+          "name": "Teachings of Vagrancy",
+          "count": 3
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetovagrancy",
+          "name": "Guide to Vagrancy",
+          "count": 2
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetovagrancy",
+          "name": "Guide to Vagrancy",
+          "count": 4
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetovagrancy",
+          "name": "Guide to Vagrancy",
+          "count": 6
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetovagrancy",
+          "name": "Guide to Vagrancy",
+          "count": 9
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofvagrancy",
+          "name": "Philosophies of Vagrancy",
+          "count": 4
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 4
+        },
+        {
+          "key": "elixiroftheheretic",
+          "name": "Elixir of the Heretic",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofvagrancy",
+          "name": "Philosophies of Vagrancy",
+          "count": 6
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 6
+        },
+        {
+          "key": "elixiroftheheretic",
+          "name": "Elixir of the Heretic",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofvagrancy",
+          "name": "Philosophies of Vagrancy",
+          "count": 12
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 9
+        },
+        {
+          "key": "elixiroftheheretic",
+          "name": "Elixir of the Heretic",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofvagrancy",
+          "name": "Philosophies of Vagrancy",
+          "count": 16
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 12
+        },
+        {
+          "key": "elixiroftheheretic",
+          "name": "Elixir of the Heretic",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
   "Lisa": {
     "ascension": {
       "1": [
@@ -21447,6 +21788,347 @@
         {
           "key": "dvalinsclaw",
           "name": "Dvalin's Claw",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "Lohen": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "shivadajadesliver",
+          "name": "Shivada Jade Sliver",
+          "count": 1
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 3
+        },
+        {
+          "key": "firmarrowhead",
+          "name": "Firm Arrowhead",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "shivadajadefragment",
+          "name": "Shivada Jade Fragment",
+          "count": 3
+        },
+        {
+          "key": "prismaticseveredtail",
+          "name": "Prismatic Severed Tail",
+          "count": 2
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 10
+        },
+        {
+          "key": "firmarrowhead",
+          "name": "Firm Arrowhead",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "shivadajadefragment",
+          "name": "Shivada Jade Fragment",
+          "count": 6
+        },
+        {
+          "key": "prismaticseveredtail",
+          "name": "Prismatic Severed Tail",
+          "count": 4
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 20
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "shivadajadechunk",
+          "name": "Shivada Jade Chunk",
+          "count": 3
+        },
+        {
+          "key": "prismaticseveredtail",
+          "name": "Prismatic Severed Tail",
+          "count": 8
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 30
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "shivadajadechunk",
+          "name": "Shivada Jade Chunk",
+          "count": 6
+        },
+        {
+          "key": "prismaticseveredtail",
+          "name": "Prismatic Severed Tail",
+          "count": 12
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 45
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "shivadajadegemstone",
+          "name": "Shivada Jade Gemstone",
+          "count": 6
+        },
+        {
+          "key": "prismaticseveredtail",
+          "name": "Prismatic Severed Tail",
+          "count": 20
+        },
+        {
+          "key": "etherwingmoth",
+          "name": "Etherwing Moth",
+          "count": 60
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofresistance",
+          "name": "Teachings of Resistance",
+          "count": 3
+        },
+        {
+          "key": "firmarrowhead",
+          "name": "Firm Arrowhead",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 2
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 4
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 6
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 9
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 4
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 4
+        },
+        {
+          "key": "ascendedsampleknight",
+          "name": "Ascended Sample: Knight",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 6
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 6
+        },
+        {
+          "key": "ascendedsampleknight",
+          "name": "Ascended Sample: Knight",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 12
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 9
+        },
+        {
+          "key": "ascendedsampleknight",
+          "name": "Ascended Sample: Knight",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 16
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 12
+        },
+        {
+          "key": "ascendedsampleknight",
+          "name": "Ascended Sample: Knight",
           "count": 2
         },
         {
@@ -25635,6 +26317,347 @@
       ]
     }
   },
+  "Nicole": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "agnidusagatesliver",
+          "name": "Agnidus Agate Sliver",
+          "count": 1
+        },
+        {
+          "key": "pineamber",
+          "name": "Pine Amber",
+          "count": 3
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "agnidusagatefragment",
+          "name": "Agnidus Agate Fragment",
+          "count": 3
+        },
+        {
+          "key": "remnantofthedreadwing",
+          "name": "Remnant of the Dreadwing",
+          "count": 2
+        },
+        {
+          "key": "pineamber",
+          "name": "Pine Amber",
+          "count": 10
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "agnidusagatefragment",
+          "name": "Agnidus Agate Fragment",
+          "count": 6
+        },
+        {
+          "key": "remnantofthedreadwing",
+          "name": "Remnant of the Dreadwing",
+          "count": 4
+        },
+        {
+          "key": "pineamber",
+          "name": "Pine Amber",
+          "count": 20
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "agnidusagatechunk",
+          "name": "Agnidus Agate Chunk",
+          "count": 3
+        },
+        {
+          "key": "remnantofthedreadwing",
+          "name": "Remnant of the Dreadwing",
+          "count": 8
+        },
+        {
+          "key": "pineamber",
+          "name": "Pine Amber",
+          "count": 30
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "agnidusagatechunk",
+          "name": "Agnidus Agate Chunk",
+          "count": 6
+        },
+        {
+          "key": "remnantofthedreadwing",
+          "name": "Remnant of the Dreadwing",
+          "count": 12
+        },
+        {
+          "key": "pineamber",
+          "name": "Pine Amber",
+          "count": 45
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "agnidusagategemstone",
+          "name": "Agnidus Agate Gemstone",
+          "count": 6
+        },
+        {
+          "key": "remnantofthedreadwing",
+          "name": "Remnant of the Dreadwing",
+          "count": 20
+        },
+        {
+          "key": "pineamber",
+          "name": "Pine Amber",
+          "count": 60
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofelysium",
+          "name": "Teachings of Elysium",
+          "count": 3
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoelysium",
+          "name": "Guide to Elysium",
+          "count": 2
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoelysium",
+          "name": "Guide to Elysium",
+          "count": 4
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetoelysium",
+          "name": "Guide to Elysium",
+          "count": 6
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoelysium",
+          "name": "Guide to Elysium",
+          "count": 9
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofelysium",
+          "name": "Philosophies of Elysium",
+          "count": 4
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 4
+        },
+        {
+          "key": "counterfeitresin",
+          "name": "Counterfeit Resin",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofelysium",
+          "name": "Philosophies of Elysium",
+          "count": 6
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 6
+        },
+        {
+          "key": "counterfeitresin",
+          "name": "Counterfeit Resin",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofelysium",
+          "name": "Philosophies of Elysium",
+          "count": 12
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 9
+        },
+        {
+          "key": "counterfeitresin",
+          "name": "Counterfeit Resin",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofelysium",
+          "name": "Philosophies of Elysium",
+          "count": 16
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 12
+        },
+        {
+          "key": "counterfeitresin",
+          "name": "Counterfeit Resin",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
   "Nilou": {
     "ascension": {
       "1": [
@@ -26989,6 +28012,347 @@
         {
           "key": "lightlesssilkstring",
           "name": "Lightless Silk String",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "Prune": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "vayudaturquoisesliver",
+          "name": "Vayuda Turquoise Sliver",
+          "count": 1
+        },
+        {
+          "key": "wintericelea",
+          "name": "Winter Icelea",
+          "count": 3
+        },
+        {
+          "key": "treasurehoarderinsignia",
+          "name": "Treasure Hoarder Insignia",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "vayudaturquoisefragment",
+          "name": "Vayuda Turquoise Fragment",
+          "count": 3
+        },
+        {
+          "key": "radiantantler",
+          "name": "Radiant Antler",
+          "count": 2
+        },
+        {
+          "key": "wintericelea",
+          "name": "Winter Icelea",
+          "count": 10
+        },
+        {
+          "key": "treasurehoarderinsignia",
+          "name": "Treasure Hoarder Insignia",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "vayudaturquoisefragment",
+          "name": "Vayuda Turquoise Fragment",
+          "count": 6
+        },
+        {
+          "key": "radiantantler",
+          "name": "Radiant Antler",
+          "count": 4
+        },
+        {
+          "key": "wintericelea",
+          "name": "Winter Icelea",
+          "count": 20
+        },
+        {
+          "key": "silverraveninsignia",
+          "name": "Silver Raven Insignia",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "vayudaturquoisechunk",
+          "name": "Vayuda Turquoise Chunk",
+          "count": 3
+        },
+        {
+          "key": "radiantantler",
+          "name": "Radiant Antler",
+          "count": 8
+        },
+        {
+          "key": "wintericelea",
+          "name": "Winter Icelea",
+          "count": 30
+        },
+        {
+          "key": "silverraveninsignia",
+          "name": "Silver Raven Insignia",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "vayudaturquoisechunk",
+          "name": "Vayuda Turquoise Chunk",
+          "count": 6
+        },
+        {
+          "key": "radiantantler",
+          "name": "Radiant Antler",
+          "count": 12
+        },
+        {
+          "key": "wintericelea",
+          "name": "Winter Icelea",
+          "count": 45
+        },
+        {
+          "key": "goldenraveninsignia",
+          "name": "Golden Raven Insignia",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "vayudaturquoisegemstone",
+          "name": "Vayuda Turquoise Gemstone",
+          "count": 6
+        },
+        {
+          "key": "radiantantler",
+          "name": "Radiant Antler",
+          "count": 20
+        },
+        {
+          "key": "wintericelea",
+          "name": "Winter Icelea",
+          "count": 60
+        },
+        {
+          "key": "goldenraveninsignia",
+          "name": "Golden Raven Insignia",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofresistance",
+          "name": "Teachings of Resistance",
+          "count": 3
+        },
+        {
+          "key": "treasurehoarderinsignia",
+          "name": "Treasure Hoarder Insignia",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 2
+        },
+        {
+          "key": "silverraveninsignia",
+          "name": "Silver Raven Insignia",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 4
+        },
+        {
+          "key": "silverraveninsignia",
+          "name": "Silver Raven Insignia",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 6
+        },
+        {
+          "key": "silverraveninsignia",
+          "name": "Silver Raven Insignia",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 9
+        },
+        {
+          "key": "silverraveninsignia",
+          "name": "Silver Raven Insignia",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 4
+        },
+        {
+          "key": "goldenraveninsignia",
+          "name": "Golden Raven Insignia",
+          "count": 4
+        },
+        {
+          "key": "maskofthevirtuousdoctor",
+          "name": "Mask of the Virtuous Doctor",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 6
+        },
+        {
+          "key": "goldenraveninsignia",
+          "name": "Golden Raven Insignia",
+          "count": 6
+        },
+        {
+          "key": "maskofthevirtuousdoctor",
+          "name": "Mask of the Virtuous Doctor",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 12
+        },
+        {
+          "key": "goldenraveninsignia",
+          "name": "Golden Raven Insignia",
+          "count": 9
+        },
+        {
+          "key": "maskofthevirtuousdoctor",
+          "name": "Mask of the Virtuous Doctor",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 16
+        },
+        {
+          "key": "goldenraveninsignia",
+          "name": "Golden Raven Insignia",
+          "count": 12
+        },
+        {
+          "key": "maskofthevirtuousdoctor",
+          "name": "Mask of the Virtuous Doctor",
           "count": 2
         },
         {

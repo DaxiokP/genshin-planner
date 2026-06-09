@@ -52,7 +52,8 @@ weapons.forEach(name => {
         icon: data.images.mihoyo_icon,
         id: data.images.filename_icon.replace('UI_EquipIcon_', ''),
         substatType: data.mainStatText || '',
-        stats: stats
+        stats: stats,
+        version: data.version
     };
 });
 
