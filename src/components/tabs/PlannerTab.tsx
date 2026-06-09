@@ -1,6 +1,6 @@
 import './PlannerTab.css';
 import React, { useState } from 'react';
-import { UserPlus, Sword, ListOrdered, Pencil, Sparkles, Power, Trash2, RotateCw } from 'lucide-react';
+import { UserPlus, Sword, ListOrdered, Pencil, Sparkles, Power, Trash2, RotateCw, Filter } from 'lucide-react';
 import { SummaryPanel } from '../SummaryPanel';
 import { formatCompact } from '../../utils/formatHelpers';
 import { hasSingleStar } from '../../utils/upgradeHelpers';
@@ -102,6 +102,34 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
   const [draggedCardKey, setDraggedCardKey] = useState<string | null>(null);
   const [dragOverCardKey, setDragOverCardKey] = useState<string | null>(null);
   const [dropPlacement, setDropPlacement] = useState<'before' | 'after' | null>(null);
+  const [readyFilter, setReadyFilter] = useState<'all' | 'highlight' | 'readyOnly'>('all');
+
+  const getPlanStatus = (planned: any) => {
+    const isWeapon = planned.type === 'weapon';
+    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+    const requirements = planned.enabled !== false
+      ? (simulation.requirements[id] || [])
+      : calculateRequirements({ ...planned, enabled: true }, null);
+
+    const isDone = requirements.length === 0;
+    const isReady = planned.enabled !== false && !isDone && requirements.every((r: any) => r.isEnough);
+
+    return { isDone, isReady, requirements };
+  };
+
+  const visiblePlannedItems = plannedItems.filter((planned) => {
+    const { isDone, isReady } = getPlanStatus(planned);
+
+    if (readyFilter !== 'all' && isDone) {
+      return false;
+    }
+
+    if (readyFilter === 'readyOnly' && !isReady) {
+      return false;
+    }
+
+    return true;
+  });
 
   const handleCardDragStart = (e: React.DragEvent, key: string) => {
     setDraggedCardKey(key);
@@ -394,13 +422,82 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
           />
 
           <div className="planner-cards-section">
+            <div className="planner-filter-bar">
+              <div className="planner-filter-label">
+                <Filter size={16} />
+                <span>Ready to Upgrade Filter:</span>
+              </div>
+              <div className="planner-filter-toggle-group">
+                <button
+                  className={`planner-filter-btn ${readyFilter === 'all' ? 'active' : ''}`}
+                  onClick={() => setReadyFilter('all')}
+                >
+                  Show All
+                </button>
+                <button
+                  className={`planner-filter-btn ${readyFilter === 'highlight' ? 'active' : ''}`}
+                  onClick={() => setReadyFilter('highlight')}
+                >
+                  Highlight Ready
+                </button>
+                <button
+                  className={`planner-filter-btn ${readyFilter === 'readyOnly' ? 'active' : ''}`}
+                  onClick={() => setReadyFilter('readyOnly')}
+                >
+                  Only Show Ready
+                </button>
+              </div>
+            </div>
+
             <div className="planner-grid">
-              {plannedItems.map((planned) => {
-                const isWeapon = planned.type === 'weapon';
-                const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
-                const requirements = planned.enabled !== false
-                  ? (simulation.requirements[id] || [])
-                  : calculateRequirements({ ...planned, enabled: true }, null);
+              {visiblePlannedItems.length === 0 ? (
+                <div style={{
+                  gridColumn: '1 / -1',
+                  textAlign: 'center',
+                  padding: '3rem',
+                  background: 'rgba(255, 255, 255, 0.01)',
+                  border: '1px dashed rgba(255, 255, 255, 0.08)',
+                  borderRadius: '12px',
+                  color: 'var(--text-secondary)',
+                  fontFamily: "'Outfit', sans-serif"
+                }}>
+                  <p style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '0.5rem' }}>No matching characters or weapons</p>
+                  <p style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.4)' }}>
+                    {readyFilter === 'readyOnly'
+                      ? 'No active plans are currently ready to upgrade.'
+                      : 'All planned characters and weapons are completed.'}
+                  </p>
+                </div>
+              ) : (
+                visiblePlannedItems.map((planned) => {
+                  const isWeapon = planned.type === 'weapon';
+                  const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+                  const { isReady, requirements } = getPlanStatus(planned);
+
+                  // Custom Card Style overrides for the Highlight Filter
+                  const cardStyle: React.CSSProperties = {
+                    padding: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    transition: 'all 0.3s ease',
+                  };
+
+                  if (readyFilter === 'highlight') {
+                    if (isReady) {
+                      cardStyle.filter = 'none';
+                      cardStyle.border = '2px solid rgba(129, 199, 132, 0.85)';
+                      cardStyle.boxShadow = '0 0 20px rgba(129, 199, 132, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3)';
+                      cardStyle.transform = 'scale(1.01)';
+                    } else {
+                      cardStyle.filter = 'grayscale(0.9) opacity(0.2)';
+                      cardStyle.border = '2px solid rgba(255, 255, 255, 0.02)';
+                      cardStyle.boxShadow = 'none';
+                    }
+                  } else {
+                    cardStyle.filter = planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none';
+                  }
 
                 if (isWeapon) {
                   const wInfo = lookupWeapon(planned.key) || {
@@ -431,15 +528,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                         } ${dragOverCardKey === id && dropPlacement === 'before' ? 'drop-before' : ''
                         } ${dragOverCardKey === id && dropPlacement === 'after' ? 'drop-after' : ''
                         }`}
-                      style={{
-                        padding: 0,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
-                        transition: 'filter 0.3s ease, opacity 0.3s ease'
-                      }}
+                      style={cardStyle}
                     >
                       {/* Premium Header Bar */}
                       <div
@@ -910,15 +999,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                         } ${dragOverCardKey === id && dropPlacement === 'before' ? 'drop-before' : ''
                         } ${dragOverCardKey === id && dropPlacement === 'after' ? 'drop-after' : ''
                         }`}
-                      style={{
-                        padding: 0,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        filter: planned.enabled === false ? 'grayscale(0.75) opacity(0.45)' : 'none',
-                        transition: 'filter 0.3s ease, opacity 0.3s ease'
-                      }}
+                      style={cardStyle}
                     >
                       {/* Premium Rarity-Based Header Bar */}
                       <div
@@ -1273,7 +1354,8 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                     </div>
                   );
                 }
-              })}
+              })
+              )}
             </div>
           </div>
         </div>

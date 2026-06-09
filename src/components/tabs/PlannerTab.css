@@ -159,4 +159,84 @@
   background: linear-gradient(160deg, #3d3f45 0%, #2e3035 100%) !important;
 }
 
+/* Ready to Upgrade Filter Bar */
+.planner-filter-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.planner-filter-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.planner-filter-label svg {
+  color: #ffcc66;
+}
+
+.planner-filter-toggle-group {
+  display: flex;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.planner-filter-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.planner-filter-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.planner-filter-btn.active {
+  color: #111 !important;
+  background: #ffcc66;
+  box-shadow: 0 2px 8px rgba(255, 204, 102, 0.3);
+}
+
+@media (max-width: 600px) {
+  .planner-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+  
+  .planner-filter-toggle-group {
+    justify-content: stretch;
+  }
+  
+  .planner-filter-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+
 

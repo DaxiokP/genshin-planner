@@ -109,7 +109,7 @@ Goal: Optimization Algorithms for the planner, and improving the user experience
     - Reduced row item padding and increased icon zoom (135 % for characters, 110 % for weapons) for a compact, tight grid feel.
     - Disabled planner cards now display their required materials calculated against an empty (0) inventory, with a grey "Disabled" badge replacing the old status tags. Material icons remain fully clickable.
     - Quick Inventory modal inputs now auto-select their contents on focus for fast overriding.
-- [ ] **Toggle to highlight "Ready to upgrade" characters/weapons**
+- [x] **Toggle to highlight "Ready to Upgrade" characters/weapons**
     - If a toggle is enabled, it will highlight characters/weapons that are "Ready to upgrade"
 
 ## Phase 6: Add characters/weapons not in Good file (In Progress)
