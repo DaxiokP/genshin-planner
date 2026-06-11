@@ -30,6 +30,7 @@ interface UpgradeCharacterModalProps {
     },
     craftingBonuses: Record<string, number>
   ) => void;
+  handleOpenQuickInventory: (key: string) => void;
 }
 
 const getMaxTalentForAscension = (asc: number) => {
@@ -164,6 +165,7 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
   currentData,
   materials,
   onUpgradeClick,
+  handleOpenQuickInventory,
 }) => {
   const [desiredLevel, setDesiredLevel] = useState(90);
   const [desiredAscension, setDesiredAscension] = useState(6);
@@ -552,8 +554,10 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
                           aspectRatio: '68 / 85',
                           opacity: 1, // Don't fade the icons on the Materials
                           transition: 'all 0.2s ease',
+                          cursor: 'pointer'
                         }}
                         title={mat.name}
+                        onClick={() => handleOpenQuickInventory(mat.key)}
                       >
                         {/* Top Value: Inventory/Required */}
                         {(() => {
@@ -686,8 +690,10 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
                             border: '1px solid rgba(255, 255, 255, 0.08)',
                             position: 'relative',
                             aspectRatio: '68 / 85',
+                            cursor: 'pointer'
                           }}
                           title={data.name || key}
+                          onClick={() => handleOpenQuickInventory(key)}
                         >
                           {/* Header Count */}
                           <div style={{
@@ -755,8 +761,8 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
               ) : (
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(78px, 1fr))',
-                  gap: '0.6rem'
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(68px, 1fr))',
+                  gap: '0.5rem'
                 }}>
                   {bonusEligibleMaterials.map(item => {
                     const bonusVal = craftingBonuses[item.key] || 0;
@@ -781,12 +787,14 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
+                            cursor: 'pointer'
                           }}
+                          onClick={() => handleOpenQuickInventory(item.key)}
                         >
                           <img
                             src={materialMap[item.key]?.localExt ? `${import.meta.env.BASE_URL}icons/${item.id}${materialMap[item.key].localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}`}
                             alt={item.name}
-                            style={{ width: '70%', height: '70%', objectFit: 'contain', transform: 'scale(1.2)' }}
+                            style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.25)' }}
                           />
                         </div>
 

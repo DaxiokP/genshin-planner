@@ -361,6 +361,7 @@ export function simulateUpgrade(
   const draftPlanned = {
     ...planned,
     desired: target,
+    enabled: true,
   };
 
   // 2. Add crafting bonuses into virtual materials
@@ -448,7 +449,7 @@ export function applyUpgradeInventoryMutations(
   };
 
   // 1. Gather raw required materials
-  const draftPlanned = { ...planned, desired: target };
+  const draftPlanned = { ...planned, desired: target, enabled: true };
   const rawReqs = calculateRequirements(draftPlanned, materials);
 
   // 2. Perform recalculations

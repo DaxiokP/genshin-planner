@@ -29,11 +29,12 @@ interface UpgradeWeaponModalProps {
     },
     craftingBonuses: Record<string, number>
   ) => void;
+  handleOpenQuickInventory: (key: string) => void;
 }
 
 const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const getRank = (l: number, a: number) => l * 10 + a;
 
   const states = React.useMemo(() => {
@@ -46,7 +47,7 @@ const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: a
       else if (i > 50) reqAsc = 3;
       else if (i > 40) reqAsc = 2;
       else if (i > 20) reqAsc = 1;
-      
+
       s.push({ level: i, ascension: reqAsc, display: i.toString() });
       if ([20, 40, 50, 60, 70, 80].includes(i)) {
         s.push({ level: i, ascension: reqAsc + 1, display: i.toString() + '✦' });
@@ -64,7 +65,7 @@ const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: a
       onChange(states[currentIndex - 1].level, states[currentIndex - 1].ascension);
     }
   };
-  
+
   const handleInc = () => {
     if (currentIndex < states.length - 1) {
       onChange(states[currentIndex + 1].level, states[currentIndex + 1].ascension);
@@ -77,7 +78,7 @@ const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: a
     }
     setIsOpen(false);
   };
-  
+
   return (
     <div className="level-selector-wrapper">
       <button className="spinner-btn" onClick={handleDec} disabled={currentIndex <= actualMinIndex} type="button">
@@ -89,26 +90,26 @@ const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: a
       <button className="spinner-btn" onClick={handleInc} disabled={currentIndex >= states.length - 1} type="button">
         <Plus size={16} />
       </button>
-      
+
       {isOpen && (
         <>
           <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 99 }} onClick={() => setIsOpen(false)} />
           <div className="level-selector-dropdown">
-             <div className="level-dropdown-row">
-               <button className="level-dropdown-btn" disabled={getRank(1, 0) < minRank} onClick={() => handleSelect(1, 0)} style={{ opacity: getRank(1, 0) < minRank ? 0.3 : 1 }} type="button">1</button>
-             </div>
-             {[20, 40, 50, 60, 70, 80].map(m => {
-                const reqAsc = m === 80 ? 5 : m === 70 ? 4 : m === 60 ? 3 : m === 50 ? 2 : m === 40 ? 1 : 0;
-                return (
-                  <div className="level-dropdown-row" key={m}>
-                    <button className="level-dropdown-btn" disabled={getRank(m, reqAsc) < minRank} onClick={() => handleSelect(m, reqAsc)} style={{ opacity: getRank(m, reqAsc) < minRank ? 0.3 : 1 }} type="button">{m}</button>
-                    <button className="level-dropdown-btn" disabled={getRank(m, reqAsc + 1) < minRank} onClick={() => handleSelect(m, reqAsc + 1)} style={{ opacity: getRank(m, reqAsc + 1) < minRank ? 0.3 : 1 }} type="button">{m}✦</button>
-                  </div>
-                )
-             })}
-             <div className="level-dropdown-row">
-               <button className="level-dropdown-btn" disabled={getRank(90, 6) < minRank} onClick={() => handleSelect(90, 6)} style={{ opacity: getRank(90, 6) < minRank ? 0.3 : 1 }} type="button">90</button>
-             </div>
+            <div className="level-dropdown-row">
+              <button className="level-dropdown-btn" disabled={getRank(1, 0) < minRank} onClick={() => handleSelect(1, 0)} style={{ opacity: getRank(1, 0) < minRank ? 0.3 : 1 }} type="button">1</button>
+            </div>
+            {[20, 40, 50, 60, 70, 80].map(m => {
+              const reqAsc = m === 80 ? 5 : m === 70 ? 4 : m === 60 ? 3 : m === 50 ? 2 : m === 40 ? 1 : 0;
+              return (
+                <div className="level-dropdown-row" key={m}>
+                  <button className="level-dropdown-btn" disabled={getRank(m, reqAsc) < minRank} onClick={() => handleSelect(m, reqAsc)} style={{ opacity: getRank(m, reqAsc) < minRank ? 0.3 : 1 }} type="button">{m}</button>
+                  <button className="level-dropdown-btn" disabled={getRank(m, reqAsc + 1) < minRank} onClick={() => handleSelect(m, reqAsc + 1)} style={{ opacity: getRank(m, reqAsc + 1) < minRank ? 0.3 : 1 }} type="button">{m}✦</button>
+                </div>
+              )
+            })}
+            <div className="level-dropdown-row">
+              <button className="level-dropdown-btn" disabled={getRank(90, 6) < minRank} onClick={() => handleSelect(90, 6)} style={{ opacity: getRank(90, 6) < minRank ? 0.3 : 1 }} type="button">90</button>
+            </div>
           </div>
         </>
       )}
@@ -122,6 +123,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
   planned,
   materials,
   onUpgradeClick,
+  handleOpenQuickInventory,
 }) => {
   const [desiredLevel, setDesiredLevel] = useState(90);
   const [desiredAscension, setDesiredAscension] = useState(6);
@@ -181,7 +183,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
   requirements.forEach(req => {
     const data = materialMap[req.key];
     if (data && data.sortGroup !== undefined && data.sortRank !== undefined) {
-      if (data.sortGroup === 100) {
+      if (data.sortGroup === 100 || data.sortGroup === 600) {
         activeChainGroups.add(`${data.sortGroup}_${data.sortRank}`);
       }
     }
@@ -202,10 +204,13 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
     }
   });
 
-  // Sort eligible bonus materials by sortRank, then rarity
+  // Sort eligible bonus materials by sortGroup, then sortRank, then rarity
   bonusEligibleMaterials.sort((a, b) => {
     const mapA = materialMap[a.key];
     const mapB = materialMap[b.key];
+    const groupA = mapA?.sortGroup ?? 0;
+    const groupB = mapB?.sortGroup ?? 0;
+    if (groupA !== groupB) return groupA - groupB;
     const rankA = mapA?.sortRank ?? 0;
     const rankB = mapB?.sortRank ?? 0;
     if (rankA !== rankB) return rankA - rankB;
@@ -248,8 +253,8 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div 
-        className={`modal-container bg-rarity-${wInfo.rarity || 4}-solid`} 
+      <div
+        className={`modal-container bg-rarity-${wInfo.rarity || 4}-solid`}
         onClick={e => e.stopPropagation()}
         style={{
           maxWidth: '1000px',
@@ -271,12 +276,12 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
 
         {/* Modal Body */}
         <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-          
+
           {/* Left Column: Target Controls */}
-          <div 
-            style={{ 
-              width: '340px', 
-              padding: '1.5rem', 
+          <div
+            style={{
+              width: '340px',
+              padding: '1.5rem',
               borderRight: '1px solid rgba(255, 255, 255, 0.08)',
               overflowY: 'auto',
               display: 'flex',
@@ -311,8 +316,8 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                 </div>
                 <div className="target-input-col">
                   <span className="target-input-label" style={{ color: '#ffcc66' }}>Target</span>
-                  <LevelSelector 
-                    level={desiredLevel} 
+                  <LevelSelector
+                    level={desiredLevel}
                     ascension={desiredAscension}
                     minLevel={currentLevel}
                     minAscension={currentAscension}
@@ -324,17 +329,17 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
           </div>
 
           {/* Right Column: Live Materials Calculations */}
-          <div 
-            style={{ 
-              flex: 1, 
-              padding: '1.5rem', 
+          <div
+            style={{
+              flex: 1,
+              padding: '1.5rem',
               overflowY: 'auto',
               display: 'flex',
               flexDirection: 'column',
               gap: '1.5rem'
             }}
           >
-            
+
             {/* 1. Materials Area */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.3rem' }}>
@@ -371,7 +376,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                     const isOreOrMora = mat.key === 'mysticenhancementore' || mat.key === 'mora' || mat.key === 'fineenhancementore' || mat.key === 'enhancementore';
                     const satisfies = mat.isEnough;
                     const finalColor = satisfies ? '#a5d6a7' : '#ff4d4d';
-                    
+
                     return (
                       <div
                         key={mat.key}
@@ -385,8 +390,10 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                           position: 'relative',
                           aspectRatio: '68 / 85',
                           transition: 'all 0.2s ease',
+                          cursor: 'pointer'
                         }}
                         title={mat.name}
+                        onClick={() => handleOpenQuickInventory(mat.key)}
                       >
                         {/* Top Value: Inventory/Required */}
                         {(() => {
@@ -395,7 +402,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                             : getRawOwnedCount(mat.key) + (craftingBonuses[mat.key] || 0);
                           const craftCount = mat.converted || 0;
                           const displayOwned = Math.min(mat.required, baseOwned);
-                          
+
                           const displayValue = isOreOrMora
                             ? `${formatCompact(displayOwned)}/~${formatCompact(mat.required)}`
                             : `${formatCompact(Math.min(mat.required, baseOwned + craftCount))}/${formatCompact(mat.required)}`;
@@ -418,7 +425,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                         })()}
 
                         {/* Rarity BG and Icon */}
-                        <div 
+                        <div
                           className={`bg-rarity-${mat.rarity || 1}`}
                           style={{
                             flex: 1,
@@ -457,7 +464,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                             <RotateCw size={8} style={{ strokeWidth: 2.8, color: '#ffcc66' }} />
                             <span style={{
                               fontSize: '0.6rem',
-                               color: '#fff',
+                              color: '#fff',
                               fontWeight: '700',
                               lineHeight: 1,
                               fontFamily: "'Outfit', sans-serif"
@@ -519,8 +526,10 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                             border: '1px solid rgba(255, 255, 255, 0.08)',
                             position: 'relative',
                             aspectRatio: '68 / 85',
+                            cursor: 'pointer'
                           }}
                           title={data.name || key}
+                          onClick={() => handleOpenQuickInventory(key)}
                         >
                           {/* Header Count */}
                           <div style={{
@@ -538,7 +547,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                           </div>
 
                           {/* Rarity Icon wrapper */}
-                          <div 
+                          <div
                             className={`bg-rarity-${data.rarity || 1}`}
                             style={{
                               flex: 1,
@@ -588,7 +597,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
               ) : (
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(78px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(66px, 1fr))',
                   gap: '0.6rem'
                 }}>
                   {bonusEligibleMaterials.map(item => {
@@ -607,19 +616,21 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
                         }}
                       >
                         {/* Icon Wrapper */}
-                        <div 
+                        <div
                           className={`bg-rarity-${item.rarity || 1}`}
                           style={{
                             height: '56px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
+                            cursor: 'pointer'
                           }}
+                          onClick={() => handleOpenQuickInventory(item.key)}
                         >
                           <img
                             src={materialMap[item.key]?.localExt ? `${import.meta.env.BASE_URL}icons/${item.id}${materialMap[item.key].localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}`}
                             alt={item.name}
-                            style={{ width: '70%', height: '70%', objectFit: 'contain', transform: 'scale(1.2)' }}
+                            style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.25)' }}
                           />
                         </div>
 
@@ -659,9 +670,9 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
         </div>
 
         {/* Modal Footer containing Actions */}
-        <div 
-          style={{ 
-            padding: '1.25rem 1.5rem', 
+        <div
+          style={{
+            padding: '1.25rem 1.5rem',
             borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             justifyContent: 'flex-end',
@@ -693,7 +704,7 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
           >
             Cancel
           </button>
-          
+
           <button
             onClick={handleUpgradeClick}
             disabled={!isSufficient}
@@ -701,8 +712,8 @@ export const UpgradeWeaponModal: React.FC<UpgradeWeaponModalProps> = ({
               padding: '8px 24px',
               borderRadius: '8px',
               border: 'none',
-              background: isSufficient 
-                ? 'linear-gradient(135deg, #ffcc66 0%, #d4a345 100%)' 
+              background: isSufficient
+                ? 'linear-gradient(135deg, #ffcc66 0%, #d4a345 100%)'
                 : 'rgba(255,255,255,0.04)',
               color: isSufficient ? '#1a1d24' : 'rgba(255,255,255,0.2)',
               fontSize: '0.9rem',

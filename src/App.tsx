@@ -227,7 +227,7 @@ function App() {
     const planned = plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey);
     if (!planned) return;
 
-    const draftChar = { ...planned, desired: target };
+    const draftChar = { ...planned, desired: target, enabled: true };
     const reqs = calculateRequirements(draftChar, materials);
 
     const moraReq = reqs.find(r => r.key === 'mora')?.required || 0;
@@ -300,7 +300,7 @@ function App() {
     const planned = plannedItems.find(p => p.id === selectedUpgradeWeaponId);
     if (!planned) return;
 
-    const draftWeapon = { ...planned, desired: target };
+    const draftWeapon = { ...planned, desired: target, enabled: true };
     const reqs = calculateRequirements(draftWeapon, materials);
 
     const moraReq = reqs.find(r => r.key === 'mora')?.required || 0;
@@ -734,6 +734,7 @@ function App() {
           currentData={characters.find(c => c.key === selectedUpgradeCharacterKey)}
           materials={materials}
           onUpgradeClick={handleUpgradeModalConfirm}
+          handleOpenQuickInventory={handleOpenQuickInventory}
         />
       )}
 
@@ -762,6 +763,7 @@ function App() {
               currentData={weapons[planned.weaponIndex]}
               materials={materials}
               onUpgradeClick={handleWeaponUpgradeModalConfirm}
+              handleOpenQuickInventory={handleOpenQuickInventory}
             />
           );
         })()
