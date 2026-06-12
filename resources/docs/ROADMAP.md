@@ -83,7 +83,7 @@ Goal: Filtering, refinement, and optimization.
     - Implemented content-snug containers and dynamic grid rules ($3\text{--}4$ groups $\rightarrow 2 \times 2$, $5\text{--}6$ groups $\rightarrow 3 \times 2$, $7\text{--}9$ groups $\rightarrow 3 \times 3$) for layout symmetry.
     - Added bi-directional synchronization mathematics, input-clamping safety bounds, a quick-action $+60,000$ Mora leyline trigger, and global mouse-tracking tooltip integration.
 
-## Phase 5: Optimization Algorithms (In Progress)
+## Phase 5: Optimization Algorithms (Complete)
 Goal: Optimization Algorithms for the planner, and improving the user experience.
 
 - [x] **Planner improves**
@@ -112,12 +112,8 @@ Goal: Optimization Algorithms for the planner, and improving the user experience
 - [x] **Toggle to highlight "Ready to Upgrade" characters/weapons**
     - If a toggle is enabled, it will highlight characters/weapons that are "Ready to upgrade"
 
-## Phase 6: Add characters/weapons not in Good file (In Progress)
+## Phase 6: Add characters/weapons not in Good file (Complete)
 Goal: Allow users to add characters and weapons to the planner that aren't in their import file.
-
-- [ ] **Allow "Custom" Character or Weapons on the planner**
-    - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
-    - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)
 - [x] **Add Character not in Good file**
     - Added a "Not Owned Characters" tab to `CharacterSelectionModal.tsx` that lists all game characters not present in the user's imported GOOD file.
     - Unowned characters default to Level 1, C0, and talents 1/1/1 when selected for planning.
@@ -141,6 +137,13 @@ Goal: Keep track with the new characters and weapons that are released in the ga
 - [x] **Update weapon data**
     - Running `npm run update-data` regenerates `weaponMap.json` and `weaponRequirementsMap.json` with all new weapons and their ascension requirements.
 
+## Phase 8: Add characters/weapons that doesn't exist in game (In Progress)
+- [ ] **Allow "Custom" Character or Weapons on the planner**
+    - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
+    - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)
+    - Implement a prompt or wizard to let users input the new character's name, vision, weapon type, rarity, and stats, and then save it to the `characterMap` and `weaponMap`.
+    - Implement a fallback or manual method to input the ascension and talent costs for custom items, or use default values if user doesn't provide them.
+    - Allow to convert that Character or Weapon to a "Real" character or weapon in the game, so that it can be used in the planner like any other character or weapon (e.g when the user updates their good file, it will update the custom character or weapon)
 
 ## Phase X: Future Ideas
 Goal: Implement additional features that are not related to the planner, but would be useful for users.

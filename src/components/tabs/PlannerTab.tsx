@@ -737,6 +737,32 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             >
                               R{weapons[planned.weaponIndex]?.refinement || 1}
                             </span>
+
+                            {/* Equipped Character Banner at the bottom-center inside the icon box */}
+                            {weapons[planned.weaponIndex]?.location && (
+                              <div style={{
+                                position: 'absolute',
+                                bottom: '4px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                background: 'rgba(15, 17, 26, 0.85)',
+                                color: 'rgba(255, 255, 255, 0.95)',
+                                fontSize: '0.68rem',
+                                fontWeight: '700',
+                                padding: '2px 8px',
+                                borderRadius: '4px',
+                                whiteSpace: 'nowrap',
+                                maxWidth: '90%',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                                border: '1px solid rgba(255, 255, 255, 0.08)',
+                                zIndex: 2,
+                                pointerEvents: 'none'
+                              }}>
+                                {lookupChar(weapons[planned.weaponIndex].location)?.name || weapons[planned.weaponIndex].location}
+                              </div>
+                            )}
                           </div>
 
                           {/* Level indicators */}
