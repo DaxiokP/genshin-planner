@@ -417,7 +417,7 @@ export function calculateRequirements(
     }
   });
 
-  // 5. Sort materials: Mystic Ore, Hero's Wit first, Mora second. Then by custom category order, then rarity ascending, then sortRank, then name.
+  // 5. Sort materials: Mystic Ore, Hero's Wit first, Mora second. Then by custom category order, then sortRank (family) ascending, then rarity ascending, then name.
   return results.sort((a, b) => {
     const getCategoryWeight = (item: typeof a) => {
       if (item.key === 'mysticenhancementore') return 0.5;
@@ -441,18 +441,14 @@ export function calculateRequirements(
       return weightA - weightB;
     }
 
-    // Inside the same category:
-    // For common drops, gemstones, and talent books: sort by rarity ascending
-    if (weightA === 3 || weightA === 4 || weightA === 7 || weightA === 2.5) {
-      if (a.rarity !== b.rarity) {
-        return a.rarity - b.rarity;
-      }
-    }
-
     const rankA = a.sortRank ?? 0;
     const rankB = b.sortRank ?? 0;
     if (rankA !== rankB) {
       return rankA - rankB;
+    }
+
+    if (a.rarity !== b.rarity) {
+      return a.rarity - b.rarity;
     }
 
     return a.name.localeCompare(b.name);
@@ -890,16 +886,14 @@ function calculateRequirementsSort(results: RequiredMaterial[]): RequiredMateria
       return weightA - weightB;
     }
 
-    if (weightA === 3 || weightA === 4 || weightA === 7 || weightA === 2.5) {
-      if (a.rarity !== b.rarity) {
-        return a.rarity - b.rarity;
-      }
-    }
-
     const rankA = a.sortRank ?? 0;
     const rankB = b.sortRank ?? 0;
     if (rankA !== rankB) {
       return rankA - rankB;
+    }
+
+    if (a.rarity !== b.rarity) {
+      return a.rarity - b.rarity;
     }
 
     return a.name.localeCompare(b.name);

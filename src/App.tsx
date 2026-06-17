@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Cloud, CloudOff, CloudLightning, LogIn, LogOut, ChevronDown, Loader2, Sparkles, Settings } from 'lucide-react';
 import { CharacterSelectionModal } from './components/CharacterSelectionModal';
 import { CharacterTargetModal } from './components/CharacterTargetModal';
-import { calculateRequirements, simulatePlannerInventory } from './utils/plannerCalculator';
+import { calculateRequirements, simulatePlannerInventory, getDomainMaterialWeekdayGroup, getRawCardRequirements } from './utils/plannerCalculator';
 import './App.css';
 import characterMapData from './maps/characterMap.json';
 import weaponMapData from './maps/weaponMap.json';
@@ -565,6 +565,8 @@ function App() {
         <TooltipBox
           hoveredItem={hoveredItem}
           mousePos={mousePos}
+          plannedItems={plannedItems}
+          weapons={weapons}
         />
       )}
 
@@ -807,9 +809,75 @@ export default App;
 interface TooltipBoxProps {
   hoveredItem: { key: string; data: any };
   mousePos: { x: number; y: number };
+  plannedItems: any[];
+  weapons: any[];
 }
 
-const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos }) => {
+const getDomainInfo = (key: string, sortGroup?: number, sortRank?: number) => {
+  const weekday = getDomainMaterialWeekdayGroup(key, sortGroup, sortRank);
+  if (!weekday) return null;
+
+  const lowerKey = key.toLowerCase();
+  let name = 'Domain';
+
+  if (sortGroup === 500) {
+    // Talent books
+    if (['freedom', 'resistance', 'ballad'].some(n => lowerKey.includes(n))) {
+      name = 'Forsaken Rift';
+    } else if (['prosperity', 'diligence', 'gold'].some(n => lowerKey.includes(n))) {
+      name = 'Taishan Mansion';
+    } else if (['transience', 'elegance', 'light'].some(n => lowerKey.includes(n))) {
+      name = 'Violet Court';
+    } else if (['admonition', 'ingenuity', 'praxis'].some(n => lowerKey.includes(n))) {
+      name = 'Steeple of Ignorance';
+    } else if (['equity', 'justice', 'order'].some(n => lowerKey.includes(n))) {
+      name = 'Pale Forgotten Glory';
+    } else if (['contention', 'kindling', 'conflict'].some(n => lowerKey.includes(n))) {
+      name = 'Blazing Ruins';
+    } else if (['moonlight', 'elysium', 'vagrancy'].some(n => lowerKey.includes(n))) {
+      name = 'Lightless Capital';
+    }
+  } else if (sortGroup === 600) {
+    // Weapon materials
+    if (['decarabian', 'borealwolf', 'dandeliongladiator'].some(n => lowerKey.includes(n))) {
+      name = 'Cecilia Garden';
+    } else if (['guyun', 'mistveiled', 'aerosiderite'].some(n => lowerKey.includes(n))) {
+      name = 'Hidden Palace of Lianshan Formula';
+    } else if (['coralbranch', 'narukami', 'wickedlieutenant'].some(n => lowerKey.includes(n))) {
+      name = 'Court of Flowing Sand';
+    } else if (['forestdew', 'oasisgarden', 'echoingfissures'].some(n => lowerKey.includes(n))) {
+      name = 'Tower of Abject Pride';
+    } else if (['ancientchord', 'sacreddew', 'pristinesea'].some(n => lowerKey.includes(n))) {
+      name = 'Echoes of the Deep Tides';
+    } else if (['sacrificialheart', 'longnightflint', 'artfuldevice'].some(n => lowerKey.includes(n))) {
+      name = 'Ancient Watchtower';
+    }
+  }
+
+  let dayString = '';
+  if (weekday === 'Monday/Thursday') {
+    dayString = '(Monday/Thursday/Sunday)';
+  } else if (weekday === 'Tuesday/Friday') {
+    dayString = '(Tuesday/Friday/Sunday)';
+  } else if (weekday === 'Wednesday/Saturday') {
+    dayString = '(Wednesday/Saturday/Sunday)';
+  }
+
+  return { name, days: dayString };
+};
+
+const isGenericMaterial = (key: string) => {
+  const k = key.toLowerCase();
+  return k === 'mora' || 
+         k === 'heroswit' || 
+         k === 'adventurersexperience' || 
+         k === 'wanderersadvice' || 
+         k === 'mysticenhancementore' || 
+         k === 'fineenhancementore' || 
+         k === 'enhancementore';
+};
+
+const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedItems, weapons }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [pos, setPos] = React.useState({ x: mousePos.x, y: mousePos.y });
   const [measured, setMeasured] = React.useState(false);
@@ -843,6 +911,69 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos }) => {
     setMeasured(true);
   }, [mousePos, hoveredItem]);
 
+  const domainInfo = getDomainInfo(hoveredItem.key, hoveredItem.data.sortGroup, hoveredItem.data.sortRank);
+  const regularSources = (hoveredItem.data.sources || []).filter((src: string) => !src.includes('Placeholder'));
+  const hasSources = domainInfo || regularSources.length > 0;
+
+  // Find all characters/weapons from the planner that also use this material (unless it is generic)
+  const requiredItems = React.useMemo(() => {
+    if (isGenericMaterial(hoveredItem.key)) return [];
+
+    const items: {
+      type: 'character' | 'weapon';
+      key: string;
+      id: string;
+      name: string;
+      rarity: number;
+      title: string;
+      imageSrc: string;
+      fallbackImageSrc: string;
+    }[] = [];
+
+    plannedItems.forEach(planned => {
+      const isWeapon = planned.type === 'weapon';
+      const cardReqs = getRawCardRequirements(planned);
+      if (cardReqs[hoveredItem.key.toLowerCase()] > 0) {
+        if (!isWeapon) {
+          const meta = lookupChar(planned.key);
+          if (meta) {
+            items.push({
+              type: 'character',
+              key: planned.key,
+              id: meta.id,
+              name: meta.name || planned.key,
+              rarity: meta.rarity,
+              title: meta.name || planned.key,
+              imageSrc: `${import.meta.env.BASE_URL}characters/${meta.id}.png`,
+              fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(meta.name || planned.key)}&background=random&color=fff&rounded=true`
+            });
+          }
+        } else {
+          const wInfo = lookupWeapon(planned.key);
+          if (wInfo) {
+            const location = weapons[planned.weaponIndex]?.location;
+            const equippedChar = location ? lookupChar(location) : null;
+            const equippedName = equippedChar?.name || location;
+            const title = wInfo.name ? (location ? `${wInfo.name} (Equipped on ${equippedName})` : wInfo.name) : planned.key;
+
+            items.push({
+              type: 'weapon',
+              key: planned.key,
+              id: wInfo.id,
+              name: wInfo.name || planned.key,
+              rarity: wInfo.rarity,
+              title,
+              imageSrc: `${import.meta.env.BASE_URL}weapons/${wInfo.id}.png`,
+              fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(wInfo.name || planned.key)}&background=random&color=fff&rounded=true`
+            });
+          }
+        }
+      }
+    });
+
+    return items;
+  }, [hoveredItem.key, plannedItems, weapons]);
+
   return (
     <div
       ref={ref}
@@ -867,13 +998,52 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos }) => {
           />
         </div>
       </div>
-      {hoveredItem.data.sources && hoveredItem.data.sources.filter((src: string) => !src.includes('Placeholder')).length > 0 && (
+      {hasSources && (
         <div className="tooltip-sources">
-          {hoveredItem.data.sources
-            .filter((src: string) => !src.includes('Placeholder'))
-            .map((src: string, i: number) => (
-              <div key={i} className="tooltip-source-item">{src}</div>
-            ))}
+          {domainInfo && (
+            <div className="tooltip-source-item" style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <span style={{ fontWeight: '700', color: '#0b0c10', fontSize: '0.85rem' }}>{domainInfo.name}</span>
+              <span style={{ color: '#0284c7', fontWeight: '600', fontSize: '0.8rem' }}>{domainInfo.days}</span>
+            </div>
+          )}
+          {regularSources.map((src: string, i: number) => (
+            <div key={i} className="tooltip-source-item">{src}</div>
+          ))}
+        </div>
+      )}
+      {requiredItems.length > 0 && (
+        <div style={{ padding: '0 12px 12px 12px', background: '#ede7dc', borderRadius: '0 0 3px 3px' }}>
+          <div className="tooltip-required-by" style={{
+            background: '#fff',
+            border: '1px solid #d5d0c3',
+            padding: '8px',
+            borderRadius: '2px',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#0b0c10', marginBottom: '6px' }}>Required by</div>
+            <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              {requiredItems.map((item, idx) => (
+                <div key={`${item.type}-${item.key}-${idx}`} className={`bg-rarity-${item.rarity || 5}`} style={{
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(0,0,0,0.15)',
+                  position: 'relative'
+                }}>
+                  <img
+                    src={item.imageSrc}
+                    alt={item.name}
+                    title={item.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    onError={(e) => {
+                      e.currentTarget.src = item.fallbackImageSrc;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>
