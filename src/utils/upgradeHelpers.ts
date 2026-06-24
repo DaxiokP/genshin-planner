@@ -364,37 +364,30 @@ export function simulateUpgrade(
     enabled: true,
   };
 
-  // 2. Add crafting bonuses into virtual materials
-  const virtualMaterials: Record<string, number> = {};
-  if (materials) {
-    Object.entries(materials).forEach(([k, val]) => {
-      virtualMaterials[k] = val;
-    });
-  }
+  // 2. Compute raw requirements based on baseline materials (WITHOUT bonuses)
+  const rawRequirements = calculateRequirements(draftPlanned, materials);
 
-  Object.entries(craftingBonuses).forEach(([k, bonus]) => {
-    if (bonus > 0) {
-      const lowerKey = k.toLowerCase();
-      let goodKey = k;
-      if (materials) {
-        const found = Object.keys(materials).find(gk => gk.toLowerCase() === lowerKey);
-        if (found) goodKey = found;
-      }
-      virtualMaterials[goodKey] = (virtualMaterials[goodKey] || 0) + bonus;
-    }
-  });
-
-  // 3. Compute raw requirements
-  const rawRequirements = calculateRequirements(draftPlanned, virtualMaterials);
-
-  // 4. Overwrite conversion math with recalculateChainConversions
-  const { recalculatedReqs, crafts } = recalculateChainConversions(
+  // 3. Run baseline conversions to get unreduced crafts
+  const { crafts: baselineCrafts } = recalculateChainConversions(
     rawRequirements,
-    virtualMaterials,
+    materials,
     {}
   );
 
-  // 5. Evaluate sufficiency status
+  // 4. Run recalculations WITH bonuses to get correct sufficiency (isEnough and missing)
+  const { recalculatedReqs } = recalculateChainConversions(
+    rawRequirements,
+    materials,
+    craftingBonuses
+  );
+
+  // 5. Overwrite the converted field in recalculatedReqs with baselineCrafts values
+  // so the Materials cards numerator/denominator are displayed correctly
+  recalculatedReqs.forEach(req => {
+    req.converted = baselineCrafts[req.key] || 0;
+  });
+
+  // 6. Evaluate sufficiency status
   const insufficientMaterials: string[] = [];
   const estimatedKeys = new Set(['mora', 'heroswit', 'adventurersexperience', 'wanderersadvice', 'mysticenhancementore', 'fineenhancementore', 'enhancementore']);
   recalculatedReqs.forEach(mat => {
@@ -409,7 +402,7 @@ export function simulateUpgrade(
 
   return {
     requirements: recalculatedReqs,
-    crafts,
+    crafts: baselineCrafts,
     isSufficient,
     insufficientMaterials,
   };
@@ -444,7 +437,13 @@ export function applyUpgradeInventoryMutations(
         return;
       }
     }
-    const stdName = materialMap[lower]?.name || key;
+    const stdName = materialMap[lower]?.name
+      ? materialMap[lower].name
+          .split(/[\s_\-]+/)
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join('')
+          .replace(/[^a-zA-Z0-9]/g, '')
+      : key;
     nextMaterials[stdName] = clamped;
   };
 
@@ -452,16 +451,49 @@ export function applyUpgradeInventoryMutations(
   const draftPlanned = { ...planned, desired: target, enabled: true };
   const rawReqs = calculateRequirements(draftPlanned, materials);
 
-  // 2. Perform recalculations
+  // 2. Perform baseline recalculations (WITHOUT bonuses)
   const { remainingCounts } = recalculateChainConversions(
     rawReqs,
     materials,
-    craftingBonuses
+    {}
   );
 
-  // 3. Update all counts
+  const getOwnedCount = (key: string): number => {
+    const lower = key.toLowerCase();
+    for (const gk of Object.keys(materials)) {
+      if (gk.toLowerCase() === lower) {
+        return materials[gk];
+      }
+    }
+    return 0;
+  };
+
+  const processedKeys = new Set<string>();
+
+  // 3. Update all counts, summing the crafting bonuses
   Object.entries(remainingCounts).forEach(([key, remaining]) => {
-    setOwnedCount(key, remaining);
+    const lowerKey = key.toLowerCase();
+    processedKeys.add(lowerKey);
+
+    let bonus = 0;
+    for (const [bk, bval] of Object.entries(craftingBonuses)) {
+      if (bk.toLowerCase() === lowerKey) {
+        bonus = bval;
+        break;
+      }
+    }
+    setOwnedCount(key, remaining + bonus);
+  });
+
+  // 4. Update any crafting bonuses not processed in remainingCounts
+  Object.entries(craftingBonuses).forEach(([key, bonus]) => {
+    if (bonus > 0) {
+      const lowerKey = key.toLowerCase();
+      if (!processedKeys.has(lowerKey)) {
+        const currentCount = getOwnedCount(key);
+        setOwnedCount(key, currentCount + bonus);
+      }
+    }
   });
 
   // 4. Directly set corrected Mora, EXP, or Ore counts
