@@ -8,12 +8,14 @@ const scripts = [
   'generateWeaponRequirementsMap.cjs',
   'generateArtifactMap.cjs',
   'generateMap.cjs',
+  'applyPatches.cjs',
   'downloadCharacterIcons.cjs',
   'downloadWeaponIcons.cjs',
   'downloadArtifactIcons.cjs',
   'downloadIcons.cjs',
   'downloadSplashArts.cjs',
-  'downloadNamecards.cjs'
+  'downloadNamecards.cjs',
+  'applyPatches.cjs'
 ];
 
 console.log('🔄 Starting Genshin Planner Data & Asset Update Process...\n');

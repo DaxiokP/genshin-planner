@@ -1069,5 +1069,14 @@
     "icon": "https://upload-os-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Zibai.png",
     "id": "Zibai",
     "version": "6.3"
+  },
+  "Sandrone": {
+    "name": "Sandrone",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Claymore",
+    "icon": "https://enka.network/ui/UI_AvatarIcon_Sandrone.png",
+    "id": "Sandrone",
+    "version": "6.7"
   }
 }

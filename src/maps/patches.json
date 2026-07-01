@@ -1,0 +1,209 @@
+{
+  "version": "6.7",
+  "characters": {
+    "Sandrone": {
+      "name": "Sandrone",
+      "rarity": 5,
+      "element": "Cryo",
+      "weaponType": "Claymore",
+      "icon": "https://enka.network/ui/UI_AvatarIcon_Sandrone.png",
+      "id": "Sandrone",
+      "version": "6.7"
+    }
+  },
+  "characterRequirements": {
+    "Sandrone": {
+      "ascension": {
+        "1": [
+          { "key": "shivadajadesliver", "name": "Shivada Jade Sliver", "count": 1 },
+          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 3 },
+          { "key": "brokendriveshaft", "name": "Broken Drive Shaft", "count": 3 }
+        ],
+        "2": [
+          { "key": "shivadajadefragment", "name": "Shivada Jade Fragment", "count": 3 },
+          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 2 },
+          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 10 },
+          { "key": "brokendriveshaft", "name": "Broken Drive Shaft", "count": 15 }
+        ],
+        "3": [
+          { "key": "shivadajadefragment", "name": "Shivada Jade Fragment", "count": 6 },
+          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 4 },
+          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 20 },
+          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 12 }
+        ],
+        "4": [
+          { "key": "shivadajadechunk", "name": "Shivada Jade Chunk", "count": 3 },
+          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 8 },
+          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 30 },
+          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 18 }
+        ],
+        "5": [
+          { "key": "shivadajadechunk", "name": "Shivada Jade Chunk", "count": 6 },
+          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 12 },
+          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 45 },
+          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 12 }
+        ],
+        "6": [
+          { "key": "shivadajadegemstone", "name": "Shivada Jade Gemstone", "count": 6 },
+          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 20 },
+          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 60 },
+          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 24 }
+        ]
+      },
+      "talents": {
+        "2": [
+          { "key": "teachingsofvagrancy", "name": "Teachings of Vagrancy", "count": 3 },
+          { "key": "brokendriveshaft", "name": "Broken Drive Shaft", "count": 6 }
+        ],
+        "3": [
+          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 2 },
+          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 3 }
+        ],
+        "4": [
+          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 4 },
+          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 4 }
+        ],
+        "5": [
+          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 6 },
+          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 6 }
+        ],
+        "6": [
+          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 9 },
+          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 9 }
+        ],
+        "7": [
+          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 4 },
+          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 4 },
+          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 1 }
+        ],
+        "8": [
+          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 6 },
+          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 6 },
+          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 1 }
+        ],
+        "9": [
+          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 12 },
+          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 9 },
+          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 2 }
+        ],
+        "10": [
+          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 38 },
+          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 12 },
+          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 2 },
+          { "key": "crownofinsight", "name": "Crown of Insight", "count": 1 }
+        ]
+      }
+    }
+  },
+  "weapons": {
+    "ATeaspoonofTranscendence": {
+      "name": "A Teaspoon of Transcendence",
+      "rarity": 5,
+      "type": "Claymore",
+      "icon": "https://enka.network/ui/UI_EquipIcon_Claymore_Transcendence.png",
+      "id": "Claymore_Transcendence",
+      "substatType": "CRIT DMG",
+      "stats": {},
+      "version": "6.7"
+    }
+  },
+  "weaponRequirements": {
+    "A Teaspoon of Transcendence": {
+      "ascension": {
+        "1": [
+          { "key": "sunderedgloryofthefarnorthscions", "name": "Sundered Glory of the Far-North Scions", "count": 5 },
+          { "key": "fracturedlunariron", "name": "Fractured Lunar Iron", "count": 5 },
+          { "key": "tatteredwarrant", "name": "Tattered Warrant", "count": 3 }
+        ],
+        "2": [
+          { "key": "unyieldingdelusionofthefarnorthscions", "name": "Unyielding Delusion of the Far-North Scions", "count": 5 },
+          { "key": "fracturedlunariron", "name": "Fractured Lunar Iron", "count": 18 },
+          { "key": "tatteredwarrant", "name": "Tattered Warrant", "count": 12 }
+        ],
+        "3": [
+          { "key": "unyieldingdelusionofthefarnorthscions", "name": "Unyielding Delusion of the Far-North Scions", "count": 9 },
+          { "key": "depletedlunariron", "name": "Depleted Lunar Iron", "count": 9 },
+          { "key": "immaculatewarrant", "name": "Immaculate Warrant", "count": 9 }
+        ],
+        "4": [
+          { "key": "oblationofthefarnorthscions", "name": "Oblation of the Far-North Scions", "count": 5 },
+          { "key": "depletedlunariron", "name": "Depleted Lunar Iron", "count": 18 },
+          { "key": "immaculatewarrant", "name": "Immaculate Warrant", "count": 14 }
+        ],
+        "5": [
+          { "key": "oblationofthefarnorthscions", "name": "Oblation of the Far-North Scions", "count": 9 },
+          { "key": "unblemishedlunariron", "name": "Unblemished Lunar Iron", "count": 14 },
+          { "key": "frostetchedwarrant", "name": "Frost-Etched Warrant", "count": 9 }
+        ],
+        "6": [
+          { "key": "aureateradianceofthefarnorthscions", "name": "Aureate Radiance of the Far-North Scions", "count": 6 },
+          { "key": "unblemishedlunariron", "name": "Unblemished Lunar Iron", "count": 27 },
+          { "key": "frostetchedwarrant", "name": "Frost-Etched Warrant", "count": 18 }
+        ]
+      }
+    }
+  },
+  "artifacts": {
+    "CelestialGift": {
+      "name": "Celestial Gift",
+      "icons": {
+        "flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_4.png",
+        "plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_2.png",
+        "sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_5.png",
+        "goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_1.png",
+        "circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_3.png",
+        "filename_flower": "UI_RelicIcon_16031_4",
+        "filename_plume": "UI_RelicIcon_16031_2",
+        "filename_sands": "UI_RelicIcon_16031_5",
+        "filename_goblet": "UI_RelicIcon_16031_1",
+        "filename_circlet": "UI_RelicIcon_16031_3",
+        "mihoyo_flower": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_4.png",
+        "mihoyo_plume": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_2.png",
+        "mihoyo_sands": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_5.png",
+        "mihoyo_goblet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_1.png",
+        "mihoyo_circlet": "https://upload-os-bbs.mihoyo.com/game_record/genshin/equip/UI_RelicIcon_16031_3.png"
+      }
+    }
+  },
+  "materials": {
+    "madmansrestraint": {
+      "id": "113082",
+      "name": "Madman's Restraint",
+      "rarity": 5,
+      "sources": [
+        "Lv. 70+ The Doctor Challenge Reward",
+        "Obtained from the Crafting Bench Conversion Tab"
+      ],
+      "sortGroup": 200,
+      "sortRank": 11101,
+      "localExt": ".png"
+    },
+    "fracturedlunariron": {
+      "id": "112995",
+      "name": "Fractured Lunar Iron",
+      "rarity": 1,
+      "sources": ["Dropped by Enemies", "Luna VIII Region"],
+      "sortGroup": 100,
+      "sortRank": 10639,
+      "localExt": ".png"
+    },
+    "depletedlunariron": {
+      "id": "112996",
+      "name": "Depleted Lunar Iron",
+      "rarity": 2,
+      "sources": ["Dropped by Enemies", "Crafted"],
+      "sortGroup": 100,
+      "sortRank": 10639,
+      "localExt": ".png"
+    },
+    "unblemishedlunariron": {
+      "id": "112997",
+      "name": "Unblemished Lunar Iron",
+      "rarity": 3,
+      "sources": ["Dropped by Enemies", "Crafted"],
+      "sortGroup": 100,
+      "sortRank": 10639,
+      "localExt": ".png"
+    }
+  }
+}

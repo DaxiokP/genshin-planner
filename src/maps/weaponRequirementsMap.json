@@ -31312,5 +31312,111 @@
         }
       ]
     }
+  },
+  "A Teaspoon of Transcendence": {
+    "ascension": {
+      "1": [
+        {
+          "key": "sunderedgloryofthefarnorthscions",
+          "name": "Sundered Glory of the Far-North Scions",
+          "count": 5
+        },
+        {
+          "key": "fracturedlunariron",
+          "name": "Fractured Lunar Iron",
+          "count": 5
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "unyieldingdelusionofthefarnorthscions",
+          "name": "Unyielding Delusion of the Far-North Scions",
+          "count": 5
+        },
+        {
+          "key": "fracturedlunariron",
+          "name": "Fractured Lunar Iron",
+          "count": 18
+        },
+        {
+          "key": "tatteredwarrant",
+          "name": "Tattered Warrant",
+          "count": 12
+        }
+      ],
+      "3": [
+        {
+          "key": "unyieldingdelusionofthefarnorthscions",
+          "name": "Unyielding Delusion of the Far-North Scions",
+          "count": 9
+        },
+        {
+          "key": "depletedlunariron",
+          "name": "Depleted Lunar Iron",
+          "count": 9
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 9
+        }
+      ],
+      "4": [
+        {
+          "key": "oblationofthefarnorthscions",
+          "name": "Oblation of the Far-North Scions",
+          "count": 5
+        },
+        {
+          "key": "depletedlunariron",
+          "name": "Depleted Lunar Iron",
+          "count": 18
+        },
+        {
+          "key": "immaculatewarrant",
+          "name": "Immaculate Warrant",
+          "count": 14
+        }
+      ],
+      "5": [
+        {
+          "key": "oblationofthefarnorthscions",
+          "name": "Oblation of the Far-North Scions",
+          "count": 9
+        },
+        {
+          "key": "unblemishedlunariron",
+          "name": "Unblemished Lunar Iron",
+          "count": 14
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 9
+        }
+      ],
+      "6": [
+        {
+          "key": "aureateradianceofthefarnorthscions",
+          "name": "Aureate Radiance of the Far-North Scions",
+          "count": 6
+        },
+        {
+          "key": "unblemishedlunariron",
+          "name": "Unblemished Lunar Iron",
+          "count": 27
+        },
+        {
+          "key": "frostetchedwarrant",
+          "name": "Frost-Etched Warrant",
+          "count": 18
+        }
+      ]
+    }
   }
 }

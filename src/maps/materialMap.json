@@ -2724,18 +2724,6 @@
     "sortRank": 15104,
     "localExt": ".png"
   },
-  "madmansrestraint": {
-    "id": "113082",
-    "name": "Madman's Restraint",
-    "rarity": 5,
-    "sources": [
-      "Lv. 70+ The Doctor Challenge Reward",
-      "Obtained from the Crafting Bench Conversion Tab"
-    ],
-    "sortGroup": 200,
-    "sortRank": 11101,
-    "localExt": ".png"
-  },
   "majestichookedbeak": {
     "id": "113036",
     "name": "Majestic Hooked Beak",
@@ -3811,18 +3799,6 @@
       "Dropped by Lv. 30+ Radiant Moongeckos"
     ],
     "sortGroup": 300,
-    "sortRank": 11101,
-    "localExt": ".png"
-  },
-  "profanedsprout": {
-    "id": "113089",
-    "name": "Profaned Sprout",
-    "rarity": 5,
-    "sources": [
-      "Lv. 70+ Il Dottore Challenge Reward",
-      "Obtained from the Crafting Bench Conversion Tab"
-    ],
-    "sortGroup": 200,
     "sortRank": 11101,
     "localExt": ".png"
   },
@@ -5287,18 +5263,6 @@
     "sortRank": 11101,
     "localExt": ".png"
   },
-  "twistedwitheredbranch": {
-    "id": "113088",
-    "name": "Twisted Withered Branch",
-    "rarity": 5,
-    "sources": [
-      "Lv. 70+ Il Dottore Challenge Reward",
-      "Obtained from the Crafting Bench Conversion Tab"
-    ],
-    "sortGroup": 200,
-    "sortRank": 11101,
-    "localExt": ".png"
-  },
   "tyrantsfang": {
     "id": "112103",
     "name": "Tyrant's Fang",
@@ -5678,6 +5642,54 @@
     ],
     "sortGroup": 100,
     "sortRank": 10628,
+    "localExt": ".png"
+  },
+  "madmansrestraint": {
+    "id": "113082",
+    "name": "Madman's Restraint",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Doctor Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
+  "fracturedlunariron": {
+    "id": "112995",
+    "name": "Fractured Lunar Iron",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Enemies",
+      "Luna VIII Region"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10639,
+    "localExt": ".png"
+  },
+  "depletedlunariron": {
+    "id": "112996",
+    "name": "Depleted Lunar Iron",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Enemies",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10639,
+    "localExt": ".png"
+  },
+  "unblemishedlunariron": {
+    "id": "112997",
+    "name": "Unblemished Lunar Iron",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Enemies",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 10639,
     "localExt": ".png"
   }
 }
