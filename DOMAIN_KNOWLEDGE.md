@@ -140,3 +140,60 @@ Mora editing features a quick-action helper button to simulate a Leyline crop ru
 ### 5. Interaction Integrity
 * **Tooltips**: Retains global mouse hover tracking so users can review individual material cards and sources by hovering over any material icon inside the modal.
 * **Autosave**: Saving is debounced and synchronized automatically with active profile persistence configurations (local storage guest or cloud database sync).
+
+---
+
+## Custom Items (Pre-Release Planning)
+
+The planner supports adding **custom characters and weapons** that do not yet exist in the official game. This is intended for pre-release farming, where materials can be identified via leaks before a character or weapon is officially available.
+
+### Custom Item Identity
+
+- Custom items carry a `custom: true` flag in the `PlannedCharacter` record.
+- Their unique key is generated as `custom_character_${timestamp}` or `custom_weapon_${timestamp}` and is stable for the item's lifetime.
+- Custom weapons are assigned negative `weaponIndex` values (e.g. `-1`, `-2`) following the same convention as unowned game weapons, ensuring no collision with real owned weapon indices.
+
+### Material Slots
+
+When creating a custom character or weapon, the user must assign a material to each required slot:
+
+**Character slots:**
+1. Common Drop (base tier enemy drop, rarity 1)
+2. Local Specialty (regional farmable material)
+3. Boss Material (open-world boss drop)
+4. Elemental Gem (ascension gem, base tier)
+5. Talent Book (base tier teaching book)
+6. Weekly Material (weekly boss drop)
+
+**Weapon slots:**
+1. Common Drop (base tier enemy drop, rarity 1)
+2. Uncommon Drop (base tier enemy drop, rarity 2)
+3. Domain Material (weapon ascension domain drop, base tier)
+
+### Unknown Material Placeholders (`?_*`)
+
+If a required material comes from an **unreleased zone or boss** (not yet available in the current patch), the user may select the "? (Unknown Material)" option for that slot. This stores a placeholder key in `customMaterials`:
+
+| Slot | Placeholder Key |
+|------|----------------|
+| Common | `?_common` |
+| Uncommon | `?_uncommon` |
+| Local Specialty | `?_localspecialty` |
+| Boss Material | `?_bossmaterial` |
+| Elemental Gem | `?_elementalgem` |
+| Talent Book | `?_talentbook` |
+| Weekly Material | `?_weeklymaterial` |
+| Domain Material | `?_domainmaterial` |
+
+**Behaviour of `?` keys:**
+- They always appear in the missing materials list, regardless of inventory.
+- `isEnough` is always `false` — the planner cannot know when the user has enough.
+- They do not appear in the inventory tab and cannot be adjusted there.
+- Once the real material is known, the user can "Edit Custom Details" to swap the placeholder for the real material key.
+
+### Cost Calculation
+
+Custom items use the **same official Genshin Impact cost tables** as real characters and weapons, but the material keys in those tables are sourced from the custom item's `customMaterials` slots instead of the character/weapon data maps. This means:
+- The correct quantities of mora, EXP books/ores, ascension materials, talent books, and weekly boss drops are calculated.
+- The full crafting chain logic (alchemy up-conversion) works normally for real materials.
+- `?` placeholder slots are shown as a flat required quantity with no alchemy possible.

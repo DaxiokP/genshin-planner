@@ -137,13 +137,32 @@ Goal: Keep track with the new characters and weapons that are released in the ga
 - [x] **Update weapon data**
     - Running `npm run update-data` regenerates `weaponMap.json` and `weaponRequirementsMap.json` with all new weapons and their ascension requirements.
 
-## Phase 8: Add characters/weapons that doesn't exist in game (In Progress)
-- [ ] **Allow "Custom" Character or Weapons on the planner**
-    - Allow adding custom characters to the planner (which will not have an associated good file data or existing character from the game)
-    - Allow adding custom weapons to the planner (which will not have an associated good file data or existing weapon from the game)
-    - Implement a prompt or wizard to let users input the new character's name, vision, weapon type, rarity, and stats, and then save it to the `characterMap` and `weaponMap`.
-    - Implement a fallback or manual method to input the ascension and talent costs for custom items, or use default values if user doesn't provide them.
-    - Allow to convert that Character or Weapon to a "Real" character or weapon in the game, so that it can be used in the planner like any other character or weapon (e.g when the user updates their good file, it will update the custom character or weapon)
+## Phase 8: Add characters/weapons that doesn't exist in game (Complete)
+Goal: Allow users to pre-plan characters and weapons from upcoming patches (via leaks) before they are released in-game, including those with materials from unreleased zones.
+
+- [x] **Custom Character Creation (`CustomItemModal.tsx` + `SelectMaterialModal.tsx`)**
+    - Added an "Add Custom Character" card at the top of the "Not Owned" tab in `CharacterSelectionModal.tsx`.
+    - Clicking it opens a `CustomItemModal` where the user enters a name, selects rarity (4★ or 5★), and picks a material for each of 6 required slots: Common, Local Specialty, Boss Material, Elemental Gem, Talent Book, Weekly Material.
+    - Each slot uses a `SelectMaterialModal` filtered to the relevant category, showing only the base tier of each material chain (so the user picks Arrowhead, not Arrow/Sergeant's Arrow).
+    - Any slot can be set to "? (Unknown Material)" — a placeholder that resolves to a key like `?_bossmaterial` — for materials from unreleased zones.
+    - The created card shows `CustomCharacter.png` as portrait and uses the custom name and rarity for display.
+- [x] **Custom Weapon Creation**
+    - Added an "Add Custom Weapon" card at the top of the "Not Owned" tab in `WeaponSelectionModal.tsx`.
+    - Clicking it opens a `CustomItemModal` where the user enters a name, selects weapon type (Sword, Claymore, Polearm, Bow, Catalyst), rarity (3–5★), and picks materials for 3 required slots: Common, Uncommon, Domain Material.
+    - The created card shows the weapon type icon (e.g. `icons/bow.png`) as portrait.
+- [x] **Full Ascension & Talent Cost Calculations**
+    - `plannerCalculator.ts` was extended with hardcoded Genshin ascension/talent/weapon upgrade cost tables applied to custom items, using the selected `customMaterials` slot keys.
+    - Placeholder `?` material keys (e.g. `?_common`) are always shown as "missing" with `isEnough: false` — they cannot be marked as owned since they are not real inventory items.
+    - The `accumulatePlanRequirements` function was extracted as a shared helper used by both `calculateRequirements` and `getRawCardRequirements`.
+- [x] **Edit & Replace Workflow**
+    - "Edit Custom Character/Weapon" button in the Target Modal reopens `CustomItemModal` pre-populated with existing data, saving back as an in-place update.
+    - "Replace with Existing Game Item" button in the Target Modal swaps the custom entry for a real game character/weapon from the selection modal, clearing all custom fields.
+    - `CharacterTargetModal.tsx` and `WeaponTargetModal.tsx` each accept `customInfo`, `onEditCustom`, and `onReplaceWithExisting` props.
+- [x] **Modal Navigation Flow**
+    - New custom items are stored as a `tempCustomItem` draft in `App.tsx` and are only committed to `plannedItems` when the user clicks Accept in the Target Modal. Clicking Cancel or the ✕ button discards the draft without creating a planner card.
+    - `customModalSource` state tracks whether `CustomItemModal` was opened from the selection modal or the target modal, so closing/canceling always returns to the correct previous screen.
+    - Bug fixed: `CharacterTargetModal.tsx` useEffect now correctly reads `plannedData.current` (not `currentData`) when re-opening an existing plan for editing.
+
 
 ## Phase X: Future Ideas
 Goal: Implement additional features that are not related to the planner, but would be useful for users.

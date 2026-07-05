@@ -273,6 +273,74 @@ A reusable modal that intercepts mouse click events on material requirement grid
 
 - `/src`: React components, hooks, Supabase configuration, and material maps.
   - `/utils/__tests__`: Automated test suites validating calculation formulas, alchemical chains, inventory allocations, and import sync algorithms.
-- `/public`: Static assets including the processed `/icons` folder.
+- `/public`: Static assets including the processed `/icons` folder and `/characters` folder (including `CustomCharacter.png` for the custom item placeholder icon).
 - `/resources`: Data processing scripts and architecture documentation.
 - `/`: Configuration files, linting guidelines, environment setups, and workflow builds.
+
+### 15. Custom Items System (`src/components/CustomItemModal.tsx`, `src/components/SelectMaterialModal.tsx`)
+
+Allows users to plan characters and weapons that are **not yet released in-game** (e.g. upcoming patch characters known via leaks). The system is fully integrated into the standard planner card flow.
+
+#### New Components
+
+- **`CustomItemModal`**: A form modal for creating or editing a custom character/weapon. Collects:
+  - Name (free text)
+  - Rarity (4–5★ for characters, 3–5★ for weapons)
+  - Weapon type (weapons only: Sword, Claymore, Polearm, Bow, Catalyst)
+  - Material slots (see below)
+  - Emits a structured payload on accept; the form is only submittable when all slots are filled and a name is entered.
+
+- **`SelectMaterialModal`**: A category-filtered material picker. Renders only the **base tier** of each material chain:
+  - Common/Uncommon: `sortGroup: 100`, filtered by rarity 1 or 2
+  - Local Specialty: `sortGroup: 300`
+  - Boss Material: `sortGroup: 200`
+  - Elemental Gem: `sortGroup: 400` (base tier)
+  - Talent Book: `sortGroup: 500` (base tier, excludes Crown)
+  - Domain Material: `sortGroup: 600` (base tier)
+  - Always includes a "? (Unknown Material)" option — resolves to a placeholder key like `?_bossmaterial` for unreleased zone materials.
+
+#### Material Placeholder Keys (`?_*`)
+
+When a user selects the unknown material option for a slot, the key stored in `customMaterials` is `?_<category>` (e.g. `?_bossmaterial`, `?_common`). Inside `plannerCalculator.ts`:
+- These keys bypass all inventory lookup — they are always considered missing.
+- `isEnough` is forced to `false`.
+- Display names are mapped to human-readable labels: "Boss Material", "Common Drop", etc.
+
+#### `PlannedCharacter` Type Extensions (`src/types.ts`)
+
+```ts
+custom?: boolean;
+customName?: string;
+customRarity?: number;
+customWeaponType?: 'Sword' | 'Claymore' | 'Polearm' | 'Bow' | 'Catalyst';
+customMaterials?: {
+  common?: string; localSpecialty?: string; bossMaterial?: string;
+  elementalGem?: string; talentBook?: string; weeklyMaterial?: string;
+  uncommon?: string; domainMaterial?: string;
+};
+```
+
+#### State Management in `App.tsx`
+
+Two additional state variables manage the custom item creation flow:
+
+- **`tempCustomItem`**: Holds a newly created custom item as a draft. The item is NOT added to `plannedItems` until the user clicks Accept in the Target Modal. Clicking Cancel or ✕ clears the draft, preventing ghost planner cards.
+- **`customModalSource`** (`'selection' | 'target'`): Tracks where `CustomItemModal` was launched from, so closing it navigates back to the correct previous modal (selection grid or target modal).
+
+#### Calculator Extensions (`src/utils/plannerCalculator.ts`)
+
+- Extracted `accumulatePlanRequirements(planned, addMaterial)` as a shared helper — eliminates duplicate code between `calculateRequirements` and `getRawCardRequirements`.
+- For custom characters: applies hardcoded Genshin ascension and talent upgrade cost tables using the character's `customMaterials` slot keys.
+- For custom weapons: applies hardcoded weapon ascension and enhancement ore cost tables.
+
+#### Icons
+
+- Custom characters use `public/characters/CustomCharacter.png` as the portrait everywhere (planner card, target modal, tooltip).
+- Custom weapons use the weapon type icon from `public/icons/<type>.png` (e.g. `bow.png`).
+- In `CharacterTargetModal.tsx`, `charInfo.id` is set to `'CustomCharacter'` for custom items, driving the portrait path.
+
+#### Known Limitations
+
+- Custom items are **not synced to Supabase** — they exist only in local state/localStorage. Future work: extend the Supabase sync layer (`useAppSync.ts`) to handle the `custom*` fields.
+- Placeholder `?` materials can never be marked as "owned" in inventory — they will always appear in the missing materials list until replaced with real materials via "Edit Custom Details".
+
