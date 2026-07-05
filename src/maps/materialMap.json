@@ -5659,7 +5659,7 @@
   "fracturedlunariron": {
     "id": "112995",
     "name": "Fractured Lunar Iron",
-    "rarity": 1,
+    "rarity": 2,
     "sources": [
       "Dropped by Enemies",
       "Luna VIII Region"
@@ -5671,7 +5671,7 @@
   "depletedlunariron": {
     "id": "112996",
     "name": "Depleted Lunar Iron",
-    "rarity": 2,
+    "rarity": 3,
     "sources": [
       "Dropped by Enemies",
       "Crafted"
@@ -5683,7 +5683,7 @@
   "unblemishedlunariron": {
     "id": "112997",
     "name": "Unblemished Lunar Iron",
-    "rarity": 3,
+    "rarity": 4,
     "sources": [
       "Dropped by Enemies",
       "Crafted"
