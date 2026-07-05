@@ -205,7 +205,7 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
       <div
         className={`modal-container target-modal-container bg-rarity-${rarity}-solid`}
         onClick={e => e.stopPropagation()}
-        style={{ maxWidth: '600px', display: 'flex', flexDirection: 'row' }}
+        style={{ maxWidth: '600px', display: 'flex', flexDirection: 'row', overflow: 'visible' }}
       >
         {/* Symmetrical Left Panel showcasing the weapon portrait */}
         <div style={{
@@ -216,7 +216,9 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
           alignItems: 'center',
           justifyContent: 'center',
           padding: '2rem 1rem',
-          borderRight: '1px solid rgba(255,255,255,0.06)'
+          borderRight: '1px solid rgba(255,255,255,0.06)',
+          borderTopLeftRadius: '12px',
+          borderBottomLeftRadius: '12px'
         }}>
           <div className={`bg-rarity-${rarity}`} style={{
             width: '130px',
@@ -280,7 +282,7 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
               {info.name}
             </div>
 
-            <div className="modal-content" style={{ padding: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div className="modal-content" style={{ padding: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem', overflow: 'visible' }}>
               <div className="target-row">
                 <div className="target-row-title" style={{ fontSize: '0.95rem', color: '#ffcc66', fontWeight: 'bold' }}>Level & Ascension Target</div>
                 <div className="target-inputs-group" style={{ gap: '1.5rem', marginTop: '0.5rem' }}>
