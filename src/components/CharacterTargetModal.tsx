@@ -182,19 +182,14 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   const isBurstBoosted = !isCustom && constellation >= 5;
 
   useEffect(() => {
-    const curLevel = currentData?.level || 1;
-    const curAsc = currentData?.ascension || 0;
-    const curTalents = {
-      auto: currentData?.talent?.auto || 1,
-      skill: currentData?.talent?.skill || 1,
-      burst: currentData?.talent?.burst || 1,
-    };
-
-    setCurrentLevel(curLevel);
-    setCurrentAscension(curAsc);
-    setCurrentTalents(curTalents);
-
     if (plannedData) {
+      setCurrentLevel(plannedData.current.level);
+      setCurrentAscension(plannedData.current.ascension);
+      setCurrentTalents({
+        auto: plannedData.current.talent.auto,
+        skill: plannedData.current.talent.skill,
+        burst: plannedData.current.talent.burst,
+      });
       setDesiredLevel(plannedData.desired.level);
       setDesiredAscension(plannedData.desired.ascension);
       setDesiredTalents({
@@ -203,6 +198,18 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
         burst: plannedData.desired.talent.burst,
       });
     } else {
+      const curLevel = currentData?.level || 1;
+      const curAsc = currentData?.ascension || 0;
+      const curTalents = {
+        auto: currentData?.talent?.auto || 1,
+        skill: currentData?.talent?.skill || 1,
+        burst: currentData?.talent?.burst || 1,
+      };
+
+      setCurrentLevel(curLevel);
+      setCurrentAscension(curAsc);
+      setCurrentTalents(curTalents);
+
       setDesiredLevel(Math.max(90, curLevel));
       setDesiredAscension(Math.max(6, curAsc));
       setDesiredTalents({
