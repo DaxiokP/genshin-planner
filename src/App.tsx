@@ -172,6 +172,8 @@ function App() {
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
   const [customModalType, setCustomModalType] = useState<'character' | 'weapon'>('character');
   const [editingCustomData, setEditingCustomData] = useState<any | null>(null);
+  const [tempCustomItem, setTempCustomItem] = useState<any | null>(null);
+  const [customModalSource, setCustomModalSource] = useState<'selection' | 'target'>('selection');
 
   // Replace mode state hooks
   const [replaceMode, setReplaceMode] = useState(false);
@@ -380,22 +382,38 @@ function App() {
     );
   };
   const handleCustomItemAccept = (customData: any) => {
+    const isChar = customModalType === 'character';
     if (editingCustomData) {
-      setPlannedItems(prev => {
-        return prev.map(p => {
-          if (p.id === editingCustomData.id) {
-            return {
-              ...p,
-              ...customData,
-            };
-          }
-          return p;
+      const existsInPlanned = plannedItems.some(p => p.id === editingCustomData.id);
+      if (existsInPlanned) {
+        setPlannedItems(prev => {
+          return prev.map(p => {
+            if (p.id === editingCustomData.id) {
+              return {
+                ...p,
+                ...customData,
+              };
+            }
+            return p;
+          });
         });
-      });
+      } else {
+        setTempCustomItem((prev: any) => ({
+          ...prev,
+          ...customData,
+        }));
+      }
+
       setIsCustomModalOpen(false);
       setEditingCustomData(null);
+      
+      if (isChar) {
+        setSelectedCharacterKeyForTarget(customData.key);
+      } else {
+        setSelectedWeaponIndexForTarget(editingCustomData.weaponIndex);
+        setSelectedWeaponKeyForTarget(customData.key);
+      }
     } else {
-      const isChar = customModalType === 'character';
       const plannedId = isChar ? `character:${customData.key}` : `weapon:${customData.key}`;
       
       let plannedItem: any = {
@@ -417,7 +435,7 @@ function App() {
         plannedItem.weaponIndex = nextIdx;
       }
 
-      setPlannedItems(prev => [...prev, plannedItem]);
+      setTempCustomItem(plannedItem);
       setIsCustomModalOpen(false);
 
       if (isChar) {
@@ -637,6 +655,7 @@ function App() {
         ownedCharacters={characters}
         replaceMode={replaceMode}
         onAddCustom={() => {
+          setCustomModalSource('selection');
           setCustomModalType('character');
           setEditingCustomData(null);
           setIsCustomModalOpen(true);
@@ -701,18 +720,21 @@ function App() {
         onClose={() => {
           setSelectedCharacterKeyForTarget(null);
           setOpenedTargetFromPlanner(false);
+          setTempCustomItem(null);
         }}
         onCancel={openedTargetFromPlanner ? undefined : () => {
           setSelectedCharacterKeyForTarget(null);
+          setTempCustomItem(null);
           setIsCharacterSelectModalOpen(true);
         }}
         characterKey={selectedCharacterKeyForTarget}
         currentData={characters.find(c => c.key === selectedCharacterKeyForTarget)}
         plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? plannedItems.find(p => (p.type === 'character' || !p.type) && p.key === selectedCharacterKeyForTarget) : undefined}
-        customInfo={selectedCharacterKeyForTarget ? plannedItems.find(p => p.key === selectedCharacterKeyForTarget) : undefined}
+        customInfo={selectedCharacterKeyForTarget ? (plannedItems.find(p => p.key === selectedCharacterKeyForTarget) || (tempCustomItem && tempCustomItem.key === selectedCharacterKeyForTarget ? tempCustomItem : undefined)) : undefined}
         onEditCustom={() => {
-          const item = plannedItems.find(p => p.key === selectedCharacterKeyForTarget);
+          const item = plannedItems.find(p => p.key === selectedCharacterKeyForTarget) || tempCustomItem;
           setEditingCustomData(item);
+          setCustomModalSource('target');
           setCustomModalType('character');
           setIsCustomModalOpen(true);
           setSelectedCharacterKeyForTarget(null);
@@ -731,9 +753,8 @@ function App() {
               id: `character:${planned.key}`,
               enabled: true
             };
-            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && p.key === planned.key);
+            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && p.key === planned.key) || tempCustomItem;
             if (existingItem) {
-              // Preserve custom attributes if editing custom target levels
               characterPlan.custom = existingItem.custom;
               characterPlan.customName = existingItem.customName;
               characterPlan.customRarity = existingItem.customRarity;
@@ -750,6 +771,7 @@ function App() {
           });
           setSelectedCharacterKeyForTarget(null);
           setOpenedTargetFromPlanner(false);
+          setTempCustomItem(null);
         }}
       />
 
@@ -764,6 +786,7 @@ function App() {
         plannedItems={plannedItems}
         replaceMode={replaceMode}
         onAddCustom={() => {
+          setCustomModalSource('selection');
           setCustomModalType('weapon');
           setEditingCustomData(null);
           setIsCustomModalOpen(true);
@@ -826,20 +849,23 @@ function App() {
           setSelectedWeaponIndexForTarget(null);
           setSelectedWeaponKeyForTarget(null);
           setOpenedTargetFromPlanner(false);
+          setTempCustomItem(null);
         }}
         onCancel={openedTargetFromPlanner ? undefined : () => {
           setSelectedWeaponIndexForTarget(null);
           setSelectedWeaponKeyForTarget(null);
+          setTempCustomItem(null);
           setIsWeaponSelectModalOpen(true);
         }}
         weaponIndex={selectedWeaponIndexForTarget}
         weaponKey={selectedWeaponKeyForTarget}
         currentData={selectedWeaponIndexForTarget !== null && selectedWeaponIndexForTarget >= 0 ? weapons[selectedWeaponIndexForTarget] : undefined}
         plannedData={openedTargetFromPlanner && selectedWeaponIndexForTarget !== null ? plannedItems.find(p => p.type === 'weapon' && p.weaponIndex === selectedWeaponIndexForTarget) : undefined}
-        customInfo={selectedWeaponKeyForTarget ? plannedItems.find(p => p.key === selectedWeaponKeyForTarget) : undefined}
+        customInfo={selectedWeaponKeyForTarget ? (plannedItems.find(p => p.key === selectedWeaponKeyForTarget) || (tempCustomItem && tempCustomItem.key === selectedWeaponKeyForTarget ? tempCustomItem : undefined)) : undefined}
         onEditCustom={() => {
-          const item = plannedItems.find(p => p.key === selectedWeaponKeyForTarget);
+          const item = plannedItems.find(p => p.key === selectedWeaponKeyForTarget) || tempCustomItem;
           setEditingCustomData(item);
+          setCustomModalSource('target');
           setCustomModalType('weapon');
           setIsCustomModalOpen(true);
           setSelectedWeaponIndexForTarget(null);
@@ -859,7 +885,7 @@ function App() {
               id: `weapon:${planned.weaponIndex}`,
               enabled: true
             };
-            const existingItem = prev.find(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex);
+            const existingItem = prev.find(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex) || tempCustomItem;
             if (existingItem) {
               // Preserve custom attributes if editing custom target levels
               weaponPlan.custom = existingItem.custom;
@@ -869,19 +895,18 @@ function App() {
               weaponPlan.customMaterials = existingItem.customMaterials;
               weaponPlan.enabled = existingItem.enabled !== false;
             }
-            if (openedTargetFromPlanner) {
-              const exists = prev.findIndex(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex);
-              if (exists >= 0) {
-                const next = [...prev];
-                next[exists] = weaponPlan;
-                return next;
-              }
+            const exists = prev.findIndex(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex);
+            if (exists >= 0) {
+              const next = [...prev];
+              next[exists] = weaponPlan;
+              return next;
             }
             return [...prev, weaponPlan];
           });
           setSelectedWeaponIndexForTarget(null);
           setSelectedWeaponKeyForTarget(null);
           setOpenedTargetFromPlanner(false);
+          setTempCustomItem(null);
         }}
       />
 
@@ -890,6 +915,20 @@ function App() {
         onClose={() => {
           setIsCustomModalOpen(false);
           setEditingCustomData(null);
+          if (customModalSource === 'target' && editingCustomData) {
+            if (customModalType === 'character') {
+              setSelectedCharacterKeyForTarget(editingCustomData.key);
+            } else {
+              setSelectedWeaponIndexForTarget(editingCustomData.weaponIndex);
+              setSelectedWeaponKeyForTarget(editingCustomData.key);
+            }
+          } else if (customModalSource === 'selection') {
+            if (customModalType === 'character') {
+              setIsCharacterSelectModalOpen(true);
+            } else {
+              setIsWeaponSelectModalOpen(true);
+            }
+          }
         }}
         type={customModalType}
         existingData={editingCustomData}

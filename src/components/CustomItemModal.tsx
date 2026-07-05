@@ -159,7 +159,7 @@ export const CustomItemModal: React.FC<CustomItemModalProps> = ({
         <div 
           className="modal-container" 
           onClick={e => e.stopPropagation()}
-          style={{ maxWidth: '480px', width: '90%', background: '#1c1d24', border: '1px solid rgba(255,255,255,0.08)' }}
+          style={{ maxWidth: '580px', width: '90%', background: '#1c1d24', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           <div className="modal-header" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <h2>{existingData ? 'Edit' : 'Add'} Custom {isCharacter ? 'Character' : 'Weapon'}</h2>
@@ -272,6 +272,7 @@ export const CustomItemModal: React.FC<CustomItemModalProps> = ({
                       gap: '10px',
                       cursor: 'pointer',
                       transition: 'background 0.2s ease',
+                      minWidth: 0
                     }}
                     onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
                     onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.2)'}
