@@ -1187,7 +1187,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
           title: rb.name,
           imageSrc: isWep 
             ? `${import.meta.env.BASE_URL}icons/${rb.weaponType?.toLowerCase()}.png`
-            : `${import.meta.env.BASE_URL}characters/MannequinBoy.png`,
+            : `${import.meta.env.BASE_URL}characters/CustomCharacter.png`,
           fallbackImageSrc
         };
       });
@@ -1222,7 +1222,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
             title: name,
             imageSrc: isWeapon 
               ? `${import.meta.env.BASE_URL}icons/${planned.customWeaponType?.toLowerCase()}.png`
-              : `${import.meta.env.BASE_URL}characters/MannequinBoy.png`,
+              : `${import.meta.env.BASE_URL}characters/CustomCharacter.png`,
             fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&rounded=true`
           });
         } else if (!isWeapon) {

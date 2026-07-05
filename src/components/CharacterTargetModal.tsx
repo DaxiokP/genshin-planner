@@ -155,7 +155,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
 }) => {
   const isCustom = characterKey?.startsWith('custom_') || plannedData?.custom || customInfo?.custom;
   const customCharInfo = isCustom ? {
-    id: 'MannequinBoy',
+    id: 'CustomCharacter',
     name: plannedData?.customName || customInfo?.name || 'Custom Character',
     rarity: plannedData?.customRarity || customInfo?.customRarity || 5,
     custom: true,

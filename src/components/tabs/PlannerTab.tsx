@@ -1241,7 +1241,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             }}
                           >
                             <img
-                              src={planned.custom ? `${import.meta.env.BASE_URL}characters/MannequinBoy.png` : `${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
+                              src={planned.custom ? `${import.meta.env.BASE_URL}characters/CustomCharacter.png` : `${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
                               alt={charMapInfo?.name || name}
                               style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }}
                               onError={(e) => {
