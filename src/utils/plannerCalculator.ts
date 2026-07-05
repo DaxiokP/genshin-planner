@@ -154,20 +154,323 @@ export interface RequiredMaterial {
   converted?: number;
 }
 
-/**
- * Calculates all material requirements (EXP books/ores, Mora, Ascension items, and Talent costs)
- * for a planned progression path (character or weapon).
- */
+export function getChainTiers(key: string): string[] {
+  if (!key) return [];
+  if (key.startsWith('?')) {
+    return [key, key, key, key];
+  }
+  const meta = materialMap[key];
+  if (!meta || meta.sortGroup === undefined || meta.sortRank === undefined) {
+    return [key, key, key, key];
+  }
+  const chain = Object.entries(materialMap)
+    .filter(([_, val]) => val.sortGroup === meta.sortGroup && val.sortRank === meta.sortRank)
+    .sort((a, b) => a[1].rarity - b[1].rarity)
+    .map(([k]) => k);
+  
+  while (chain.length < 4) {
+    chain.push(chain[chain.length - 1] || key);
+  }
+  return chain;
+}
+
+export function accumulatePlanRequirements(planned: any, addMaterial: (key: string, count: number) => void) {
+  const isWeapon = planned.type === 'weapon';
+  const isCustom = planned.custom || planned.key.startsWith('custom_');
+
+  if (isWeapon) {
+    let rarity = 4;
+    if (isCustom) {
+      rarity = planned.customRarity || 4;
+    } else {
+      const wInfo = lookupWeapon(planned.key);
+      rarity = wInfo?.rarity || 4;
+    }
+
+    if (planned.desired.level > planned.current.level) {
+      const expDelta = getWeaponCumulativeExp(rarity, planned.desired.level) - getWeaponCumulativeExp(rarity, planned.current.level);
+      if (expDelta > 0) {
+        const oresNeeded = Math.ceil(expDelta / 10000);
+        if (oresNeeded > 0) {
+          addMaterial('mysticenhancementore', oresNeeded);
+          addMaterial('mora', Math.round(expDelta / 10));
+        }
+      }
+    }
+
+    if (isCustom) {
+      const mats = planned.customMaterials || {};
+      const commonTiers = getChainTiers(mats.common || '?_common');
+      const uncommonTiers = getChainTiers(mats.uncommon || '?_uncommon');
+      const domainTiers = getChainTiers(mats.domainMaterial || '?_domainmaterial');
+
+      if (planned.desired.ascension > planned.current.ascension) {
+        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+          if (rarity === 5) {
+            if (asc === 1) {
+              addMaterial('mora', 10000);
+              addMaterial(domainTiers[0], 5);
+              addMaterial(uncommonTiers[0], 5);
+              addMaterial(commonTiers[0], 3);
+            } else if (asc === 2) {
+              addMaterial('mora', 20000);
+              addMaterial(domainTiers[1], 5);
+              addMaterial(uncommonTiers[0], 18);
+              addMaterial(commonTiers[0], 12);
+            } else if (asc === 3) {
+              addMaterial('mora', 30000);
+              addMaterial(domainTiers[1], 9);
+              addMaterial(uncommonTiers[1], 9);
+              addMaterial(commonTiers[1], 9);
+            } else if (asc === 4) {
+              addMaterial('mora', 45000);
+              addMaterial(domainTiers[2], 5);
+              addMaterial(uncommonTiers[1], 18);
+              addMaterial(commonTiers[1], 14);
+            } else if (asc === 5) {
+              addMaterial('mora', 55000);
+              addMaterial(domainTiers[2], 9);
+              addMaterial(uncommonTiers[2], 14);
+              addMaterial(commonTiers[2], 9);
+            } else if (asc === 6) {
+              addMaterial('mora', 70000);
+              addMaterial(domainTiers[3], 6);
+              addMaterial(uncommonTiers[2], 27);
+              addMaterial(commonTiers[2], 18);
+            }
+          } else if (rarity === 4) {
+            if (asc === 1) {
+              addMaterial('mora', 5000);
+              addMaterial(domainTiers[0], 3);
+              addMaterial(uncommonTiers[0], 3);
+              addMaterial(commonTiers[0], 2);
+            } else if (asc === 2) {
+              addMaterial('mora', 15000);
+              addMaterial(domainTiers[1], 3);
+              addMaterial(uncommonTiers[0], 12);
+              addMaterial(commonTiers[0], 8);
+            } else if (asc === 3) {
+              addMaterial('mora', 20000);
+              addMaterial(domainTiers[1], 6);
+              addMaterial(uncommonTiers[1], 6);
+              addMaterial(commonTiers[1], 6);
+            } else if (asc === 4) {
+              addMaterial('mora', 30000);
+              addMaterial(domainTiers[2], 3);
+              addMaterial(uncommonTiers[1], 12);
+              addMaterial(commonTiers[1], 9);
+            } else if (asc === 5) {
+              addMaterial('mora', 35000);
+              addMaterial(domainTiers[2], 6);
+              addMaterial(uncommonTiers[2], 9);
+              addMaterial(commonTiers[2], 6);
+            } else if (asc === 6) {
+              addMaterial('mora', 45000);
+              addMaterial(domainTiers[3], 4);
+              addMaterial(uncommonTiers[2], 18);
+              addMaterial(commonTiers[2], 12);
+            }
+          } else {
+            if (asc === 1) {
+              addMaterial('mora', 5000);
+              addMaterial(domainTiers[0], 2);
+              addMaterial(uncommonTiers[0], 2);
+              addMaterial(commonTiers[0], 1);
+            } else if (asc === 2) {
+              addMaterial('mora', 10000);
+              addMaterial(domainTiers[1], 2);
+              addMaterial(uncommonTiers[0], 8);
+              addMaterial(commonTiers[0], 5);
+            } else if (asc === 3) {
+              addMaterial('mora', 15000);
+              addMaterial(domainTiers[1], 4);
+              addMaterial(uncommonTiers[1], 4);
+              addMaterial(commonTiers[1], 4);
+            } else if (asc === 4) {
+              addMaterial('mora', 20000);
+              addMaterial(domainTiers[2], 2);
+              addMaterial(uncommonTiers[1], 8);
+              addMaterial(commonTiers[1], 6);
+            } else if (asc === 5) {
+              addMaterial('mora', 25000);
+              addMaterial(domainTiers[2], 4);
+              addMaterial(uncommonTiers[2], 6);
+              addMaterial(commonTiers[2], 4);
+            } else if (asc === 6) {
+              addMaterial('mora', 30000);
+              addMaterial(domainTiers[3], 3);
+              addMaterial(uncommonTiers[2], 12);
+              addMaterial(commonTiers[2], 8);
+            }
+          }
+        }
+      }
+    } else {
+      const wInfo = lookupWeapon(planned.key);
+      const weaponReqs = wInfo ? weaponRequirementsMap[wInfo.name] : weaponRequirementsMap[planned.key];
+      if (weaponReqs && planned.desired.ascension > planned.current.ascension) {
+        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+          const stepCosts = weaponReqs.ascension[String(asc)] || [];
+          stepCosts.forEach(item => {
+            addMaterial(item.key, item.count);
+          });
+        }
+      }
+    }
+  } else {
+    if (planned.desired.level > planned.current.level) {
+      const expDelta = getCumulativeExp(planned.desired.level) - getCumulativeExp(planned.current.level);
+      if (expDelta > 0) {
+        const witsNeeded = Math.ceil(expDelta / 20000);
+        if (witsNeeded > 0) {
+          addMaterial('heroswit', witsNeeded);
+          addMaterial('mora', witsNeeded * 4000);
+        }
+      }
+    }
+
+    if (isCustom) {
+      const mats = planned.customMaterials || {};
+      const commonTiers = getChainTiers(mats.common || '?_common');
+      const specialty = mats.localSpecialty || '?_localspecialty';
+      const boss = mats.bossMaterial || '?_bossmaterial';
+      const gemTiers = getChainTiers(mats.elementalGem || '?_elementalgem');
+      const bookTiers = getChainTiers(mats.talentBook || '?_talentbook');
+      const weekly = mats.weeklyMaterial || '?_weeklymaterial';
+
+      if (planned.desired.ascension > planned.current.ascension) {
+        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+          if (asc === 1) {
+            addMaterial('mora', 20000);
+            addMaterial(gemTiers[0], 1);
+            addMaterial(specialty, 3);
+            addMaterial(commonTiers[0], 3);
+          } else if (asc === 2) {
+            addMaterial('mora', 40000);
+            addMaterial(gemTiers[1], 3);
+            addMaterial(boss, 2);
+            addMaterial(specialty, 10);
+            addMaterial(commonTiers[0], 15);
+          } else if (asc === 3) {
+            addMaterial('mora', 60000);
+            addMaterial(gemTiers[1], 6);
+            addMaterial(boss, 4);
+            addMaterial(specialty, 20);
+            addMaterial(commonTiers[1], 12);
+          } else if (asc === 4) {
+            addMaterial('mora', 80000);
+            addMaterial(gemTiers[2], 3);
+            addMaterial(boss, 8);
+            addMaterial(specialty, 30);
+            addMaterial(commonTiers[1], 18);
+          } else if (asc === 5) {
+            addMaterial('mora', 100000);
+            addMaterial(gemTiers[2], 6);
+            addMaterial(boss, 12);
+            addMaterial(specialty, 45);
+            addMaterial(commonTiers[2], 12);
+          } else if (asc === 6) {
+            addMaterial('mora', 120000);
+            addMaterial(gemTiers[3], 6);
+            addMaterial(boss, 20);
+            addMaterial(specialty, 60);
+            addMaterial(commonTiers[2], 24);
+          }
+        }
+      }
+
+      const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
+      talentKeys.forEach(tKey => {
+        const curLvl = planned.current.talent[tKey];
+        const desLvl = planned.desired.talent[tKey];
+        if (desLvl > curLvl) {
+          for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
+            if (lvl === 2) {
+              addMaterial('mora', 12500);
+              addMaterial(bookTiers[0], 3);
+              addMaterial(commonTiers[0], 6);
+            } else if (lvl === 3) {
+              addMaterial('mora', 17500);
+              addMaterial(bookTiers[1], 2);
+              addMaterial(commonTiers[1], 3);
+            } else if (lvl === 4) {
+              addMaterial('mora', 25000);
+              addMaterial(bookTiers[1], 4);
+              addMaterial(commonTiers[1], 4);
+            } else if (lvl === 5) {
+              addMaterial('mora', 30000);
+              addMaterial(bookTiers[1], 6);
+              addMaterial(commonTiers[1], 6);
+            } else if (lvl === 6) {
+              addMaterial('mora', 37500);
+              addMaterial(bookTiers[1], 9);
+              addMaterial(commonTiers[1], 9);
+            } else if (lvl === 7) {
+              addMaterial('mora', 120000);
+              addMaterial(bookTiers[2], 4);
+              addMaterial(commonTiers[2], 4);
+              addMaterial(weekly, 1);
+            } else if (lvl === 8) {
+              addMaterial('mora', 260000);
+              addMaterial(bookTiers[2], 6);
+              addMaterial(commonTiers[2], 6);
+              addMaterial(weekly, 1);
+            } else if (lvl === 9) {
+              addMaterial('mora', 450000);
+              addMaterial(bookTiers[2], 12);
+              addMaterial(commonTiers[2], 9);
+              addMaterial(weekly, 2);
+            } else if (lvl === 10) {
+              addMaterial('mora', 700000);
+              addMaterial(bookTiers[2], 16);
+              addMaterial(commonTiers[2], 12);
+              addMaterial(weekly, 2);
+              addMaterial('crownofinsight', 1);
+            }
+          }
+        }
+      });
+    } else {
+      const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
+      const charReqs = characterRequirementsMap[charKey];
+      if (charReqs) {
+        if (planned.desired.ascension > planned.current.ascension) {
+          for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
+            const stepCosts = charReqs.ascension[asc] || [];
+            stepCosts.forEach(item => {
+              addMaterial(item.key, item.count);
+            });
+          }
+        }
+
+        const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
+        talentKeys.forEach(tKey => {
+          const curLvl = planned.current.talent[tKey];
+          const desLvl = planned.desired.talent[tKey];
+          if (desLvl > curLvl) {
+            for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
+              const stepCosts = charReqs.talents[lvl] || [];
+              stepCosts.forEach(item => {
+                addMaterial(item.key, item.count);
+              });
+            }
+          }
+        });
+      } else {
+        console.warn(`calculateRequirements: Requirements map missing for ${planned.key}`);
+      }
+    }
+  }
+}
+
 export function calculateRequirements(
   planned: any,
   materials: Record<string, number> | null
 ): RequiredMaterial[] {
-  // If plan is temporarily disabled, return no requirements so they aren't calculated/summed
   if (planned.enabled === false) {
     return [];
   }
 
-  // Aggregate required counts by lowercase, normalized material keys
   const reqsAccumulator: Record<string, number> = {};
 
   const addMaterial = (key: string, count: number) => {
@@ -175,100 +478,31 @@ export function calculateRequirements(
     reqsAccumulator[k] = (reqsAccumulator[k] || 0) + count;
   };
 
-  const isWeapon = planned.type === 'weapon';
+  accumulatePlanRequirements(planned, addMaterial);
 
-  if (isWeapon) {
-    // Weapon Requirements
-    const wInfo = lookupWeapon(planned.key);
-    const rarity = wInfo?.rarity || 4;
-
-    // 1. Level & EXP Materials (Mystic Enhancement Ore + Level-Up Mora)
-    if (planned.desired.level > planned.current.level) {
-      const expDelta = getWeaponCumulativeExp(rarity, planned.desired.level) - getWeaponCumulativeExp(rarity, planned.current.level);
-      if (expDelta > 0) {
-        const oresNeeded = Math.ceil(expDelta / 10000);
-        if (oresNeeded > 0) {
-          addMaterial('mysticenhancementore', oresNeeded);
-          // Level Mora cost for weapons: exactly 1 Mora for every 10 EXP points
-          addMaterial('mora', Math.round(expDelta / 10));
-        }
-      }
-    }
-
-    // 2. Weapon Ascension Requirements
-    const weaponReqs = wInfo ? weaponRequirementsMap[wInfo.name] : weaponRequirementsMap[planned.key];
-    if (weaponReqs && planned.desired.ascension > planned.current.ascension) {
-      for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
-        const stepCosts = weaponReqs.ascension[String(asc)] || [];
-        stepCosts.forEach(item => {
-          addMaterial(item.key, item.count);
-        });
-      }
-    }
-  } else {
-    // Character Requirements
-    // 1. Level & EXP Materials (Hero's Wit + Level-Up Mora)
-    if (planned.desired.level > planned.current.level) {
-      const expDelta = getCumulativeExp(planned.desired.level) - getCumulativeExp(planned.current.level);
-      if (expDelta > 0) {
-        // Equivalent whole Hero's Wits (rounded up)
-        const witsNeeded = Math.ceil(expDelta / 20000);
-        if (witsNeeded > 0) {
-          addMaterial('heroswit', witsNeeded);
-          // Level Mora cost: using Hero's Wits costs exactly 4000 Mora per book (equivalent to 1 Mora per 5 EXP gained)
-          addMaterial('mora', witsNeeded * 4000);
-        }
-      }
-    }
-
-    // Handle character lookup from requirements database
-    // Note: GOOD inventory maps traveler to Aether. We support Traveler, Aether, Lumine.
-    const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
-    const charReqs = characterRequirementsMap[charKey];
-
-    if (charReqs) {
-      // 2. Ascension Requirements
-      if (planned.desired.ascension > planned.current.ascension) {
-        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
-          const stepCosts = charReqs.ascension[asc] || [];
-          stepCosts.forEach(item => {
-            addMaterial(item.key, item.count);
-          });
-        }
-      }
-
-      // 3. Talent Requirements (auto, skill, burst)
-      const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
-      talentKeys.forEach(tKey => {
-        const curLvl = planned.current.talent[tKey];
-        const desLvl = planned.desired.talent[tKey];
-        if (desLvl > curLvl) {
-          for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
-            const stepCosts = charReqs.talents[lvl] || [];
-            stepCosts.forEach(item => {
-              addMaterial(item.key, item.count);
-            });
-          }
-        }
-      });
-    } else {
-      console.warn(`calculateRequirements: Requirements map missing for ${planned.key}`);
-    }
-  }
-
-  // 4. Map, compare against GOOD materials inventory, and sort results
   const results: RequiredMaterial[] = [];
 
   Object.entries(reqsAccumulator).forEach(([key, required]) => {
-    // Fetch info from materialMap
     const mapData = materialMap[key];
-    const name = mapData?.name || key;
-    const rarity = mapData?.rarity || 3;
-    const iconId = mapData?.id || '202'; // default fallback to Mora icon ID
+    let name = mapData?.name || key;
+    let rarity = mapData?.rarity || 3;
+    let iconId = mapData?.id || '202';
+    
+    if (key.startsWith('?')) {
+      if (key === '?_common') name = 'Common Drop';
+      else if (key === '?_localspecialty') name = 'Local Specialty';
+      else if (key === '?_bossmaterial') name = 'Boss Material';
+      else if (key === '?_elementalgem') name = 'Elemental Gem';
+      else if (key === '?_talentbook') name = 'Talent Book';
+      else if (key === '?_weeklymaterial') name = 'Weekly Material';
+      else if (key === '?_uncommon') name = 'Uncommon Drop';
+      else if (key === '?_domainmaterial') name = 'Domain Material';
+      rarity = 1;
+      iconId = '?';
+    }
 
-    // Retrieve owned count case-insensitively from GOOD inventory
     let owned = 0;
-    if (materials) {
+    if (materials && !key.startsWith('?')) {
       for (const goodKey of Object.keys(materials)) {
         if (goodKey.toLowerCase() === key) {
           owned = materials[goodKey];
@@ -277,9 +511,9 @@ export function calculateRequirements(
       }
     }
 
-    const missing = Math.max(0, required - owned);
+    const missing = key.startsWith('?') ? required : Math.max(0, required - owned);
 
-    results.push({
+    const matItem: RequiredMaterial = {
       key,
       name,
       required,
@@ -289,7 +523,13 @@ export function calculateRequirements(
       iconId,
       sortGroup: mapData?.sortGroup,
       sortRank: mapData?.sortRank
-    });
+    };
+
+    if (key.startsWith('?')) {
+      matItem.isEnough = false;
+    }
+
+    results.push(matItem);
   });
 
   // 4b. Apply material crafting up-conversion (alchemy) logic for groups 100, 400, 500, 600
@@ -537,72 +777,7 @@ export function getRawCardRequirements(planned: any): Record<string, number> {
     reqsAccumulator[k] = (reqsAccumulator[k] || 0) + count;
   };
 
-  const isWeapon = planned.type === 'weapon';
-
-  if (isWeapon) {
-    const wInfo = lookupWeapon(planned.key);
-    const rarity = wInfo?.rarity || 4;
-
-    if (planned.desired.level > planned.current.level) {
-      const expDelta = getWeaponCumulativeExp(rarity, planned.desired.level) - getWeaponCumulativeExp(rarity, planned.current.level);
-      if (expDelta > 0) {
-        const oresNeeded = Math.ceil(expDelta / 10000);
-        if (oresNeeded > 0) {
-          addMaterial('mysticenhancementore', oresNeeded);
-          addMaterial('mora', Math.round(expDelta / 10));
-        }
-      }
-    }
-
-    const weaponReqs = wInfo ? weaponRequirementsMap[wInfo.name] : weaponRequirementsMap[planned.key];
-    if (weaponReqs && planned.desired.ascension > planned.current.ascension) {
-      for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
-        const stepCosts = weaponReqs.ascension[String(asc)] || [];
-        stepCosts.forEach(item => {
-          addMaterial(item.key, item.count);
-        });
-      }
-    }
-  } else {
-    if (planned.desired.level > planned.current.level) {
-      const expDelta = getCumulativeExp(planned.desired.level) - getCumulativeExp(planned.current.level);
-      if (expDelta > 0) {
-        const witsNeeded = Math.ceil(expDelta / 20000);
-        if (witsNeeded > 0) {
-          addMaterial('heroswit', witsNeeded);
-          addMaterial('mora', witsNeeded * 4000);
-        }
-      }
-    }
-
-    const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
-    const charReqs = characterRequirementsMap[charKey];
-
-    if (charReqs) {
-      if (planned.desired.ascension > planned.current.ascension) {
-        for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
-          const stepCosts = charReqs.ascension[asc] || [];
-          stepCosts.forEach(item => {
-            addMaterial(item.key, item.count);
-          });
-        }
-      }
-
-      const talentKeys: ('auto' | 'skill' | 'burst')[] = ['auto', 'skill', 'burst'];
-      talentKeys.forEach(tKey => {
-        const curLvl = planned.current.talent[tKey];
-        const desLvl = planned.desired.talent[tKey];
-        if (desLvl > curLvl) {
-          for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
-            const stepCosts = charReqs.talents[lvl] || [];
-            stepCosts.forEach(item => {
-              addMaterial(item.key, item.count);
-            });
-          }
-        }
-      });
-    }
-  }
+  accumulatePlanRequirements(planned, addMaterial);
 
   return reqsAccumulator;
 }

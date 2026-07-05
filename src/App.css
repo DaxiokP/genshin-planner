@@ -144,6 +144,14 @@ input[type=number] {
   background: linear-gradient(160deg, #5a5c63 0%, #72747a 50%, #5a5c63 100%);
 }
 
+.bg-custom-character-blend {
+  background: linear-gradient(135deg, #a07745 0%, #c6964b 25%, #9472c4 75%, #7560a0 100%);
+}
+
+.bg-custom-weapon-blend {
+  background: linear-gradient(135deg, #a07745 0%, #9472c4 40%, #5eaeb5 75%, #4a8791 100%);
+}
+
 /* Bottom count strip */
 /* Tooltip Base */
 .has-tooltip {
@@ -345,18 +353,22 @@ input[type=number] {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--glass-border);
   border-radius: 6px;
-  padding: 0 10px;
-  height: 36px;
-  transition: border-color 0.2s ease;
+  padding: 0 12px;
+  height: 48px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
 }
 
 .modal-search-wrapper:focus-within {
-  border-color: #ffcc66;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
 }
 
 .modal-search-icon {
   color: var(--text-secondary);
   margin-right: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .modal-search-input {
@@ -364,13 +376,17 @@ input[type=number] {
   background: transparent;
   border: none;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   outline: none;
   height: 100%;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  box-sizing: border-box;
 }
 
 .modal-search-clear {
-  background: rgba(255, 60, 60, 0.2);
+  background: rgba(255, 60, 60, 0.15);
   color: #ff4d4d;
   border: none;
   border-radius: 50%;
@@ -381,6 +397,9 @@ input[type=number] {
   justify-content: center;
   cursor: pointer;
   padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .modal-search-clear:hover {

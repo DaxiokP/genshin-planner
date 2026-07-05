@@ -502,12 +502,12 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                 if (isWeapon) {
                   const wInfo = lookupWeapon(planned.key) || {
                     name: planned.key,
-                    rarity: 4,
+                    rarity: planned.customRarity || 4,
                     id: '',
-                    type: '',
+                    type: planned.customWeaponType || '',
                   };
-                  const rarity = wInfo.rarity || 4;
-                  const displayName = wInfo.name || planned.key;
+                  const rarity = planned.custom ? (planned.customRarity || 4) : (wInfo.rarity || 4);
+                  const displayName = planned.custom ? (planned.customName || planned.key) : (wInfo.name || planned.key);
                   const fontScale = displayName.length > 20 ? '0.8rem' : displayName.length > 12 ? '0.95rem' : '1.15rem';
                   const headerGradient = rarity === 5
                     ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
@@ -574,10 +574,12 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                           >
                             <Pencil size={15} style={{ strokeWidth: 2.2 }} />
                           </button>
-                          <button
+                           <button
                             onClick={() => {
-                              setSelectedUpgradeWeaponId(id);
-                              setIsUpgradeWeaponModalOpen(true);
+                              if (!planned.custom) {
+                                setSelectedUpgradeWeaponId(id);
+                                setIsUpgradeWeaponModalOpen(true);
+                              }
                             }}
                             style={{
                               width: '32px',
@@ -589,12 +591,14 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
-                              cursor: 'pointer',
+                              cursor: planned.custom ? 'not-allowed' : 'pointer',
                               transition: 'all 0.15s ease',
                               padding: 0,
-                              boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                              boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
+                              opacity: planned.custom ? 0.4 : 1
                             }}
-                            title="Mark as upgraded"
+                            disabled={planned.custom}
+                            title={planned.custom ? "Cannot upgrade custom item" : "Mark as upgraded"}
                           >
                             <Sparkles size={15} style={{ strokeWidth: 2.2 }} />
                           </button>
@@ -705,7 +709,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             }}
                           >
                             <img
-                              src={`${import.meta.env.BASE_URL}weapons/${wInfo.id}.png`}
+                              src={planned.custom ? `${import.meta.env.BASE_URL}icons/${planned.customWeaponType?.toLowerCase()}.png` : `${import.meta.env.BASE_URL}weapons/${wInfo.id}.png`}
                               alt={displayName}
                               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                               onError={(e) => {
@@ -720,23 +724,25 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                               }}
                             />
                             {/* Refinement badge overlay */}
-                            <span
-                              style={{
-                                position: 'absolute',
-                                top: '4px',
-                                right: '4px',
-                                fontSize: '0.65rem',
-                                padding: '1px 5px',
-                                borderRadius: '4px',
-                                fontWeight: '700',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                background: 'rgba(0,0,0,0.65)',
-                                color: '#ffcc66'
-                              }}
-                            >
-                              R{weapons[planned.weaponIndex]?.refinement || 1}
-                            </span>
+                            {!planned.custom && (
+                              <span
+                                style={{
+                                  position: 'absolute',
+                                  top: '4px',
+                                  right: '4px',
+                                  fontSize: '0.65rem',
+                                  padding: '1px 5px',
+                                  borderRadius: '4px',
+                                  fontWeight: '700',
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                                  border: '1px solid rgba(255,255,255,0.1)',
+                                  background: 'rgba(0,0,0,0.65)',
+                                  color: '#ffcc66'
+                                }}
+                              >
+                                R{weapons[planned.weaponIndex]?.refinement || 1}
+                              </span>
+                            )}
 
                             {/* Equipped Character Banner at the bottom-center inside the icon box */}
                             {weapons[planned.weaponIndex]?.location && (
@@ -902,6 +908,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                 const pseudoRarity = mat.rarity || 1;
                                 const originalEntry = materialMap[mat.key];
                                 const isOreOrMora = mat.key === 'mysticenhancementore' || mat.key === 'mora';
+                                const isUnknown = mat.key.startsWith('?');
 
                                 return (
                                   <div
@@ -913,14 +920,46 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                       overflow: 'hidden',
                                       border: '1px solid rgba(255, 255, 255, 0.08)',
                                       position: 'relative',
-                                      cursor: 'pointer',
+                                      cursor: isUnknown ? 'not-allowed' : 'pointer',
                                       aspectRatio: '50 / 62',
                                       opacity: isEnough ? 0.45 : 1,
                                       transition: 'opacity 0.2s ease',
                                     }}
-                                    onClick={() => handleOpenQuickInventory(mat.key)}
+                                    onClick={() => { if (!isUnknown) handleOpenQuickInventory(mat.key); }}
                                     onMouseEnter={(e) => {
-                                      if (originalEntry) {
+                                      if (isUnknown) {
+                                        let categoryName = "Material";
+                                        if (mat.key === "?_common") categoryName = "Common Drop";
+                                        else if (mat.key === "?_localspecialty") categoryName = "Local Specialty";
+                                        else if (mat.key === "?_bossmaterial") categoryName = "Boss Material";
+                                        else if (mat.key === "?_elementalgem") categoryName = "Elemental Gem";
+                                        else if (mat.key === "?_talentbook") categoryName = "Talent Book";
+                                        else if (mat.key === "?_weeklymaterial") categoryName = "Weekly Material";
+                                        else if (mat.key === "?_uncommon") categoryName = "Uncommon Drop";
+                                        else if (mat.key === "?_domainmaterial") categoryName = "Domain Material";
+
+                                        setHoveredItem({
+                                          key: mat.key,
+                                          data: {
+                                            name: categoryName,
+                                            rarity: 1,
+                                            custom: true,
+                                            sources: [`Belongs to a new zone or patch`],
+                                            requiredBy: [
+                                              {
+                                                key: planned.key,
+                                                name: planned.customName || planned.key,
+                                                type: planned.type,
+                                                rarity: 5,
+                                                custom: true,
+                                                weaponType: planned.customWeaponType
+                                              }
+                                            ]
+                                          }
+                                        });
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        setMousePos({ x: rect.right + 12, y: rect.top });
+                                      } else if (originalEntry) {
                                         setHoveredItem({ key: mat.key, data: originalEntry });
                                         const rect = e.currentTarget.getBoundingClientRect();
                                         setMousePos({ x: rect.right + 12, y: rect.top });
@@ -948,23 +987,28 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                     </div>
 
                                     <div
-                                      className={`bg-rarity-${pseudoRarity}`}
+                                      className={isUnknown ? '' : `bg-rarity-${pseudoRarity}`}
                                       style={{
                                         flex: 1,
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        position: 'relative'
+                                        position: 'relative',
+                                        background: isUnknown ? '#0a0b0d' : undefined
                                       } as any}
                                     >
-                                      <img
-                                        src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
-                                        alt={mat.name}
-                                        style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
-                                        onError={(e) => {
-                                          e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
-                                        }}
-                                      />
+                                      {isUnknown ? (
+                                        <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#ece5d8' }}>?</span>
+                                      ) : (
+                                        <img
+                                          src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
+                                          alt={mat.name}
+                                          style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
+                                          onError={(e) => {
+                                            e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
+                                          }}
+                                        />
+                                      )}
 
                                       {(() => {
                                         if (!isOreOrMora && mat.converted !== undefined && mat.owned < mat.required) {
@@ -1008,9 +1052,10 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                 } else {
                   // Character Card Card
                   const charMapInfo = lookupChar(planned.key);
-                  const name = charMapInfo?.name || planned.key;
+                  const rarity = planned.custom ? (planned.customRarity || 5) : (charMapInfo?.rarity || 4);
+                  const name = planned.custom ? (planned.customName || planned.key) : (charMapInfo?.name || planned.key);
                   const fontScale = name.length > 20 ? '0.8rem' : name.length > 12 ? '0.95rem' : '1.15rem';
-                  const elementClass = charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none';
+                  const elementClass = planned.custom ? 'none' : (charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none');
 
                   return (
                     <div
@@ -1021,7 +1066,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                       onDragLeave={() => { setDragOverCardKey(null); setDropPlacement(null); }}
                       onDrop={(e) => handleCardDrop(e, id)}
                       onDragEnd={() => { setDraggedCardKey(null); setDragOverCardKey(null); setDropPlacement(null); }}
-                      className={`character-card bg-element-${elementClass} ${draggedCardKey === id ? 'dragging-card' : ''
+                      className={`character-card bg-element-${elementClass} bg-rarity-${rarity} ${draggedCardKey === id ? 'dragging-card' : ''
                         } ${dragOverCardKey === id && dropPlacement === 'before' ? 'drop-before' : ''
                         } ${dragOverCardKey === id && dropPlacement === 'after' ? 'drop-after' : ''
                         }`}
@@ -1033,7 +1078,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                         onMouseDown={() => setCanDragCardKey(id)}
                         onMouseUp={() => setCanDragCardKey(null)}
                         style={{
-                          background: charMapInfo?.rarity === 5
+                          background: rarity === 5
                             ? 'linear-gradient(to right, #8c6a4a, #735438)' // 5* Gold
                             : 'linear-gradient(to right, #7b6a99, #5a4b78)', // 4* Purple
                           height: '46px',
@@ -1073,7 +1118,11 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             <Pencil size={15} style={{ strokeWidth: 2.2 }} />
                           </button>
                           <button
-                            onClick={() => upgradePlannedCharacter(planned.key)}
+                            onClick={() => {
+                              if (!planned.custom) {
+                                upgradePlannedCharacter(planned.key);
+                              }
+                            }}
                             style={{
                               width: '32px',
                               height: '32px',
@@ -1084,12 +1133,14 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
-                              cursor: 'pointer',
+                              cursor: planned.custom ? 'not-allowed' : 'pointer',
                               transition: 'all 0.15s ease',
                               padding: 0,
-                              boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                              boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
+                              opacity: planned.custom ? 0.4 : 1
                             }}
-                            title="Mark as upgraded"
+                            disabled={planned.custom}
+                            title={planned.custom ? "Cannot upgrade custom item" : "Mark as upgraded"}
                           >
                             <Sparkles size={15} style={{ strokeWidth: 2.2 }} />
                           </button>
@@ -1190,8 +1241,8 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             }}
                           >
                             <img
-                              src={`${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
-                              alt={charMapInfo?.name || planned.key}
+                              src={planned.custom ? `${import.meta.env.BASE_URL}characters/MannequinBoy.png` : `${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
+                              alt={charMapInfo?.name || name}
                               style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }}
                               onError={(e) => {
                                 const target = e.currentTarget;
@@ -1200,27 +1251,29 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                   target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
                                 } else if (!target.dataset.fallbackUi) {
                                   target.dataset.fallbackUi = 'ui';
-                                  target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || planned.key}&background=random`;
+                                  target.src = `https://ui-avatars.com/api/?name=${charMapInfo?.name || name}&background=random`;
                                 }
                               }}
                             />
                             {/* Constellation Overlay inside avatar frame */}
-                            <span
-                              className={`char-constellation bg-element-${elementClass}-dark`}
-                              style={{
-                                position: 'absolute',
-                                top: '4px',
-                                right: '4px',
-                                fontSize: '0.65rem',
-                                padding: '1px 5px',
-                                borderRadius: '4px',
-                                fontWeight: '700',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
-                                border: '1px solid rgba(255,255,255,0.1)'
-                              }}
-                            >
-                              C{characters.find(c => c.key === planned.key)?.constellation || 0}
-                            </span>
+                            {!planned.custom && (
+                              <span
+                                className={`char-constellation bg-element-${elementClass}-dark`}
+                                style={{
+                                  position: 'absolute',
+                                  top: '4px',
+                                  right: '4px',
+                                  fontSize: '0.65rem',
+                                  padding: '1px 5px',
+                                  borderRadius: '4px',
+                                  fontWeight: '700',
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                                  border: '1px solid rgba(255,255,255,0.1)'
+                                }}
+                              >
+                                C{characters.find(c => c.key === planned.key)?.constellation || 0}
+                              </span>
+                            )}
                           </div>
 
                           {/* Centered Levels and Talents Column */}
@@ -1276,6 +1329,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                 const pseudoRarity = mat.rarity || 1;
                                 const originalEntry = materialMap[mat.key];
                                 const isExpOrMora = mat.key === 'heroswit' || mat.key === 'mora';
+                                const isUnknown = mat.key.startsWith('?');
 
                                 return (
                                   <div
@@ -1287,14 +1341,45 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                       overflow: 'hidden',
                                       border: '1px solid rgba(255, 255, 255, 0.08)',
                                       position: 'relative',
-                                      cursor: 'pointer',
+                                      cursor: isUnknown ? 'not-allowed' : 'pointer',
                                       aspectRatio: '50 / 62',
                                       opacity: isEnough ? 0.45 : 1,
                                       transition: 'opacity 0.2s ease',
                                     }}
-                                    onClick={() => handleOpenQuickInventory(mat.key)}
+                                    onClick={() => { if (!isUnknown) handleOpenQuickInventory(mat.key); }}
                                     onMouseEnter={(e) => {
-                                      if (originalEntry) {
+                                      if (isUnknown) {
+                                        let categoryName = "Material";
+                                        if (mat.key === "?_common") categoryName = "Common Drop";
+                                        else if (mat.key === "?_localspecialty") categoryName = "Local Specialty";
+                                        else if (mat.key === "?_bossmaterial") categoryName = "Boss Material";
+                                        else if (mat.key === "?_elementalgem") categoryName = "Elemental Gem";
+                                        else if (mat.key === "?_talentbook") categoryName = "Talent Book";
+                                        else if (mat.key === "?_weeklymaterial") categoryName = "Weekly Material";
+                                        else if (mat.key === "?_uncommon") categoryName = "Uncommon Drop";
+                                        else if (mat.key === "?_domainmaterial") categoryName = "Domain Material";
+
+                                        setHoveredItem({
+                                          key: mat.key,
+                                          data: {
+                                            name: categoryName,
+                                            rarity: 1,
+                                            custom: true,
+                                            sources: [`Belongs to a new zone or patch`],
+                                            requiredBy: [
+                                              {
+                                                key: planned.key,
+                                                name: name,
+                                                type: 'character',
+                                                rarity: rarity,
+                                                custom: true
+                                              }
+                                            ]
+                                          }
+                                        });
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        setMousePos({ x: rect.right + 12, y: rect.top });
+                                      } else if (originalEntry) {
                                         setHoveredItem({ key: mat.key, data: originalEntry });
                                         const rect = e.currentTarget.getBoundingClientRect();
                                         setMousePos({ x: rect.right + 12, y: rect.top });
@@ -1322,23 +1407,28 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                     </div>
 
                                     <div
-                                      className={`bg-rarity-${pseudoRarity}`}
+                                      className={isUnknown ? '' : `bg-rarity-${pseudoRarity}`}
                                       style={{
                                         flex: 1,
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        position: 'relative'
+                                        position: 'relative',
+                                        background: isUnknown ? '#0a0b0d' : undefined
                                       }}
                                     >
-                                      <img
-                                        src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
-                                        alt={mat.name}
-                                        style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
-                                        onError={(e) => {
-                                          e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
-                                        }}
-                                      />
+                                      {isUnknown ? (
+                                        <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#ece5d8' }}>?</span>
+                                      ) : (
+                                        <img
+                                          src={originalEntry?.localExt ? `${import.meta.env.BASE_URL}icons/${mat.iconId}${originalEntry.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}`}
+                                          alt={mat.name}
+                                          style={{ width: '80%', height: '80%', objectFit: 'contain', transform: 'scale(1.35)', transformOrigin: 'center' }}
+                                          onError={(e) => {
+                                            e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(mat.name)}&background=random&color=fff&rounded=true&font-size=0.33`;
+                                          }}
+                                        />
+                                      )}
 
                                       {(() => {
                                         if (!isExpOrMora && mat.converted !== undefined && mat.owned < mat.required) {

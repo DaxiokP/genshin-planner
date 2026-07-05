@@ -17,13 +17,10 @@ interface WeaponTargetModalProps {
   weaponKey: string | null;
   currentData: GoodWeapon | undefined;
   plannedData?: any; // If editing an existing plan
-  onAccept: (planned: {
-    type: 'weapon';
-    weaponIndex: number;
-    key: string;
-    current: { level: number; ascension: number };
-    desired: { level: number; ascension: number };
-  }) => void;
+  customInfo?: any;
+  onEditCustom?: () => void;
+  onReplaceWithExisting?: () => void;
+  onAccept: (planned: any) => void;
 }
 
 const LevelSelector = ({ level, ascension, minLevel, minAscension, onChange }: any) => {
@@ -119,8 +116,20 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
   weaponKey,
   currentData,
   plannedData,
+  customInfo,
+  onEditCustom,
+  onReplaceWithExisting,
   onAccept,
 }) => {
+  const isCustom = weaponKey?.startsWith('custom_') || plannedData?.custom || customInfo?.custom;
+  const customWeaponInfo = isCustom ? {
+    id: '',
+    name: plannedData?.customName || customInfo?.name || 'Custom Weapon',
+    rarity: plannedData?.customRarity || customInfo?.customRarity || 4,
+    type: plannedData?.customWeaponType || customInfo?.customWeaponType || 'Sword',
+    custom: true,
+  } : null;
+
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentAscension, setCurrentAscension] = useState(0);
   const [desiredLevel, setDesiredLevel] = useState(90);
@@ -148,7 +157,7 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
 
   if (!isOpen || !weaponKey || weaponIndex === null) return null;
 
-  const info = lookupWeapon(weaponKey);
+  const info = customWeaponInfo || lookupWeapon(weaponKey);
   if (!info) return null;
 
   const minCurrentLevel = currentData?.level || 1;
@@ -187,7 +196,9 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
     setDesiredAscension(a);
   };
 
-  const imageSrc = `${import.meta.env.BASE_URL}weapons/${info.id}.png`;
+  const imageSrc = isCustom
+    ? `${import.meta.env.BASE_URL}icons/${info.type.toLowerCase()}.png`
+    : `${import.meta.env.BASE_URL}weapons/${info.id}.png`;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -297,6 +308,51 @@ export const WeaponTargetModal: React.FC<WeaponTargetModalProps> = ({
               </div>
             </div>
           </div>
+
+          {isCustom && (
+            <div style={{ display: 'flex', gap: '8px', marginTop: '1.25rem', width: '100%', justifyContent: 'center' }}>
+              <button 
+                className="action-btn"
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  background: '#8c6a4a',
+                  color: '#fff',
+                  border: 'none',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  fontSize: '0.85rem',
+                  height: 'auto',
+                  width: 'auto'
+                }}
+                onClick={onEditCustom}
+                type="button"
+              >
+                Edit Custom Weapon
+              </button>
+              {plannedData && (
+                <button 
+                  className="action-btn"
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    background: '#4e7a5c',
+                    color: '#fff',
+                    border: 'none',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                    height: 'auto',
+                    width: 'auto'
+                  }}
+                  onClick={onReplaceWithExisting}
+                  type="button"
+                >
+                  Replace with existing Weapon
+                </button>
+              )}
+            </div>
+          )}
 
           <div className="target-modal-actions" style={{ marginTop: '2rem', padding: 0 }}>
             <button className="action-btn btn-cancel" onClick={onCancel || onClose} type="button">

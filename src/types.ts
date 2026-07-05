@@ -41,4 +41,21 @@ export interface PlannedCharacter {
     talent: { auto: number; skill: number; burst: number };
   };
   enabled?: boolean;
+  type?: 'character' | 'weapon';
+  id?: string;
+  custom?: boolean;
+  customName?: string;
+  customRarity?: number;
+  customWeaponType?: 'Sword' | 'Claymore' | 'Polearm' | 'Bow' | 'Catalyst';
+  customMaterials?: {
+    common?: string;
+    localSpecialty?: string;
+    bossMaterial?: string;
+    elementalGem?: string;
+    talentBook?: string;
+    weeklyMaterial?: string;
+    uncommon?: string;
+    domainMaterial?: string;
+  };
+  weaponIndex?: number;
 }

@@ -26,6 +26,7 @@ import { WeaponsTab } from './components/tabs/WeaponsTab';
 import { InventoryTab } from './components/tabs/InventoryTab';
 import { syncPlannedItemsWithGoodImport } from './utils/plannerImportSync';
 import { AccountSettingsTab } from './components/tabs/AccountSettingsTab';
+import { CustomItemModal } from './components/CustomItemModal';
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
 const characterMapRaw: Record<string, any> = characterMapData as any;
@@ -166,6 +167,15 @@ function App() {
   const [estimatedWeaponSpend, setEstimatedWeaponSpend] = useState<{ mora: number, mysticenhancementore: number }>({ mora: 0, mysticenhancementore: 0 });
   const [draftCraftingBonuses, setDraftCraftingBonuses] = useState<Record<string, number>>({});
   const [estimatedSpend, setEstimatedSpend] = useState<{ mora: number, heroswit: number }>({ mora: 0, heroswit: 0 });
+
+  // Custom Item Modal State Hooks
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const [customModalType, setCustomModalType] = useState<'character' | 'weapon'>('character');
+  const [editingCustomData, setEditingCustomData] = useState<any | null>(null);
+
+  // Replace mode state hooks
+  const [replaceMode, setReplaceMode] = useState(false);
+  const [replaceTargetId, setReplaceTargetId] = useState<string | null>(null);
 
   const processFile = (file: File) => {
     if (!file.name.endsWith('.json')) {
@@ -369,8 +379,55 @@ function App() {
       prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
     );
   };
+  const handleCustomItemAccept = (customData: any) => {
+    if (editingCustomData) {
+      setPlannedItems(prev => {
+        return prev.map(p => {
+          if (p.id === editingCustomData.id) {
+            return {
+              ...p,
+              ...customData,
+            };
+          }
+          return p;
+        });
+      });
+      setIsCustomModalOpen(false);
+      setEditingCustomData(null);
+    } else {
+      const isChar = customModalType === 'character';
+      const plannedId = isChar ? `character:${customData.key}` : `weapon:${customData.key}`;
+      
+      let plannedItem: any = {
+        ...customData,
+        id: plannedId,
+        current: isChar 
+          ? { level: 1, ascension: 0, talent: { auto: 1, skill: 1, burst: 1 } }
+          : { level: 1, ascension: 0 },
+        desired: isChar
+          ? { level: 90, ascension: 6, talent: { auto: 9, skill: 9, burst: 9 } }
+          : { level: 90, ascension: 6 },
+      };
 
+      if (!isChar) {
+        const customWeapons = plannedItems.filter(p => p.type === 'weapon' && p.weaponIndex < 0);
+        const nextIdx = customWeapons.length > 0
+          ? Math.min(...customWeapons.map(p => p.weaponIndex)) - 1
+          : -1;
+        plannedItem.weaponIndex = nextIdx;
+      }
 
+      setPlannedItems(prev => [...prev, plannedItem]);
+      setIsCustomModalOpen(false);
+
+      if (isChar) {
+        setSelectedCharacterKeyForTarget(customData.key);
+      } else {
+        setSelectedWeaponIndexForTarget(plannedItem.weaponIndex);
+        setSelectedWeaponKeyForTarget(customData.key);
+      }
+    }
+  };
 
   return (
     <div className="app-container">
@@ -572,12 +629,70 @@ function App() {
 
       <CharacterSelectionModal
         isOpen={isCharacterSelectModalOpen}
-        onClose={() => setIsCharacterSelectModalOpen(false)}
+        onClose={() => {
+          setIsCharacterSelectModalOpen(false);
+          setReplaceMode(false);
+          setReplaceTargetId(null);
+        }}
         ownedCharacters={characters}
+        replaceMode={replaceMode}
+        onAddCustom={() => {
+          setCustomModalType('character');
+          setEditingCustomData(null);
+          setIsCustomModalOpen(true);
+          setIsCharacterSelectModalOpen(false);
+        }}
         onSelect={(key) => {
           setIsCharacterSelectModalOpen(false);
-          setOpenedTargetFromPlanner(false);
-          setSelectedCharacterKeyForTarget(key);
+          if (replaceMode && replaceTargetId) {
+            setPlannedItems(prev => {
+              return prev.map(p => {
+                if (p.id === replaceTargetId) {
+                  const existingChar = characters.find(c => c.key === key);
+                  const currentLevel = existingChar?.level || 1;
+                  const currentAscension = existingChar?.ascension || 0;
+                  const currentTalents = {
+                    auto: existingChar?.talent?.auto || 1,
+                    skill: existingChar?.talent?.skill || 1,
+                    burst: existingChar?.talent?.burst || 1,
+                  };
+
+                  const desiredLevel = Math.max(p.desired.level, currentLevel);
+                  const desiredAscension = Math.max(p.desired.ascension, currentAscension);
+                  const desiredTalents = {
+                    auto: Math.max(p.desired.talent.auto, currentTalents.auto),
+                    skill: Math.max(p.desired.talent.skill, currentTalents.skill),
+                    burst: Math.max(p.desired.talent.burst, currentTalents.burst),
+                  };
+
+                  return {
+                    ...p,
+                    key,
+                    custom: false,
+                    customName: undefined,
+                    customRarity: undefined,
+                    customMaterials: undefined,
+                    current: {
+                      level: currentLevel,
+                      ascension: currentAscension,
+                      talent: currentTalents
+                    },
+                    desired: {
+                      level: desiredLevel,
+                      ascension: desiredAscension,
+                      talent: desiredTalents
+                    }
+                  };
+                }
+                return p;
+              });
+            });
+            setReplaceMode(false);
+            setReplaceTargetId(null);
+          } else {
+            setOpenedTargetFromPlanner(false);
+            setSelectedCharacterKeyForTarget(key);
+          }
         }}
       />
 
@@ -594,6 +709,20 @@ function App() {
         characterKey={selectedCharacterKeyForTarget}
         currentData={characters.find(c => c.key === selectedCharacterKeyForTarget)}
         plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? plannedItems.find(p => (p.type === 'character' || !p.type) && p.key === selectedCharacterKeyForTarget) : undefined}
+        customInfo={selectedCharacterKeyForTarget ? plannedItems.find(p => p.key === selectedCharacterKeyForTarget) : undefined}
+        onEditCustom={() => {
+          const item = plannedItems.find(p => p.key === selectedCharacterKeyForTarget);
+          setEditingCustomData(item);
+          setCustomModalType('character');
+          setIsCustomModalOpen(true);
+          setSelectedCharacterKeyForTarget(null);
+        }}
+        onReplaceWithExisting={() => {
+          setReplaceMode(true);
+          setReplaceTargetId(plannedItems.find(p => p.key === selectedCharacterKeyForTarget)?.id || null);
+          setIsCharacterSelectModalOpen(true);
+          setSelectedCharacterKeyForTarget(null);
+        }}
         onAccept={(planned) => {
           setPlannedItems(prev => {
             const characterPlan = {
@@ -602,10 +731,18 @@ function App() {
               id: `character:${planned.key}`,
               enabled: true
             };
+            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && p.key === planned.key);
+            if (existingItem) {
+              // Preserve custom attributes if editing custom target levels
+              characterPlan.custom = existingItem.custom;
+              characterPlan.customName = existingItem.customName;
+              characterPlan.customRarity = existingItem.customRarity;
+              characterPlan.customMaterials = existingItem.customMaterials;
+              characterPlan.enabled = existingItem.enabled !== false;
+            }
             const exists = prev.findIndex(p => (p.type === 'character' || !p.type) && p.key === planned.key);
             if (exists >= 0) {
               const next = [...prev];
-              characterPlan.enabled = prev[exists].enabled !== false;
               next[exists] = characterPlan;
               return next;
             }
@@ -618,13 +755,58 @@ function App() {
 
       <WeaponSelectionModal
         isOpen={isWeaponSelectModalOpen}
-        onClose={() => setIsWeaponSelectModalOpen(false)}
+        onClose={() => {
+          setIsWeaponSelectModalOpen(false);
+          setReplaceMode(false);
+          setReplaceTargetId(null);
+        }}
         ownedWeapons={weapons}
         plannedItems={plannedItems}
+        replaceMode={replaceMode}
+        onAddCustom={() => {
+          setCustomModalType('weapon');
+          setEditingCustomData(null);
+          setIsCustomModalOpen(true);
+          setIsWeaponSelectModalOpen(false);
+        }}
         onSelect={(idx, key) => {
           setIsWeaponSelectModalOpen(false);
-          if (idx === -1 && key) {
-            // Find a unique negative weaponIndex
+          if (replaceMode && replaceTargetId) {
+            setPlannedItems(prev => {
+              return prev.map(p => {
+                if (p.id === replaceTargetId) {
+                  const existingWeapon = weapons[idx];
+                  const currentLevel = existingWeapon?.level || 1;
+                  const currentAscension = existingWeapon?.ascension || 0;
+
+                  const desiredLevel = Math.max(p.desired.level, currentLevel);
+                  const desiredAscension = Math.max(p.desired.ascension, currentAscension);
+
+                  return {
+                    ...p,
+                    key: existingWeapon.key,
+                    weaponIndex: idx,
+                    custom: false,
+                    customName: undefined,
+                    customRarity: undefined,
+                    customWeaponType: undefined,
+                    customMaterials: undefined,
+                    current: {
+                      level: currentLevel,
+                      ascension: currentAscension
+                    },
+                    desired: {
+                      level: desiredLevel,
+                      ascension: desiredAscension
+                    }
+                  };
+                }
+                return p;
+              });
+            });
+            setReplaceMode(false);
+            setReplaceTargetId(null);
+          } else if (idx === -1 && key) {
             const customWeapons = plannedItems.filter(p => p.type === 'weapon' && p.weaponIndex < 0);
             const nextIdx = customWeapons.length > 0
               ? Math.min(...customWeapons.map(p => p.weaponIndex)) - 1
@@ -652,8 +834,24 @@ function App() {
         }}
         weaponIndex={selectedWeaponIndexForTarget}
         weaponKey={selectedWeaponKeyForTarget}
-        currentData={selectedWeaponIndexForTarget !== null ? weapons[selectedWeaponIndexForTarget] : undefined}
+        currentData={selectedWeaponIndexForTarget !== null && selectedWeaponIndexForTarget >= 0 ? weapons[selectedWeaponIndexForTarget] : undefined}
         plannedData={openedTargetFromPlanner && selectedWeaponIndexForTarget !== null ? plannedItems.find(p => p.type === 'weapon' && p.weaponIndex === selectedWeaponIndexForTarget) : undefined}
+        customInfo={selectedWeaponKeyForTarget ? plannedItems.find(p => p.key === selectedWeaponKeyForTarget) : undefined}
+        onEditCustom={() => {
+          const item = plannedItems.find(p => p.key === selectedWeaponKeyForTarget);
+          setEditingCustomData(item);
+          setCustomModalType('weapon');
+          setIsCustomModalOpen(true);
+          setSelectedWeaponIndexForTarget(null);
+          setSelectedWeaponKeyForTarget(null);
+        }}
+        onReplaceWithExisting={() => {
+          setReplaceMode(true);
+          setReplaceTargetId(plannedItems.find(p => p.key === selectedWeaponKeyForTarget)?.id || null);
+          setIsWeaponSelectModalOpen(true);
+          setSelectedWeaponIndexForTarget(null);
+          setSelectedWeaponKeyForTarget(null);
+        }}
         onAccept={(planned) => {
           setPlannedItems(prev => {
             const weaponPlan = {
@@ -661,11 +859,20 @@ function App() {
               id: `weapon:${planned.weaponIndex}`,
               enabled: true
             };
+            const existingItem = prev.find(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex);
+            if (existingItem) {
+              // Preserve custom attributes if editing custom target levels
+              weaponPlan.custom = existingItem.custom;
+              weaponPlan.customName = existingItem.customName;
+              weaponPlan.customRarity = existingItem.customRarity;
+              weaponPlan.customWeaponType = existingItem.customWeaponType;
+              weaponPlan.customMaterials = existingItem.customMaterials;
+              weaponPlan.enabled = existingItem.enabled !== false;
+            }
             if (openedTargetFromPlanner) {
               const exists = prev.findIndex(p => p.type === 'weapon' && p.weaponIndex === planned.weaponIndex);
               if (exists >= 0) {
                 const next = [...prev];
-                weaponPlan.enabled = prev[exists].enabled !== false;
                 next[exists] = weaponPlan;
                 return next;
               }
@@ -676,6 +883,17 @@ function App() {
           setSelectedWeaponKeyForTarget(null);
           setOpenedTargetFromPlanner(false);
         }}
+      />
+
+      <CustomItemModal
+        isOpen={isCustomModalOpen}
+        onClose={() => {
+          setIsCustomModalOpen(false);
+          setEditingCustomData(null);
+        }}
+        type={customModalType}
+        existingData={editingCustomData}
+        onAccept={handleCustomItemAccept}
       />
 
       <AuthModal
@@ -917,6 +1135,25 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
 
   // Find all characters/weapons from the planner that also use this material (unless it is generic)
   const requiredItems = React.useMemo(() => {
+    if (hoveredItem.data.custom) {
+      return (hoveredItem.data.requiredBy || []).map((rb: any) => {
+        const isWep = rb.type === 'weapon';
+        const fallbackImageSrc = `https://ui-avatars.com/api/?name=${encodeURIComponent(rb.name)}&background=random&color=fff&rounded=true`;
+        return {
+          type: rb.type,
+          key: rb.key,
+          id: rb.id || '',
+          name: rb.name,
+          rarity: rb.rarity,
+          title: rb.name,
+          imageSrc: isWep 
+            ? `${import.meta.env.BASE_URL}icons/${rb.weaponType?.toLowerCase()}.png`
+            : `${import.meta.env.BASE_URL}characters/MannequinBoy.png`,
+          fallbackImageSrc
+        };
+      });
+    }
+
     if (isGenericMaterial(hoveredItem.key)) return [];
 
     const items: {
@@ -934,7 +1171,22 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
       const isWeapon = planned.type === 'weapon';
       const cardReqs = getRawCardRequirements(planned);
       if (cardReqs[hoveredItem.key.toLowerCase()] > 0) {
-        if (!isWeapon) {
+        if (planned.custom) {
+          const rarity = planned.customRarity || (isWeapon ? 4 : 5);
+          const name = planned.customName || planned.key;
+          items.push({
+            type: planned.type,
+            key: planned.key,
+            id: isWeapon ? '' : 'MannequinBoy',
+            name,
+            rarity,
+            title: name,
+            imageSrc: isWeapon 
+              ? `${import.meta.env.BASE_URL}icons/${planned.customWeaponType?.toLowerCase()}.png`
+              : `${import.meta.env.BASE_URL}characters/MannequinBoy.png`,
+            fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&rounded=true`
+          });
+        } else if (!isWeapon) {
           const meta = lookupChar(planned.key);
           if (meta) {
             items.push({
@@ -972,7 +1224,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
     });
 
     return items;
-  }, [hoveredItem.key, plannedItems, weapons]);
+  }, [hoveredItem.key, hoveredItem.data.custom, hoveredItem.data.requiredBy, plannedItems, weapons]);
 
   return (
     <div
@@ -988,14 +1240,18 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
     >
       <div className="tooltip-header">
         <span className="tooltip-name">{hoveredItem.data.name || hoveredItem.key}</span>
-        <div className={`tooltip-icon-wrapper bg-rarity-${hoveredItem.data.rarity || 1}`}>
-          <img
-            src={hoveredItem.data.localExt ? `${import.meta.env.BASE_URL}icons/${hoveredItem.data.id}${hoveredItem.data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`}
-            alt=""
-            onError={(e) => {
-              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
-            }}
-          />
+        <div className={`tooltip-icon-wrapper bg-rarity-${hoveredItem.data.rarity || 1}`} style={{ background: hoveredItem.key.startsWith('?') ? '#0a0b0d' : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {hoveredItem.key.startsWith('?') ? (
+            <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#ece5d8' }}>?</span>
+          ) : (
+            <img
+              src={hoveredItem.data.localExt ? `${import.meta.env.BASE_URL}icons/${hoveredItem.data.id}${hoveredItem.data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`}
+              alt=""
+              onError={(e) => {
+                e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(hoveredItem.data.name || hoveredItem.key)}&background=random&color=fff&rounded=true&font-size=0.33`;
+              }}
+            />
+          )}
         </div>
       </div>
       {hasSources && (
@@ -1022,7 +1278,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
           }}>
             <div style={{ fontWeight: '700', fontSize: '0.85rem', color: '#0b0c10', marginBottom: '6px' }}>Required by</div>
             <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              {requiredItems.map((item, idx) => (
+              {requiredItems.map((item: any, idx: number) => (
                 <div key={`${item.type}-${item.key}-${idx}`} className={`bg-rarity-${item.rarity || 5}`} style={{
                   width: '36px',
                   height: '36px',

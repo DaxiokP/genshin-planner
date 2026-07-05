@@ -12,6 +12,9 @@ interface CharacterTargetModalProps {
   characterKey: string | null;
   currentData: GoodCharacter | undefined;
   plannedData?: PlannedCharacter;
+  customInfo?: any;
+  onEditCustom?: () => void;
+  onReplaceWithExisting?: () => void;
   onAccept: (planned: PlannedCharacter) => void;
 }
 
@@ -145,8 +148,21 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   characterKey,
   currentData,
   plannedData,
+  customInfo,
+  onEditCustom,
+  onReplaceWithExisting,
   onAccept,
 }) => {
+  const isCustom = characterKey?.startsWith('custom_') || plannedData?.custom || customInfo?.custom;
+  const customCharInfo = isCustom ? {
+    id: 'MannequinBoy',
+    name: plannedData?.customName || customInfo?.name || 'Custom Character',
+    rarity: plannedData?.customRarity || customInfo?.customRarity || 5,
+    custom: true,
+  } : null;
+
+  const charInfo = customCharInfo || (characterKey ? characterMap[characterKey] : null) || { id: '', name: '', rarity: 4 };
+
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentAscension, setCurrentAscension] = useState(0);
   const [currentTalents, setCurrentTalents] = useState({ auto: 1, skill: 1, burst: 1 });
@@ -162,8 +178,8 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   const minCurrentBurst = currentData?.talent?.burst || 1;
 
   const constellation = currentData?.constellation || 0;
-  const isSkillBoosted = constellation >= 3;
-  const isBurstBoosted = constellation >= 5;
+  const isSkillBoosted = !isCustom && constellation >= 3;
+  const isBurstBoosted = !isCustom && constellation >= 5;
 
   useEffect(() => {
     const curLevel = currentData?.level || 1;
@@ -208,8 +224,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
 
   if (!isOpen || !characterKey) return null;
 
-  const charInfo = characterMap[characterKey];
-  if (!charInfo) return null;
+  if (!charInfo.name) return null;
 
   const handleAccept = () => {
     onAccept({
@@ -257,12 +272,14 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
         onClick={e => e.stopPropagation()}
       >
         {/* Splash art — multiply blend removes white PNG background */}
-        <img
-          src={splashSrc}
-          alt=""
-          aria-hidden="true"
-          className="target-modal-splash"
-        />
+        {!isCustom && (
+          <img
+            src={splashSrc}
+            alt=""
+            aria-hidden="true"
+            className="target-modal-splash"
+          />
+        )}
 
         <div className="target-modal-left">
           <div className="target-modal-header" style={{ display: 'flex', alignItems: 'center' }}>
@@ -383,6 +400,49 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
               </div>
             </div>
           </div>{/* end modal-content */}
+
+          {isCustom && (
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '1.25rem', width: '100%', justifyContent: 'center' }}>
+              <button 
+                className="action-btn"
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  background: '#8c6a4a',
+                  color: '#fff',
+                  border: 'none',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  fontSize: '0.85rem',
+                  height: 'auto',
+                  width: 'auto'
+                }}
+                onClick={onEditCustom}
+              >
+                Edit Custom Character
+              </button>
+              {plannedData && (
+                <button 
+                  className="action-btn"
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    background: '#4e7a5c',
+                    color: '#fff',
+                    border: 'none',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                    height: 'auto',
+                    width: 'auto'
+                  }}
+                  onClick={onReplaceWithExisting}
+                >
+                  Replace with existing Character
+                </button>
+              )}
+            </div>
+          )}
 
           <div className="target-modal-actions">
             <button className="action-btn btn-cancel" onClick={onCancel || onClose}>

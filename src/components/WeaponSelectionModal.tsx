@@ -28,6 +28,8 @@ interface WeaponSelectionModalProps {
   ownedWeapons: GoodWeapon[];
   plannedItems: any[]; // planned_items to identify which weapon indexes are already planned
   onSelect: (weaponIndex: number, weaponKey?: string) => void;
+  replaceMode?: boolean;
+  onAddCustom?: () => void;
 }
 
 const getWeaponTypeIconPath = (type: string) => {
@@ -47,12 +49,20 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
   ownedWeapons,
   plannedItems,
   onSelect,
+  replaceMode = false,
+  onAddCustom,
 }) => {
-  const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>('owned');
+  const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>(replaceMode ? 'all' : 'owned');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<string | null>(null);
   const [filterRarities, setFilterRarities] = useState<number[]>([5, 4, 3]);
   const [sortBy, setSortBy] = useState<'stars' | 'name' | 'release'>('stars');
+
+  React.useEffect(() => {
+    if (replaceMode) {
+      setViewMode('all');
+    }
+  }, [replaceMode]);
 
   const weaponTypes = ['Sword', 'Claymore', 'Polearm', 'Bow', 'Catalyst'];
   const rarities = [5, 4, 3];
@@ -213,22 +223,25 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
         <div className="modal-view-mode-tabs" style={{ display: 'flex', gap: '8px', padding: '1rem 1.5rem 0 1.5rem' }}>
           <button 
             className={`modal-toggle-done-btn ${viewMode === 'owned' ? 'active' : ''}`}
-            onClick={() => { setViewMode('owned'); if (sortBy === 'release') setSortBy('stars'); }}
-            style={{ flex: 1, justifyContent: 'center' }}
+            onClick={() => { if (!replaceMode) { setViewMode('owned'); if (sortBy === 'release') setSortBy('stars'); } }}
+            style={{ flex: 1, justifyContent: 'center', opacity: replaceMode ? 0.5 : 1, cursor: replaceMode ? 'not-allowed' : 'pointer' }}
+            disabled={replaceMode}
           >
             Owned Weapons
           </button>
           <button 
             className={`modal-toggle-done-btn ${viewMode === 'unowned' ? 'active' : ''}`}
-            onClick={() => { setViewMode('unowned'); setSortBy('release'); }}
-            style={{ flex: 1, justifyContent: 'center' }}
+            onClick={() => { if (!replaceMode) { setViewMode('unowned'); setSortBy('release'); } }}
+            style={{ flex: 1, justifyContent: 'center', opacity: replaceMode ? 0.5 : 1, cursor: replaceMode ? 'not-allowed' : 'pointer' }}
+            disabled={replaceMode}
           >
             Not Owned Weapons
           </button>
           <button 
             className={`modal-toggle-done-btn ${viewMode === 'all' ? 'active' : ''}`}
-            onClick={() => { setViewMode('all'); if (sortBy === 'release') setSortBy('stars'); }}
-            style={{ flex: 1, justifyContent: 'center' }}
+            onClick={() => { if (!replaceMode) { setViewMode('all'); if (sortBy === 'release') setSortBy('stars'); } }}
+            style={{ flex: 1, justifyContent: 'center', opacity: replaceMode ? 0.5 : 1, cursor: replaceMode ? 'not-allowed' : 'pointer' }}
+            disabled={replaceMode}
           >
             All Game Database
           </button>
@@ -328,12 +341,40 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
         </div>
 
         <div className="modal-content">
-          {filteredAndSortedWeapons.length === 0 ? (
+          {filteredAndSortedWeapons.length === 0 && viewMode !== 'unowned' ? (
             <div style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
               No available weapons found. (Level 90 or already planned weapons are hidden)
             </div>
           ) : (
             <div className="char-select-grid">
+              {viewMode === 'unowned' && (
+                <div className="char-select-item" onClick={onAddCustom}>
+                  <div className="material-icon-wrapper bg-custom-weapon-blend" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '1.05rem', fontWeight: '700', color: '#fff', textAlign: 'center', padding: '10px', lineHeight: '1.3' }}>
+                      Add Custom<br />Weapon
+                    </span>
+                  </div>
+                  <div className="char-select-name" style={{
+                    whiteSpace: 'normal',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '34px',
+                    lineHeight: '1.2',
+                    padding: '4px 6px'
+                  }}>
+                    <span style={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      width: '100%',
+                      textAlign: 'center'
+                    }}>Custom</span>
+                  </div>
+                </div>
+              )}
               {filteredAndSortedWeapons.map(w => {
                 const info = lookupWeapon(w.key);
                 if (!info) return null;

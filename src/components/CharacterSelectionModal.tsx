@@ -31,6 +31,8 @@ interface CharacterSelectionModalProps {
   onClose: () => void;
   ownedCharacters: GoodCharacter[];
   onSelect: (characterKey: string) => void;
+  replaceMode?: boolean;
+  onAddCustom?: () => void;
 }
 
 const isDoneCharacter = (char: GoodCharacter) => {
@@ -49,12 +51,20 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
   onClose,
   ownedCharacters,
   onSelect,
+  replaceMode = false,
+  onAddCustom,
 }) => {
-  const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>('owned');
+  const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>(replaceMode ? 'all' : 'owned');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'stars' | 'name' | 'release'>('stars');
   const [filterElement, setFilterElement] = useState<string | null>(null);
   const [showDone, setShowDone] = useState(false);
+
+  React.useEffect(() => {
+    if (replaceMode) {
+      setViewMode('all');
+    }
+  }, [replaceMode]);
 
   const elements = ['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo'];
 
@@ -207,22 +217,25 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
         <div className="modal-view-mode-tabs" style={{ display: 'flex', gap: '8px', padding: '1rem 1.5rem 0 1.5rem' }}>
           <button 
             className={`modal-toggle-done-btn ${viewMode === 'owned' ? 'active' : ''}`}
-            onClick={() => { setViewMode('owned'); if (sortBy === 'release') setSortBy('stars'); }}
-            style={{ flex: 1, justifyContent: 'center' }}
+            onClick={() => { if (!replaceMode) { setViewMode('owned'); if (sortBy === 'release') setSortBy('stars'); } }}
+            style={{ flex: 1, justifyContent: 'center', opacity: replaceMode ? 0.5 : 1, cursor: replaceMode ? 'not-allowed' : 'pointer' }}
+            disabled={replaceMode}
           >
             Owned Characters
           </button>
           <button 
             className={`modal-toggle-done-btn ${viewMode === 'unowned' ? 'active' : ''}`}
-            onClick={() => { setViewMode('unowned'); setSortBy('release'); }}
-            style={{ flex: 1, justifyContent: 'center' }}
+            onClick={() => { if (!replaceMode) { setViewMode('unowned'); setSortBy('release'); } }}
+            style={{ flex: 1, justifyContent: 'center', opacity: replaceMode ? 0.5 : 1, cursor: replaceMode ? 'not-allowed' : 'pointer' }}
+            disabled={replaceMode}
           >
             Not Owned Characters
           </button>
           <button 
             className={`modal-toggle-done-btn ${viewMode === 'all' ? 'active' : ''}`}
-            onClick={() => { setViewMode('all'); if (sortBy === 'release') setSortBy('stars'); }}
-            style={{ flex: 1, justifyContent: 'center' }}
+            onClick={() => { if (!replaceMode) { setViewMode('all'); if (sortBy === 'release') setSortBy('stars'); } }}
+            style={{ flex: 1, justifyContent: 'center', opacity: replaceMode ? 0.5 : 1, cursor: replaceMode ? 'not-allowed' : 'pointer' }}
+            disabled={replaceMode}
           >
             All Game Database
           </button>
@@ -284,7 +297,7 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
         </div>
 
         <div className="modal-content">
-          {list.length === 0 ? (
+          {list.length === 0 && viewMode !== 'unowned' ? (
             <div style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem' }}>
               {allMatchingAreDone 
                 ? "All matching characters completed! Toggle 'Show Done' to view them." 
@@ -292,6 +305,16 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
             </div>
           ) : (
             <div className="char-select-grid">
+              {viewMode === 'unowned' && (
+                <div className="char-select-item" onClick={onAddCustom}>
+                  <div className="material-icon-wrapper bg-custom-character-blend" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '1.05rem', fontWeight: '700', color: '#fff', textAlign: 'center', padding: '10px', lineHeight: '1.3' }}>
+                      Add Custom<br />Character
+                    </span>
+                  </div>
+                  <div className="char-select-name">Custom</div>
+                </div>
+              )}
               {list.map(char => {
                 const charInfo = lookupChar(char.key);
                 if (!charInfo) return null;
