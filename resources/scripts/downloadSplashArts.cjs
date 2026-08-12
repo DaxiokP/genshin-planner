@@ -120,7 +120,10 @@ const processAll = async () => {
             name: data.name,
             id: data.id,
             assetName,
-            url,
+            urls: [
+                `https://enka.network/ui/UI_Gacha_AvatarImg_${assetName}.png`,
+                `https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_${assetName}.png`
+            ],
             dest
         });
     }
@@ -132,29 +135,31 @@ const processAll = async () => {
     const chunkSize = 10;
     for (let i = 0; i < tasks.length; i += chunkSize) {
         const chunk = tasks.slice(i, i + chunkSize);
-        await Promise.all(chunk.map(async ({ name, id, assetName, url, dest }) => {
+        await Promise.all(chunk.map(async ({ name, id, assetName, urls, dest }) => {
             if (isValid(dest)) {
                 skipped++;
                 return;
             }
 
-            try {
-                await downloadImage(url, dest);
-                if (isValid(dest)) {
-                    console.log(`  ✓ ${name} (${id}) -> UI_Gacha_AvatarImg_${assetName}.png`);
-                    downloaded++;
-                } else {
-                    if (fs.existsSync(dest)) {
-                        try {
-                            fs.unlinkSync(dest);
-                        } catch (e) {}
+            let success = false;
+            for (const url of urls) {
+                try {
+                    await downloadImage(url, dest);
+                    if (isValid(dest)) {
+                        console.log(`  ✓ ${name} (${id}) -> UI_Gacha_AvatarImg_${assetName}.png`);
+                        downloaded++;
+                        success = true;
+                        break;
+                    } else {
+                        if (fs.existsSync(dest)) try { fs.unlinkSync(dest); } catch (e) {}
                     }
-                    failed++;
-                    console.warn(`  ✗ FAILED: ${name} (${id}) - Empty file downloaded`);
+                } catch (e) {
+                    if (fs.existsSync(dest)) try { fs.unlinkSync(dest); } catch (e) {}
                 }
-            } catch (e) {
+            }
+            if (!success) {
                 failed++;
-                console.warn(`  ✗ FAILED: ${name} (${id}) - ${e.message} (URL: ${url})`);
+                console.warn(`  ✗ FAILED: ${name} (${id})`);
             }
         }));
 

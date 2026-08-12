@@ -887,7 +887,7 @@
       "Obtained from the Crafting Bench Conversion Tab"
     ],
     "sortGroup": 200,
-    "sortRank": 11101,
+    "sortRank": 113087,
     "localExt": ".png"
   },
   "crownofinsight": {
@@ -1364,7 +1364,7 @@
       "Obtained from the Crafting Bench Conversion Tab"
     ],
     "sortGroup": 200,
-    "sortRank": 11101,
+    "sortRank": 113083,
     "localExt": ".png"
   },
   "emberoflongnightflint": {
@@ -2724,6 +2724,18 @@
     "sortRank": 15104,
     "localExt": ".png"
   },
+  "madmansrestraint": {
+    "id": "113082",
+    "name": "Madman's Restraint",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ The Doctor Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 113082,
+    "localExt": ".png"
+  },
   "majestichookedbeak": {
     "id": "113036",
     "name": "Majestic Hooked Beak",
@@ -2812,7 +2824,7 @@
       "Obtained from the Crafting Bench Conversion Tab"
     ],
     "sortGroup": 200,
-    "sortRank": 11101,
+    "sortRank": 113081,
     "localExt": ".png"
   },
   "maskofthewickedlieutenant": {
@@ -3852,6 +3864,18 @@
     ],
     "sortGroup": 400,
     "sortRank": 12108,
+    "localExt": ".png"
+  },
+  "profanedsprout": {
+    "id": "113089",
+    "name": "Profaned Sprout",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Il Dottore Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 113089,
     "localExt": ".png"
   },
   "pseudostamens": {
@@ -5263,6 +5287,18 @@
     "sortRank": 11101,
     "localExt": ".png"
   },
+  "twistedwitheredbranch": {
+    "id": "113088",
+    "name": "Twisted Withered Branch",
+    "rarity": 5,
+    "sources": [
+      "Lv. 70+ Il Dottore Challenge Reward",
+      "Obtained from the Crafting Bench Conversion Tab"
+    ],
+    "sortGroup": 200,
+    "sortRank": 113088,
+    "localExt": ".png"
+  },
   "tyrantsfang": {
     "id": "112103",
     "name": "Tyrant's Fang",
@@ -5644,16 +5680,26 @@
     "sortRank": 10628,
     "localExt": ".png"
   },
-  "madmansrestraint": {
-    "id": "113082",
-    "name": "Madman's Restraint",
-    "rarity": 5,
+  "unscorchedblossombranch": {
+    "id": "113090",
+    "name": "Unscorched Blossom Branch",
+    "rarity": 4,
     "sources": [
-      "Lv. 70+ The Doctor Challenge Reward",
-      "Obtained from the Crafting Bench Conversion Tab"
+      "Lv. 30+ Snezhnaya Normal Boss"
     ],
-    "sortGroup": 200,
-    "sortRank": 11101,
+    "sortGroup": 300,
+    "sortRank": 113090,
+    "localExt": ".png"
+  },
+  "severedtailoftheskyroamer": {
+    "id": "113091",
+    "name": "Severed Tail of the Sky-Roamer",
+    "rarity": 4,
+    "sources": [
+      "Lv. 30+ Winged Chimera Gryphon"
+    ],
+    "sortGroup": 300,
+    "sortRank": 113091,
     "localExt": ".png"
   },
   "fracturedlunariron": {
@@ -5690,6 +5736,311 @@
     ],
     "sortGroup": 100,
     "sortRank": 10639,
+    "localExt": ".png"
+  },
+  "teachingsofcharity": {
+    "id": "104365",
+    "name": "Teachings of Charity",
+    "rarity": 2,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Relics of the Fallen Grace"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104365,
+    "localExt": ".png"
+  },
+  "guidetocharity": {
+    "id": "104366",
+    "name": "Guide to Charity",
+    "rarity": 3,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104366,
+    "localExt": ".png"
+  },
+  "philosophiesofcharity": {
+    "id": "104367",
+    "name": "Philosophies of Charity",
+    "rarity": 4,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104367,
+    "localExt": ".png"
+  },
+  "teachingsofglory": {
+    "id": "104368",
+    "name": "Teachings of Glory",
+    "rarity": 2,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Relics of the Fallen Grace"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104368,
+    "localExt": ".png"
+  },
+  "guidetoglory": {
+    "id": "104369",
+    "name": "Guide to Glory",
+    "rarity": 3,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104369,
+    "localExt": ".png"
+  },
+  "philosophiesofglory": {
+    "id": "104370",
+    "name": "Philosophies of Glory",
+    "rarity": 4,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104370,
+    "localExt": ".png"
+  },
+  "teachingsoffortitude": {
+    "id": "104371",
+    "name": "Teachings of Fortitude",
+    "rarity": 2,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Relics of the Fallen Grace"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104371,
+    "localExt": ".png"
+  },
+  "guidetofortitude": {
+    "id": "104372",
+    "name": "Guide to Fortitude",
+    "rarity": 3,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104372,
+    "localExt": ".png"
+  },
+  "philosophiesoffortitude": {
+    "id": "104373",
+    "name": "Philosophies of Fortitude",
+    "rarity": 4,
+    "sources": [
+      "Snezhnaya Talent Domain",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104373,
+    "localExt": ".png"
+  },
+  "etherealglimmershard": {
+    "id": "112146",
+    "name": "Ethereal Glimmershard",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Ethereal Enemies"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112146,
+    "localExt": ".png"
+  },
+  "etherealcrystal": {
+    "id": "112147",
+    "name": "Ethereal Crystal",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Ethereal Enemies",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112147,
+    "localExt": ".png"
+  },
+  "etherealcrystalscalestone": {
+    "id": "112148",
+    "name": "Ethereal Crystalscale Stone",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Ethereal Enemies",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112148,
+    "localExt": ".png"
+  },
+  "chimericcore": {
+    "id": "112149",
+    "name": "Chimeric Core",
+    "rarity": 1,
+    "sources": [
+      "Dropped by Synthetic Chimera Beasts"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112149,
+    "localExt": ".png"
+  },
+  "symbioticchimericnucleus": {
+    "id": "112150",
+    "name": "Symbiotic Chimeric Nucleus",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Synthetic Chimera Beasts",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112150,
+    "localExt": ".png"
+  },
+  "primechimericnexus": {
+    "id": "112151",
+    "name": "Prime Chimeric Nexus",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Synthetic Chimera Beasts",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112151,
+    "localExt": ".png"
+  },
+  "coiledcoreoflife": {
+    "id": "112157",
+    "name": "Coiled Core of Life",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Lifeform Organisms"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112157,
+    "localExt": ".png"
+  },
+  "sproutofnodeoflife": {
+    "id": "112156",
+    "name": "Sprout Node of Life",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Lifeform Organisms",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112156,
+    "localExt": ".png"
+  },
+  "hollowrootoflife": {
+    "id": "112155",
+    "name": "Hollow Root of Life",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lifeform Organisms",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112155,
+    "localExt": ".png"
+  },
+  "accretedgrowth": {
+    "id": "112154",
+    "name": "Accreted Growth",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Accreted Constructs"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112154,
+    "localExt": ".png"
+  },
+  "accretedmass": {
+    "id": "112153",
+    "name": "Accreted Mass",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Accreted Constructs",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112153,
+    "localExt": ".png"
+  },
+  "accretedfragment": {
+    "id": "112152",
+    "name": "Accreted Fragment",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Accreted Constructs",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112152,
+    "localExt": ".png"
+  },
+  "frostfairyflower": {
+    "id": "101275",
+    "name": "Frostfairy Flower",
+    "rarity": 1,
+    "sources": [
+      "Found in Snezhnaya",
+      "Fellfrost Peak"
+    ],
+    "sortGroup": 700,
+    "sortRank": 101275,
+    "localExt": ".png"
+  },
+  "flockingweed": {
+    "id": "101276",
+    "name": "Flockingweed",
+    "rarity": 1,
+    "sources": [
+      "Found in Snezhnaya",
+      "Everfrozen Earth"
+    ],
+    "sortGroup": 700,
+    "sortRank": 101276,
+    "localExt": ".png"
+  },
+  "goldenfern": {
+    "id": "101277",
+    "name": "Golden Fern",
+    "rarity": 1,
+    "sources": [
+      "Found in Snezhnaya"
+    ],
+    "sortGroup": 700,
+    "sortRank": 101277,
+    "localExt": ".png"
+  },
+  "glaciafruit": {
+    "id": "101279",
+    "name": "Glaciafruit",
+    "rarity": 1,
+    "sources": [
+      "Found in Snezhnaya"
+    ],
+    "sortGroup": 700,
+    "sortRank": 101279,
+    "localExt": ".png"
+  },
+  "lumifluorite": {
+    "id": "101282",
+    "name": "Lumifluorite",
+    "rarity": 1,
+    "sources": [
+      "Mining in Snezhnaya"
+    ],
+    "sortGroup": 700,
+    "sortRank": 101282,
     "localExt": ".png"
   }
 }

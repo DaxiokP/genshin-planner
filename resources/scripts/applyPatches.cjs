@@ -167,7 +167,49 @@ const assetJobs = [
     url: 'https://static.wikia.nocookie.net/gensin-impact/images/a/ad/Item_Unblemished_Lunar_Iron.png/revision/latest/scale-to-width-down/256',
     dest: 'public/icons/112997.png',
     fallback: 'public/icons/112124.png'
-  }
+  },
+  // 7.0 Real Weapons Yatta Assets
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Swanlake.png', dest: 'public/weapons/Sword_Swanlake.png', fallback: 'public/weapons/Sword_Estoc.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_SerpentTooth.png', dest: 'public/weapons/Sword_SerpentTooth.png', fallback: 'public/weapons/Sword_Estoc.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_EscapeWheel.png', dest: 'public/weapons/Claymore_EscapeWheel.png', fallback: 'public/weapons/Claymore_Aniki.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_SandMemoria.png', dest: 'public/weapons/Catalyst_SandMemoria.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_FaesCrystalle.png', dest: 'public/weapons/Pole_FaesCrystalle.png', fallback: 'public/weapons/Pole_Gladiator.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_ShatteredMirror.png', dest: 'public/weapons/Bow_ShatteredMirror.png', fallback: 'public/weapons/Bow_Hunters.png' },
+  // 7.0 & Il Dottore Real Materials Yatta Assets
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101275.png', dest: 'public/icons/101275.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101276.png', dest: 'public/icons/101276.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101277.png', dest: 'public/icons/101277.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101279.png', dest: 'public/icons/101279.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101282.png', dest: 'public/icons/101282.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112146.png', dest: 'public/icons/112146.png', fallback: 'public/icons/112001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112147.png', dest: 'public/icons/112147.png', fallback: 'public/icons/112002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112148.png', dest: 'public/icons/112148.png', fallback: 'public/icons/112003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112149.png', dest: 'public/icons/112149.png', fallback: 'public/icons/112001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112150.png', dest: 'public/icons/112150.png', fallback: 'public/icons/112002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112151.png', dest: 'public/icons/112151.png', fallback: 'public/icons/112003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112152.png', dest: 'public/icons/112152.png', fallback: 'public/icons/112003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112153.png', dest: 'public/icons/112153.png', fallback: 'public/icons/112002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112154.png', dest: 'public/icons/112154.png', fallback: 'public/icons/112001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112155.png', dest: 'public/icons/112155.png', fallback: 'public/icons/112003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112156.png', dest: 'public/icons/112156.png', fallback: 'public/icons/112002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112157.png', dest: 'public/icons/112157.png', fallback: 'public/icons/112001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113081.png', dest: 'public/icons/113081.png', fallback: 'public/icons/112122.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113082.png', dest: 'public/icons/113082.png', fallback: 'public/icons/112122.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113083.png', dest: 'public/icons/113083.png', fallback: 'public/icons/112122.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113087.png', dest: 'public/icons/113087.png', fallback: 'public/icons/112122.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113088.png', dest: 'public/icons/113088.png', fallback: 'public/icons/112122.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113089.png', dest: 'public/icons/113089.png', fallback: 'public/icons/112122.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113090.png', dest: 'public/icons/113090.png', fallback: 'public/icons/113001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113091.png', dest: 'public/icons/113091.png', fallback: 'public/icons/113001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104365.png', dest: 'public/icons/104365.png', fallback: 'public/icons/104301.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104366.png', dest: 'public/icons/104366.png', fallback: 'public/icons/104302.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104367.png', dest: 'public/icons/104367.png', fallback: 'public/icons/104303.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104368.png', dest: 'public/icons/104368.png', fallback: 'public/icons/104301.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104369.png', dest: 'public/icons/104369.png', fallback: 'public/icons/104302.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104370.png', dest: 'public/icons/104370.png', fallback: 'public/icons/104303.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104371.png', dest: 'public/icons/104371.png', fallback: 'public/icons/104301.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104372.png', dest: 'public/icons/104372.png', fallback: 'public/icons/104302.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104373.png', dest: 'public/icons/104373.png', fallback: 'public/icons/104303.png' }
 ];
 
 // Artifact Relics
@@ -195,21 +237,24 @@ async function processAssets() {
       continue;
     }
 
-    // Try to download
-    try {
-      console.log(`  Downloading ${job.dest} from Fandom Wiki...`);
-      await downloadImage(job.url, destPath);
-      if (isValid(destPath, fallbackPath)) {
-        console.log(`    ✓ Success!`);
-        continue;
+    // Try to download if URL provided
+    if (job.url && job.url.startsWith('http')) {
+      try {
+        console.log(`  Downloading ${job.dest}...`);
+        await downloadImage(job.url, destPath);
+        if (isValid(destPath, fallbackPath)) {
+          console.log(`    ✓ Success!`);
+          continue;
+        }
+      } catch (e) {
+        console.log(`    ✗ Failed download: ${e.message}`);
       }
-    } catch (e) {
-      console.log(`    ✗ Failed download: ${e.message}`);
     }
 
-    // Fallback copy if download failed and we don't already have it
-    if (!fs.existsSync(destPath) && fs.existsSync(fallbackPath)) {
+    // Fallback copy if download failed or destination file is invalid/empty
+    if (!isValid(destPath, fallbackPath) && fallbackPath && fs.existsSync(fallbackPath)) {
       try {
+        if (fs.existsSync(destPath)) try { fs.unlinkSync(destPath); } catch {}
         fs.copyFileSync(fallbackPath, destPath);
         console.log(`    ✓ Copied fallback placeholder: ${job.fallback} -> ${job.dest}`);
       } catch (err) {

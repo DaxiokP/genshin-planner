@@ -1078,5 +1078,23 @@
     "icon": "https://enka.network/ui/UI_AvatarIcon_Sandrone.png",
     "id": "Sandrone",
     "version": "6.7"
+  },
+  "Odette": {
+    "name": "Odette",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Sword",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Odette.png",
+    "id": "Odette",
+    "version": "7.0"
+  },
+  "Alyosha": {
+    "name": "Alyosha",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Polearm",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alyosha.png",
+    "id": "Alyosha",
+    "version": "7.0"
   }
 }

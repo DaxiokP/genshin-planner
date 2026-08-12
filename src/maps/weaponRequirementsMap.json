@@ -31418,5 +31418,111 @@
         }
       ]
     }
+  },
+  "Whitelake Frostfeather": {
+    "ascension": {
+      "1": [
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 5
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 5
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 14
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 18
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 12
+        }
+      ],
+      "3": [
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 9
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 9
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 9
+        }
+      ],
+      "4": [
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 18
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 18
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 14
+        }
+      ],
+      "5": [
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 14
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 14
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 9
+        }
+      ],
+      "6": [
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 27
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 27
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 18
+        }
+      ]
+    }
   }
 }

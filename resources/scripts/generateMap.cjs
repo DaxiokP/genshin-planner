@@ -14,7 +14,27 @@ const allowedNames = new Set([
   "Fine Enhancement Ore",
   "Mystic Enhancement Ore",
   "Sanctifying Unction",
-  "Sanctifying Essence"
+  // 6.5 & 6.7 Patch & Doctor Boss Materials
+  "Mask of the Virtuous Doctor", "Madman's Restraint", "Elixir of the Heretic",
+  "Counterfeit Resin", "Twisted Withered Branch", "Profaned Sprout",
+  "Fractured Lunar Iron", "Depleted Lunar Iron", "Unblemished Lunar Iron",
+  "Teachings of Vagrancy", "Guide to Vagrancy", "Philosophies of Vagrancy",
+  "Plume of the Fallen Watcher", "Broken Drive Shaft", "Reinforced Drive Shaft", "Precision Drive Shaft",
+  "Sundered Glory of the Far-North Scions", "Unyielding Delusion of the Far-North Scions",
+  "Oblation of the Far-North Scions", "Aureate Radiance of the Far-North Scions",
+  "Tattered Warrant", "Immaculate Warrant", "Frost-Etched Warrant",
+
+  // 7.0 Snezhnaya Materials
+  "Teachings of Charity", "Guide to Charity", "Philosophies of Charity",
+  "Teachings of Glory", "Guide to Glory", "Philosophies of Glory",
+  "Teachings of Fortitude", "Guide to Fortitude", "Philosophies of Fortitude",
+  "Unscorched Blossom Branch", "Severed Tail of the Sky-Roamer",
+  "Ethereal Glimmershard", "Ethereal Crystal", "Ethereal Crystalscale Stone",
+  "Chimeric Core", "Symbiotic Chimeric Nucleus", "Prime Chimeric Nexus",
+  "Coiled Core of Life", "Sprout Node of Life", "Sprout of Node of Life", "Hollow Root of Life",
+  "Accreted Growth", "Accreted Mass", "Accreted Fragment",
+  "Frostfairy Flower", "Flockingweed", "Golden Fern", "Glaciafruit", "Lumifluorite",
+  "Snezhnaya Specialty Ore", "Rainbowdrop Crystals"
 ]);
 
 // 1. Scrape Character Ascension bounds
