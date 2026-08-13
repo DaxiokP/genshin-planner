@@ -175,6 +175,12 @@ const assetJobs = [
   { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_SandMemoria.png', dest: 'public/weapons/Catalyst_SandMemoria.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_FaesCrystalle.png', dest: 'public/weapons/Pole_FaesCrystalle.png', fallback: 'public/weapons/Pole_Gladiator.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_ShatteredMirror.png', dest: 'public/weapons/Bow_ShatteredMirror.png', fallback: 'public/weapons/Bow_Hunters.png' },
+  // 7.0 Blacksmith Craftable 4* Weapons
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_GlintstoneBow.png', dest: 'public/weapons/Bow_GlintstoneBow.png', fallback: 'public/weapons/Bow_Hunters.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_GlintstoneCatalyst.png', dest: 'public/weapons/Catalyst_GlintstoneCatalyst.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_GlintstonePolearm.png', dest: 'public/weapons/Pole_GlintstonePolearm.png', fallback: 'public/weapons/Pole_Gladiator.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_GlintstoneSword.png', dest: 'public/weapons/Sword_GlintstoneSword.png', fallback: 'public/weapons/Sword_Estoc.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_GlintstoneClaymore.png', dest: 'public/weapons/Claymore_GlintstoneClaymore.png', fallback: 'public/weapons/Claymore_Aniki.png' },
   // 7.0 & Il Dottore Real Materials Yatta Assets
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101275.png', dest: 'public/icons/101275.png', fallback: 'public/icons/100021.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101276.png', dest: 'public/icons/101276.png', fallback: 'public/icons/100021.png' },

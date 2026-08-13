@@ -99,7 +99,10 @@ Check if a newer version of `genshin-db` is available that includes the new patc
 npm show genshin-db version         # see latest published version
 npm install genshin-db@latest       # install it
 ```
-Verify the new version covers your target patch (e.g. `5.2.11` covered version `6.6`). If the package hasn't been updated yet, wait until it is — do **not** hardcode data manually.
+Verify the new version covers your target patch (e.g. `5.2.11` covered version `6.6`). If the package hasn't been updated yet, wait until it is.
+
+> [!TIP]
+> If `genshin-db` lags behind the live game patch (e.g. new 7.0 characters/weapons not yet in the package), you can add overrides directly to `src/maps/patches.json` and run `node resources/scripts/applyPatches.cjs` to inject them. This is the preferred escape hatch for new-patch data that arrives before `genshin-db` is updated.
 
 ### Step 2 — Regenerate All Maps & Assets
 ```bash
@@ -125,7 +128,7 @@ Fix any TypeScript errors before continuing.
 ```bash
 npm run test
 ```
-All 8 tests must pass. If calculations break, check `src/utils/plannerCalculator.ts` and `src/utils/upgradeHelpers.ts` for any assumptions that may have changed.
+All 10 tests must pass. If calculations break, check `src/utils/plannerCalculator.ts` and `src/utils/upgradeHelpers.ts` for any assumptions that may have changed.
 
 ### Step 5 — Smoke-Test in the Browser
 ```bash
@@ -139,7 +142,7 @@ npm run dev
 
 ### Step 6 — Commit the Updates
 ```bash
-git add src/maps/ public/characters/ public/splash_arts/ public/namecards/ public/icons/ package.json package-lock.json
+git add src/maps/ public/characters/ public/splash_arts/ public/namecards/ public/icons/ public/weapons/ public/artifacts/ package.json package-lock.json
 git commit -m "chore: update data to Genshin version X.Y"
 git push
 ```

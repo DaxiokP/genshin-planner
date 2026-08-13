@@ -22,6 +22,10 @@ graph TD
         E[generateWeaponMap.cjs] -->|"weaponMap + version"| WeapData[src/maps/weaponMap.json]
         F[generateWeaponRequirementsMap.cjs] -->|Requirements| WeapReqData[src/maps/weaponRequirementsMap.json]
         G["updateData.cjs (npm run update-data)"] --> B & D & E & F & A
+        P["patches.json (override source)"] --> AP[applyPatches.cjs]
+        AP -->|"Deep-merge overrides"| MatData & CharData & WeapData & WeapReqData
+        AP -->|"Download CDN assets"| WeapPub[public/weapons/] & ArtPub[public/artifacts/]
+        G --> AP
     end
 
     subgraph Supabase [Backend - Cloud Sync]
@@ -62,10 +66,12 @@ graph TD
 
 - `resources/scripts/downloadIcons.cjs`: Fetches material icons from external sources.
 - `resources/scripts/generateMap.cjs`: Aggregates material metadata (rarity, sources, names) into `src/maps/materialMap.json`.
-- `resources/scripts/generateCharacterMap.cjs`: Generates `src/maps/characterMap.json` from `genshin-db`, including the `version` field (e.g. `"6.6"`) for each character, used for release-date sorting.
+- `resources/scripts/generateCharacterMap.cjs`: Generates `src/maps/characterMap.json` from `genshin-db`, including the `version` field (e.g. `"7.0"`) for each character, used for release-date sorting.
 - `resources/scripts/generateWeaponMap.cjs`: Generates `src/maps/weaponMap.json` from `genshin-db`, including the `version` field for each weapon.
 - `resources/scripts/generateWeaponRequirementsMap.cjs`: Generates `src/maps/weaponRequirementsMap.json` with full weapon ascension material requirements.
-- `resources/scripts/updateData.cjs`: **Unified coordinator script** — run via `npm run update-data`. Executes all map generation scripts in sequence and downloads new assets (character splash arts, namecards, weapon icons, element icons) for any newly added game content.
+- `resources/scripts/applyPatches.cjs`: **Patch override script** — deep-merges entries from `src/maps/patches.json` into the generated JSON maps (`characterMap`, `weaponMap`, `materialMap`, `artifactMap`, etc.) and downloads the corresponding CDN assets (weapon PNGs into `public/weapons/`, artifact PNGs into `public/artifacts/`). Runs automatically at the end of every `npm run update-data` invocation, and can also be run standalone: `node resources/scripts/applyPatches.cjs`.
+- `resources/scripts/fetchYattaAssets.cjs`: **Helper utility** for manually pulling exact PNG assets from the Yatta CDN (`gi.yatta.moe`) into `public/icons/` and `public/weapons/` during patch research. Not part of the automated pipeline; run manually when adding a new patch's assets.
+- `resources/scripts/updateData.cjs`: **Unified coordinator script** — run via `npm run update-data`. Executes all map generation scripts in sequence, then runs `applyPatches.cjs` twice (before and after asset downloads) to ensure patch overrides are applied both early and late in the pipeline.
 
 ### 2. State & Sync Custom Hook (`src/hooks/useAppSync.ts`)
 
@@ -273,8 +279,17 @@ A reusable modal that intercepts mouse click events on material requirement grid
 
 - `/src`: React components, hooks, Supabase configuration, and material maps.
   - `/utils/__tests__`: Automated test suites validating calculation formulas, alchemical chains, inventory allocations, and import sync algorithms.
-- `/public`: Static assets including the processed `/icons` folder and `/characters` folder (including `CustomCharacter.png` for the custom item placeholder icon).
+- `/public`: Static assets including:
+  - `/icons/` — Material and element icons.
+  - `/characters/` — Character portrait PNGs (including `CustomCharacter.png` for custom items).
+  - `/weapons/` — Weapon icon PNGs (downloaded by `applyPatches.cjs` and `fetchYattaAssets.cjs`).
+  - `/artifacts/` — Artifact piece icon PNGs (downloaded by `applyPatches.cjs`).
+  - `/splash_arts/` — Character splash art PNGs.
+  - `/namecards/` — Character namecard background PNGs.
 - `/resources`: Data processing scripts and architecture documentation.
+  - `/scripts/`: Generator scripts, `applyPatches.cjs`, `fetchYattaAssets.cjs`, and `updateData.cjs`.
+- `/src/maps/patches.json`: **Patch override source of truth** for characters, weapons, materials, and artifacts that are not yet available in `genshin-db`. Entries here are deep-merged by `applyPatches.cjs` into the generated map JSON files.
+- `/src/maps/bossMappings.json`: Maps weekly boss names to their drop item IDs, used by the Quick Inventory Modal to group boss materials with their corresponding elemental gems.
 - `/`: Configuration files, linting guidelines, environment setups, and workflow builds.
 
 ### 15. Custom Items System (`src/components/CustomItemModal.tsx`, `src/components/SelectMaterialModal.tsx`)

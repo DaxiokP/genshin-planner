@@ -28,13 +28,19 @@ async function main() {
     { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_EscapeWheel.png', dest: 'public/weapons/Claymore_EscapeWheel.png' },
     { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_SandMemoria.png', dest: 'public/weapons/Catalyst_SandMemoria.png' },
     { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_FaesCrystalle.png', dest: 'public/weapons/Pole_FaesCrystalle.png' },
-    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_ShatteredMirror.png', dest: 'public/weapons/Bow_ShatteredMirror.png' }
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_ShatteredMirror.png', dest: 'public/weapons/Bow_ShatteredMirror.png' },
+    // 7.0 Snezhnaya Blacksmith Craftable 4* Weapons
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_GlintstoneBow.png', dest: 'public/weapons/Bow_GlintstoneBow.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_GlintstoneCatalyst.png', dest: 'public/weapons/Catalyst_GlintstoneCatalyst.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_GlintstonePolearm.png', dest: 'public/weapons/Pole_GlintstonePolearm.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_GlintstoneSword.png', dest: 'public/weapons/Sword_GlintstoneSword.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_GlintstoneClaymore.png', dest: 'public/weapons/Claymore_GlintstoneClaymore.png' }
   ];
 
   const materialIds = [
     '101275', '101276', '101277', '101279', '101282',
     '112146', '112147', '112148', '112149', '112150', '112151', '112152', '112153', '112154', '112155', '112156', '112157',
-    '113082', '113087', '113088', '113089', '113090', '113091',
+    '113081', '113082', '113083', '113087', '113088', '113089', '113090', '113091',
     '104365', '104366', '104367', '104368', '104369', '104370', '104371', '104372', '104373'
   ];
 

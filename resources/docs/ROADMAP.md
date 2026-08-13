@@ -130,8 +130,8 @@ Goal: Keep track with the new characters and weapons that are released in the ga
 - [x] **Automated data update pipeline**
     - Created `resources/scripts/updateData.cjs` — a unified coordinator script that regenerates all data maps and downloads new character/weapon assets in one command: `npm run update-data`.
     - Created `resources/scripts/generateWeaponRequirementsMap.cjs` to automate building `src/maps/weaponRequirementsMap.json` from `genshin-db`.
-    - Updated `generateCharacterMap.cjs` and `generateWeaponMap.cjs` to extract and include the `version` field (e.g. `"6.6"`) from `genshin-db` entries, enabling release-date sorting in the UI.
-    - Updated `genshin-db` to `5.2.11` to include version 6.6 characters and weapons (Linnea, Lohen, Nicole, Prune, and new weapons).
+    - Updated `generateCharacterMap.cjs` and `generateWeaponMap.cjs` to extract and include the `version` field (e.g. `"7.0"`) from `genshin-db` entries, enabling release-date sorting in the UI.
+    - Updated `genshin-db` to track current patch versions for characters and weapons.
 - [x] **Update character data**
     - Running `npm run update-data` regenerates `characterMap.json`, downloads new splash arts, icons, and namecards for all new characters.
 - [x] **Update weapon data**
@@ -162,6 +162,31 @@ Goal: Allow users to pre-plan characters and weapons from upcoming patches (via 
     - New custom items are stored as a `tempCustomItem` draft in `App.tsx` and are only committed to `plannedItems` when the user clicks Accept in the Target Modal. Clicking Cancel or the ✕ button discards the draft without creating a planner card.
     - `customModalSource` state tracks whether `CustomItemModal` was opened from the selection modal or the target modal, so closing/canceling always returns to the correct previous screen.
     - Bug fixed: `CharacterTargetModal.tsx` useEffect now correctly reads `plannedData.current` (not `currentData`) when re-opening an existing plan for editing.
+
+
+## Phase 9: Patch Data Accuracy & Override System (Completed)
+Goal: Handle new game patches where `genshin-db` has not yet been updated, using a reliable override pipeline to keep the planner current with live game data.
+
+- [x] **`patches.json` Override System (`src/maps/patches.json`)**
+    - All characters, weapons, materials, and artifact sets that are not yet available in `genshin-db` are defined in `src/maps/patches.json`.
+    - The `resources/scripts/applyPatches.cjs` script deep-merges these overrides into the final JSON maps and downloads the corresponding CDN assets automatically.
+    - Added support for `weapons`, `weaponRequirements`, `characters`, `characterRequirements`, `materials`, and `artifacts` override sections.
+- [x] **7.0 Patch Data (Odette, Alyosha, Sandrone)**
+    - Added characters Odette (5★ Cryo Sword), Alyosha (4★ Electro Polearm), and Sandrone to `patches.json` with full ascension and talent material requirements.
+    - Added all associated ascension/talent materials and local specialties.
+- [x] **7.0 Weapons (Gacha & Blacksmith Craftable)**
+    - Added 6 gacha weapons: Whitelake Frostfeather (5★), Heretic's Molten Blade, Forged by the Golden Melody, Clash of Kings, Frostbreath, Jade Vista.
+    - Added 5 Snezhnaya blacksmith craftable 4★ weapons: Covenant of Frost and Snow (Bow), Echoes of the Heart (Catalyst), Song of the Vigil (Polearm), Emberwell (Sword), Blade of Atonement (Claymore).
+    - All weapon icons downloaded from Yatta CDN (`gi.yatta.moe`) into `public/weapons/`.
+- [x] **Doctor Weekly Boss Separation (Patch 6.5 vs 6.7)**
+    - Separated `The Doctor` (Patch 6.5 boss, drops: Mask of the Virtuous Doctor `113081`, Madman's Restraint `113082`, Elixir of the Heretic `113083`) from `Il Dottore` (Patch 6.7 boss, drops: Counterfeit Resin `113087`, Twisted Withered Branch `113088`, Profaned Sprout `113089`) in `src/maps/bossMappings.json`.
+    - Both bosses now display correct drop lists with local PNG icons.
+- [x] **Artifact Sets (6.7 & 7.0)**
+    - Added Celestial Gift (`15045`), Disenchantment in Deep Shadow (`15046`), Scarlet Proof (`15047`), and Heart of the Furnace (`15048`) with real Yatta/Enka piece IDs.
+    - Downloaded all 20 individual artifact piece PNGs into `public/artifacts/`.
+    - Removed 15 orphaned placeholder files (`UI_RelicIcon_16031_*`, `UI_RelicIcon_16032_*`, `UI_RelicIcon_16033_*`).
+- [x] **`fetchYattaAssets.cjs` Helper Script**
+    - Created `resources/scripts/fetchYattaAssets.cjs` as a manual research tool for downloading exact PNG assets from the Yatta CDN into `public/icons/` and `public/weapons/`.
 
 
 ## Phase X: Future Ideas

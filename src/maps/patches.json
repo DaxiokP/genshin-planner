@@ -347,6 +347,56 @@
       "substatType": "CRIT Rate",
       "stats": {},
       "version": "7.0"
+    },
+    "CovenantofFrostandSnow": {
+      "name": "Covenant of Frost and Snow",
+      "rarity": 4,
+      "type": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_GlintstoneBow.png",
+      "id": "Bow_GlintstoneBow",
+      "substatType": "DEF",
+      "stats": {},
+      "version": "7.0"
+    },
+    "EchoesoftheHeart": {
+      "name": "Echoes of the Heart",
+      "rarity": 4,
+      "type": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_GlintstoneCatalyst.png",
+      "id": "Catalyst_GlintstoneCatalyst",
+      "substatType": "ATK",
+      "stats": {},
+      "version": "7.0"
+    },
+    "SongoftheVigil": {
+      "name": "Song of the Vigil",
+      "rarity": 4,
+      "type": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_GlintstonePolearm.png",
+      "id": "Pole_GlintstonePolearm",
+      "substatType": "Elemental Mastery",
+      "stats": {},
+      "version": "7.0"
+    },
+    "Emberwell": {
+      "name": "Emberwell",
+      "rarity": 4,
+      "type": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_GlintstoneSword.png",
+      "id": "Sword_GlintstoneSword",
+      "substatType": "Elemental Mastery",
+      "stats": {},
+      "version": "7.0"
+    },
+    "BladeofAtonement": {
+      "name": "Blade of Atonement",
+      "rarity": 4,
+      "type": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_GlintstoneClaymore.png",
+      "id": "Claymore_GlintstoneClaymore",
+      "substatType": "ATK",
+      "stats": {},
+      "version": "7.0"
     }
   },
   "weaponRequirements": {
