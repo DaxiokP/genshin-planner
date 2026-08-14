@@ -179,6 +179,80 @@
   padding-bottom: 0.5rem;
 }
 
+.daily-patch-week-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.35rem 0.65rem;
+  margin-bottom: 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.daily-patch-week-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.daily-patch-week-row.active {
+  background: rgba(255, 204, 102, 0.08);
+  border-color: rgba(255, 204, 102, 0.25);
+}
+
+.patch-week-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+  letter-spacing: 0.2px;
+  transition: color 0.2s ease;
+}
+
+.daily-patch-week-row.active .patch-week-label {
+  color: #ffcc66;
+}
+
+.patch-week-toggle {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: 1px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.patch-week-toggle.active {
+  background: #ffcc66;
+  border-color: #ffe082;
+  box-shadow: 0 0 8px rgba(255, 204, 102, 0.35);
+}
+
+.patch-week-toggle-slider {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease;
+}
+
+.patch-week-toggle.active .patch-week-toggle-slider {
+  transform: translateX(16px);
+  background: #1a1c23;
+}
+
 .daily-domains-header {
   display: flex;
   align-items: center;

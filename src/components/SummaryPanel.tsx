@@ -40,7 +40,26 @@ export const SummaryPanel: React.FC<SummaryPanelProps> = ({
 }) => {
   const { summaryMissing, domainMissing } = simulation;
 
-  // 1. Calculate current game day index (reset is at 3:00 AM UTC, matching Portugal winter time)
+  // 1. Patch week toggle state (persisted to localStorage)
+  const [isPatchWeek, setIsPatchWeek] = React.useState<boolean>(() => {
+    try {
+      return localStorage.getItem('genshin_planner_patch_week') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleTogglePatchWeek = () => {
+    setIsPatchWeek(prev => {
+      const next = !prev;
+      try {
+        localStorage.setItem('genshin_planner_patch_week', String(next));
+      } catch {}
+      return next;
+    });
+  };
+
+  // 2. Calculate current game day index (reset is at 3:00 AM UTC, matching Portugal winter time)
   const getGameDayIndex = (): number => {
     const now = new Date();
     const utcHours = now.getUTCHours();
@@ -55,10 +74,10 @@ export const SummaryPanel: React.FC<SummaryPanelProps> = ({
   const displayedDayIndex = (gameDayIndex + selectedDayOffset + 35) % 7;
   const weekdayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  // 2. Fetch farmable domain materials for the displayed day index
+  // 3. Fetch farmable domain materials for the displayed day index or all if Patch Week is enabled
   let farmableMaterials: any[] = [];
-  if (displayedDayIndex === 0) {
-    // Sunday: All domain materials are farmable
+  if (isPatchWeek || displayedDayIndex === 0) {
+    // Patch Week or Sunday: All domain materials are farmable
     const domainKeys = new Set([
       ...(domainMissing['Monday/Thursday'] || []).map(i => i.key),
       ...(domainMissing['Tuesday/Friday'] || []).map(i => i.key),
@@ -147,22 +166,49 @@ export const SummaryPanel: React.FC<SummaryPanelProps> = ({
     <div className="planner-summary-panel">
       {/* Daily Domains Banner */}
       <div className="planner-daily-domains">
+        <div className={`daily-patch-week-row ${isPatchWeek ? 'active' : ''}`} onClick={handleTogglePatchWeek}>
+          <span className="patch-week-label">Patch week</span>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={isPatchWeek}
+            className={`patch-week-toggle ${isPatchWeek ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleTogglePatchWeek();
+            }}
+            title="Toggle Patch week: all weapon and talent domains are available to farm"
+          >
+            <span className="patch-week-toggle-slider" />
+          </button>
+        </div>
+
         <div className="daily-domains-header">
           <button 
             className="daily-nav-btn" 
             onClick={() => setSelectedDayOffset(prev => prev - 1)}
-            disabled={selectedDayOffset === 0}
+            disabled={selectedDayOffset === 0 || isPatchWeek}
             style={{
-              opacity: selectedDayOffset === 0 ? 0.35 : 1,
-              cursor: selectedDayOffset === 0 ? 'not-allowed' : 'pointer'
+              opacity: selectedDayOffset === 0 || isPatchWeek ? 0.35 : 1,
+              cursor: selectedDayOffset === 0 || isPatchWeek ? 'not-allowed' : 'pointer'
             }}
+            title={isPatchWeek ? 'All domains are open during Patch week' : 'Previous day'}
           >
             <ChevronLeft size={16} />
           </button>
           <span className="daily-day-title">
             {displayedDayIndex === gameDayIndex ? 'Today' : weekdayNames[displayedDayIndex]}
           </span>
-          <button className="daily-nav-btn" onClick={() => setSelectedDayOffset(prev => prev + 1)}>
+          <button 
+            className="daily-nav-btn" 
+            onClick={() => setSelectedDayOffset(prev => prev + 1)}
+            disabled={isPatchWeek}
+            style={{
+              opacity: isPatchWeek ? 0.35 : 1,
+              cursor: isPatchWeek ? 'not-allowed' : 'pointer'
+            }}
+            title={isPatchWeek ? 'All domains are open during Patch week' : 'Next day'}
+          >
             <ChevronRight size={16} />
           </button>
         </div>
@@ -173,7 +219,7 @@ export const SummaryPanel: React.FC<SummaryPanelProps> = ({
 
         {farmableMaterials.length === 0 ? (
           <div className="daily-domains-empty">
-            No materials to farm today.
+            {isPatchWeek ? 'No domain materials to farm.' : 'No materials to farm today.'}
           </div>
         ) : (
           <div className="daily-material-grid">
