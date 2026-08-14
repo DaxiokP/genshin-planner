@@ -1416,5 +1416,33 @@
       "vajradaamethystfragment",
       "vajradaamethystsliver"
     ]
+  },
+  "severedtailoftheskyroamer": {
+    "enemyName": "Winged Chimera Gryphon",
+    "drops": [
+      "severedtailoftheskyroamer"
+    ],
+    "gems": [
+      "vayudaturquoisegemstone",
+      "vayudaturquoisechunk",
+      "vayudaturquoisefragment",
+      "vayudaturquoisesliver",
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver"
+    ]
+  },
+  "unscorchedblossombranch": {
+    "enemyName": "Unscorched Blossom Branch Boss",
+    "drops": [
+      "unscorchedblossombranch"
+    ],
+    "gems": [
+      "agnidusagategemstone",
+      "agnidusagatechunk",
+      "agnidusagatefragment",
+      "agnidusagatesliver"
+    ]
   }
 }

@@ -467,6 +467,176 @@
           { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 18 }
         ]
       }
+    },
+    "Covenant of Frost and Snow": {
+      "ascension": {
+        "1": [
+          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
+          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 3 },
+          { "key": "chimericcore", "name": "Chimeric Core", "count": 2 }
+        ],
+        "2": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
+          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 12 },
+          { "key": "chimericcore", "name": "Chimeric Core", "count": 8 }
+        ],
+        "3": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
+          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 6 },
+          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
+        ],
+        "4": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
+          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 12 },
+          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+        ],
+        "5": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
+          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 9 },
+          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 }
+        ],
+        "6": [
+          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
+          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 18 },
+          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 }
+        ]
+      }
+    },
+    "Echoes of the Heart": {
+      "ascension": {
+        "1": [
+          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
+          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 3 },
+          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 2 }
+        ],
+        "2": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
+          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 12 },
+          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 8 }
+        ],
+        "3": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
+          { "key": "accretedmass", "name": "Accreted Mass", "count": 6 },
+          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+        ],
+        "4": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
+          { "key": "accretedmass", "name": "Accreted Mass", "count": 12 },
+          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+        ],
+        "5": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
+          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 9 },
+          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 }
+        ],
+        "6": [
+          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
+          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 18 },
+          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+        ]
+      }
+    },
+    "Song of the Vigil": {
+      "ascension": {
+        "1": [
+          { "key": "thefrostemperorsrevival", "name": "The Frost Emperor's Revival", "count": 3 },
+          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 3 },
+          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 2 }
+        ],
+        "2": [
+          { "key": "thefrostemperorsceremony", "name": "The Frost Emperor's Ceremony", "count": 3 },
+          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 12 },
+          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 8 }
+        ],
+        "3": [
+          { "key": "thefrostemperorsceremony", "name": "The Frost Emperor's Ceremony", "count": 6 },
+          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 6 },
+          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+        ],
+        "4": [
+          { "key": "thefrostemperorslament", "name": "The Frost Emperor's Lament", "count": 3 },
+          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 12 },
+          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+        ],
+        "5": [
+          { "key": "thefrostemperorslament", "name": "The Frost Emperor's Lament", "count": 6 },
+          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 9 },
+          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 }
+        ],
+        "6": [
+          { "key": "thefrostemperorsfarewell", "name": "The Frost Emperor's Farewell", "count": 4 },
+          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 18 },
+          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+        ]
+      }
+    },
+    "Emberwell": {
+      "ascension": {
+        "1": [
+          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
+          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 3 },
+          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 2 }
+        ],
+        "2": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
+          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 12 },
+          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 8 }
+        ],
+        "3": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
+          { "key": "accretedmass", "name": "Accreted Mass", "count": 6 },
+          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+        ],
+        "4": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
+          { "key": "accretedmass", "name": "Accreted Mass", "count": 12 },
+          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+        ],
+        "5": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
+          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 9 },
+          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 }
+        ],
+        "6": [
+          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
+          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 18 },
+          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+        ]
+      }
+    },
+    "Blade of Atonement": {
+      "ascension": {
+        "1": [
+          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
+          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 3 },
+          { "key": "chimericcore", "name": "Chimeric Core", "count": 2 }
+        ],
+        "2": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
+          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 12 },
+          { "key": "chimericcore", "name": "Chimeric Core", "count": 8 }
+        ],
+        "3": [
+          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
+          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 6 },
+          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
+        ],
+        "4": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
+          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 12 },
+          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+        ],
+        "5": [
+          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
+          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 9 },
+          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 }
+        ],
+        "6": [
+          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
+          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 18 },
+          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 }
+        ]
+      }
     }
   },
   "artifacts": {
@@ -664,7 +834,7 @@
       "rarity": 3,
       "sources": ["Snezhnaya Talent Domain", "Crafted"],
       "sortGroup": 500,
-      "sortRank": 104366,
+      "sortRank": 104365,
       "localExt": ".png"
     },
     "philosophiesofcharity": {
@@ -673,7 +843,7 @@
       "rarity": 4,
       "sources": ["Snezhnaya Talent Domain", "Crafted"],
       "sortGroup": 500,
-      "sortRank": 104367,
+      "sortRank": 104365,
       "localExt": ".png"
     },
     "teachingsofglory": {
@@ -691,7 +861,7 @@
       "rarity": 3,
       "sources": ["Snezhnaya Talent Domain", "Crafted"],
       "sortGroup": 500,
-      "sortRank": 104369,
+      "sortRank": 104368,
       "localExt": ".png"
     },
     "philosophiesofglory": {
@@ -700,7 +870,7 @@
       "rarity": 4,
       "sources": ["Snezhnaya Talent Domain", "Crafted"],
       "sortGroup": 500,
-      "sortRank": 104370,
+      "sortRank": 104368,
       "localExt": ".png"
     },
     "teachingsoffortitude": {
@@ -718,7 +888,7 @@
       "rarity": 3,
       "sources": ["Snezhnaya Talent Domain", "Crafted"],
       "sortGroup": 500,
-      "sortRank": 104372,
+      "sortRank": 104371,
       "localExt": ".png"
     },
     "philosophiesoffortitude": {
@@ -727,7 +897,7 @@
       "rarity": 4,
       "sources": ["Snezhnaya Talent Domain", "Crafted"],
       "sortGroup": 500,
-      "sortRank": 104373,
+      "sortRank": 104371,
       "localExt": ".png"
     },
     "etherealglimmershard": {
@@ -745,7 +915,7 @@
       "rarity": 2,
       "sources": ["Dropped by Ethereal Enemies", "Crafted"],
       "sortGroup": 100,
-      "sortRank": 112147,
+      "sortRank": 112146,
       "localExt": ".png"
     },
     "etherealcrystalscalestone": {
@@ -754,7 +924,7 @@
       "rarity": 3,
       "sources": ["Dropped by Ethereal Enemies", "Crafted"],
       "sortGroup": 100,
-      "sortRank": 112148,
+      "sortRank": 112146,
       "localExt": ".png"
     },
     "chimericcore": {
@@ -772,7 +942,7 @@
       "rarity": 2,
       "sources": ["Dropped by Synthetic Chimera Beasts", "Crafted"],
       "sortGroup": 100,
-      "sortRank": 112150,
+      "sortRank": 112149,
       "localExt": ".png"
     },
     "primechimericnexus": {
@@ -781,16 +951,16 @@
       "rarity": 3,
       "sources": ["Dropped by Synthetic Chimera Beasts", "Crafted"],
       "sortGroup": 100,
-      "sortRank": 112151,
+      "sortRank": 112149,
       "localExt": ".png"
     },
-    "coiledcoreoflife": {
-      "id": "112157",
-      "name": "Coiled Core of Life",
+    "hollowrootoflife": {
+      "id": "112155",
+      "name": "Hollow Root of Life",
       "rarity": 2,
       "sources": ["Dropped by Lifeform Organisms"],
       "sortGroup": 100,
-      "sortRank": 112157,
+      "sortRank": 112155,
       "localExt": ".png"
     },
     "sproutofnodeoflife": {
@@ -799,25 +969,25 @@
       "rarity": 3,
       "sources": ["Dropped by Lifeform Organisms", "Crafted"],
       "sortGroup": 100,
-      "sortRank": 112156,
+      "sortRank": 112155,
       "localExt": ".png"
     },
-    "hollowrootoflife": {
-      "id": "112155",
-      "name": "Hollow Root of Life",
+    "coiledcoreoflife": {
+      "id": "112157",
+      "name": "Coiled Core of Life",
       "rarity": 4,
       "sources": ["Dropped by Lifeform Organisms", "Crafted"],
       "sortGroup": 100,
       "sortRank": 112155,
       "localExt": ".png"
     },
-    "accretedgrowth": {
-      "id": "112154",
-      "name": "Accreted Growth",
+    "accretedfragment": {
+      "id": "112152",
+      "name": "Accreted Fragment",
       "rarity": 2,
       "sources": ["Dropped by Accreted Constructs"],
       "sortGroup": 100,
-      "sortRank": 112154,
+      "sortRank": 112152,
       "localExt": ".png"
     },
     "accretedmass": {
@@ -826,16 +996,124 @@
       "rarity": 3,
       "sources": ["Dropped by Accreted Constructs", "Crafted"],
       "sortGroup": 100,
-      "sortRank": 112153,
+      "sortRank": 112152,
       "localExt": ".png"
     },
-    "accretedfragment": {
-      "id": "112152",
-      "name": "Accreted Fragment",
+    "accretedgrowth": {
+      "id": "112154",
+      "name": "Accreted Growth",
       "rarity": 4,
       "sources": ["Dropped by Accreted Constructs", "Crafted"],
       "sortGroup": 100,
       "sortRank": 112152,
+      "localExt": ".png"
+    },
+    "riseofthepalestararmy": {
+      "id": "114085",
+      "name": "Rise of the Pale Star Army",
+      "rarity": 2,
+      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)"],
+      "sortGroup": 600,
+      "sortRank": 114085,
+      "localExt": ".png"
+    },
+    "musterofthepalestararmy": {
+      "id": "114086",
+      "name": "Muster of the Pale Star Army",
+      "rarity": 3,
+      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114085,
+      "localExt": ".png"
+    },
+    "clarionofthepalestararmy": {
+      "id": "114087",
+      "name": "Clarion of the Pale Star Army",
+      "rarity": 4,
+      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114085,
+      "localExt": ".png"
+    },
+    "triumphofthepalestararmy": {
+      "id": "114088",
+      "name": "Triumph of the Pale Star Army",
+      "rarity": 5,
+      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114085,
+      "localExt": ".png"
+    },
+    "measuredpourofthecellaredspiritualnectar": {
+      "id": "114089",
+      "name": "Measured Pour of the Cellared Spiritual Nectar",
+      "rarity": 2,
+      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)"],
+      "sortGroup": 600,
+      "sortRank": 114089,
+      "localExt": ".png"
+    },
+    "intoxicationofthecellaredspiritualnectar": {
+      "id": "114090",
+      "name": "Intoxication of the Cellared Spiritual Nectar",
+      "rarity": 3,
+      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114089,
+      "localExt": ".png"
+    },
+    "exhilarationofthecellaredspiritualnectar": {
+      "id": "114091",
+      "name": "Exhilaration of the Cellared Spiritual Nectar",
+      "rarity": 4,
+      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114089,
+      "localExt": ".png"
+    },
+    "revelryofthecellaredspiritualnectar": {
+      "id": "114092",
+      "name": "Revelry of the Cellared Spiritual Nectar",
+      "rarity": 5,
+      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114089,
+      "localExt": ".png"
+    },
+    "thefrostemperorsrevival": {
+      "id": "114093",
+      "name": "The Frost Emperor's Revival",
+      "rarity": 2,
+      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)"],
+      "sortGroup": 600,
+      "sortRank": 114093,
+      "localExt": ".png"
+    },
+    "thefrostemperorsceremony": {
+      "id": "114094",
+      "name": "The Frost Emperor's Ceremony",
+      "rarity": 3,
+      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114093,
+      "localExt": ".png"
+    },
+    "thefrostemperorslament": {
+      "id": "114095",
+      "name": "The Frost Emperor's Lament",
+      "rarity": 4,
+      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114093,
+      "localExt": ".png"
+    },
+    "thefrostemperorsfarewell": {
+      "id": "114096",
+      "name": "The Frost Emperor's Farewell",
+      "rarity": 5,
+      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)", "Crafted"],
+      "sortGroup": 600,
+      "sortRank": 114093,
       "localExt": ".png"
     },
     "frostfairyflower": {

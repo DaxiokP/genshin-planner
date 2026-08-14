@@ -5759,7 +5759,7 @@
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104366,
+    "sortRank": 104365,
     "localExt": ".png"
   },
   "philosophiesofcharity": {
@@ -5771,7 +5771,7 @@
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104367,
+    "sortRank": 104365,
     "localExt": ".png"
   },
   "teachingsofglory": {
@@ -5795,7 +5795,7 @@
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104369,
+    "sortRank": 104368,
     "localExt": ".png"
   },
   "philosophiesofglory": {
@@ -5807,7 +5807,7 @@
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104370,
+    "sortRank": 104368,
     "localExt": ".png"
   },
   "teachingsoffortitude": {
@@ -5831,7 +5831,7 @@
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104372,
+    "sortRank": 104371,
     "localExt": ".png"
   },
   "philosophiesoffortitude": {
@@ -5843,7 +5843,7 @@
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104373,
+    "sortRank": 104371,
     "localExt": ".png"
   },
   "etherealglimmershard": {
@@ -5866,7 +5866,7 @@
       "Crafted"
     ],
     "sortGroup": 100,
-    "sortRank": 112147,
+    "sortRank": 112146,
     "localExt": ".png"
   },
   "etherealcrystalscalestone": {
@@ -5878,7 +5878,7 @@
       "Crafted"
     ],
     "sortGroup": 100,
-    "sortRank": 112148,
+    "sortRank": 112146,
     "localExt": ".png"
   },
   "chimericcore": {
@@ -5901,7 +5901,7 @@
       "Crafted"
     ],
     "sortGroup": 100,
-    "sortRank": 112150,
+    "sortRank": 112149,
     "localExt": ".png"
   },
   "primechimericnexus": {
@@ -5913,18 +5913,18 @@
       "Crafted"
     ],
     "sortGroup": 100,
-    "sortRank": 112151,
+    "sortRank": 112149,
     "localExt": ".png"
   },
-  "coiledcoreoflife": {
-    "id": "112157",
-    "name": "Coiled Core of Life",
+  "hollowrootoflife": {
+    "id": "112155",
+    "name": "Hollow Root of Life",
     "rarity": 2,
     "sources": [
       "Dropped by Lifeform Organisms"
     ],
     "sortGroup": 100,
-    "sortRank": 112157,
+    "sortRank": 112155,
     "localExt": ".png"
   },
   "sproutofnodeoflife": {
@@ -5936,12 +5936,12 @@
       "Crafted"
     ],
     "sortGroup": 100,
-    "sortRank": 112156,
+    "sortRank": 112155,
     "localExt": ".png"
   },
-  "hollowrootoflife": {
-    "id": "112155",
-    "name": "Hollow Root of Life",
+  "coiledcoreoflife": {
+    "id": "112157",
+    "name": "Coiled Core of Life",
     "rarity": 4,
     "sources": [
       "Dropped by Lifeform Organisms",
@@ -5951,15 +5951,15 @@
     "sortRank": 112155,
     "localExt": ".png"
   },
-  "accretedgrowth": {
-    "id": "112154",
-    "name": "Accreted Growth",
+  "accretedfragment": {
+    "id": "112152",
+    "name": "Accreted Fragment",
     "rarity": 2,
     "sources": [
       "Dropped by Accreted Constructs"
     ],
     "sortGroup": 100,
-    "sortRank": 112154,
+    "sortRank": 112152,
     "localExt": ".png"
   },
   "accretedmass": {
@@ -5971,12 +5971,12 @@
       "Crafted"
     ],
     "sortGroup": 100,
-    "sortRank": 112153,
+    "sortRank": 112152,
     "localExt": ".png"
   },
-  "accretedfragment": {
-    "id": "112152",
-    "name": "Accreted Fragment",
+  "accretedgrowth": {
+    "id": "112154",
+    "name": "Accreted Growth",
     "rarity": 4,
     "sources": [
       "Dropped by Accreted Constructs",
@@ -5984,6 +5984,147 @@
     ],
     "sortGroup": 100,
     "sortRank": 112152,
+    "localExt": ".png"
+  },
+  "riseofthepalestararmy": {
+    "id": "114085",
+    "name": "Rise of the Pale Star Army",
+    "rarity": 2,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Mon/Thu/Sun)"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114085,
+    "localExt": ".png"
+  },
+  "musterofthepalestararmy": {
+    "id": "114086",
+    "name": "Muster of the Pale Star Army",
+    "rarity": 3,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Mon/Thu/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114085,
+    "localExt": ".png"
+  },
+  "clarionofthepalestararmy": {
+    "id": "114087",
+    "name": "Clarion of the Pale Star Army",
+    "rarity": 4,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Mon/Thu/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114085,
+    "localExt": ".png"
+  },
+  "triumphofthepalestararmy": {
+    "id": "114088",
+    "name": "Triumph of the Pale Star Army",
+    "rarity": 5,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Mon/Thu/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114085,
+    "localExt": ".png"
+  },
+  "measuredpourofthecellaredspiritualnectar": {
+    "id": "114089",
+    "name": "Measured Pour of the Cellared Spiritual Nectar",
+    "rarity": 2,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Tue/Fri/Sun)"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114089,
+    "localExt": ".png"
+  },
+  "intoxicationofthecellaredspiritualnectar": {
+    "id": "114090",
+    "name": "Intoxication of the Cellared Spiritual Nectar",
+    "rarity": 3,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Tue/Fri/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114089,
+    "localExt": ".png"
+  },
+  "exhilarationofthecellaredspiritualnectar": {
+    "id": "114091",
+    "name": "Exhilaration of the Cellared Spiritual Nectar",
+    "rarity": 4,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Tue/Fri/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114089,
+    "localExt": ".png"
+  },
+  "revelryofthecellaredspiritualnectar": {
+    "id": "114092",
+    "name": "Revelry of the Cellared Spiritual Nectar",
+    "rarity": 5,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Tue/Fri/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114089,
+    "localExt": ".png"
+  },
+  "thefrostemperorsrevival": {
+    "id": "114093",
+    "name": "The Frost Emperor's Revival",
+    "rarity": 2,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Wed/Sat/Sun)"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114093,
+    "localExt": ".png"
+  },
+  "thefrostemperorsceremony": {
+    "id": "114094",
+    "name": "The Frost Emperor's Ceremony",
+    "rarity": 3,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Wed/Sat/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114093,
+    "localExt": ".png"
+  },
+  "thefrostemperorslament": {
+    "id": "114095",
+    "name": "The Frost Emperor's Lament",
+    "rarity": 4,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Wed/Sat/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114093,
+    "localExt": ".png"
+  },
+  "thefrostemperorsfarewell": {
+    "id": "114096",
+    "name": "The Frost Emperor's Farewell",
+    "rarity": 5,
+    "sources": [
+      "Domain of Forgery: Cast Iron (Wed/Sat/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 600,
+    "sortRank": 114093,
     "localExt": ".png"
   },
   "frostfairyflower": {

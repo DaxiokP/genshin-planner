@@ -31524,5 +31524,535 @@
         }
       ]
     }
+  },
+  "Covenant of Frost and Snow": {
+    "ascension": {
+      "1": [
+        {
+          "key": "riseofthepalestararmy",
+          "name": "Rise of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 3
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 2
+        }
+      ],
+      "2": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 12
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 8
+        }
+      ],
+      "3": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 6
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 6
+        }
+      ],
+      "4": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 12
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 9
+        }
+      ],
+      "5": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 9
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "triumphofthepalestararmy",
+          "name": "Triumph of the Pale Star Army",
+          "count": 4
+        },
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 18
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 12
+        }
+      ]
+    }
+  },
+  "Echoes of the Heart": {
+    "ascension": {
+      "1": [
+        {
+          "key": "riseofthepalestararmy",
+          "name": "Rise of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "accretedfragment",
+          "name": "Accreted Fragment",
+          "count": 3
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 2
+        }
+      ],
+      "2": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "accretedfragment",
+          "name": "Accreted Fragment",
+          "count": 12
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 8
+        }
+      ],
+      "3": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "accretedmass",
+          "name": "Accreted Mass",
+          "count": 6
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 6
+        }
+      ],
+      "4": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "accretedmass",
+          "name": "Accreted Mass",
+          "count": 12
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 9
+        }
+      ],
+      "5": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "accretedgrowth",
+          "name": "Accreted Growth",
+          "count": 9
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "triumphofthepalestararmy",
+          "name": "Triumph of the Pale Star Army",
+          "count": 4
+        },
+        {
+          "key": "accretedgrowth",
+          "name": "Accreted Growth",
+          "count": 18
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 12
+        }
+      ]
+    }
+  },
+  "Song of the Vigil": {
+    "ascension": {
+      "1": [
+        {
+          "key": "thefrostemperorsrevival",
+          "name": "The Frost Emperor's Revival",
+          "count": 3
+        },
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 3
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 2
+        }
+      ],
+      "2": [
+        {
+          "key": "thefrostemperorsceremony",
+          "name": "The Frost Emperor's Ceremony",
+          "count": 3
+        },
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 12
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 8
+        }
+      ],
+      "3": [
+        {
+          "key": "thefrostemperorsceremony",
+          "name": "The Frost Emperor's Ceremony",
+          "count": 6
+        },
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 6
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 6
+        }
+      ],
+      "4": [
+        {
+          "key": "thefrostemperorslament",
+          "name": "The Frost Emperor's Lament",
+          "count": 3
+        },
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 12
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 9
+        }
+      ],
+      "5": [
+        {
+          "key": "thefrostemperorslament",
+          "name": "The Frost Emperor's Lament",
+          "count": 6
+        },
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 9
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "thefrostemperorsfarewell",
+          "name": "The Frost Emperor's Farewell",
+          "count": 4
+        },
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 18
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 12
+        }
+      ]
+    }
+  },
+  "Emberwell": {
+    "ascension": {
+      "1": [
+        {
+          "key": "riseofthepalestararmy",
+          "name": "Rise of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "accretedfragment",
+          "name": "Accreted Fragment",
+          "count": 3
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 2
+        }
+      ],
+      "2": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "accretedfragment",
+          "name": "Accreted Fragment",
+          "count": 12
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 8
+        }
+      ],
+      "3": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "accretedmass",
+          "name": "Accreted Mass",
+          "count": 6
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 6
+        }
+      ],
+      "4": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "accretedmass",
+          "name": "Accreted Mass",
+          "count": 12
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 9
+        }
+      ],
+      "5": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "accretedgrowth",
+          "name": "Accreted Growth",
+          "count": 9
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "triumphofthepalestararmy",
+          "name": "Triumph of the Pale Star Army",
+          "count": 4
+        },
+        {
+          "key": "accretedgrowth",
+          "name": "Accreted Growth",
+          "count": 18
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 12
+        }
+      ]
+    }
+  },
+  "Blade of Atonement": {
+    "ascension": {
+      "1": [
+        {
+          "key": "riseofthepalestararmy",
+          "name": "Rise of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 3
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 2
+        }
+      ],
+      "2": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "hollowrootoflife",
+          "name": "Hollow Root of Life",
+          "count": 12
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 8
+        }
+      ],
+      "3": [
+        {
+          "key": "musterofthepalestararmy",
+          "name": "Muster of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 6
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 6
+        }
+      ],
+      "4": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 3
+        },
+        {
+          "key": "sproutofnodeoflife",
+          "name": "Sprout Node of Life",
+          "count": 12
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 9
+        }
+      ],
+      "5": [
+        {
+          "key": "clarionofthepalestararmy",
+          "name": "Clarion of the Pale Star Army",
+          "count": 6
+        },
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 9
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "triumphofthepalestararmy",
+          "name": "Triumph of the Pale Star Army",
+          "count": 4
+        },
+        {
+          "key": "coiledcoreoflife",
+          "name": "Coiled Core of Life",
+          "count": 18
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 12
+        }
+      ]
+    }
   }
 }

@@ -748,18 +748,25 @@ export function getDomainMaterialWeekdayGroup(
   sortGroup?: number,
   sortRank?: number
 ): 'Monday/Thursday' | 'Tuesday/Friday' | 'Wednesday/Saturday' | null {
-  if (sortGroup === 600 && sortRank !== undefined) {
-    const mod = sortRank % 3;
-    if (mod === 2) return 'Monday/Thursday';
-    if (mod === 0) return 'Tuesday/Friday';
-    if (mod === 1) return 'Wednesday/Saturday';
+  const lowerKey = key.toLowerCase();
+
+  if (sortGroup === 600) {
+    if (['palestararmy', 'palestar'].some(name => lowerKey.includes(name))) return 'Monday/Thursday';
+    if (['cellaredspiritualnectar', 'cellarnectar', 'spiritualnectar'].some(name => lowerKey.includes(name))) return 'Tuesday/Friday';
+    if (['frostemperor', 'thefrostemperor'].some(name => lowerKey.includes(name))) return 'Wednesday/Saturday';
+
+    if (sortRank !== undefined) {
+      const mod = sortRank % 3;
+      if (mod === 2) return 'Monday/Thursday';
+      if (mod === 0) return 'Tuesday/Friday';
+      if (mod === 1) return 'Wednesday/Saturday';
+    }
   }
 
   if (sortGroup === 500 && key !== 'crownofinsight') {
-    const lowerKey = key.toLowerCase();
-    const monThu = ['freedom', 'prosperity', 'transience', 'admonition', 'equity', 'contention', 'moonlight'];
-    const tueFri = ['resistance', 'diligence', 'elegance', 'ingenuity', 'justice', 'kindling', 'elysium'];
-    const wedSat = ['ballad', 'gold', 'light', 'praxis', 'order', 'conflict', 'vagrancy'];
+    const monThu = ['freedom', 'prosperity', 'transience', 'admonition', 'equity', 'contention', 'moonlight', 'charity'];
+    const tueFri = ['resistance', 'diligence', 'elegance', 'ingenuity', 'justice', 'kindling', 'elysium', 'fortitude'];
+    const wedSat = ['ballad', 'gold', 'light', 'praxis', 'order', 'conflict', 'vagrancy', 'glory'];
 
     if (monThu.some(name => lowerKey.includes(name))) return 'Monday/Thursday';
     if (tueFri.some(name => lowerKey.includes(name))) return 'Tuesday/Friday';

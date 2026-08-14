@@ -34,7 +34,11 @@ const allowedNames = new Set([
   "Coiled Core of Life", "Sprout Node of Life", "Sprout of Node of Life", "Hollow Root of Life",
   "Accreted Growth", "Accreted Mass", "Accreted Fragment",
   "Frostfairy Flower", "Flockingweed", "Golden Fern", "Glaciafruit", "Lumifluorite",
-  "Snezhnaya Specialty Ore", "Rainbowdrop Crystals"
+  "Snezhnaya Specialty Ore", "Rainbowdrop Crystals",
+  // 7.0 Weapon Domain Materials
+  "Rise of the Pale Star Army", "Muster of the Pale Star Army", "Clarion of the Pale Star Army", "Triumph of the Pale Star Army",
+  "Measured Pour of the Cellared Spiritual Nectar", "Intoxication of the Cellared Spiritual Nectar", "Exhilaration of the Cellared Spiritual Nectar", "Revelry of the Cellared Spiritual Nectar",
+  "The Frost Emperor's Revival", "The Frost Emperor's Ceremony", "The Frost Emperor's Lament", "The Frost Emperor's Farewell"
 ]);
 
 // 1. Scrape Character Ascension bounds

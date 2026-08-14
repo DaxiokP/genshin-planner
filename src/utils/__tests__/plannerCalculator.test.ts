@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { calculateRequirements, simulatePlannerInventory } from '../plannerCalculator';
+import { calculateRequirements, simulatePlannerInventory, getDomainMaterialWeekdayGroup } from '../plannerCalculator';
 
 describe('plannerCalculator', () => {
   describe('calculateRequirements', () => {
@@ -228,6 +228,33 @@ describe('plannerCalculator', () => {
         expect(card2Mat!.isEnough).toBe(true);
         expect(card2Mat!.missing).toBe(0);
       }
+    });
+  });
+
+  describe('getDomainMaterialWeekdayGroup', () => {
+    test('maps 7.0 talent domain materials to correct schedules', () => {
+      expect(getDomainMaterialWeekdayGroup('teachingsofcharity', 500, 104365)).toBe('Monday/Thursday');
+      expect(getDomainMaterialWeekdayGroup('guidetocharity', 500, 104365)).toBe('Monday/Thursday');
+      expect(getDomainMaterialWeekdayGroup('philosophiesofcharity', 500, 104365)).toBe('Monday/Thursday');
+
+      expect(getDomainMaterialWeekdayGroup('teachingsoffortitude', 500, 104371)).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('guidetofortitude', 500, 104371)).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('philosophiesoffortitude', 500, 104371)).toBe('Tuesday/Friday');
+
+      expect(getDomainMaterialWeekdayGroup('teachingsofglory', 500, 104368)).toBe('Wednesday/Saturday');
+      expect(getDomainMaterialWeekdayGroup('guidetoglory', 500, 104368)).toBe('Wednesday/Saturday');
+      expect(getDomainMaterialWeekdayGroup('philosophiesofglory', 500, 104368)).toBe('Wednesday/Saturday');
+    });
+
+    test('maps 7.0 weapon domain materials to correct schedules', () => {
+      expect(getDomainMaterialWeekdayGroup('riseofthepalestararmy', 600, 114085)).toBe('Monday/Thursday');
+      expect(getDomainMaterialWeekdayGroup('triumphofthepalestararmy', 600, 114085)).toBe('Monday/Thursday');
+
+      expect(getDomainMaterialWeekdayGroup('measuredpourofthecellaredspiritualnectar', 600, 114089)).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('revelryofthecellaredspiritualnectar', 600, 114089)).toBe('Tuesday/Friday');
+
+      expect(getDomainMaterialWeekdayGroup('thefrostemperorsrevival', 600, 114093)).toBe('Wednesday/Saturday');
+      expect(getDomainMaterialWeekdayGroup('thefrostemperorsfarewell', 600, 114093)).toBe('Wednesday/Saturday');
     });
   });
 });

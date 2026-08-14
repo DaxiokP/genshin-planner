@@ -215,7 +215,20 @@ const assetJobs = [
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104370.png', dest: 'public/icons/104370.png', fallback: 'public/icons/104303.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104371.png', dest: 'public/icons/104371.png', fallback: 'public/icons/104301.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104372.png', dest: 'public/icons/104372.png', fallback: 'public/icons/104302.png' },
-  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104373.png', dest: 'public/icons/104373.png', fallback: 'public/icons/104303.png' }
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_104373.png', dest: 'public/icons/104373.png', fallback: 'public/icons/104303.png' },
+  // 7.0 Weapon Domain Materials
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114085.png', dest: 'public/icons/114085.png', fallback: 'public/icons/114001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114086.png', dest: 'public/icons/114086.png', fallback: 'public/icons/114002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114087.png', dest: 'public/icons/114087.png', fallback: 'public/icons/114003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114088.png', dest: 'public/icons/114088.png', fallback: 'public/icons/114004.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114089.png', dest: 'public/icons/114089.png', fallback: 'public/icons/114001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114090.png', dest: 'public/icons/114090.png', fallback: 'public/icons/114002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114091.png', dest: 'public/icons/114091.png', fallback: 'public/icons/114003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114092.png', dest: 'public/icons/114092.png', fallback: 'public/icons/114004.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114093.png', dest: 'public/icons/114093.png', fallback: 'public/icons/114001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114094.png', dest: 'public/icons/114094.png', fallback: 'public/icons/114002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114095.png', dest: 'public/icons/114095.png', fallback: 'public/icons/114003.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114096.png', dest: 'public/icons/114096.png', fallback: 'public/icons/114004.png' }
 ];
 
 // Artifact Relics
