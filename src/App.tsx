@@ -1093,6 +1093,8 @@ const getDomainInfo = (key: string, sortGroup?: number, sortRank?: number) => {
       name = 'Blazing Ruins';
     } else if (['moonlight', 'elysium', 'vagrancy'].some(n => lowerKey.includes(n))) {
       name = 'Lightless Capital';
+    } else if (['charity', 'fortitude', 'glory'].some(n => lowerKey.includes(n))) {
+      name = 'Relics of the Fallen Grace';
     }
   } else if (sortGroup === 600) {
     // Weapon materials
@@ -1108,6 +1110,8 @@ const getDomainInfo = (key: string, sortGroup?: number, sortRank?: number) => {
       name = 'Echoes of the Deep Tides';
     } else if (['sacrificialheart', 'longnightflint', 'artfuldevice'].some(n => lowerKey.includes(n))) {
       name = 'Ancient Watchtower';
+    } else if (['palestararmy', 'palestar', 'cellaredspiritualnectar', 'cellarnectar', 'spiritualnectar', 'frostemperor', 'thefrostemperor'].some(n => lowerKey.includes(n))) {
+      name = 'Domain of Forgery: Cast Iron';
     }
   }
 

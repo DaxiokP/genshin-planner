@@ -234,42 +234,42 @@
       },
       "talents": {
         "2": [
-          { "key": "teachingsofglory", "name": "Teachings of Glory", "count": 3 },
+          { "key": "teachingsoffortitude", "name": "Teachings of Fortitude", "count": 3 },
           { "key": "chimericcore", "name": "Chimeric Core", "count": 6 }
         ],
         "3": [
-          { "key": "guidetoglory", "name": "Guide to Glory", "count": 2 },
+          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 2 },
           { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 3 }
         ],
         "4": [
-          { "key": "guidetoglory", "name": "Guide to Glory", "count": 4 },
+          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 4 },
           { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 4 }
         ],
         "5": [
-          { "key": "guidetoglory", "name": "Guide to Glory", "count": 6 },
+          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 6 },
           { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
         ],
         "6": [
-          { "key": "guidetoglory", "name": "Guide to Glory", "count": 9 },
+          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 9 },
           { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
         ],
         "7": [
-          { "key": "philosophiesofglory", "name": "Philosophies of Glory", "count": 4 },
+          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 4 },
           { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 4 },
           { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 1 }
         ],
         "8": [
-          { "key": "philosophiesofglory", "name": "Philosophies of Glory", "count": 6 },
+          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 6 },
           { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 },
           { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 1 }
         ],
         "9": [
-          { "key": "philosophiesofglory", "name": "Philosophies of Glory", "count": 12 },
+          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 12 },
           { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 9 },
           { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 2 }
         ],
         "10": [
-          { "key": "philosophiesofglory", "name": "Philosophies of Glory", "count": 38 },
+          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 38 },
           { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 },
           { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 2 },
           { "key": "crownofinsight", "name": "Crown of Insight", "count": 1 }
@@ -993,7 +993,7 @@
       "id": "104365",
       "name": "Teachings of Charity",
       "rarity": 2,
-      "sources": ["Snezhnaya Talent Domain", "Relics of the Fallen Grace"],
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)"],
       "sortGroup": 500,
       "sortRank": 104365,
       "localExt": ".png"
@@ -1002,7 +1002,7 @@
       "id": "104366",
       "name": "Guide to Charity",
       "rarity": 3,
-      "sources": ["Snezhnaya Talent Domain", "Crafted"],
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)", "Crafted"],
       "sortGroup": 500,
       "sortRank": 104365,
       "localExt": ".png"
@@ -1011,61 +1011,61 @@
       "id": "104367",
       "name": "Philosophies of Charity",
       "rarity": 4,
-      "sources": ["Snezhnaya Talent Domain", "Crafted"],
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)", "Crafted"],
       "sortGroup": 500,
       "sortRank": 104365,
       "localExt": ".png"
     },
-    "teachingsofglory": {
-      "id": "104368",
-      "name": "Teachings of Glory",
-      "rarity": 2,
-      "sources": ["Snezhnaya Talent Domain", "Relics of the Fallen Grace"],
-      "sortGroup": 500,
-      "sortRank": 104368,
-      "localExt": ".png"
-    },
-    "guidetoglory": {
-      "id": "104369",
-      "name": "Guide to Glory",
-      "rarity": 3,
-      "sources": ["Snezhnaya Talent Domain", "Crafted"],
-      "sortGroup": 500,
-      "sortRank": 104368,
-      "localExt": ".png"
-    },
-    "philosophiesofglory": {
-      "id": "104370",
-      "name": "Philosophies of Glory",
-      "rarity": 4,
-      "sources": ["Snezhnaya Talent Domain", "Crafted"],
-      "sortGroup": 500,
-      "sortRank": 104368,
-      "localExt": ".png"
-    },
     "teachingsoffortitude": {
-      "id": "104371",
+      "id": "104368",
       "name": "Teachings of Fortitude",
       "rarity": 2,
-      "sources": ["Snezhnaya Talent Domain", "Relics of the Fallen Grace"],
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)"],
       "sortGroup": 500,
-      "sortRank": 104371,
+      "sortRank": 104368,
       "localExt": ".png"
     },
     "guidetofortitude": {
-      "id": "104372",
+      "id": "104369",
       "name": "Guide to Fortitude",
       "rarity": 3,
-      "sources": ["Snezhnaya Talent Domain", "Crafted"],
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)", "Crafted"],
+      "sortGroup": 500,
+      "sortRank": 104368,
+      "localExt": ".png"
+    },
+    "philosophiesoffortitude": {
+      "id": "104370",
+      "name": "Philosophies of Fortitude",
+      "rarity": 4,
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)", "Crafted"],
+      "sortGroup": 500,
+      "sortRank": 104368,
+      "localExt": ".png"
+    },
+    "teachingsofglory": {
+      "id": "104371",
+      "name": "Teachings of Glory",
+      "rarity": 2,
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)"],
       "sortGroup": 500,
       "sortRank": 104371,
       "localExt": ".png"
     },
-    "philosophiesoffortitude": {
+    "guidetoglory": {
+      "id": "104372",
+      "name": "Guide to Glory",
+      "rarity": 3,
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)", "Crafted"],
+      "sortGroup": 500,
+      "sortRank": 104371,
+      "localExt": ".png"
+    },
+    "philosophiesofglory": {
       "id": "104373",
-      "name": "Philosophies of Fortitude",
+      "name": "Philosophies of Glory",
       "rarity": 4,
-      "sources": ["Snezhnaya Talent Domain", "Crafted"],
+      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)", "Crafted"],
       "sortGroup": 500,
       "sortRank": 104371,
       "localExt": ".png"

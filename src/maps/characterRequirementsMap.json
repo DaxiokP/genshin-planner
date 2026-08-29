@@ -41279,8 +41279,8 @@
     "talents": {
       "2": [
         {
-          "key": "teachingsofglory",
-          "name": "Teachings of Glory",
+          "key": "teachingsoffortitude",
+          "name": "Teachings of Fortitude",
           "count": 3
         },
         {
@@ -41291,8 +41291,8 @@
       ],
       "3": [
         {
-          "key": "guidetoglory",
-          "name": "Guide to Glory",
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
           "count": 2
         },
         {
@@ -41303,8 +41303,8 @@
       ],
       "4": [
         {
-          "key": "guidetoglory",
-          "name": "Guide to Glory",
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
           "count": 4
         },
         {
@@ -41315,8 +41315,8 @@
       ],
       "5": [
         {
-          "key": "guidetoglory",
-          "name": "Guide to Glory",
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
           "count": 6
         },
         {
@@ -41327,8 +41327,8 @@
       ],
       "6": [
         {
-          "key": "guidetoglory",
-          "name": "Guide to Glory",
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
           "count": 9
         },
         {
@@ -41339,8 +41339,8 @@
       ],
       "7": [
         {
-          "key": "philosophiesofglory",
-          "name": "Philosophies of Glory",
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
           "count": 4
         },
         {
@@ -41356,8 +41356,8 @@
       ],
       "8": [
         {
-          "key": "philosophiesofglory",
-          "name": "Philosophies of Glory",
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
           "count": 6
         },
         {
@@ -41373,8 +41373,8 @@
       ],
       "9": [
         {
-          "key": "philosophiesofglory",
-          "name": "Philosophies of Glory",
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
           "count": 12
         },
         {
@@ -41390,8 +41390,8 @@
       ],
       "10": [
         {
-          "key": "philosophiesofglory",
-          "name": "Philosophies of Glory",
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
           "count": 38
         },
         {

@@ -237,13 +237,18 @@ describe('plannerCalculator', () => {
       expect(getDomainMaterialWeekdayGroup('guidetocharity', 500, 104365)).toBe('Monday/Thursday');
       expect(getDomainMaterialWeekdayGroup('philosophiesofcharity', 500, 104365)).toBe('Monday/Thursday');
 
-      expect(getDomainMaterialWeekdayGroup('teachingsoffortitude', 500, 104371)).toBe('Tuesday/Friday');
-      expect(getDomainMaterialWeekdayGroup('guidetofortitude', 500, 104371)).toBe('Tuesday/Friday');
-      expect(getDomainMaterialWeekdayGroup('philosophiesoffortitude', 500, 104371)).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('teachingsoffortitude', 500, 104368)).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('guidetofortitude', 500, 104368)).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('philosophiesoffortitude', 500, 104368)).toBe('Tuesday/Friday');
 
-      expect(getDomainMaterialWeekdayGroup('teachingsofglory', 500, 104368)).toBe('Wednesday/Saturday');
-      expect(getDomainMaterialWeekdayGroup('guidetoglory', 500, 104368)).toBe('Wednesday/Saturday');
-      expect(getDomainMaterialWeekdayGroup('philosophiesofglory', 500, 104368)).toBe('Wednesday/Saturday');
+      expect(getDomainMaterialWeekdayGroup('teachingsofglory', 500, 104371)).toBe('Wednesday/Saturday');
+      expect(getDomainMaterialWeekdayGroup('guidetoglory', 500, 104371)).toBe('Wednesday/Saturday');
+      expect(getDomainMaterialWeekdayGroup('philosophiesofglory', 500, 104371)).toBe('Wednesday/Saturday');
+
+      // Also resolves correctly when sortGroup and sortRank are omitted
+      expect(getDomainMaterialWeekdayGroup('teachingsofcharity')).toBe('Monday/Thursday');
+      expect(getDomainMaterialWeekdayGroup('teachingsoffortitude')).toBe('Tuesday/Friday');
+      expect(getDomainMaterialWeekdayGroup('teachingsofglory')).toBe('Wednesday/Saturday');
     });
 
     test('maps 7.0 weapon domain materials to correct schedules', () => {
@@ -255,6 +260,31 @@ describe('plannerCalculator', () => {
 
       expect(getDomainMaterialWeekdayGroup('thefrostemperorsrevival', 600, 114093)).toBe('Wednesday/Saturday');
       expect(getDomainMaterialWeekdayGroup('thefrostemperorsfarewell', 600, 114093)).toBe('Wednesday/Saturday');
+    });
+
+    test('Alyosha requirements use Fortitude and map to Tuesday/Friday domain schedule', () => {
+      const plannedAlyosha = {
+        key: 'Alyosha',
+        type: 'character',
+        enabled: true,
+        current: {
+          level: 1,
+          ascension: 0,
+          talent: { auto: 1, skill: 1, burst: 1 }
+        },
+        desired: {
+          level: 1,
+          ascension: 0,
+          talent: { auto: 2, skill: 1, burst: 1 }
+        }
+      };
+
+      const result = simulatePlannerInventory([plannedAlyosha], {});
+      const tueFriMissing = result.domainMissing['Tuesday/Friday'];
+      expect(tueFriMissing.some(m => m.key === 'teachingsoffortitude')).toBe(true);
+      const fortitudeItem = tueFriMissing.find(m => m.key === 'teachingsoffortitude');
+      expect(fortitudeItem?.name).toBe('Teachings of Fortitude');
+      expect(fortitudeItem?.iconId).toBe('104368');
     });
   });
 });

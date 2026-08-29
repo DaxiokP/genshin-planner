@@ -5743,8 +5743,7 @@
     "name": "Teachings of Charity",
     "rarity": 2,
     "sources": [
-      "Snezhnaya Talent Domain",
-      "Relics of the Fallen Grace"
+      "Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)"
     ],
     "sortGroup": 500,
     "sortRank": 104365,
@@ -5755,7 +5754,7 @@
     "name": "Guide to Charity",
     "rarity": 3,
     "sources": [
-      "Snezhnaya Talent Domain",
+      "Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)",
       "Crafted"
     ],
     "sortGroup": 500,
@@ -5767,7 +5766,7 @@
     "name": "Philosophies of Charity",
     "rarity": 4,
     "sources": [
-      "Snezhnaya Talent Domain",
+      "Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)",
       "Crafted"
     ],
     "sortGroup": 500,
@@ -5775,75 +5774,73 @@
     "localExt": ".png"
   },
   "teachingsofglory": {
-    "id": "104368",
+    "id": "104371",
     "name": "Teachings of Glory",
     "rarity": 2,
     "sources": [
-      "Snezhnaya Talent Domain",
-      "Relics of the Fallen Grace"
+      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)"
     ],
     "sortGroup": 500,
-    "sortRank": 104368,
+    "sortRank": 104371,
     "localExt": ".png"
   },
   "guidetoglory": {
-    "id": "104369",
+    "id": "104372",
     "name": "Guide to Glory",
     "rarity": 3,
     "sources": [
-      "Snezhnaya Talent Domain",
+      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104368,
+    "sortRank": 104371,
     "localExt": ".png"
   },
   "philosophiesofglory": {
-    "id": "104370",
+    "id": "104373",
     "name": "Philosophies of Glory",
     "rarity": 4,
     "sources": [
-      "Snezhnaya Talent Domain",
+      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104371,
+    "localExt": ".png"
+  },
+  "teachingsoffortitude": {
+    "id": "104368",
+    "name": "Teachings of Fortitude",
+    "rarity": 2,
+    "sources": [
+      "Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104368,
+    "localExt": ".png"
+  },
+  "guidetofortitude": {
+    "id": "104369",
+    "name": "Guide to Fortitude",
+    "rarity": 3,
+    "sources": [
+      "Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)",
       "Crafted"
     ],
     "sortGroup": 500,
     "sortRank": 104368,
     "localExt": ".png"
   },
-  "teachingsoffortitude": {
-    "id": "104371",
-    "name": "Teachings of Fortitude",
-    "rarity": 2,
-    "sources": [
-      "Snezhnaya Talent Domain",
-      "Relics of the Fallen Grace"
-    ],
-    "sortGroup": 500,
-    "sortRank": 104371,
-    "localExt": ".png"
-  },
-  "guidetofortitude": {
-    "id": "104372",
-    "name": "Guide to Fortitude",
-    "rarity": 3,
-    "sources": [
-      "Snezhnaya Talent Domain",
-      "Crafted"
-    ],
-    "sortGroup": 500,
-    "sortRank": 104371,
-    "localExt": ".png"
-  },
   "philosophiesoffortitude": {
-    "id": "104373",
+    "id": "104370",
     "name": "Philosophies of Fortitude",
     "rarity": 4,
     "sources": [
-      "Snezhnaya Talent Domain",
+      "Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)",
       "Crafted"
     ],
     "sortGroup": 500,
-    "sortRank": 104371,
+    "sortRank": 104368,
     "localExt": ".png"
   },
   "etherealglimmershard": {
