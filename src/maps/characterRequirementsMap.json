@@ -41411,5 +41411,537 @@
         }
       ]
     }
+  },
+  "Vesna": {
+    "ascension": {
+      "1": [
+        {
+          "key": "vayudaturquoisesliver",
+          "name": "Vayuda Turquoise Sliver",
+          "count": 1
+        },
+        {
+          "key": "goldenfern",
+          "name": "Golden Fern",
+          "count": 3
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "vayudaturquoisefragment",
+          "name": "Vayuda Turquoise Fragment",
+          "count": 3
+        },
+        {
+          "key": "vagabondscrackedarmor",
+          "name": "Vagabond's Cracked Armor",
+          "count": 2
+        },
+        {
+          "key": "goldenfern",
+          "name": "Golden Fern",
+          "count": 10
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "vayudaturquoisefragment",
+          "name": "Vayuda Turquoise Fragment",
+          "count": 6
+        },
+        {
+          "key": "vagabondscrackedarmor",
+          "name": "Vagabond's Cracked Armor",
+          "count": 4
+        },
+        {
+          "key": "goldenfern",
+          "name": "Golden Fern",
+          "count": 20
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "vayudaturquoisechunk",
+          "name": "Vayuda Turquoise Chunk",
+          "count": 3
+        },
+        {
+          "key": "vagabondscrackedarmor",
+          "name": "Vagabond's Cracked Armor",
+          "count": 8
+        },
+        {
+          "key": "goldenfern",
+          "name": "Golden Fern",
+          "count": 30
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "vayudaturquoisechunk",
+          "name": "Vayuda Turquoise Chunk",
+          "count": 6
+        },
+        {
+          "key": "vagabondscrackedarmor",
+          "name": "Vagabond's Cracked Armor",
+          "count": 12
+        },
+        {
+          "key": "goldenfern",
+          "name": "Golden Fern",
+          "count": 45
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "vayudaturquoisegemstone",
+          "name": "Vayuda Turquoise Gemstone",
+          "count": 6
+        },
+        {
+          "key": "vagabondscrackedarmor",
+          "name": "Vagabond's Cracked Armor",
+          "count": 20
+        },
+        {
+          "key": "goldenfern",
+          "name": "Golden Fern",
+          "count": 60
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "teachingsofglory",
+          "name": "Teachings of Glory",
+          "count": 3
+        },
+        {
+          "key": "etherealglimmershard",
+          "name": "Ethereal Glimmershard",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "guidetoglory",
+          "name": "Guide to Glory",
+          "count": 2
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "guidetoglory",
+          "name": "Guide to Glory",
+          "count": 4
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "guidetoglory",
+          "name": "Guide to Glory",
+          "count": 6
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "guidetoglory",
+          "name": "Guide to Glory",
+          "count": 9
+        },
+        {
+          "key": "etherealcrystal",
+          "name": "Ethereal Crystal",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "philosophiesofglory",
+          "name": "Philosophies of Glory",
+          "count": 4
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 4
+        },
+        {
+          "key": "profanedsprout",
+          "name": "Profaned Sprout",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "philosophiesofglory",
+          "name": "Philosophies of Glory",
+          "count": 6
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 6
+        },
+        {
+          "key": "profanedsprout",
+          "name": "Profaned Sprout",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "philosophiesofglory",
+          "name": "Philosophies of Glory",
+          "count": 12
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 9
+        },
+        {
+          "key": "profanedsprout",
+          "name": "Profaned Sprout",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "philosophiesofglory",
+          "name": "Philosophies of Glory",
+          "count": 16
+        },
+        {
+          "key": "etherealcrystalscalestone",
+          "name": "Ethereal Crystalscale Stone",
+          "count": 12
+        },
+        {
+          "key": "profanedsprout",
+          "name": "Profaned Sprout",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "Vodyanitsa": {
+    "ascension": {
+      "1": [
+        {
+          "key": "varunadalazuritesliver",
+          "name": "Varunada Lazurite Sliver",
+          "count": 1
+        },
+        {
+          "key": "frostfairyflower",
+          "name": "Frostfairy Flower",
+          "count": 3
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "varunadalazuritefragment",
+          "name": "Varunada Lazurite Fragment",
+          "count": 3
+        },
+        {
+          "key": "unscorchedblossombranch",
+          "name": "Unscorched Blossom Branch",
+          "count": 2
+        },
+        {
+          "key": "frostfairyflower",
+          "name": "Frostfairy Flower",
+          "count": 10
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "varunadalazuritefragment",
+          "name": "Varunada Lazurite Fragment",
+          "count": 6
+        },
+        {
+          "key": "unscorchedblossombranch",
+          "name": "Unscorched Blossom Branch",
+          "count": 4
+        },
+        {
+          "key": "frostfairyflower",
+          "name": "Frostfairy Flower",
+          "count": 20
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "varunadalazuritechunk",
+          "name": "Varunada Lazurite Chunk",
+          "count": 3
+        },
+        {
+          "key": "unscorchedblossombranch",
+          "name": "Unscorched Blossom Branch",
+          "count": 8
+        },
+        {
+          "key": "frostfairyflower",
+          "name": "Frostfairy Flower",
+          "count": 30
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "varunadalazuritechunk",
+          "name": "Varunada Lazurite Chunk",
+          "count": 6
+        },
+        {
+          "key": "unscorchedblossombranch",
+          "name": "Unscorched Blossom Branch",
+          "count": 12
+        },
+        {
+          "key": "frostfairyflower",
+          "name": "Frostfairy Flower",
+          "count": 45
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "varunadalazuritegemstone",
+          "name": "Varunada Lazurite Gemstone",
+          "count": 6
+        },
+        {
+          "key": "unscorchedblossombranch",
+          "name": "Unscorched Blossom Branch",
+          "count": 20
+        },
+        {
+          "key": "frostfairyflower",
+          "name": "Frostfairy Flower",
+          "count": 60
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "teachingsoffortitude",
+          "name": "Teachings of Fortitude",
+          "count": 3
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
+          "count": 2
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
+          "count": 4
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
+          "count": 6
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
+          "count": 9
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
+          "count": 4
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 4
+        },
+        {
+          "key": "madmansrestraint",
+          "name": "Madman's Restraint",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
+          "count": 6
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 6
+        },
+        {
+          "key": "madmansrestraint",
+          "name": "Madman's Restraint",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
+          "count": 12
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 9
+        },
+        {
+          "key": "madmansrestraint",
+          "name": "Madman's Restraint",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
+          "count": 16
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 12
+        },
+        {
+          "key": "madmansrestraint",
+          "name": "Madman's Restraint",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
   }
 }

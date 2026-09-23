@@ -34,13 +34,20 @@ async function main() {
     { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_GlintstoneCatalyst.png', dest: 'public/weapons/Catalyst_GlintstoneCatalyst.png' },
     { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Pole_GlintstonePolearm.png', dest: 'public/weapons/Pole_GlintstonePolearm.png' },
     { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_GlintstoneSword.png', dest: 'public/weapons/Sword_GlintstoneSword.png' },
-    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_GlintstoneClaymore.png', dest: 'public/weapons/Claymore_GlintstoneClaymore.png' }
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Claymore_GlintstoneClaymore.png', dest: 'public/weapons/Claymore_GlintstoneClaymore.png' },
+    // 7.1 Weapons
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Samosvist.png', dest: 'public/weapons/Sword_Samosvist.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_Bludnye.png', dest: 'public/weapons/Catalyst_Bludnye.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_SpikedStake.png', dest: 'public/weapons/Sword_SpikedStake.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Fajian.png', dest: 'public/weapons/Sword_Fajian.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_FrostScepter.png', dest: 'public/weapons/Catalyst_FrostScepter.png' },
+    { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_Windtalker.png', dest: 'public/weapons/Bow_Windtalker.png' }
   ];
 
   const materialIds = [
     '101275', '101276', '101277', '101279', '101282',
     '112146', '112147', '112148', '112149', '112150', '112151', '112152', '112153', '112154', '112155', '112156', '112157',
-    '113081', '113082', '113083', '113087', '113088', '113089', '113090', '113091',
+    '113081', '113082', '113083', '113087', '113088', '113089', '113090', '113091', '113092',
     '104365', '104366', '104367', '104368', '104369', '104370', '104371', '104372', '104373',
     '114085', '114086', '114087', '114088', '114089', '114090', '114091', '114092', '114093', '114094', '114095', '114096'
   ];

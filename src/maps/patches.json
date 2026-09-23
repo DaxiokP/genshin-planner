@@ -1,5 +1,5 @@
 {
-  "version": "7.0",
+  "version": "7.1",
   "characters": {
     "Sandrone": {
       "name": "Sandrone",
@@ -27,252 +27,1354 @@
       "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alyosha.png",
       "id": "Alyosha",
       "version": "7.0"
+    },
+    "Vesna": {
+      "name": "Vesna",
+      "rarity": 5,
+      "element": "Anemo",
+      "weaponType": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vesna.png",
+      "id": "Vesna",
+      "version": "7.1"
+    },
+    "Vodyanitsa": {
+      "name": "Vodyanitsa",
+      "rarity": 5,
+      "element": "Hydro",
+      "weaponType": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vodyanitsa.png",
+      "id": "Vodyanitsa",
+      "version": "7.1"
     }
   },
   "characterRequirements": {
     "Sandrone": {
       "ascension": {
         "1": [
-          { "key": "shivadajadesliver", "name": "Shivada Jade Sliver", "count": 1 },
-          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 3 },
-          { "key": "brokendriveshaft", "name": "Broken Drive Shaft", "count": 3 }
+          {
+            "key": "shivadajadesliver",
+            "name": "Shivada Jade Sliver",
+            "count": 1
+          },
+          {
+            "key": "subdetectionunit",
+            "name": "Subdetection Unit",
+            "count": 3
+          },
+          {
+            "key": "brokendriveshaft",
+            "name": "Broken Drive Shaft",
+            "count": 3
+          }
         ],
         "2": [
-          { "key": "shivadajadefragment", "name": "Shivada Jade Fragment", "count": 3 },
-          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 2 },
-          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 10 },
-          { "key": "brokendriveshaft", "name": "Broken Drive Shaft", "count": 15 }
+          {
+            "key": "shivadajadefragment",
+            "name": "Shivada Jade Fragment",
+            "count": 3
+          },
+          {
+            "key": "plumeofthefallenwatcher",
+            "name": "Plume of the Fallen Watcher",
+            "count": 2
+          },
+          {
+            "key": "subdetectionunit",
+            "name": "Subdetection Unit",
+            "count": 10
+          },
+          {
+            "key": "brokendriveshaft",
+            "name": "Broken Drive Shaft",
+            "count": 15
+          }
         ],
         "3": [
-          { "key": "shivadajadefragment", "name": "Shivada Jade Fragment", "count": 6 },
-          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 4 },
-          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 20 },
-          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 12 }
+          {
+            "key": "shivadajadefragment",
+            "name": "Shivada Jade Fragment",
+            "count": 6
+          },
+          {
+            "key": "plumeofthefallenwatcher",
+            "name": "Plume of the Fallen Watcher",
+            "count": 4
+          },
+          {
+            "key": "subdetectionunit",
+            "name": "Subdetection Unit",
+            "count": 20
+          },
+          {
+            "key": "reinforceddriveshaft",
+            "name": "Reinforced Drive Shaft",
+            "count": 12
+          }
         ],
         "4": [
-          { "key": "shivadajadechunk", "name": "Shivada Jade Chunk", "count": 3 },
-          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 8 },
-          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 30 },
-          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 18 }
+          {
+            "key": "shivadajadechunk",
+            "name": "Shivada Jade Chunk",
+            "count": 3
+          },
+          {
+            "key": "plumeofthefallenwatcher",
+            "name": "Plume of the Fallen Watcher",
+            "count": 8
+          },
+          {
+            "key": "subdetectionunit",
+            "name": "Subdetection Unit",
+            "count": 30
+          },
+          {
+            "key": "reinforceddriveshaft",
+            "name": "Reinforced Drive Shaft",
+            "count": 18
+          }
         ],
         "5": [
-          { "key": "shivadajadechunk", "name": "Shivada Jade Chunk", "count": 6 },
-          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 12 },
-          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 45 },
-          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 12 }
+          {
+            "key": "shivadajadechunk",
+            "name": "Shivada Jade Chunk",
+            "count": 6
+          },
+          {
+            "key": "plumeofthefallenwatcher",
+            "name": "Plume of the Fallen Watcher",
+            "count": 12
+          },
+          {
+            "key": "subdetectionunit",
+            "name": "Subdetection Unit",
+            "count": 45
+          },
+          {
+            "key": "precisiondriveshaft",
+            "name": "Precision Drive Shaft",
+            "count": 12
+          }
         ],
         "6": [
-          { "key": "shivadajadegemstone", "name": "Shivada Jade Gemstone", "count": 6 },
-          { "key": "plumeofthefallenwatcher", "name": "Plume of the Fallen Watcher", "count": 20 },
-          { "key": "subdetectionunit", "name": "Subdetection Unit", "count": 60 },
-          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 24 }
+          {
+            "key": "shivadajadegemstone",
+            "name": "Shivada Jade Gemstone",
+            "count": 6
+          },
+          {
+            "key": "plumeofthefallenwatcher",
+            "name": "Plume of the Fallen Watcher",
+            "count": 20
+          },
+          {
+            "key": "subdetectionunit",
+            "name": "Subdetection Unit",
+            "count": 60
+          },
+          {
+            "key": "precisiondriveshaft",
+            "name": "Precision Drive Shaft",
+            "count": 24
+          }
         ]
       },
       "talents": {
         "2": [
-          { "key": "teachingsofvagrancy", "name": "Teachings of Vagrancy", "count": 3 },
-          { "key": "brokendriveshaft", "name": "Broken Drive Shaft", "count": 6 }
+          {
+            "key": "teachingsofvagrancy",
+            "name": "Teachings of Vagrancy",
+            "count": 3
+          },
+          {
+            "key": "brokendriveshaft",
+            "name": "Broken Drive Shaft",
+            "count": 6
+          }
         ],
         "3": [
-          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 2 },
-          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 3 }
+          {
+            "key": "guidetovagrancy",
+            "name": "Guide to Vagrancy",
+            "count": 2
+          },
+          {
+            "key": "reinforceddriveshaft",
+            "name": "Reinforced Drive Shaft",
+            "count": 3
+          }
         ],
         "4": [
-          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 4 },
-          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 4 }
+          {
+            "key": "guidetovagrancy",
+            "name": "Guide to Vagrancy",
+            "count": 4
+          },
+          {
+            "key": "reinforceddriveshaft",
+            "name": "Reinforced Drive Shaft",
+            "count": 4
+          }
         ],
         "5": [
-          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 6 },
-          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 6 }
+          {
+            "key": "guidetovagrancy",
+            "name": "Guide to Vagrancy",
+            "count": 6
+          },
+          {
+            "key": "reinforceddriveshaft",
+            "name": "Reinforced Drive Shaft",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "guidetovagrancy", "name": "Guide to Vagrancy", "count": 9 },
-          { "key": "reinforceddriveshaft", "name": "Reinforced Drive Shaft", "count": 9 }
+          {
+            "key": "guidetovagrancy",
+            "name": "Guide to Vagrancy",
+            "count": 9
+          },
+          {
+            "key": "reinforceddriveshaft",
+            "name": "Reinforced Drive Shaft",
+            "count": 9
+          }
         ],
         "7": [
-          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 4 },
-          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 4 },
-          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 1 }
+          {
+            "key": "philosophiesofvagrancy",
+            "name": "Philosophies of Vagrancy",
+            "count": 4
+          },
+          {
+            "key": "precisiondriveshaft",
+            "name": "Precision Drive Shaft",
+            "count": 4
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 1
+          }
         ],
         "8": [
-          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 6 },
-          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 6 },
-          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 1 }
+          {
+            "key": "philosophiesofvagrancy",
+            "name": "Philosophies of Vagrancy",
+            "count": 6
+          },
+          {
+            "key": "precisiondriveshaft",
+            "name": "Precision Drive Shaft",
+            "count": 6
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 1
+          }
         ],
         "9": [
-          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 12 },
-          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 9 },
-          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 2 }
+          {
+            "key": "philosophiesofvagrancy",
+            "name": "Philosophies of Vagrancy",
+            "count": 12
+          },
+          {
+            "key": "precisiondriveshaft",
+            "name": "Precision Drive Shaft",
+            "count": 9
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 2
+          }
         ],
         "10": [
-          { "key": "philosophiesofvagrancy", "name": "Philosophies of Vagrancy", "count": 38 },
-          { "key": "precisiondriveshaft", "name": "Precision Drive Shaft", "count": 12 },
-          { "key": "madmansrestraint", "name": "Madman's Restraint", "count": 2 },
-          { "key": "crownofinsight", "name": "Crown of Insight", "count": 1 }
+          {
+            "key": "philosophiesofvagrancy",
+            "name": "Philosophies of Vagrancy",
+            "count": 38
+          },
+          {
+            "key": "precisiondriveshaft",
+            "name": "Precision Drive Shaft",
+            "count": 12
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 2
+          },
+          {
+            "key": "crownofinsight",
+            "name": "Crown of Insight",
+            "count": 1
+          }
         ]
       }
     },
     "Odette": {
       "ascension": {
         "1": [
-          { "key": "shivadajadesliver", "name": "Shivada Jade Sliver", "count": 1 },
-          { "key": "frostfairyflower", "name": "Frostfairy Flower", "count": 3 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 3 }
+          {
+            "key": "shivadajadesliver",
+            "name": "Shivada Jade Sliver",
+            "count": 1
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 3
+          }
         ],
         "2": [
-          { "key": "shivadajadefragment", "name": "Shivada Jade Fragment", "count": 3 },
-          { "key": "unscorchedblossombranch", "name": "Unscorched Blossom Branch", "count": 2 },
-          { "key": "frostfairyflower", "name": "Frostfairy Flower", "count": 10 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 15 }
+          {
+            "key": "shivadajadefragment",
+            "name": "Shivada Jade Fragment",
+            "count": 3
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 2
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 10
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 15
+          }
         ],
         "3": [
-          { "key": "shivadajadefragment", "name": "Shivada Jade Fragment", "count": 6 },
-          { "key": "unscorchedblossombranch", "name": "Unscorched Blossom Branch", "count": 4 },
-          { "key": "frostfairyflower", "name": "Frostfairy Flower", "count": 20 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 12 }
+          {
+            "key": "shivadajadefragment",
+            "name": "Shivada Jade Fragment",
+            "count": 6
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 4
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 20
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 12
+          }
         ],
         "4": [
-          { "key": "shivadajadechunk", "name": "Shivada Jade Chunk", "count": 3 },
-          { "key": "unscorchedblossombranch", "name": "Unscorched Blossom Branch", "count": 8 },
-          { "key": "frostfairyflower", "name": "Frostfairy Flower", "count": 30 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 18 }
+          {
+            "key": "shivadajadechunk",
+            "name": "Shivada Jade Chunk",
+            "count": 3
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 8
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 30
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 18
+          }
         ],
         "5": [
-          { "key": "shivadajadechunk", "name": "Shivada Jade Chunk", "count": 6 },
-          { "key": "unscorchedblossombranch", "name": "Unscorched Blossom Branch", "count": 12 },
-          { "key": "frostfairyflower", "name": "Frostfairy Flower", "count": 45 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+          {
+            "key": "shivadajadechunk",
+            "name": "Shivada Jade Chunk",
+            "count": 6
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 12
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 45
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          }
         ],
         "6": [
-          { "key": "shivadajadegemstone", "name": "Shivada Jade Gemstone", "count": 6 },
-          { "key": "unscorchedblossombranch", "name": "Unscorched Blossom Branch", "count": 20 },
-          { "key": "frostfairyflower", "name": "Frostfairy Flower", "count": 60 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 24 }
+          {
+            "key": "shivadajadegemstone",
+            "name": "Shivada Jade Gemstone",
+            "count": 6
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 20
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 60
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 24
+          }
         ]
       },
       "talents": {
         "2": [
-          { "key": "teachingsofcharity", "name": "Teachings of Charity", "count": 3 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 6 }
+          {
+            "key": "teachingsofcharity",
+            "name": "Teachings of Charity",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 6
+          }
         ],
         "3": [
-          { "key": "guidetocharity", "name": "Guide to Charity", "count": 2 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 3 }
+          {
+            "key": "guidetocharity",
+            "name": "Guide to Charity",
+            "count": 2
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 3
+          }
         ],
         "4": [
-          { "key": "guidetocharity", "name": "Guide to Charity", "count": 4 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 4 }
+          {
+            "key": "guidetocharity",
+            "name": "Guide to Charity",
+            "count": 4
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 4
+          }
         ],
         "5": [
-          { "key": "guidetocharity", "name": "Guide to Charity", "count": 6 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+          {
+            "key": "guidetocharity",
+            "name": "Guide to Charity",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "guidetocharity", "name": "Guide to Charity", "count": 9 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+          {
+            "key": "guidetocharity",
+            "name": "Guide to Charity",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
         ],
         "7": [
-          { "key": "philosophiesofcharity", "name": "Philosophies of Charity", "count": 4 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 4 },
-          { "key": "twistedwitheredbranch", "name": "Twisted Withered Branch", "count": 1 }
+          {
+            "key": "philosophiesofcharity",
+            "name": "Philosophies of Charity",
+            "count": 4
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 4
+          },
+          {
+            "key": "twistedwitheredbranch",
+            "name": "Twisted Withered Branch",
+            "count": 1
+          }
         ],
         "8": [
-          { "key": "philosophiesofcharity", "name": "Philosophies of Charity", "count": 6 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 },
-          { "key": "twistedwitheredbranch", "name": "Twisted Withered Branch", "count": 1 }
+          {
+            "key": "philosophiesofcharity",
+            "name": "Philosophies of Charity",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 6
+          },
+          {
+            "key": "twistedwitheredbranch",
+            "name": "Twisted Withered Branch",
+            "count": 1
+          }
         ],
         "9": [
-          { "key": "philosophiesofcharity", "name": "Philosophies of Charity", "count": 12 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 9 },
-          { "key": "twistedwitheredbranch", "name": "Twisted Withered Branch", "count": 2 }
+          {
+            "key": "philosophiesofcharity",
+            "name": "Philosophies of Charity",
+            "count": 12
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 9
+          },
+          {
+            "key": "twistedwitheredbranch",
+            "name": "Twisted Withered Branch",
+            "count": 2
+          }
         ],
         "10": [
-          { "key": "philosophiesofcharity", "name": "Philosophies of Charity", "count": 38 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 },
-          { "key": "twistedwitheredbranch", "name": "Twisted Withered Branch", "count": 2 },
-          { "key": "crownofinsight", "name": "Crown of Insight", "count": 1 }
+          {
+            "key": "philosophiesofcharity",
+            "name": "Philosophies of Charity",
+            "count": 38
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          },
+          {
+            "key": "twistedwitheredbranch",
+            "name": "Twisted Withered Branch",
+            "count": 2
+          },
+          {
+            "key": "crownofinsight",
+            "name": "Crown of Insight",
+            "count": 1
+          }
         ]
       }
     },
     "Alyosha": {
       "ascension": {
         "1": [
-          { "key": "vajradaamethystsliver", "name": "Vajrada Amethyst Sliver", "count": 1 },
-          { "key": "flockingweed", "name": "Flockingweed", "count": 3 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 3 }
+          {
+            "key": "vajradaamethystsliver",
+            "name": "Vajrada Amethyst Sliver",
+            "count": 1
+          },
+          {
+            "key": "flockingweed",
+            "name": "Flockingweed",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 3
+          }
         ],
         "2": [
-          { "key": "vajradaamethystfragment", "name": "Vajrada Amethyst Fragment", "count": 3 },
-          { "key": "severedtailoftheskyroamer", "name": "Severed Tail of the Sky-Roamer", "count": 2 },
-          { "key": "flockingweed", "name": "Flockingweed", "count": 10 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 15 }
+          {
+            "key": "vajradaamethystfragment",
+            "name": "Vajrada Amethyst Fragment",
+            "count": 3
+          },
+          {
+            "key": "severedtailoftheskyroamer",
+            "name": "Severed Tail of the Sky-Roamer",
+            "count": 2
+          },
+          {
+            "key": "flockingweed",
+            "name": "Flockingweed",
+            "count": 10
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 15
+          }
         ],
         "3": [
-          { "key": "vajradaamethystfragment", "name": "Vajrada Amethyst Fragment", "count": 6 },
-          { "key": "severedtailoftheskyroamer", "name": "Severed Tail of the Sky-Roamer", "count": 4 },
-          { "key": "flockingweed", "name": "Flockingweed", "count": 20 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 12 }
+          {
+            "key": "vajradaamethystfragment",
+            "name": "Vajrada Amethyst Fragment",
+            "count": 6
+          },
+          {
+            "key": "severedtailoftheskyroamer",
+            "name": "Severed Tail of the Sky-Roamer",
+            "count": 4
+          },
+          {
+            "key": "flockingweed",
+            "name": "Flockingweed",
+            "count": 20
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 12
+          }
         ],
         "4": [
-          { "key": "vajradaamethystchunk", "name": "Vajrada Amethyst Chunk", "count": 3 },
-          { "key": "severedtailoftheskyroamer", "name": "Severed Tail of the Sky-Roamer", "count": 8 },
-          { "key": "flockingweed", "name": "Flockingweed", "count": 30 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 18 }
+          {
+            "key": "vajradaamethystchunk",
+            "name": "Vajrada Amethyst Chunk",
+            "count": 3
+          },
+          {
+            "key": "severedtailoftheskyroamer",
+            "name": "Severed Tail of the Sky-Roamer",
+            "count": 8
+          },
+          {
+            "key": "flockingweed",
+            "name": "Flockingweed",
+            "count": 30
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 18
+          }
         ],
         "5": [
-          { "key": "vajradaamethystchunk", "name": "Vajrada Amethyst Chunk", "count": 6 },
-          { "key": "severedtailoftheskyroamer", "name": "Severed Tail of the Sky-Roamer", "count": 12 },
-          { "key": "flockingweed", "name": "Flockingweed", "count": 45 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 }
+          {
+            "key": "vajradaamethystchunk",
+            "name": "Vajrada Amethyst Chunk",
+            "count": 6
+          },
+          {
+            "key": "severedtailoftheskyroamer",
+            "name": "Severed Tail of the Sky-Roamer",
+            "count": 12
+          },
+          {
+            "key": "flockingweed",
+            "name": "Flockingweed",
+            "count": 45
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
         ],
         "6": [
-          { "key": "vajradaamethystgemstone", "name": "Vajrada Amethyst Gemstone", "count": 6 },
-          { "key": "severedtailoftheskyroamer", "name": "Severed Tail of the Sky-Roamer", "count": 20 },
-          { "key": "flockingweed", "name": "Flockingweed", "count": 60 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 24 }
+          {
+            "key": "vajradaamethystgemstone",
+            "name": "Vajrada Amethyst Gemstone",
+            "count": 6
+          },
+          {
+            "key": "severedtailoftheskyroamer",
+            "name": "Severed Tail of the Sky-Roamer",
+            "count": 20
+          },
+          {
+            "key": "flockingweed",
+            "name": "Flockingweed",
+            "count": 60
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 24
+          }
         ]
       },
       "talents": {
         "2": [
-          { "key": "teachingsoffortitude", "name": "Teachings of Fortitude", "count": 3 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 6 }
+          {
+            "key": "teachingsoffortitude",
+            "name": "Teachings of Fortitude",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 6
+          }
         ],
         "3": [
-          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 2 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 3 }
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 2
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 3
+          }
         ],
         "4": [
-          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 4 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 4 }
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 4
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 4
+          }
         ],
         "5": [
-          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 6 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "guidetofortitude", "name": "Guide to Fortitude", "count": 9 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 9
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
         ],
         "7": [
-          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 4 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 4 },
-          { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 1 }
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 4
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 4
+          },
+          {
+            "key": "counterfeitresin",
+            "name": "Counterfeit Resin",
+            "count": 1
+          }
         ],
         "8": [
-          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 6 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 },
-          { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 1 }
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 6
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          },
+          {
+            "key": "counterfeitresin",
+            "name": "Counterfeit Resin",
+            "count": 1
+          }
         ],
         "9": [
-          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 12 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 9 },
-          { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 2 }
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 12
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 9
+          },
+          {
+            "key": "counterfeitresin",
+            "name": "Counterfeit Resin",
+            "count": 2
+          }
         ],
         "10": [
-          { "key": "philosophiesoffortitude", "name": "Philosophies of Fortitude", "count": 38 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 },
-          { "key": "counterfeitresin", "name": "Counterfeit Resin", "count": 2 },
-          { "key": "crownofinsight", "name": "Crown of Insight", "count": 1 }
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 38
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          },
+          {
+            "key": "counterfeitresin",
+            "name": "Counterfeit Resin",
+            "count": 2
+          },
+          {
+            "key": "crownofinsight",
+            "name": "Crown of Insight",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "Vesna": {
+      "ascension": {
+        "1": [
+          {
+            "key": "vayudaturquoisesliver",
+            "name": "Vayuda Turquoise Sliver",
+            "count": 1
+          },
+          {
+            "key": "goldenfern",
+            "name": "Golden Fern",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 3
+          }
+        ],
+        "2": [
+          {
+            "key": "vayudaturquoisefragment",
+            "name": "Vayuda Turquoise Fragment",
+            "count": 3
+          },
+          {
+            "key": "vagabondscrackedarmor",
+            "name": "Vagabond's Cracked Armor",
+            "count": 2
+          },
+          {
+            "key": "goldenfern",
+            "name": "Golden Fern",
+            "count": 10
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 15
+          }
+        ],
+        "3": [
+          {
+            "key": "vayudaturquoisefragment",
+            "name": "Vayuda Turquoise Fragment",
+            "count": 6
+          },
+          {
+            "key": "vagabondscrackedarmor",
+            "name": "Vagabond's Cracked Armor",
+            "count": 4
+          },
+          {
+            "key": "goldenfern",
+            "name": "Golden Fern",
+            "count": 20
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 12
+          }
+        ],
+        "4": [
+          {
+            "key": "vayudaturquoisechunk",
+            "name": "Vayuda Turquoise Chunk",
+            "count": 3
+          },
+          {
+            "key": "vagabondscrackedarmor",
+            "name": "Vagabond's Cracked Armor",
+            "count": 8
+          },
+          {
+            "key": "goldenfern",
+            "name": "Golden Fern",
+            "count": 30
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 18
+          }
+        ],
+        "5": [
+          {
+            "key": "vayudaturquoisechunk",
+            "name": "Vayuda Turquoise Chunk",
+            "count": 6
+          },
+          {
+            "key": "vagabondscrackedarmor",
+            "name": "Vagabond's Cracked Armor",
+            "count": 12
+          },
+          {
+            "key": "goldenfern",
+            "name": "Golden Fern",
+            "count": 45
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          }
+        ],
+        "6": [
+          {
+            "key": "vayudaturquoisegemstone",
+            "name": "Vayuda Turquoise Gemstone",
+            "count": 6
+          },
+          {
+            "key": "vagabondscrackedarmor",
+            "name": "Vagabond's Cracked Armor",
+            "count": 20
+          },
+          {
+            "key": "goldenfern",
+            "name": "Golden Fern",
+            "count": 60
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 24
+          }
+        ]
+      },
+      "talents": {
+        "2": [
+          {
+            "key": "teachingsofglory",
+            "name": "Teachings of Glory",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 6
+          }
+        ],
+        "3": [
+          {
+            "key": "guidetoglory",
+            "name": "Guide to Glory",
+            "count": 2
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 3
+          }
+        ],
+        "4": [
+          {
+            "key": "guidetoglory",
+            "name": "Guide to Glory",
+            "count": 4
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 4
+          }
+        ],
+        "5": [
+          {
+            "key": "guidetoglory",
+            "name": "Guide to Glory",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 6
+          }
+        ],
+        "6": [
+          {
+            "key": "guidetoglory",
+            "name": "Guide to Glory",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
+        ],
+        "7": [
+          {
+            "key": "philosophiesofglory",
+            "name": "Philosophies of Glory",
+            "count": 4
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 4
+          },
+          {
+            "key": "profanedsprout",
+            "name": "Profaned Sprout",
+            "count": 1
+          }
+        ],
+        "8": [
+          {
+            "key": "philosophiesofglory",
+            "name": "Philosophies of Glory",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 6
+          },
+          {
+            "key": "profanedsprout",
+            "name": "Profaned Sprout",
+            "count": 1
+          }
+        ],
+        "9": [
+          {
+            "key": "philosophiesofglory",
+            "name": "Philosophies of Glory",
+            "count": 12
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 9
+          },
+          {
+            "key": "profanedsprout",
+            "name": "Profaned Sprout",
+            "count": 2
+          }
+        ],
+        "10": [
+          {
+            "key": "philosophiesofglory",
+            "name": "Philosophies of Glory",
+            "count": 16
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          },
+          {
+            "key": "profanedsprout",
+            "name": "Profaned Sprout",
+            "count": 2
+          },
+          {
+            "key": "crownofinsight",
+            "name": "Crown of Insight",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "Vodyanitsa": {
+      "ascension": {
+        "1": [
+          {
+            "key": "varunadalazuritesliver",
+            "name": "Varunada Lazurite Sliver",
+            "count": 1
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 3
+          }
+        ],
+        "2": [
+          {
+            "key": "varunadalazuritefragment",
+            "name": "Varunada Lazurite Fragment",
+            "count": 3
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 2
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 10
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 15
+          }
+        ],
+        "3": [
+          {
+            "key": "varunadalazuritefragment",
+            "name": "Varunada Lazurite Fragment",
+            "count": 6
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 4
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 20
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 12
+          }
+        ],
+        "4": [
+          {
+            "key": "varunadalazuritechunk",
+            "name": "Varunada Lazurite Chunk",
+            "count": 3
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 8
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 30
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 18
+          }
+        ],
+        "5": [
+          {
+            "key": "varunadalazuritechunk",
+            "name": "Varunada Lazurite Chunk",
+            "count": 6
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 12
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 45
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
+        ],
+        "6": [
+          {
+            "key": "varunadalazuritegemstone",
+            "name": "Varunada Lazurite Gemstone",
+            "count": 6
+          },
+          {
+            "key": "unscorchedblossombranch",
+            "name": "Unscorched Blossom Branch",
+            "count": 20
+          },
+          {
+            "key": "frostfairyflower",
+            "name": "Frostfairy Flower",
+            "count": 60
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 24
+          }
+        ]
+      },
+      "talents": {
+        "2": [
+          {
+            "key": "teachingsoffortitude",
+            "name": "Teachings of Fortitude",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 6
+          }
+        ],
+        "3": [
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 2
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 3
+          }
+        ],
+        "4": [
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 4
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 4
+          }
+        ],
+        "5": [
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
+        ],
+        "6": [
+          {
+            "key": "guidetofortitude",
+            "name": "Guide to Fortitude",
+            "count": 9
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
+        ],
+        "7": [
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 4
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 4
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 1
+          }
+        ],
+        "8": [
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 6
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 1
+          }
+        ],
+        "9": [
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 12
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 9
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 2
+          }
+        ],
+        "10": [
+          {
+            "key": "philosophiesoffortitude",
+            "name": "Philosophies of Fortitude",
+            "count": 16
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          },
+          {
+            "key": "madmansrestraint",
+            "name": "Madman's Restraint",
+            "count": 2
+          },
+          {
+            "key": "crownofinsight",
+            "name": "Crown of Insight",
+            "count": 1
+          }
         ]
       }
     }
@@ -397,414 +1499,1974 @@
       "substatType": "ATK",
       "stats": {},
       "version": "7.0"
+    },
+    "BeyondtheChrysalis": {
+      "name": "Beyond the Chrysalis",
+      "rarity": 5,
+      "type": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Samosvist.png",
+      "id": "Sword_Samosvist",
+      "substatType": "CRIT DMG",
+      "stats": {},
+      "version": "7.1"
+    },
+    "HymnoftheMaelstrom": {
+      "name": "Hymn of the Maelstrom",
+      "rarity": 5,
+      "type": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_Bludnye.png",
+      "id": "Catalyst_Bludnye",
+      "substatType": "HP%",
+      "stats": {},
+      "version": "7.1"
+    },
+    "NewBough": {
+      "name": "New Bough",
+      "rarity": 4,
+      "type": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_SpikedStake.png",
+      "id": "Sword_SpikedStake",
+      "substatType": "CRIT DMG",
+      "stats": {},
+      "version": "7.1"
+    },
+    "SilverLight": {
+      "name": "Silver Light",
+      "rarity": 4,
+      "type": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Fajian.png",
+      "id": "Sword_Fajian",
+      "substatType": "ATK%",
+      "stats": {},
+      "version": "7.1"
+    },
+    "WintersHeavyHeart": {
+      "name": "Winter's Heavy Heart",
+      "rarity": 4,
+      "type": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_FrostScepter.png",
+      "id": "Catalyst_FrostScepter",
+      "substatType": "CRIT DMG",
+      "stats": {},
+      "version": "7.1"
+    },
+    "BreezeborneRefrain": {
+      "name": "Breezeborne Refrain",
+      "rarity": 4,
+      "type": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_Windtalker.png",
+      "id": "Bow_Windtalker",
+      "substatType": "CRIT Rate",
+      "stats": {},
+      "version": "7.1"
     }
   },
   "weaponRequirements": {
     "A Teaspoon of Transcendence": {
       "ascension": {
         "1": [
-          { "key": "sunderedgloryofthefarnorthscions", "name": "Sundered Glory of the Far-North Scions", "count": 5 },
-          { "key": "fracturedlunariron", "name": "Fractured Lunar Iron", "count": 5 },
-          { "key": "tatteredwarrant", "name": "Tattered Warrant", "count": 3 }
+          {
+            "key": "sunderedgloryofthefarnorthscions",
+            "name": "Sundered Glory of the Far-North Scions",
+            "count": 5
+          },
+          {
+            "key": "fracturedlunariron",
+            "name": "Fractured Lunar Iron",
+            "count": 5
+          },
+          {
+            "key": "tatteredwarrant",
+            "name": "Tattered Warrant",
+            "count": 3
+          }
         ],
         "2": [
-          { "key": "unyieldingdelusionofthefarnorthscions", "name": "Unyielding Delusion of the Far-North Scions", "count": 5 },
-          { "key": "fracturedlunariron", "name": "Fractured Lunar Iron", "count": 18 },
-          { "key": "tatteredwarrant", "name": "Tattered Warrant", "count": 12 }
+          {
+            "key": "unyieldingdelusionofthefarnorthscions",
+            "name": "Unyielding Delusion of the Far-North Scions",
+            "count": 5
+          },
+          {
+            "key": "fracturedlunariron",
+            "name": "Fractured Lunar Iron",
+            "count": 18
+          },
+          {
+            "key": "tatteredwarrant",
+            "name": "Tattered Warrant",
+            "count": 12
+          }
         ],
         "3": [
-          { "key": "unyieldingdelusionofthefarnorthscions", "name": "Unyielding Delusion of the Far-North Scions", "count": 9 },
-          { "key": "depletedlunariron", "name": "Depleted Lunar Iron", "count": 9 },
-          { "key": "immaculatewarrant", "name": "Immaculate Warrant", "count": 9 }
+          {
+            "key": "unyieldingdelusionofthefarnorthscions",
+            "name": "Unyielding Delusion of the Far-North Scions",
+            "count": 9
+          },
+          {
+            "key": "depletedlunariron",
+            "name": "Depleted Lunar Iron",
+            "count": 9
+          },
+          {
+            "key": "immaculatewarrant",
+            "name": "Immaculate Warrant",
+            "count": 9
+          }
         ],
         "4": [
-          { "key": "oblationofthefarnorthscions", "name": "Oblation of the Far-North Scions", "count": 5 },
-          { "key": "depletedlunariron", "name": "Depleted Lunar Iron", "count": 18 },
-          { "key": "immaculatewarrant", "name": "Immaculate Warrant", "count": 14 }
+          {
+            "key": "oblationofthefarnorthscions",
+            "name": "Oblation of the Far-North Scions",
+            "count": 5
+          },
+          {
+            "key": "depletedlunariron",
+            "name": "Depleted Lunar Iron",
+            "count": 18
+          },
+          {
+            "key": "immaculatewarrant",
+            "name": "Immaculate Warrant",
+            "count": 14
+          }
         ],
         "5": [
-          { "key": "oblationofthefarnorthscions", "name": "Oblation of the Far-North Scions", "count": 9 },
-          { "key": "unblemishedlunariron", "name": "Unblemished Lunar Iron", "count": 14 },
-          { "key": "frostetchedwarrant", "name": "Frost-Etched Warrant", "count": 9 }
+          {
+            "key": "oblationofthefarnorthscions",
+            "name": "Oblation of the Far-North Scions",
+            "count": 9
+          },
+          {
+            "key": "unblemishedlunariron",
+            "name": "Unblemished Lunar Iron",
+            "count": 14
+          },
+          {
+            "key": "frostetchedwarrant",
+            "name": "Frost-Etched Warrant",
+            "count": 9
+          }
         ],
         "6": [
-          { "key": "aureateradianceofthefarnorthscions", "name": "Aureate Radiance of the Far-North Scions", "count": 6 },
-          { "key": "unblemishedlunariron", "name": "Unblemished Lunar Iron", "count": 27 },
-          { "key": "frostetchedwarrant", "name": "Frost-Etched Warrant", "count": 18 }
+          {
+            "key": "aureateradianceofthefarnorthscions",
+            "name": "Aureate Radiance of the Far-North Scions",
+            "count": 6
+          },
+          {
+            "key": "unblemishedlunariron",
+            "name": "Unblemished Lunar Iron",
+            "count": 27
+          },
+          {
+            "key": "frostetchedwarrant",
+            "name": "Frost-Etched Warrant",
+            "count": 18
+          }
         ]
       }
     },
     "Whitelake Frostfeather": {
       "ascension": {
         "1": [
-          { "key": "measuredpourofthecellaredspiritualnectar", "name": "Measured Pour of the Cellared Spiritual Nectar", "count": 5 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 5 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 3 }
+          {
+            "key": "measuredpourofthecellaredspiritualnectar",
+            "name": "Measured Pour of the Cellared Spiritual Nectar",
+            "count": 5
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 5
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 3
+          }
         ],
         "2": [
-          { "key": "intoxicationofthecellaredspiritualnectar", "name": "Intoxication of the Cellared Spiritual Nectar", "count": 5 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 18 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 12 }
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 5
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 18
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 12
+          }
         ],
         "3": [
-          { "key": "intoxicationofthecellaredspiritualnectar", "name": "Intoxication of the Cellared Spiritual Nectar", "count": 9 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 9 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 9
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 9
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
         ],
         "4": [
-          { "key": "exhilarationofthecellaredspiritualnectar", "name": "Exhilaration of the Cellared Spiritual Nectar", "count": 5 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 18 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 14 }
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 5
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 18
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 14
+          }
         ],
         "5": [
-          { "key": "exhilarationofthecellaredspiritualnectar", "name": "Exhilaration of the Cellared Spiritual Nectar", "count": 9 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 14 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 9 }
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 9
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 14
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 9
+          }
         ],
         "6": [
-          { "key": "revelryofthecellaredspiritualnectar", "name": "Revelry of the Cellared Spiritual Nectar", "count": 6 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 27 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 18 }
+          {
+            "key": "revelryofthecellaredspiritualnectar",
+            "name": "Revelry of the Cellared Spiritual Nectar",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 27
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 18
+          }
         ]
       }
     },
     "Heretic's Molten Blade": {
       "ascension": {
         "1": [
-          { "key": "blazingsacrificialheartsterror", "name": "Blazing Sacrificial Heart's Terror", "count": 3 },
-          { "key": "coldcrackedshellshard", "name": "Cold-Cracked Shellshard", "count": 3 },
-          { "key": "sentryswoodenwhistle", "name": "Sentry's Wooden Whistle", "count": 2 }
+          {
+            "key": "blazingsacrificialheartsterror",
+            "name": "Blazing Sacrificial Heart's Terror",
+            "count": 3
+          },
+          {
+            "key": "coldcrackedshellshard",
+            "name": "Cold-Cracked Shellshard",
+            "count": 3
+          },
+          {
+            "key": "sentryswoodenwhistle",
+            "name": "Sentry's Wooden Whistle",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "blazingsacrificialheartshesitance", "name": "Blazing Sacrificial Heart's Hesitance", "count": 3 },
-          { "key": "coldcrackedshellshard", "name": "Cold-Cracked Shellshard", "count": 12 },
-          { "key": "sentryswoodenwhistle", "name": "Sentry's Wooden Whistle", "count": 8 }
+          {
+            "key": "blazingsacrificialheartshesitance",
+            "name": "Blazing Sacrificial Heart's Hesitance",
+            "count": 3
+          },
+          {
+            "key": "coldcrackedshellshard",
+            "name": "Cold-Cracked Shellshard",
+            "count": 12
+          },
+          {
+            "key": "sentryswoodenwhistle",
+            "name": "Sentry's Wooden Whistle",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "blazingsacrificialheartshesitance", "name": "Blazing Sacrificial Heart's Hesitance", "count": 6 },
-          { "key": "warmbackshell", "name": "Warm Back-Shell", "count": 6 },
-          { "key": "warriorsmetalwhistle", "name": "Warrior's Metal Whistle", "count": 6 }
+          {
+            "key": "blazingsacrificialheartshesitance",
+            "name": "Blazing Sacrificial Heart's Hesitance",
+            "count": 6
+          },
+          {
+            "key": "warmbackshell",
+            "name": "Warm Back-Shell",
+            "count": 6
+          },
+          {
+            "key": "warriorsmetalwhistle",
+            "name": "Warrior's Metal Whistle",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "blazingsacrificialheartsresolve", "name": "Blazing Sacrificial Heart's Resolve", "count": 3 },
-          { "key": "warmbackshell", "name": "Warm Back-Shell", "count": 12 },
-          { "key": "warriorsmetalwhistle", "name": "Warrior's Metal Whistle", "count": 9 }
+          {
+            "key": "blazingsacrificialheartsresolve",
+            "name": "Blazing Sacrificial Heart's Resolve",
+            "count": 3
+          },
+          {
+            "key": "warmbackshell",
+            "name": "Warm Back-Shell",
+            "count": 12
+          },
+          {
+            "key": "warriorsmetalwhistle",
+            "name": "Warrior's Metal Whistle",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "blazingsacrificialheartsresolve", "name": "Blazing Sacrificial Heart's Resolve", "count": 6 },
-          { "key": "blazingprismshell", "name": "Blazing Prismshell", "count": 9 },
-          { "key": "sauriancrownedwarriorsgoldenwhistle", "name": "Saurian-Crowned Warrior's Golden Whistle", "count": 6 }
+          {
+            "key": "blazingsacrificialheartsresolve",
+            "name": "Blazing Sacrificial Heart's Resolve",
+            "count": 6
+          },
+          {
+            "key": "blazingprismshell",
+            "name": "Blazing Prismshell",
+            "count": 9
+          },
+          {
+            "key": "sauriancrownedwarriorsgoldenwhistle",
+            "name": "Saurian-Crowned Warrior's Golden Whistle",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "blazingsacrificialheartssplendor", "name": "Blazing Sacrificial Heart's Splendor", "count": 4 },
-          { "key": "blazingprismshell", "name": "Blazing Prismshell", "count": 18 },
-          { "key": "sauriancrownedwarriorsgoldenwhistle", "name": "Saurian-Crowned Warrior's Golden Whistle", "count": 12 }
+          {
+            "key": "blazingsacrificialheartssplendor",
+            "name": "Blazing Sacrificial Heart's Splendor",
+            "count": 4
+          },
+          {
+            "key": "blazingprismshell",
+            "name": "Blazing Prismshell",
+            "count": 18
+          },
+          {
+            "key": "sauriancrownedwarriorsgoldenwhistle",
+            "name": "Saurian-Crowned Warrior's Golden Whistle",
+            "count": 12
+          }
         ]
       }
     },
     "Forged by the Golden Melody": {
       "ascension": {
         "1": [
-          { "key": "drossofpuresacreddewdrop", "name": "Dross of Pure Sacred Dewdrop", "count": 3 },
-          { "key": "ruinedhilt", "name": "Ruined Hilt", "count": 3 },
-          { "key": "transoceanicpearl", "name": "Transoceanic Pearl", "count": 2 }
+          {
+            "key": "drossofpuresacreddewdrop",
+            "name": "Dross of Pure Sacred Dewdrop",
+            "count": 3
+          },
+          {
+            "key": "ruinedhilt",
+            "name": "Ruined Hilt",
+            "count": 3
+          },
+          {
+            "key": "transoceanicpearl",
+            "name": "Transoceanic Pearl",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "sublimationofpuresacreddewdrop", "name": "Sublimation of Pure Sacred Dewdrop", "count": 3 },
-          { "key": "ruinedhilt", "name": "Ruined Hilt", "count": 12 },
-          { "key": "transoceanicpearl", "name": "Transoceanic Pearl", "count": 8 }
+          {
+            "key": "sublimationofpuresacreddewdrop",
+            "name": "Sublimation of Pure Sacred Dewdrop",
+            "count": 3
+          },
+          {
+            "key": "ruinedhilt",
+            "name": "Ruined Hilt",
+            "count": 12
+          },
+          {
+            "key": "transoceanicpearl",
+            "name": "Transoceanic Pearl",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "sublimationofpuresacreddewdrop", "name": "Sublimation of Pure Sacred Dewdrop", "count": 6 },
-          { "key": "splinteredhilt", "name": "Splintered Hilt", "count": 6 },
-          { "key": "transoceanicchunk", "name": "Transoceanic Chunk", "count": 6 }
+          {
+            "key": "sublimationofpuresacreddewdrop",
+            "name": "Sublimation of Pure Sacred Dewdrop",
+            "count": 6
+          },
+          {
+            "key": "splinteredhilt",
+            "name": "Splintered Hilt",
+            "count": 6
+          },
+          {
+            "key": "transoceanicchunk",
+            "name": "Transoceanic Chunk",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "springofpuresacreddewdrop", "name": "Spring of Pure Sacred Dewdrop", "count": 3 },
-          { "key": "splinteredhilt", "name": "Splintered Hilt", "count": 12 },
-          { "key": "transoceanicchunk", "name": "Transoceanic Chunk", "count": 9 }
+          {
+            "key": "springofpuresacreddewdrop",
+            "name": "Spring of Pure Sacred Dewdrop",
+            "count": 3
+          },
+          {
+            "key": "splinteredhilt",
+            "name": "Splintered Hilt",
+            "count": 12
+          },
+          {
+            "key": "transoceanicchunk",
+            "name": "Transoceanic Chunk",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "springofpuresacreddewdrop", "name": "Spring of Pure Sacred Dewdrop", "count": 6 },
-          { "key": "stillsmolderinghilt", "name": "Still-Smoldering Hilt", "count": 9 },
-          { "key": "xenochromaticcrystal", "name": "Xenochromatic Crystal", "count": 6 }
+          {
+            "key": "springofpuresacreddewdrop",
+            "name": "Spring of Pure Sacred Dewdrop",
+            "count": 6
+          },
+          {
+            "key": "stillsmolderinghilt",
+            "name": "Still-Smoldering Hilt",
+            "count": 9
+          },
+          {
+            "key": "xenochromaticcrystal",
+            "name": "Xenochromatic Crystal",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "essenceofpuresacreddewdrop", "name": "Essence of Pure Sacred Dewdrop", "count": 4 },
-          { "key": "stillsmolderinghilt", "name": "Still-Smoldering Hilt", "count": 18 },
-          { "key": "xenochromaticcrystal", "name": "Xenochromatic Crystal", "count": 12 }
+          {
+            "key": "essenceofpuresacreddewdrop",
+            "name": "Essence of Pure Sacred Dewdrop",
+            "count": 4
+          },
+          {
+            "key": "stillsmolderinghilt",
+            "name": "Still-Smoldering Hilt",
+            "count": 18
+          },
+          {
+            "key": "xenochromaticcrystal",
+            "name": "Xenochromatic Crystal",
+            "count": 12
+          }
         ]
       }
     },
     "Clash of Kings": {
       "ascension": {
         "1": [
-          { "key": "coppertalismanoftheforestdew", "name": "Copper Talisman of the Forest Dew", "count": 3 },
-          { "key": "inactivatedfungalnucleus", "name": "Inactivated Fungal Nucleus", "count": 3 },
-          { "key": "fadedredsatin", "name": "Faded Red Satin", "count": 2 }
+          {
+            "key": "coppertalismanoftheforestdew",
+            "name": "Copper Talisman of the Forest Dew",
+            "count": 3
+          },
+          {
+            "key": "inactivatedfungalnucleus",
+            "name": "Inactivated Fungal Nucleus",
+            "count": 3
+          },
+          {
+            "key": "fadedredsatin",
+            "name": "Faded Red Satin",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "irontalismanoftheforestdew", "name": "Iron Talisman of the Forest Dew", "count": 3 },
-          { "key": "inactivatedfungalnucleus", "name": "Inactivated Fungal Nucleus", "count": 12 },
-          { "key": "fadedredsatin", "name": "Faded Red Satin", "count": 8 }
+          {
+            "key": "irontalismanoftheforestdew",
+            "name": "Iron Talisman of the Forest Dew",
+            "count": 3
+          },
+          {
+            "key": "inactivatedfungalnucleus",
+            "name": "Inactivated Fungal Nucleus",
+            "count": 12
+          },
+          {
+            "key": "fadedredsatin",
+            "name": "Faded Red Satin",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "irontalismanoftheforestdew", "name": "Iron Talisman of the Forest Dew", "count": 6 },
-          { "key": "dormantfungalnucleus", "name": "Dormant Fungal Nucleus", "count": 6 },
-          { "key": "trimmedredsilk", "name": "Trimmed Red Silk", "count": 6 }
+          {
+            "key": "irontalismanoftheforestdew",
+            "name": "Iron Talisman of the Forest Dew",
+            "count": 6
+          },
+          {
+            "key": "dormantfungalnucleus",
+            "name": "Dormant Fungal Nucleus",
+            "count": 6
+          },
+          {
+            "key": "trimmedredsilk",
+            "name": "Trimmed Red Silk",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "silvertalismanoftheforestdew", "name": "Silver Talisman of the Forest Dew", "count": 3 },
-          { "key": "dormantfungalnucleus", "name": "Dormant Fungal Nucleus", "count": 12 },
-          { "key": "trimmedredsilk", "name": "Trimmed Red Silk", "count": 9 }
+          {
+            "key": "silvertalismanoftheforestdew",
+            "name": "Silver Talisman of the Forest Dew",
+            "count": 3
+          },
+          {
+            "key": "dormantfungalnucleus",
+            "name": "Dormant Fungal Nucleus",
+            "count": 12
+          },
+          {
+            "key": "trimmedredsilk",
+            "name": "Trimmed Red Silk",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "silvertalismanoftheforestdew", "name": "Silver Talisman of the Forest Dew", "count": 6 },
-          { "key": "robustfungalnucleus", "name": "Robust Fungal Nucleus", "count": 9 },
-          { "key": "richredbrocade", "name": "Rich Red Brocade", "count": 6 }
+          {
+            "key": "silvertalismanoftheforestdew",
+            "name": "Silver Talisman of the Forest Dew",
+            "count": 6
+          },
+          {
+            "key": "robustfungalnucleus",
+            "name": "Robust Fungal Nucleus",
+            "count": 9
+          },
+          {
+            "key": "richredbrocade",
+            "name": "Rich Red Brocade",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "goldentalismanoftheforestdew", "name": "Golden Talisman of the Forest Dew", "count": 4 },
-          { "key": "robustfungalnucleus", "name": "Robust Fungal Nucleus", "count": 18 },
-          { "key": "richredbrocade", "name": "Rich Red Brocade", "count": 12 }
+          {
+            "key": "goldentalismanoftheforestdew",
+            "name": "Golden Talisman of the Forest Dew",
+            "count": 4
+          },
+          {
+            "key": "robustfungalnucleus",
+            "name": "Robust Fungal Nucleus",
+            "count": 18
+          },
+          {
+            "key": "richredbrocade",
+            "name": "Rich Red Brocade",
+            "count": 12
+          }
         ]
       }
     },
     "Frostbreath": {
       "ascension": {
         "1": [
-          { "key": "measuredpourofthecellaredspiritualnectar", "name": "Measured Pour of the Cellared Spiritual Nectar", "count": 3 },
-          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 3 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 2 }
+          {
+            "key": "measuredpourofthecellaredspiritualnectar",
+            "name": "Measured Pour of the Cellared Spiritual Nectar",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "intoxicationofthecellaredspiritualnectar", "name": "Intoxication of the Cellared Spiritual Nectar", "count": 3 },
-          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 12 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 8 }
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 12
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "intoxicationofthecellaredspiritualnectar", "name": "Intoxication of the Cellared Spiritual Nectar", "count": 6 },
-          { "key": "accretedmass", "name": "Accreted Mass", "count": 6 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 6
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "exhilarationofthecellaredspiritualnectar", "name": "Exhilaration of the Cellared Spiritual Nectar", "count": 3 },
-          { "key": "accretedmass", "name": "Accreted Mass", "count": 12 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 3
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 12
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "exhilarationofthecellaredspiritualnectar", "name": "Exhilaration of the Cellared Spiritual Nectar", "count": 6 },
-          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 9 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 }
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 6
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 9
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "revelryofthecellaredspiritualnectar", "name": "Revelry of the Cellared Spiritual Nectar", "count": 4 },
-          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 18 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 }
+          {
+            "key": "revelryofthecellaredspiritualnectar",
+            "name": "Revelry of the Cellared Spiritual Nectar",
+            "count": 4
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 18
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
         ]
       }
     },
     "Jade Vista": {
       "ascension": {
         "1": [
-          { "key": "grainofaerosiderite", "name": "Grain of Aerosiderite", "count": 3 },
-          { "key": "fragileboneshard", "name": "Fragile Bone Shard", "count": 3 },
-          { "key": "recruitsinsignia", "name": "Recruit's Insignia", "count": 2 }
+          {
+            "key": "grainofaerosiderite",
+            "name": "Grain of Aerosiderite",
+            "count": 3
+          },
+          {
+            "key": "fragileboneshard",
+            "name": "Fragile Bone Shard",
+            "count": 3
+          },
+          {
+            "key": "recruitsinsignia",
+            "name": "Recruit's Insignia",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "pieceofaerosiderite", "name": "Piece of Aerosiderite", "count": 3 },
-          { "key": "fragileboneshard", "name": "Fragile Bone Shard", "count": 12 },
-          { "key": "recruitsinsignia", "name": "Recruit's Insignia", "count": 8 }
+          {
+            "key": "pieceofaerosiderite",
+            "name": "Piece of Aerosiderite",
+            "count": 3
+          },
+          {
+            "key": "fragileboneshard",
+            "name": "Fragile Bone Shard",
+            "count": 12
+          },
+          {
+            "key": "recruitsinsignia",
+            "name": "Recruit's Insignia",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "pieceofaerosiderite", "name": "Piece of Aerosiderite", "count": 6 },
-          { "key": "sturdyboneshard", "name": "Sturdy Bone Shard", "count": 6 },
-          { "key": "sergeantsinsignia", "name": "Sergeant's Insignia", "count": 6 }
+          {
+            "key": "pieceofaerosiderite",
+            "name": "Piece of Aerosiderite",
+            "count": 6
+          },
+          {
+            "key": "sturdyboneshard",
+            "name": "Sturdy Bone Shard",
+            "count": 6
+          },
+          {
+            "key": "sergeantsinsignia",
+            "name": "Sergeant's Insignia",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "bitofaerosiderite", "name": "Bit of Aerosiderite", "count": 3 },
-          { "key": "sturdyboneshard", "name": "Sturdy Bone Shard", "count": 12 },
-          { "key": "sergeantsinsignia", "name": "Sergeant's Insignia", "count": 9 }
+          {
+            "key": "bitofaerosiderite",
+            "name": "Bit of Aerosiderite",
+            "count": 3
+          },
+          {
+            "key": "sturdyboneshard",
+            "name": "Sturdy Bone Shard",
+            "count": 12
+          },
+          {
+            "key": "sergeantsinsignia",
+            "name": "Sergeant's Insignia",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "bitofaerosiderite", "name": "Bit of Aerosiderite", "count": 6 },
-          { "key": "fossilizedboneshard", "name": "Fossilized Bone Shard", "count": 9 },
-          { "key": "lieutenantsinsignia", "name": "Lieutenant's Insignia", "count": 6 }
+          {
+            "key": "bitofaerosiderite",
+            "name": "Bit of Aerosiderite",
+            "count": 6
+          },
+          {
+            "key": "fossilizedboneshard",
+            "name": "Fossilized Bone Shard",
+            "count": 9
+          },
+          {
+            "key": "lieutenantsinsignia",
+            "name": "Lieutenant's Insignia",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "chunkofaerosiderite", "name": "Chunk of Aerosiderite", "count": 4 },
-          { "key": "fossilizedboneshard", "name": "Fossilized Bone Shard", "count": 18 },
-          { "key": "lieutenantsinsignia", "name": "Lieutenant's Insignia", "count": 12 }
+          {
+            "key": "chunkofaerosiderite",
+            "name": "Chunk of Aerosiderite",
+            "count": 4
+          },
+          {
+            "key": "fossilizedboneshard",
+            "name": "Fossilized Bone Shard",
+            "count": 18
+          },
+          {
+            "key": "lieutenantsinsignia",
+            "name": "Lieutenant's Insignia",
+            "count": 12
+          }
         ]
       }
     },
     "Covenant of Frost and Snow": {
       "ascension": {
         "1": [
-          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 3 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 2 }
+          {
+            "key": "riseofthepalestararmy",
+            "name": "Rise of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 12 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 8 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 12
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 6 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 12 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 12
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 9 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 9
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 18 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 }
+          {
+            "key": "triumphofthepalestararmy",
+            "name": "Triumph of the Pale Star Army",
+            "count": 4
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 18
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
         ]
       }
     },
     "Echoes of the Heart": {
       "ascension": {
         "1": [
-          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
-          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 3 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 2 }
+          {
+            "key": "riseofthepalestararmy",
+            "name": "Rise of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
-          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 12 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 8 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 12
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
-          { "key": "accretedmass", "name": "Accreted Mass", "count": 6 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
-          { "key": "accretedmass", "name": "Accreted Mass", "count": 12 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 12
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
-          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 9 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
-          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 18 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+          {
+            "key": "triumphofthepalestararmy",
+            "name": "Triumph of the Pale Star Army",
+            "count": 4
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 18
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          }
         ]
       }
     },
     "Song of the Vigil": {
       "ascension": {
         "1": [
-          { "key": "thefrostemperorsrevival", "name": "The Frost Emperor's Revival", "count": 3 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 3 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 2 }
+          {
+            "key": "thefrostemperorsrevival",
+            "name": "The Frost Emperor's Revival",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "thefrostemperorsceremony", "name": "The Frost Emperor's Ceremony", "count": 3 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 12 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 8 }
+          {
+            "key": "thefrostemperorsceremony",
+            "name": "The Frost Emperor's Ceremony",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 12
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "thefrostemperorsceremony", "name": "The Frost Emperor's Ceremony", "count": 6 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 6 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+          {
+            "key": "thefrostemperorsceremony",
+            "name": "The Frost Emperor's Ceremony",
+            "count": 6
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "thefrostemperorslament", "name": "The Frost Emperor's Lament", "count": 3 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 12 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+          {
+            "key": "thefrostemperorslament",
+            "name": "The Frost Emperor's Lament",
+            "count": 3
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 12
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "thefrostemperorslament", "name": "The Frost Emperor's Lament", "count": 6 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 9 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 }
+          {
+            "key": "thefrostemperorslament",
+            "name": "The Frost Emperor's Lament",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "thefrostemperorsfarewell", "name": "The Frost Emperor's Farewell", "count": 4 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 18 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+          {
+            "key": "thefrostemperorsfarewell",
+            "name": "The Frost Emperor's Farewell",
+            "count": 4
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 18
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          }
         ]
       }
     },
     "Emberwell": {
       "ascension": {
         "1": [
-          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
-          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 3 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 2 }
+          {
+            "key": "riseofthepalestararmy",
+            "name": "Rise of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
-          { "key": "accretedfragment", "name": "Accreted Fragment", "count": 12 },
-          { "key": "etherealglimmershard", "name": "Ethereal Glimmershard", "count": 8 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 12
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
-          { "key": "accretedmass", "name": "Accreted Mass", "count": 6 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 6 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
-          { "key": "accretedmass", "name": "Accreted Mass", "count": 12 },
-          { "key": "etherealcrystal", "name": "Ethereal Crystal", "count": 9 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 12
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
-          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 9 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 6 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
-          { "key": "accretedgrowth", "name": "Accreted Growth", "count": 18 },
-          { "key": "etherealcrystalscalestone", "name": "Ethereal Crystalscale Stone", "count": 12 }
+          {
+            "key": "triumphofthepalestararmy",
+            "name": "Triumph of the Pale Star Army",
+            "count": 4
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 18
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          }
         ]
       }
     },
     "Blade of Atonement": {
       "ascension": {
         "1": [
-          { "key": "riseofthepalestararmy", "name": "Rise of the Pale Star Army", "count": 3 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 3 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 2 }
+          {
+            "key": "riseofthepalestararmy",
+            "name": "Rise of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 2
+          }
         ],
         "2": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 3 },
-          { "key": "hollowrootoflife", "name": "Hollow Root of Life", "count": 12 },
-          { "key": "chimericcore", "name": "Chimeric Core", "count": 8 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 12
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 8
+          }
         ],
         "3": [
-          { "key": "musterofthepalestararmy", "name": "Muster of the Pale Star Army", "count": 6 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 6 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 6 }
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
         ],
         "4": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 3 },
-          { "key": "sproutofnodeoflife", "name": "Sprout Node of Life", "count": 12 },
-          { "key": "symbioticchimericnucleus", "name": "Symbiotic Chimeric Nucleus", "count": 9 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 3
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 12
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
         ],
         "5": [
-          { "key": "clarionofthepalestararmy", "name": "Clarion of the Pale Star Army", "count": 6 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 9 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 6 }
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 9
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          }
         ],
         "6": [
-          { "key": "triumphofthepalestararmy", "name": "Triumph of the Pale Star Army", "count": 4 },
-          { "key": "coiledcoreoflife", "name": "Coiled Core of Life", "count": 18 },
-          { "key": "primechimericnexus", "name": "Prime Chimeric Nexus", "count": 12 }
+          {
+            "key": "triumphofthepalestararmy",
+            "name": "Triumph of the Pale Star Army",
+            "count": 4
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 18
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
+        ]
+      }
+    },
+    "Beyond the Chrysalis": {
+      "ascension": {
+        "1": [
+          {
+            "key": "riseofthepalestararmy",
+            "name": "Rise of the Pale Star Army",
+            "count": 5
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 5
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 3
+          }
+        ],
+        "2": [
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 5
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 18
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 12
+          }
+        ],
+        "3": [
+          {
+            "key": "musterofthepalestararmy",
+            "name": "Muster of the Pale Star Army",
+            "count": 9
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 9
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
+        ],
+        "4": [
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 5
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 18
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 14
+          }
+        ],
+        "5": [
+          {
+            "key": "clarionofthepalestararmy",
+            "name": "Clarion of the Pale Star Army",
+            "count": 9
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 14
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 9
+          }
+        ],
+        "6": [
+          {
+            "key": "triumphofthepalestararmy",
+            "name": "Triumph of the Pale Star Army",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 27
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 18
+          }
+        ]
+      }
+    },
+    "Hymn of the Maelstrom": {
+      "ascension": {
+        "1": [
+          {
+            "key": "measuredpourofthecellaredspiritualnectar",
+            "name": "Measured Pour of the Cellared Spiritual Nectar",
+            "count": 5
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 5
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 3
+          }
+        ],
+        "2": [
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 5
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 18
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 12
+          }
+        ],
+        "3": [
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 9
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
+        ],
+        "4": [
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 5
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 18
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 14
+          }
+        ],
+        "5": [
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 9
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 14
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 9
+          }
+        ],
+        "6": [
+          {
+            "key": "revelryofthecellaredspiritualnectar",
+            "name": "Revelry of the Cellared Spiritual Nectar",
+            "count": 6
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 27
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 18
+          }
+        ]
+      }
+    },
+    "New Bough": {
+      "ascension": {
+        "1": [
+          {
+            "key": "measuredpourofthecellaredspiritualnectar",
+            "name": "Measured Pour of the Cellared Spiritual Nectar",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 2
+          }
+        ],
+        "2": [
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 12
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 8
+          }
+        ],
+        "3": [
+          {
+            "key": "intoxicationofthecellaredspiritualnectar",
+            "name": "Intoxication of the Cellared Spiritual Nectar",
+            "count": 6
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
+        ],
+        "4": [
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 3
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 12
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
+        ],
+        "5": [
+          {
+            "key": "exhilarationofthecellaredspiritualnectar",
+            "name": "Exhilaration of the Cellared Spiritual Nectar",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 9
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          }
+        ],
+        "6": [
+          {
+            "key": "revelryofthecellaredspiritualnectar",
+            "name": "Revelry of the Cellared Spiritual Nectar",
+            "count": 4
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 18
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
+        ]
+      }
+    },
+    "Silver Light": {
+      "ascension": {
+        "1": [
+          {
+            "key": "luminoussandsfromguyun",
+            "name": "Luminous Sands from Guyun",
+            "count": 3
+          },
+          {
+            "key": "whopperflowernectar",
+            "name": "Whopperflower Nectar",
+            "count": 3
+          },
+          {
+            "key": "recruitsinsignia",
+            "name": "Recruit's Insignia",
+            "count": 2
+          }
+        ],
+        "2": [
+          {
+            "key": "lustrousstonefromguyun",
+            "name": "Lustrous Stone from Guyun",
+            "count": 3
+          },
+          {
+            "key": "whopperflowernectar",
+            "name": "Whopperflower Nectar",
+            "count": 12
+          },
+          {
+            "key": "recruitsinsignia",
+            "name": "Recruit's Insignia",
+            "count": 8
+          }
+        ],
+        "3": [
+          {
+            "key": "lustrousstonefromguyun",
+            "name": "Lustrous Stone from Guyun",
+            "count": 6
+          },
+          {
+            "key": "shimmeringnectar",
+            "name": "Shimmering Nectar",
+            "count": 6
+          },
+          {
+            "key": "sergeantsinsignia",
+            "name": "Sergeant's Insignia",
+            "count": 6
+          }
+        ],
+        "4": [
+          {
+            "key": "relicfromguyun",
+            "name": "Relic from Guyun",
+            "count": 3
+          },
+          {
+            "key": "shimmeringnectar",
+            "name": "Shimmering Nectar",
+            "count": 12
+          },
+          {
+            "key": "sergeantsinsignia",
+            "name": "Sergeant's Insignia",
+            "count": 9
+          }
+        ],
+        "5": [
+          {
+            "key": "relicfromguyun",
+            "name": "Relic from Guyun",
+            "count": 6
+          },
+          {
+            "key": "energynectar",
+            "name": "Energy Nectar",
+            "count": 9
+          },
+          {
+            "key": "lieutenantsinsignia",
+            "name": "Lieutenant's Insignia",
+            "count": 6
+          }
+        ],
+        "6": [
+          {
+            "key": "divinebodyfromguyun",
+            "name": "Divine Body from Guyun",
+            "count": 4
+          },
+          {
+            "key": "energynectar",
+            "name": "Energy Nectar",
+            "count": 18
+          },
+          {
+            "key": "lieutenantsinsignia",
+            "name": "Lieutenant's Insignia",
+            "count": 12
+          }
+        ]
+      }
+    },
+    "Winter's Heavy Heart": {
+      "ascension": {
+        "1": [
+          {
+            "key": "thefrostemperorsrevival",
+            "name": "The Frost Emperor's Revival",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 3
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 2
+          }
+        ],
+        "2": [
+          {
+            "key": "thefrostemperorsceremony",
+            "name": "The Frost Emperor's Ceremony",
+            "count": 3
+          },
+          {
+            "key": "hollowrootoflife",
+            "name": "Hollow Root of Life",
+            "count": 12
+          },
+          {
+            "key": "etherealglimmershard",
+            "name": "Ethereal Glimmershard",
+            "count": 8
+          }
+        ],
+        "3": [
+          {
+            "key": "thefrostemperorsceremony",
+            "name": "The Frost Emperor's Ceremony",
+            "count": 6
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 6
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 6
+          }
+        ],
+        "4": [
+          {
+            "key": "thefrostemperorslament",
+            "name": "The Frost Emperor's Lament",
+            "count": 3
+          },
+          {
+            "key": "sproutofnodeoflife",
+            "name": "Sprout Node of Life",
+            "count": 12
+          },
+          {
+            "key": "etherealcrystal",
+            "name": "Ethereal Crystal",
+            "count": 9
+          }
+        ],
+        "5": [
+          {
+            "key": "thefrostemperorslament",
+            "name": "The Frost Emperor's Lament",
+            "count": 6
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 9
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 6
+          }
+        ],
+        "6": [
+          {
+            "key": "thefrostemperorsfarewell",
+            "name": "The Frost Emperor's Farewell",
+            "count": 4
+          },
+          {
+            "key": "coiledcoreoflife",
+            "name": "Coiled Core of Life",
+            "count": 18
+          },
+          {
+            "key": "etherealcrystalscalestone",
+            "name": "Ethereal Crystalscale Stone",
+            "count": 12
+          }
+        ]
+      }
+    },
+    "Breezeborne Refrain": {
+      "ascension": {
+        "1": [
+          {
+            "key": "thefrostemperorsrevival",
+            "name": "The Frost Emperor's Revival",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 3
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 2
+          }
+        ],
+        "2": [
+          {
+            "key": "thefrostemperorsceremony",
+            "name": "The Frost Emperor's Ceremony",
+            "count": 3
+          },
+          {
+            "key": "accretedfragment",
+            "name": "Accreted Fragment",
+            "count": 12
+          },
+          {
+            "key": "chimericcore",
+            "name": "Chimeric Core",
+            "count": 8
+          }
+        ],
+        "3": [
+          {
+            "key": "thefrostemperorsceremony",
+            "name": "The Frost Emperor's Ceremony",
+            "count": 6
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 6
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 6
+          }
+        ],
+        "4": [
+          {
+            "key": "thefrostemperorslament",
+            "name": "The Frost Emperor's Lament",
+            "count": 3
+          },
+          {
+            "key": "accretedmass",
+            "name": "Accreted Mass",
+            "count": 12
+          },
+          {
+            "key": "symbioticchimericnucleus",
+            "name": "Symbiotic Chimeric Nucleus",
+            "count": 9
+          }
+        ],
+        "5": [
+          {
+            "key": "thefrostemperorslament",
+            "name": "The Frost Emperor's Lament",
+            "count": 6
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 9
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 6
+          }
+        ],
+        "6": [
+          {
+            "key": "thefrostemperorsfarewell",
+            "name": "The Frost Emperor's Farewell",
+            "count": 4
+          },
+          {
+            "key": "accretedgrowth",
+            "name": "Accreted Growth",
+            "count": 18
+          },
+          {
+            "key": "primechimericnexus",
+            "name": "Prime Chimeric Nexus",
+            "count": 12
+          }
         ]
       }
     }
@@ -948,7 +3610,9 @@
       "id": "113090",
       "name": "Unscorched Blossom Branch",
       "rarity": 4,
-      "sources": ["Lv. 30+ Snezhnaya Normal Boss"],
+      "sources": [
+        "Lv. 30+ Snezhnaya Normal Boss"
+      ],
       "sortGroup": 300,
       "sortRank": 113090,
       "localExt": ".png"
@@ -957,7 +3621,9 @@
       "id": "113091",
       "name": "Severed Tail of the Sky-Roamer",
       "rarity": 4,
-      "sources": ["Lv. 30+ Winged Chimera Gryphon"],
+      "sources": [
+        "Lv. 30+ Winged Chimera Gryphon"
+      ],
       "sortGroup": 300,
       "sortRank": 113091,
       "localExt": ".png"
@@ -966,7 +3632,10 @@
       "id": "112995",
       "name": "Fractured Lunar Iron",
       "rarity": 2,
-      "sources": ["Dropped by Enemies", "Luna VIII Region"],
+      "sources": [
+        "Dropped by Enemies",
+        "Luna VIII Region"
+      ],
       "sortGroup": 100,
       "sortRank": 10639,
       "localExt": ".png"
@@ -975,7 +3644,10 @@
       "id": "112996",
       "name": "Depleted Lunar Iron",
       "rarity": 3,
-      "sources": ["Dropped by Enemies", "Crafted"],
+      "sources": [
+        "Dropped by Enemies",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 10639,
       "localExt": ".png"
@@ -984,7 +3656,10 @@
       "id": "112997",
       "name": "Unblemished Lunar Iron",
       "rarity": 4,
-      "sources": ["Dropped by Enemies", "Crafted"],
+      "sources": [
+        "Dropped by Enemies",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 10639,
       "localExt": ".png"
@@ -993,7 +3668,9 @@
       "id": "104365",
       "name": "Teachings of Charity",
       "rarity": 2,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)"
+      ],
       "sortGroup": 500,
       "sortRank": 104365,
       "localExt": ".png"
@@ -1002,7 +3679,10 @@
       "id": "104366",
       "name": "Guide to Charity",
       "rarity": 3,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 500,
       "sortRank": 104365,
       "localExt": ".png"
@@ -1011,7 +3691,10 @@
       "id": "104367",
       "name": "Philosophies of Charity",
       "rarity": 4,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Mon/Thu/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 500,
       "sortRank": 104365,
       "localExt": ".png"
@@ -1020,7 +3703,9 @@
       "id": "104368",
       "name": "Teachings of Fortitude",
       "rarity": 2,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)"
+      ],
       "sortGroup": 500,
       "sortRank": 104368,
       "localExt": ".png"
@@ -1029,7 +3714,10 @@
       "id": "104369",
       "name": "Guide to Fortitude",
       "rarity": 3,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 500,
       "sortRank": 104368,
       "localExt": ".png"
@@ -1038,7 +3726,10 @@
       "id": "104370",
       "name": "Philosophies of Fortitude",
       "rarity": 4,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Tue/Fri/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 500,
       "sortRank": 104368,
       "localExt": ".png"
@@ -1047,7 +3738,9 @@
       "id": "104371",
       "name": "Teachings of Glory",
       "rarity": 2,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)"
+      ],
       "sortGroup": 500,
       "sortRank": 104371,
       "localExt": ".png"
@@ -1056,7 +3749,10 @@
       "id": "104372",
       "name": "Guide to Glory",
       "rarity": 3,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 500,
       "sortRank": 104371,
       "localExt": ".png"
@@ -1065,7 +3761,10 @@
       "id": "104373",
       "name": "Philosophies of Glory",
       "rarity": 4,
-      "sources": ["Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 500,
       "sortRank": 104371,
       "localExt": ".png"
@@ -1074,7 +3773,9 @@
       "id": "112146",
       "name": "Ethereal Glimmershard",
       "rarity": 1,
-      "sources": ["Dropped by Ethereal Enemies"],
+      "sources": [
+        "Dropped by Ethereal Enemies"
+      ],
       "sortGroup": 100,
       "sortRank": 112146,
       "localExt": ".png"
@@ -1083,7 +3784,10 @@
       "id": "112147",
       "name": "Ethereal Crystal",
       "rarity": 2,
-      "sources": ["Dropped by Ethereal Enemies", "Crafted"],
+      "sources": [
+        "Dropped by Ethereal Enemies",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112146,
       "localExt": ".png"
@@ -1092,7 +3796,10 @@
       "id": "112148",
       "name": "Ethereal Crystalscale Stone",
       "rarity": 3,
-      "sources": ["Dropped by Ethereal Enemies", "Crafted"],
+      "sources": [
+        "Dropped by Ethereal Enemies",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112146,
       "localExt": ".png"
@@ -1101,7 +3808,9 @@
       "id": "112149",
       "name": "Chimeric Core",
       "rarity": 1,
-      "sources": ["Dropped by Synthetic Chimera Beasts"],
+      "sources": [
+        "Dropped by Synthetic Chimera Beasts"
+      ],
       "sortGroup": 100,
       "sortRank": 112149,
       "localExt": ".png"
@@ -1110,7 +3819,10 @@
       "id": "112150",
       "name": "Symbiotic Chimeric Nucleus",
       "rarity": 2,
-      "sources": ["Dropped by Synthetic Chimera Beasts", "Crafted"],
+      "sources": [
+        "Dropped by Synthetic Chimera Beasts",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112149,
       "localExt": ".png"
@@ -1119,7 +3831,10 @@
       "id": "112151",
       "name": "Prime Chimeric Nexus",
       "rarity": 3,
-      "sources": ["Dropped by Synthetic Chimera Beasts", "Crafted"],
+      "sources": [
+        "Dropped by Synthetic Chimera Beasts",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112149,
       "localExt": ".png"
@@ -1128,7 +3843,9 @@
       "id": "112155",
       "name": "Hollow Root of Life",
       "rarity": 2,
-      "sources": ["Dropped by Lifeform Organisms"],
+      "sources": [
+        "Dropped by Lifeform Organisms"
+      ],
       "sortGroup": 100,
       "sortRank": 112155,
       "localExt": ".png"
@@ -1137,7 +3854,10 @@
       "id": "112156",
       "name": "Sprout Node of Life",
       "rarity": 3,
-      "sources": ["Dropped by Lifeform Organisms", "Crafted"],
+      "sources": [
+        "Dropped by Lifeform Organisms",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112155,
       "localExt": ".png"
@@ -1146,7 +3866,10 @@
       "id": "112157",
       "name": "Coiled Core of Life",
       "rarity": 4,
-      "sources": ["Dropped by Lifeform Organisms", "Crafted"],
+      "sources": [
+        "Dropped by Lifeform Organisms",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112155,
       "localExt": ".png"
@@ -1155,7 +3878,9 @@
       "id": "112152",
       "name": "Accreted Fragment",
       "rarity": 2,
-      "sources": ["Dropped by Accreted Constructs"],
+      "sources": [
+        "Dropped by Accreted Constructs"
+      ],
       "sortGroup": 100,
       "sortRank": 112152,
       "localExt": ".png"
@@ -1164,7 +3889,10 @@
       "id": "112153",
       "name": "Accreted Mass",
       "rarity": 3,
-      "sources": ["Dropped by Accreted Constructs", "Crafted"],
+      "sources": [
+        "Dropped by Accreted Constructs",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112152,
       "localExt": ".png"
@@ -1173,7 +3901,10 @@
       "id": "112154",
       "name": "Accreted Growth",
       "rarity": 4,
-      "sources": ["Dropped by Accreted Constructs", "Crafted"],
+      "sources": [
+        "Dropped by Accreted Constructs",
+        "Crafted"
+      ],
       "sortGroup": 100,
       "sortRank": 112152,
       "localExt": ".png"
@@ -1182,7 +3913,9 @@
       "id": "114085",
       "name": "Rise of the Pale Star Army",
       "rarity": 2,
-      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Mon/Thu/Sun)"
+      ],
       "sortGroup": 600,
       "sortRank": 114085,
       "localExt": ".png"
@@ -1191,7 +3924,10 @@
       "id": "114086",
       "name": "Muster of the Pale Star Army",
       "rarity": 3,
-      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Mon/Thu/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114085,
       "localExt": ".png"
@@ -1200,7 +3936,10 @@
       "id": "114087",
       "name": "Clarion of the Pale Star Army",
       "rarity": 4,
-      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Mon/Thu/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114085,
       "localExt": ".png"
@@ -1209,7 +3948,10 @@
       "id": "114088",
       "name": "Triumph of the Pale Star Army",
       "rarity": 5,
-      "sources": ["Domain of Forgery: Cast Iron (Mon/Thu/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Mon/Thu/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114085,
       "localExt": ".png"
@@ -1218,7 +3960,9 @@
       "id": "114089",
       "name": "Measured Pour of the Cellared Spiritual Nectar",
       "rarity": 2,
-      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Tue/Fri/Sun)"
+      ],
       "sortGroup": 600,
       "sortRank": 114089,
       "localExt": ".png"
@@ -1227,7 +3971,10 @@
       "id": "114090",
       "name": "Intoxication of the Cellared Spiritual Nectar",
       "rarity": 3,
-      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Tue/Fri/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114089,
       "localExt": ".png"
@@ -1236,7 +3983,10 @@
       "id": "114091",
       "name": "Exhilaration of the Cellared Spiritual Nectar",
       "rarity": 4,
-      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Tue/Fri/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114089,
       "localExt": ".png"
@@ -1245,7 +3995,10 @@
       "id": "114092",
       "name": "Revelry of the Cellared Spiritual Nectar",
       "rarity": 5,
-      "sources": ["Domain of Forgery: Cast Iron (Tue/Fri/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Tue/Fri/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114089,
       "localExt": ".png"
@@ -1254,7 +4007,9 @@
       "id": "114093",
       "name": "The Frost Emperor's Revival",
       "rarity": 2,
-      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Wed/Sat/Sun)"
+      ],
       "sortGroup": 600,
       "sortRank": 114093,
       "localExt": ".png"
@@ -1263,7 +4018,10 @@
       "id": "114094",
       "name": "The Frost Emperor's Ceremony",
       "rarity": 3,
-      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Wed/Sat/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114093,
       "localExt": ".png"
@@ -1272,7 +4030,10 @@
       "id": "114095",
       "name": "The Frost Emperor's Lament",
       "rarity": 4,
-      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Wed/Sat/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114093,
       "localExt": ".png"
@@ -1281,7 +4042,10 @@
       "id": "114096",
       "name": "The Frost Emperor's Farewell",
       "rarity": 5,
-      "sources": ["Domain of Forgery: Cast Iron (Wed/Sat/Sun)", "Crafted"],
+      "sources": [
+        "Domain of Forgery: Cast Iron (Wed/Sat/Sun)",
+        "Crafted"
+      ],
       "sortGroup": 600,
       "sortRank": 114093,
       "localExt": ".png"
@@ -1290,7 +4054,10 @@
       "id": "101275",
       "name": "Frostfairy Flower",
       "rarity": 1,
-      "sources": ["Found in Snezhnaya", "Fellfrost Peak"],
+      "sources": [
+        "Found in Snezhnaya",
+        "Fellfrost Peak"
+      ],
       "sortGroup": 700,
       "sortRank": 101275,
       "localExt": ".png"
@@ -1299,7 +4066,10 @@
       "id": "101276",
       "name": "Flockingweed",
       "rarity": 1,
-      "sources": ["Found in Snezhnaya", "Everfrozen Earth"],
+      "sources": [
+        "Found in Snezhnaya",
+        "Everfrozen Earth"
+      ],
       "sortGroup": 700,
       "sortRank": 101276,
       "localExt": ".png"
@@ -1308,7 +4078,9 @@
       "id": "101277",
       "name": "Golden Fern",
       "rarity": 1,
-      "sources": ["Found in Snezhnaya"],
+      "sources": [
+        "Found in Snezhnaya"
+      ],
       "sortGroup": 700,
       "sortRank": 101277,
       "localExt": ".png"
@@ -1317,7 +4089,9 @@
       "id": "101279",
       "name": "Glaciafruit",
       "rarity": 1,
-      "sources": ["Found in Snezhnaya"],
+      "sources": [
+        "Found in Snezhnaya"
+      ],
       "sortGroup": 700,
       "sortRank": 101279,
       "localExt": ".png"
@@ -1326,9 +4100,22 @@
       "id": "101282",
       "name": "Lumifluorite",
       "rarity": 1,
-      "sources": ["Mining in Snezhnaya"],
+      "sources": [
+        "Mining in Snezhnaya"
+      ],
       "sortGroup": 700,
       "sortRank": 101282,
+      "localExt": ".png"
+    },
+    "vagabondscrackedarmor": {
+      "id": "113092",
+      "name": "Vagabond's Cracked Armor",
+      "rarity": 4,
+      "sources": [
+        "Dropped by Lv. 30+ Guardian Blade of Drifting Snow"
+      ],
+      "sortGroup": 300,
+      "sortRank": 113092,
       "localExt": ".png"
     }
   }

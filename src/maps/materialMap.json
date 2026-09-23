@@ -6180,5 +6180,16 @@
     "sortGroup": 700,
     "sortRank": 101282,
     "localExt": ".png"
+  },
+  "vagabondscrackedarmor": {
+    "id": "113092",
+    "name": "Vagabond's Cracked Armor",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Guardian Blade of Drifting Snow"
+    ],
+    "sortGroup": 300,
+    "sortRank": 113092,
+    "localExt": ".png"
   }
 }

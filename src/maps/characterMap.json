@@ -1096,5 +1096,23 @@
     "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alyosha.png",
     "id": "Alyosha",
     "version": "7.0"
+  },
+  "Vesna": {
+    "name": "Vesna",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Sword",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vesna.png",
+    "id": "Vesna",
+    "version": "7.1"
+  },
+  "Vodyanitsa": {
+    "name": "Vodyanitsa",
+    "rarity": 5,
+    "element": "Hydro",
+    "weaponType": "Catalyst",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vodyanitsa.png",
+    "id": "Vodyanitsa",
+    "version": "7.1"
   }
 }

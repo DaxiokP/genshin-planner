@@ -228,7 +228,23 @@ const assetJobs = [
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114093.png', dest: 'public/icons/114093.png', fallback: 'public/icons/114001.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114094.png', dest: 'public/icons/114094.png', fallback: 'public/icons/114002.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114095.png', dest: 'public/icons/114095.png', fallback: 'public/icons/114003.png' },
-  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114096.png', dest: 'public/icons/114096.png', fallback: 'public/icons/114004.png' }
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_114096.png', dest: 'public/icons/114096.png', fallback: 'public/icons/114004.png' },
+  // 7.1 Characters & Namecards & Splash Arts
+  { url: 'https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vesna.png', dest: 'public/characters/Vesna.png', fallback: 'public/characters/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vodyanitsa.png', dest: 'public/characters/Vodyanitsa.png', fallback: 'public/characters/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Vesna.png', dest: 'public/splash_arts/Vesna.png', fallback: 'public/splash_arts/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Vodyanitsa.png', dest: 'public/splash_arts/Vodyanitsa.png', fallback: 'public/splash_arts/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/namecard/UI_NameCardPic_Vesna_P.png', dest: 'public/namecards/Vesna.png', fallback: 'public/namecards/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/namecard/UI_NameCardPic_Vodyanitsa_P.png', dest: 'public/namecards/Vodyanitsa.png', fallback: 'public/namecards/Shenhe.png' },
+  // 7.1 Weapons
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Samosvist.png', dest: 'public/weapons/Sword_Samosvist.png', fallback: 'public/weapons/Sword_Estoc.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_Bludnye.png', dest: 'public/weapons/Catalyst_Bludnye.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_SpikedStake.png', dest: 'public/weapons/Sword_SpikedStake.png', fallback: 'public/weapons/Sword_Estoc.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Sword_Fajian.png', dest: 'public/weapons/Sword_Fajian.png', fallback: 'public/weapons/Sword_Estoc.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_FrostScepter.png', dest: 'public/weapons/Catalyst_FrostScepter.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_Windtalker.png', dest: 'public/weapons/Bow_Windtalker.png', fallback: 'public/weapons/Bow_Hunters.png' },
+  // 7.1 Materials
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113092.png', dest: 'public/icons/113092.png', fallback: 'public/icons/113001.png' }
 ];
 
 // Artifact Relics
