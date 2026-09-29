@@ -286,5 +286,98 @@ describe('plannerCalculator', () => {
       expect(fortitudeItem?.name).toBe('Teachings of Fortitude');
       expect(fortitudeItem?.iconId).toBe('104368');
     });
+
+    test('Clash of Kings and Favonius Lance (both 4-star weapons) require the exact same Mora from 1 to 90', () => {
+      const clashOfKings = {
+        key: 'Clash of Kings',
+        type: 'weapon',
+        enabled: true,
+        current: { level: 1, ascension: 0 },
+        desired: { level: 90, ascension: 6 }
+      };
+
+      const favoniusLance = {
+        key: 'Favonius Lance',
+        type: 'weapon',
+        enabled: true,
+        current: { level: 1, ascension: 0 },
+        desired: { level: 90, ascension: 6 }
+      };
+
+      const clashReqs = calculateRequirements(clashOfKings, {});
+      const favReqs = calculateRequirements(favoniusLance, {});
+
+      const clashMora = clashReqs.find(r => r.key === 'mora');
+      const favMora = favReqs.find(r => r.key === 'mora');
+
+      expect(clashMora).toBeDefined();
+      expect(favMora).toBeDefined();
+      // Total 4-star weapon 1->90 mora = 604,265 (exp) + 150,000 (ascension) = 754,265
+      expect(clashMora!.required).toBe(754265);
+      expect(favMora!.required).toBe(754265);
+      expect(clashMora!.required).toBe(favMora!.required);
+    });
+
+    test('Whitelake Frostfeather and Staff of Homa (both 5-star weapons) require the exact same Mora from 1 to 90', () => {
+      const swanlake = {
+        key: 'Whitelake Frostfeather',
+        type: 'weapon',
+        enabled: true,
+        current: { level: 1, ascension: 0 },
+        desired: { level: 90, ascension: 6 }
+      };
+
+      const homa = {
+        key: 'Staff of Homa',
+        type: 'weapon',
+        enabled: true,
+        current: { level: 1, ascension: 0 },
+        desired: { level: 90, ascension: 6 }
+      };
+
+      const swanlakeReqs = calculateRequirements(swanlake, {});
+      const homaReqs = calculateRequirements(homa, {});
+
+      const swanlakeMora = swanlakeReqs.find(r => r.key === 'mora');
+      const homaMora = homaReqs.find(r => r.key === 'mora');
+
+      expect(swanlakeMora).toBeDefined();
+      expect(homaMora).toBeDefined();
+      // Total 5-star weapon 1->90 mora = 906,445 (exp) + 225,000 (ascension) = 1,131,445
+      expect(swanlakeMora!.required).toBe(1131445);
+      expect(homaMora!.required).toBe(1131445);
+      expect(swanlakeMora!.required).toBe(homaMora!.required);
+    });
+
+    test('Patched characters (Sandrone, Odette, Alyosha, Vesna, Vodyanitsa) include talent and ascension Mora', () => {
+      const patchedChars = ['Sandrone', 'Odette', 'Alyosha', 'Vesna', 'Vodyanitsa'];
+
+      patchedChars.forEach(charKey => {
+        const plannedChar = {
+          key: charKey,
+          type: 'character',
+          enabled: true,
+          current: {
+            level: 1,
+            ascension: 0,
+            talent: { auto: 1, skill: 1, burst: 1 }
+          },
+          desired: {
+            level: 90,
+            ascension: 6,
+            talent: { auto: 10, skill: 10, burst: 10 }
+          }
+        };
+
+        const reqs = calculateRequirements(plannedChar, {});
+        const moraReq = reqs.find(r => r.key === 'mora');
+        expect(moraReq).toBeDefined();
+        // Character 1->90: 1,676,000 (Hero's Wit exp mora) + 420,000 (ascension mora) = 2,096,000
+        // Talents 1/1/1 -> 10/10/10: 1,652,500 * 3 = 4,957,500
+        // Total = 7,053,500
+        expect(moraReq!.required).toBe(7053500);
+      });
+    });
   });
 });
+

@@ -102,7 +102,7 @@ npm install genshin-db@latest       # install it
 Verify the new version covers your target patch (e.g. `5.2.11` covered version `6.6`). If the package hasn't been updated yet, wait until it is.
 
 > [!TIP]
-> If `genshin-db` lags behind the live game patch (e.g. new 7.0 characters/weapons not yet in the package), you can add overrides directly to `src/maps/patches.json` and run `node resources/scripts/applyPatches.cjs` to inject them. This is the preferred escape hatch for new-patch data that arrives before `genshin-db` is updated.
+> If `genshin-db` lags behind the live game patch (e.g. new 7.0 characters/weapons not yet in the package), you can add overrides directly to `src/maps/patches.json` and run `node resources/scripts/applyPatches.cjs` to inject them. This is the preferred escape hatch for new-patch data that arrives before `genshin-db` is updated. When defining `characterRequirements` and `weaponRequirements`, remember to include the Mora cost (`{ "key": "mora", "name": "Mora", "count": ... }`) in each ascension and talent tier.
 
 ### Step 2 — Regenerate All Maps & Assets
 ```bash

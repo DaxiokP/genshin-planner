@@ -40618,6 +40618,11 @@
     "ascension": {
       "1": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
           "key": "shivadajadesliver",
           "name": "Shivada Jade Sliver",
           "count": 1
@@ -40634,6 +40639,11 @@
         }
       ],
       "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
         {
           "key": "shivadajadefragment",
           "name": "Shivada Jade Fragment",
@@ -40657,6 +40667,11 @@
       ],
       "3": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
           "key": "shivadajadefragment",
           "name": "Shivada Jade Fragment",
           "count": 6
@@ -40678,6 +40693,11 @@
         }
       ],
       "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
         {
           "key": "shivadajadechunk",
           "name": "Shivada Jade Chunk",
@@ -40701,6 +40721,11 @@
       ],
       "5": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
           "key": "shivadajadechunk",
           "name": "Shivada Jade Chunk",
           "count": 6
@@ -40722,6 +40747,11 @@
         }
       ],
       "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "shivadajadegemstone",
           "name": "Shivada Jade Gemstone",
@@ -40747,6 +40777,11 @@
     "talents": {
       "2": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
           "key": "teachingsofvagrancy",
           "name": "Teachings of Vagrancy",
           "count": 3
@@ -40758,6 +40793,11 @@
         }
       ],
       "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
         {
           "key": "guidetovagrancy",
           "name": "Guide to Vagrancy",
@@ -40771,6 +40811,11 @@
       ],
       "4": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
           "key": "guidetovagrancy",
           "name": "Guide to Vagrancy",
           "count": 4
@@ -40782,6 +40827,11 @@
         }
       ],
       "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
         {
           "key": "guidetovagrancy",
           "name": "Guide to Vagrancy",
@@ -40795,6 +40845,11 @@
       ],
       "6": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
           "key": "guidetovagrancy",
           "name": "Guide to Vagrancy",
           "count": 9
@@ -40806,6 +40861,11 @@
         }
       ],
       "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "philosophiesofvagrancy",
           "name": "Philosophies of Vagrancy",
@@ -40824,6 +40884,11 @@
       ],
       "8": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
           "key": "philosophiesofvagrancy",
           "name": "Philosophies of Vagrancy",
           "count": 6
@@ -40841,6 +40906,11 @@
       ],
       "9": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
           "key": "philosophiesofvagrancy",
           "name": "Philosophies of Vagrancy",
           "count": 12
@@ -40857,6 +40927,11 @@
         }
       ],
       "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
         {
           "key": "philosophiesofvagrancy",
           "name": "Philosophies of Vagrancy",
@@ -40884,6 +40959,11 @@
     "ascension": {
       "1": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
           "key": "shivadajadesliver",
           "name": "Shivada Jade Sliver",
           "count": 1
@@ -40900,6 +40980,11 @@
         }
       ],
       "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
         {
           "key": "shivadajadefragment",
           "name": "Shivada Jade Fragment",
@@ -40923,6 +41008,11 @@
       ],
       "3": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
           "key": "shivadajadefragment",
           "name": "Shivada Jade Fragment",
           "count": 6
@@ -40944,6 +41034,11 @@
         }
       ],
       "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
         {
           "key": "shivadajadechunk",
           "name": "Shivada Jade Chunk",
@@ -40967,6 +41062,11 @@
       ],
       "5": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
           "key": "shivadajadechunk",
           "name": "Shivada Jade Chunk",
           "count": 6
@@ -40988,6 +41088,11 @@
         }
       ],
       "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "shivadajadegemstone",
           "name": "Shivada Jade Gemstone",
@@ -41013,6 +41118,11 @@
     "talents": {
       "2": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
           "key": "teachingsofcharity",
           "name": "Teachings of Charity",
           "count": 3
@@ -41024,6 +41134,11 @@
         }
       ],
       "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
         {
           "key": "guidetocharity",
           "name": "Guide to Charity",
@@ -41037,6 +41152,11 @@
       ],
       "4": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
           "key": "guidetocharity",
           "name": "Guide to Charity",
           "count": 4
@@ -41048,6 +41168,11 @@
         }
       ],
       "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
         {
           "key": "guidetocharity",
           "name": "Guide to Charity",
@@ -41061,6 +41186,11 @@
       ],
       "6": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
           "key": "guidetocharity",
           "name": "Guide to Charity",
           "count": 9
@@ -41072,6 +41202,11 @@
         }
       ],
       "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "philosophiesofcharity",
           "name": "Philosophies of Charity",
@@ -41090,6 +41225,11 @@
       ],
       "8": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
           "key": "philosophiesofcharity",
           "name": "Philosophies of Charity",
           "count": 6
@@ -41107,6 +41247,11 @@
       ],
       "9": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
           "key": "philosophiesofcharity",
           "name": "Philosophies of Charity",
           "count": 12
@@ -41123,6 +41268,11 @@
         }
       ],
       "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
         {
           "key": "philosophiesofcharity",
           "name": "Philosophies of Charity",
@@ -41150,6 +41300,11 @@
     "ascension": {
       "1": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
           "key": "vajradaamethystsliver",
           "name": "Vajrada Amethyst Sliver",
           "count": 1
@@ -41166,6 +41321,11 @@
         }
       ],
       "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
         {
           "key": "vajradaamethystfragment",
           "name": "Vajrada Amethyst Fragment",
@@ -41189,6 +41349,11 @@
       ],
       "3": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
           "key": "vajradaamethystfragment",
           "name": "Vajrada Amethyst Fragment",
           "count": 6
@@ -41210,6 +41375,11 @@
         }
       ],
       "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
         {
           "key": "vajradaamethystchunk",
           "name": "Vajrada Amethyst Chunk",
@@ -41233,6 +41403,11 @@
       ],
       "5": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
           "key": "vajradaamethystchunk",
           "name": "Vajrada Amethyst Chunk",
           "count": 6
@@ -41254,6 +41429,11 @@
         }
       ],
       "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "vajradaamethystgemstone",
           "name": "Vajrada Amethyst Gemstone",
@@ -41279,6 +41459,11 @@
     "talents": {
       "2": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
           "key": "teachingsoffortitude",
           "name": "Teachings of Fortitude",
           "count": 3
@@ -41290,6 +41475,11 @@
         }
       ],
       "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
         {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
@@ -41303,6 +41493,11 @@
       ],
       "4": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
           "count": 4
@@ -41314,6 +41509,11 @@
         }
       ],
       "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
         {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
@@ -41327,6 +41527,11 @@
       ],
       "6": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
           "count": 9
@@ -41338,6 +41543,11 @@
         }
       ],
       "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
@@ -41356,6 +41566,11 @@
       ],
       "8": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
           "count": 6
@@ -41373,6 +41588,11 @@
       ],
       "9": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
           "count": 12
@@ -41389,6 +41609,11 @@
         }
       ],
       "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
         {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
@@ -41416,6 +41641,11 @@
     "ascension": {
       "1": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
           "key": "vayudaturquoisesliver",
           "name": "Vayuda Turquoise Sliver",
           "count": 1
@@ -41432,6 +41662,11 @@
         }
       ],
       "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
         {
           "key": "vayudaturquoisefragment",
           "name": "Vayuda Turquoise Fragment",
@@ -41455,6 +41690,11 @@
       ],
       "3": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
           "key": "vayudaturquoisefragment",
           "name": "Vayuda Turquoise Fragment",
           "count": 6
@@ -41476,6 +41716,11 @@
         }
       ],
       "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
         {
           "key": "vayudaturquoisechunk",
           "name": "Vayuda Turquoise Chunk",
@@ -41499,6 +41744,11 @@
       ],
       "5": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
           "key": "vayudaturquoisechunk",
           "name": "Vayuda Turquoise Chunk",
           "count": 6
@@ -41520,6 +41770,11 @@
         }
       ],
       "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "vayudaturquoisegemstone",
           "name": "Vayuda Turquoise Gemstone",
@@ -41545,6 +41800,11 @@
     "talents": {
       "2": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
           "key": "teachingsofglory",
           "name": "Teachings of Glory",
           "count": 3
@@ -41556,6 +41816,11 @@
         }
       ],
       "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
         {
           "key": "guidetoglory",
           "name": "Guide to Glory",
@@ -41569,6 +41834,11 @@
       ],
       "4": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
           "key": "guidetoglory",
           "name": "Guide to Glory",
           "count": 4
@@ -41580,6 +41850,11 @@
         }
       ],
       "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
         {
           "key": "guidetoglory",
           "name": "Guide to Glory",
@@ -41593,6 +41868,11 @@
       ],
       "6": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
           "key": "guidetoglory",
           "name": "Guide to Glory",
           "count": 9
@@ -41604,6 +41884,11 @@
         }
       ],
       "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "philosophiesofglory",
           "name": "Philosophies of Glory",
@@ -41622,6 +41907,11 @@
       ],
       "8": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
           "key": "philosophiesofglory",
           "name": "Philosophies of Glory",
           "count": 6
@@ -41639,6 +41929,11 @@
       ],
       "9": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
           "key": "philosophiesofglory",
           "name": "Philosophies of Glory",
           "count": 12
@@ -41655,6 +41950,11 @@
         }
       ],
       "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
         {
           "key": "philosophiesofglory",
           "name": "Philosophies of Glory",
@@ -41682,6 +41982,11 @@
     "ascension": {
       "1": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
           "key": "varunadalazuritesliver",
           "name": "Varunada Lazurite Sliver",
           "count": 1
@@ -41698,6 +42003,11 @@
         }
       ],
       "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
         {
           "key": "varunadalazuritefragment",
           "name": "Varunada Lazurite Fragment",
@@ -41721,6 +42031,11 @@
       ],
       "3": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
           "key": "varunadalazuritefragment",
           "name": "Varunada Lazurite Fragment",
           "count": 6
@@ -41742,6 +42057,11 @@
         }
       ],
       "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
         {
           "key": "varunadalazuritechunk",
           "name": "Varunada Lazurite Chunk",
@@ -41765,6 +42085,11 @@
       ],
       "5": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
           "key": "varunadalazuritechunk",
           "name": "Varunada Lazurite Chunk",
           "count": 6
@@ -41786,6 +42111,11 @@
         }
       ],
       "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "varunadalazuritegemstone",
           "name": "Varunada Lazurite Gemstone",
@@ -41811,6 +42141,11 @@
     "talents": {
       "2": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
           "key": "teachingsoffortitude",
           "name": "Teachings of Fortitude",
           "count": 3
@@ -41822,6 +42157,11 @@
         }
       ],
       "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
         {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
@@ -41835,6 +42175,11 @@
       ],
       "4": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
           "count": 4
@@ -41846,6 +42191,11 @@
         }
       ],
       "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
         {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
@@ -41859,6 +42209,11 @@
       ],
       "6": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
           "key": "guidetofortitude",
           "name": "Guide to Fortitude",
           "count": 9
@@ -41870,6 +42225,11 @@
         }
       ],
       "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
         {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
@@ -41888,6 +42248,11 @@
       ],
       "8": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
           "count": 6
@@ -41905,6 +42270,11 @@
       ],
       "9": [
         {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",
           "count": 12
@@ -41921,6 +42291,11 @@
         }
       ],
       "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
         {
           "key": "philosophiesoffortitude",
           "name": "Philosophies of Fortitude",

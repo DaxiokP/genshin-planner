@@ -233,7 +233,7 @@ export function accumulatePlanRequirements(planned: any, addMaterial: (key: stri
               addMaterial(uncommonTiers[2], 14);
               addMaterial(commonTiers[2], 9);
             } else if (asc === 6) {
-              addMaterial('mora', 70000);
+              addMaterial('mora', 65000);
               addMaterial(domainTiers[3], 6);
               addMaterial(uncommonTiers[2], 27);
               addMaterial(commonTiers[2], 18);

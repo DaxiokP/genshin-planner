@@ -104,6 +104,11 @@ When prompted to start:
    - Materials (Lunar Iron series or any other new ascension/drop items)
 4. If a new version exists, build the JSON object matching the patches.json schema and call 'update_patches_file'.
    Format the requirements correctly following the exact keys used in materialMap.json.
+   CRITICAL: Always include Mora ({ "key": "mora", "name": "Mora", "count": ... }) at index 0 of every requirement array:
+   - Character ascension (1..6): 20k, 40k, 60k, 80k, 100k, 120k Mora.
+   - Character talents (2..10): 12.5k, 17.5k, 25k, 30k, 37.5k, 120k, 260k, 450k, 700k Mora.
+   - 4-star weapon ascension (1..6): 5k, 15k, 20k, 30k, 35k, 45k Mora.
+   - 5-star weapon ascension (1..6): 10k, 20k, 30k, 45k, 55k, 65k Mora.
 5. Call 'save_patch_version' with the new version string.
 6. Execute 'npm run update-data' and 'npm run build' in the workspace directory using the run_command tool to apply patches and verify that the project compiles cleanly.
 7. Output a summary of the changes you made (characters, weapons, artifacts updated, and whether build succeeded).
