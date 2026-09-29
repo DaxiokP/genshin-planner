@@ -28,7 +28,7 @@ const allowedNames = new Set([
   "Teachings of Charity", "Guide to Charity", "Philosophies of Charity",
   "Teachings of Glory", "Guide to Glory", "Philosophies of Glory",
   "Teachings of Fortitude", "Guide to Fortitude", "Philosophies of Fortitude",
-  "Unscorched Blossom Branch", "Severed Tail of the Sky-Roamer",
+  "Unscorched Blossom Branch", "Severed Tail of the Sky-Roamer", "Vagabond's Cracked Armor",
   "Ethereal Glimmershard", "Ethereal Crystal", "Ethereal Crystalscale Stone",
   "Chimeric Core", "Symbiotic Chimeric Nucleus", "Prime Chimeric Nexus",
   "Coiled Core of Life", "Sprout Node of Life", "Sprout of Node of Life", "Hollow Root of Life",

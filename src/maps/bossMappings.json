@@ -1444,5 +1444,17 @@
       "agnidusagatefragment",
       "agnidusagatesliver"
     ]
+  },
+  "vagabondscrackedarmor": {
+    "enemyName": "Guardian Blade of Drifting Snow",
+    "drops": [
+      "vagabondscrackedarmor"
+    ],
+    "gems": [
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver"
+    ]
   }
 }

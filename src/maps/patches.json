@@ -4118,5 +4118,20 @@
       "sortRank": 113092,
       "localExt": ".png"
     }
+  },
+  "bossMappings": {
+    "vagabondscrackedarmor": {
+      "enemyName": "Guardian Blade of Drifting Snow",
+      "drops": [
+        "vagabondscrackedarmor"
+      ],
+      "gems": [
+        "shivadajadegemstone",
+        "shivadajadechunk",
+        "shivadajadefragment",
+        "shivadajadesliver"
+      ]
+    }
   }
 }
+

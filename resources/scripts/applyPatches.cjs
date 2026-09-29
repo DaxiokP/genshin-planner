@@ -76,6 +76,16 @@ if (fs.existsSync(artifactMapPath) && patches.artifacts) {
   console.log(`Merged ${Object.keys(patches.artifacts).length} artifacts into artifactMap.json.`);
 }
 
+// 7. Merge Boss Mappings
+const bossMappingsPath = path.join(__dirname, '../../src/maps/bossMappings.json');
+if (fs.existsSync(bossMappingsPath) && patches.bossMappings) {
+  const bossMappings = JSON.parse(fs.readFileSync(bossMappingsPath, 'utf8'));
+  Object.assign(bossMappings, patches.bossMappings);
+  fs.writeFileSync(bossMappingsPath, JSON.stringify(bossMappings, null, 2));
+  console.log(`Merged ${Object.keys(patches.bossMappings).length} boss mappings into bossMappings.json.`);
+}
+
+
 // Helper to download image
 const downloadImage = (url, dest) => {
   return new Promise((resolve, reject) => {
