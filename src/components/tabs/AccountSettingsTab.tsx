@@ -324,9 +324,6 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
               <button type="button" className="settings-btn settings-btn-import" onClick={() => fileInputRef.current?.click()}>
                 <Upload size={18} /> Import File
               </button>
-              <button type="button" className="settings-btn settings-btn-save" onClick={handleSave}>
-                <Save size={18} /> Save
-              </button>
               <button type="button" className="settings-btn settings-btn-clear" onClick={handleDeleteData}>
                 <Trash2 size={18} /> Delete Data
               </button>
@@ -353,6 +350,12 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
                 </button>
               </div>
             )}
+
+            <div className="save-settings-row">
+              <button type="button" className="settings-btn settings-btn-save" onClick={handleSave}>
+                <Save size={18} /> Save
+              </button>
+            </div>
           </div>
           
           <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.5rem', lineHeight: '1.4' }}>
