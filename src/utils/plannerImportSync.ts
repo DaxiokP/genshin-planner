@@ -1,5 +1,5 @@
 import type { GoodCharacter, GoodWeapon } from '../types';
-import { isTravelerKey } from './characterHelpers';
+import { isTravelerKey, getTravelerElement, extractTravelerElementFromString } from './characterHelpers';
 
 const normalizeKey = (key: string) => {
   const k = isTravelerKey(key) ? 'Aether' : key;
@@ -22,10 +22,43 @@ export function syncPlannedItemsWithGoodImport(
   return previousPlannedItems.map(item => {
     if (item.type === 'character' || !item.type) {
       // Sync character plan
+      const isTraveler = isTravelerKey(item.key);
       const normPlannedCharKey = normalizeKey(item.key);
-      const matchedImportChar = importedCharacters.find(
-        c => normalizeKey(c.key) === normPlannedCharKey
-      );
+
+      let matchedImportChar: GoodCharacter | undefined;
+      if (isTraveler) {
+        const planElement = getTravelerElement(item);
+        // Try matching element-specific Traveler key first (e.g., TravelerAnemo), or generic Traveler if only one exists
+        const travelerImports = importedCharacters.filter(c => isTravelerKey(c.key));
+        matchedImportChar = travelerImports.find(c => extractTravelerElementFromString(c.key) === planElement)
+          || (travelerImports.length === 1 && !extractTravelerElementFromString(travelerImports[0].key) ? travelerImports[0] : undefined);
+
+        // Even if talents came from another element in GOOD export, shared level & ascension still apply if any Traveler is in import
+        if (!matchedImportChar && travelerImports.length > 0) {
+          const anyTraveler = travelerImports[0];
+          const currentLevel = anyTraveler.level;
+          const currentAscension = anyTraveler.ascension;
+          const desiredLevel = Math.max(item.desired.level, currentLevel);
+          const desiredAscension = Math.max(item.desired.ascension, currentAscension);
+          return {
+            ...item,
+            current: {
+              ...item.current,
+              level: currentLevel,
+              ascension: currentAscension
+            },
+            desired: {
+              ...item.desired,
+              level: desiredLevel,
+              ascension: desiredAscension
+            }
+          };
+        }
+      } else {
+        matchedImportChar = importedCharacters.find(
+          c => normalizeKey(c.key) === normPlannedCharKey
+        );
+      }
 
       if (!matchedImportChar) {
         return item; // Keep as is if character is not found in import

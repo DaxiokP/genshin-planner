@@ -26,7 +26,15 @@ import { InventoryTab } from './components/tabs/InventoryTab';
 import { syncPlannedItemsWithGoodImport } from './utils/plannerImportSync';
 import { AccountSettingsTab } from './components/tabs/AccountSettingsTab';
 import { CustomItemModal } from './components/CustomItemModal';
-import { lookupCharacter, isTravelerKey, isSameCharacterKey, type TravelerKey } from './utils/characterHelpers';
+import {
+  lookupCharacter,
+  isTravelerKey,
+  isSameCharacterKey,
+  isSamePlannedCharacter,
+  getTravelerElement,
+  getCharacterPlanId,
+  type TravelerKey,
+} from './utils/characterHelpers';
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
@@ -203,7 +211,13 @@ function App() {
           weapons
         ).map(item => {
           if ((item.type === 'character' || !item.type) && isTravelerKey(item.key)) {
-            return { ...item, key: targetTraveler, id: `character:${targetTraveler}` };
+            const el = getTravelerElement(item);
+            return {
+              ...item,
+              key: targetTraveler,
+              travelerElement: el,
+              id: getCharacterPlanId(item, targetTraveler, el)
+            };
           }
           return item;
         });
@@ -229,10 +243,12 @@ function App() {
       if (!hasTraveler) return prev;
       return prev.map(p => {
         if ((p.type === 'character' || !p.type) && isTravelerKey(p.key)) {
+          const el = getTravelerElement(p);
           return {
             ...p,
             key: newTraveler,
-            id: `character:${newTraveler}`
+            travelerElement: el,
+            id: getCharacterPlanId(p, newTraveler, el)
           };
         }
         return p;
@@ -257,6 +273,15 @@ function App() {
     setArtifacts([]);
   };
 
+  const findPlannedCharacterBySelector = (selector: string | null | undefined) => {
+    if (!selector) return undefined;
+    return plannedCharacters.find(p => {
+      const pid = p.id || getCharacterPlanId(p, traveler);
+      if (pid === selector || p.key === selector) return true;
+      return isSamePlannedCharacter(p, selector);
+    });
+  };
+
   const handleUpgradeModalConfirm = (
     target: {
       level: number;
@@ -265,7 +290,7 @@ function App() {
     },
     craftingBonuses: Record<string, number>
   ) => {
-    const planned = plannedCharacters.find(p => isSameCharacterKey(p.key, selectedUpgradeCharacterKey));
+    const planned = findPlannedCharacterBySelector(selectedUpgradeCharacterKey);
     if (!planned) return;
 
     const draftChar = { ...planned, desired: target, enabled: true };
@@ -288,7 +313,7 @@ function App() {
       wanderersadvice: number;
     }
   ) => {
-    const planned = plannedCharacters.find(p => isSameCharacterKey(p.key, selectedUpgradeCharacterKey));
+    const planned = findPlannedCharacterBySelector(selectedUpgradeCharacterKey);
     if (!planned || !upgradeDraftTarget || !materials) return;
 
     const mutatedMaterials = applyUpgradeInventoryMutations(
@@ -300,17 +325,39 @@ function App() {
       correctedExp
     );
 
+    const isUpgradingTraveler = isTravelerKey(planned.key);
+    const targetPlanId = planned.id || getCharacterPlanId(planned, traveler);
+
     setMaterials(mutatedMaterials);
     setPlannedItems(prev => prev.map(p => {
-      if ((p.type === 'character' || !p.type) && isSameCharacterKey(p.key, selectedUpgradeCharacterKey)) {
-        return {
-          ...p,
-          current: {
-            level: upgradeDraftTarget.level,
-            ascension: upgradeDraftTarget.ascension,
-            talent: { ...upgradeDraftTarget.talent }
-          }
-        };
+      if (p.type === 'character' || !p.type) {
+        const pid = p.id || getCharacterPlanId(p, traveler);
+        if (pid === targetPlanId || isSamePlannedCharacter(p, planned)) {
+          return {
+            ...p,
+            current: {
+              level: upgradeDraftTarget.level,
+              ascension: upgradeDraftTarget.ascension,
+              talent: { ...upgradeDraftTarget.talent }
+            }
+          };
+        }
+        // If upgrading a Traveler element, sync shared Character Level & Ascension across any other Traveler element cards
+        if (isUpgradingTraveler && isTravelerKey(p.key)) {
+          return {
+            ...p,
+            current: {
+              ...p.current,
+              level: upgradeDraftTarget.level,
+              ascension: upgradeDraftTarget.ascension,
+            },
+            desired: {
+              ...p.desired,
+              level: Math.max(p.desired.level, upgradeDraftTarget.level),
+              ascension: Math.max(p.desired.ascension, upgradeDraftTarget.ascension),
+            }
+          };
+        }
       }
       return p;
     }));
@@ -767,11 +814,12 @@ function App() {
         }}
         characterKey={selectedCharacterKeyForTarget}
         traveler={traveler}
+        plannedItems={plannedItems}
         currentData={characters.find(c => isSameCharacterKey(c.key, selectedCharacterKeyForTarget))}
-        plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? plannedItems.find(p => (p.type === 'character' || !p.type) && isSameCharacterKey(p.key, selectedCharacterKeyForTarget)) : undefined}
-        customInfo={selectedCharacterKeyForTarget ? (plannedItems.find(p => isSameCharacterKey(p.key, selectedCharacterKeyForTarget)) || (tempCustomItem && tempCustomItem.key === selectedCharacterKeyForTarget ? tempCustomItem : undefined)) : undefined}
+        plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? findPlannedCharacterBySelector(selectedCharacterKeyForTarget) : undefined}
+        customInfo={selectedCharacterKeyForTarget ? (findPlannedCharacterBySelector(selectedCharacterKeyForTarget) || (tempCustomItem && tempCustomItem.key === selectedCharacterKeyForTarget ? tempCustomItem : undefined)) : undefined}
         onEditCustom={() => {
-          const item = plannedItems.find(p => isSameCharacterKey(p.key, selectedCharacterKeyForTarget)) || tempCustomItem;
+          const item = findPlannedCharacterBySelector(selectedCharacterKeyForTarget) || tempCustomItem;
           setEditingCustomData(item);
           setCustomModalSource('target');
           setCustomModalType('character');
@@ -780,21 +828,27 @@ function App() {
         }}
         onReplaceWithExisting={() => {
           setReplaceMode(true);
-          setReplaceTargetId(plannedItems.find(p => isSameCharacterKey(p.key, selectedCharacterKeyForTarget))?.id || null);
+          setReplaceTargetId(findPlannedCharacterBySelector(selectedCharacterKeyForTarget)?.id || null);
           setIsCharacterSelectModalOpen(true);
           setSelectedCharacterKeyForTarget(null);
         }}
         onAccept={(planned) => {
           setPlannedItems(prev => {
-            const resolvedKey = isTravelerKey(planned.key) ? traveler : planned.key;
-            const characterPlan = {
+            const isTraveler = isTravelerKey(planned.key);
+            const resolvedKey = isTraveler ? traveler : planned.key;
+            const travelerEl = isTraveler ? getTravelerElement(planned) : undefined;
+            const planId = getCharacterPlanId(planned, traveler, travelerEl);
+
+            const characterPlan: any = {
               ...planned,
               key: resolvedKey,
+              ...(isTraveler ? { travelerElement: travelerEl } : {}),
               type: 'character',
-              id: `character:${resolvedKey}`,
+              id: planId,
               enabled: true
             };
-            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && isSameCharacterKey(p.key, resolvedKey)) || tempCustomItem;
+
+            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && (p.id === planId || isSamePlannedCharacter(p, characterPlan))) || tempCustomItem;
             if (existingItem) {
               characterPlan.custom = existingItem.custom;
               characterPlan.customName = existingItem.customName;
@@ -802,13 +856,62 @@ function App() {
               characterPlan.customMaterials = existingItem.customMaterials;
               characterPlan.enabled = existingItem.enabled !== false;
             }
-            const exists = prev.findIndex(p => (p.type === 'character' || !p.type) && isSameCharacterKey(p.key, resolvedKey));
-            if (exists >= 0) {
-              const next = [...prev];
-              next[exists] = characterPlan;
-              return next;
+
+            // If we opened from planner to edit an existing Traveler card and changed its element in the modal
+            const editedOriginal = openedTargetFromPlanner && selectedCharacterKeyForTarget
+              ? prev.find(p => (p.type === 'character' || !p.type) && ((p.id || getCharacterPlanId(p, traveler)) === selectedCharacterKeyForTarget || isSamePlannedCharacter(p, selectedCharacterKeyForTarget)))
+              : undefined;
+
+            const existsIdx = prev.findIndex(p => (p.type === 'character' || !p.type) && (p.id === planId || isSamePlannedCharacter(p, characterPlan)));
+            let next = [...prev];
+
+            if (existsIdx >= 0) {
+              next[existsIdx] = characterPlan;
+              if (editedOriginal) {
+                const origIdx = prev.indexOf(editedOriginal);
+                if (origIdx >= 0 && origIdx !== existsIdx) {
+                  next.splice(origIdx, 1);
+                }
+              }
+            } else if (editedOriginal) {
+              const origIdx = prev.indexOf(editedOriginal);
+              if (origIdx >= 0) {
+                next[origIdx] = {
+                  ...characterPlan,
+                  enabled: editedOriginal.enabled !== false
+                };
+              } else {
+                next.push(characterPlan);
+              }
+            } else {
+              next.push(characterPlan);
             }
-            return [...prev, characterPlan];
+
+            // Keep shared level and ascension synchronized across all Traveler element plans
+            if (isTraveler) {
+              next = next.map(p => {
+                if ((p.type === 'character' || !p.type) && isTravelerKey(p.key) && p.id !== characterPlan.id) {
+                  const newCurLvl = characterPlan.current.level;
+                  const newCurAsc = characterPlan.current.ascension;
+                  return {
+                    ...p,
+                    current: {
+                      ...p.current,
+                      level: newCurLvl,
+                      ascension: newCurAsc,
+                    },
+                    desired: {
+                      ...p.desired,
+                      level: Math.max(p.desired.level, newCurLvl),
+                      ascension: Math.max(p.desired.ascension, newCurAsc),
+                    }
+                  };
+                }
+                return p;
+              });
+            }
+
+            return next;
           });
           setSelectedCharacterKeyForTarget(null);
           setOpenedTargetFromPlanner(false);
@@ -985,15 +1088,26 @@ function App() {
 
       {deletingCharacterKey && (
         (() => {
-          const charData = lookupChar(deletingCharacterKey);
+          const targetPlan = findPlannedCharacterBySelector(deletingCharacterKey);
+          const charData = lookupChar(targetPlan?.key || deletingCharacterKey);
+          const isTraveler = isTravelerKey(targetPlan?.key || deletingCharacterKey);
+          const travelerEl = isTraveler ? getTravelerElement(targetPlan || deletingCharacterKey) : null;
+          const displayName = charData?.name
+            ? (isTraveler && travelerEl ? `${charData.name} (${travelerEl})` : charData.name)
+            : deletingCharacterKey;
           return (
             <DeletePlanConfirmationModal
-              itemName={charData?.name || deletingCharacterKey}
+              itemName={displayName}
               itemRarity={charData?.rarity || 5}
               itemIconSrc={`${import.meta.env.BASE_URL}characters/${charData?.id}.png`}
               onClose={() => setDeletingCharacterKey(null)}
               onConfirm={() => {
-                setPlannedItems(prev => prev.filter(p => !((p.type === 'character' || !p.type) && isSameCharacterKey(p.key, deletingCharacterKey))));
+                setPlannedItems(prev => prev.filter(p => {
+                  if (p.type !== 'character' && p.type) return true;
+                  const pid = p.id || getCharacterPlanId(p, traveler);
+                  if (pid === deletingCharacterKey || p.key === deletingCharacterKey) return false;
+                  return !isSamePlannedCharacter(p, deletingCharacterKey);
+                }));
                 setDeletingCharacterKey(null);
               }}
             />
@@ -1031,7 +1145,7 @@ function App() {
             setIsUpgradeModalOpen(false);
             setSelectedUpgradeCharacterKey(null);
           }}
-          planned={plannedCharacters.find(p => isSameCharacterKey(p.key, selectedUpgradeCharacterKey))}
+          planned={findPlannedCharacterBySelector(selectedUpgradeCharacterKey)}
           currentData={characters.find(c => isSameCharacterKey(c.key, selectedUpgradeCharacterKey))}
           materials={materials}
           traveler={traveler}
@@ -1277,13 +1391,16 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
         } else if (!isWeapon) {
           const meta = lookupCharacter(planned.key, traveler);
           if (meta) {
+            const isTrav = isTravelerKey(planned.key);
+            const travEl = isTrav ? getTravelerElement(planned) : null;
+            const displayTitle = isTrav && travEl ? `${meta.name || planned.key} (${travEl})` : (meta.name || planned.key);
             items.push({
               type: 'character',
               key: planned.key,
               id: meta.id,
               name: meta.name || planned.key,
               rarity: meta.rarity,
-              title: meta.name || planned.key,
+              title: displayTitle,
               imageSrc: `${import.meta.env.BASE_URL}characters/${meta.id}.png`,
               fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(meta.name || planned.key)}&background=random&color=fff&rounded=true`
             });

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { X, GripVertical } from 'lucide-react';
 import weaponMapData from '../maps/weaponMap.json';
-import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
+import {
+  lookupCharacter,
+  isTravelerKey,
+  getTravelerElement,
+  getCharacterPlanId,
+  type TravelerKey,
+} from '../utils/characterHelpers';
 
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
 
@@ -38,10 +44,10 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       setDraft([...plannedItems]);
-      setSavedOrder(plannedItems.map(p => p.id || (p.type === 'weapon' ? `weapon:${p.weaponIndex}` : `character:${p.key}`)));
+      setSavedOrder(plannedItems.map(p => p.id || (p.type === 'weapon' ? `weapon:${p.weaponIndex}` : getCharacterPlanId(p, traveler))));
       setDraggedIndex(null);
     }
-  }, [isOpen, plannedItems]);
+  }, [isOpen, plannedItems, traveler]);
 
   if (!isOpen) return null;
 
@@ -102,7 +108,7 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
 
         const renderRow = (planned: any, index: number) => {
           const isWeapon = planned.type === 'weapon';
-          const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+          const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : getCharacterPlanId(planned, traveler));
           const isEnabled = planned.enabled !== false;
           const isDraggingThis = draggedIndex === index;
           const originalNumber = savedOrder.indexOf(id) + 1;
@@ -232,8 +238,12 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
               element: 'None',
               id: '',
             };
+            const isTraveler = !planned.custom && isTravelerKey(planned.key);
+            const travelerElement = isTraveler ? getTravelerElement(planned) : null;
             const rarity = charData.rarity || 4;
-            const elementClass = charData.element ? charData.element.toLowerCase() : 'none';
+            const elementClass = isTraveler && travelerElement
+              ? travelerElement.toLowerCase()
+              : (charData.element ? charData.element.toLowerCase() : 'none');
 
             return (
               <div
@@ -321,9 +331,19 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
                   </div>
 
                   {/* Character Name */}
-                  <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '160px' }} title={charData.name}>
-                    {charData.name}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px', overflow: 'hidden' }}>
+                    {isTraveler && travelerElement && (
+                      <img
+                        src={`${import.meta.env.BASE_URL}elements/${travelerElement.toLowerCase()}.png`}
+                        alt={travelerElement}
+                        title={`${travelerElement} Traveler`}
+                        style={{ width: '15px', height: '15px', objectFit: 'contain', flexShrink: 0 }}
+                      />
+                    )}
+                    <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '145px' }} title={isTraveler && travelerElement ? `${charData.name} (${travelerElement})` : charData.name}>
+                      {charData.name}
+                    </span>
+                  </div>
                 </div>
 
                 {!isEnabled && (

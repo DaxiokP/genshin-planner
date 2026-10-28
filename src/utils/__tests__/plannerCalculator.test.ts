@@ -378,6 +378,69 @@ describe('plannerCalculator', () => {
         expect(moraReq!.required).toBe(7053500);
       });
     });
+
+    test('calculates element-specific Traveler talents including Geo Normal Attack quirk and Pyro Cornerstone', () => {
+      // 1. Geo Traveler: Normal Attack (1->10) uses Freedom/Resistance/Ballad + Arrowheads + Dvalin's Sigh
+      //                  Skill (1->10) uses Prosperity/Diligence/Gold + Scrolls + Tail of Boreas
+      const geoTraveler = {
+        id: 'character:Aether:Geo',
+        key: 'Aether',
+        travelerElement: 'Geo',
+        type: 'character',
+        enabled: true,
+        current: {
+          level: 90,
+          ascension: 6,
+          talent: { auto: 1, skill: 1, burst: 1 }
+        },
+        desired: {
+          level: 90,
+          ascension: 6,
+          talent: { auto: 10, skill: 10, burst: 1 }
+        }
+      };
+
+      const geoReqs = calculateRequirements(geoTraveler, {});
+      // Normal Attack (auto) materials:
+      expect(geoReqs.find(r => r.key === 'teachingsoffreedom')?.required).toBe(3);
+      expect(geoReqs.find(r => r.key === 'firmarrowhead')?.required).toBe(6);
+      expect(geoReqs.find(r => r.key === 'dvalinssigh')?.required).toBe(6);
+      // Elemental Skill materials:
+      expect(geoReqs.find(r => r.key === 'teachingsofprosperity')?.required).toBe(3);
+      expect(geoReqs.find(r => r.key === 'diviningscroll')?.required).toBe(6);
+      expect(geoReqs.find(r => r.key === 'tailofboreas')?.required).toBe(6);
+
+      // 2. Pyro Traveler: uses Contention/Kindling/Conflict + Whistles + The Cornerstone of Stars and Flames
+      const pyroTraveler = {
+        id: 'character:Lumine:Pyro',
+        key: 'Lumine',
+        travelerElement: 'Pyro',
+        type: 'character',
+        enabled: true,
+        current: {
+          level: 90,
+          ascension: 6,
+          talent: { auto: 1, skill: 1, burst: 1 }
+        },
+        desired: {
+          level: 90,
+          ascension: 6,
+          talent: { auto: 1, skill: 10, burst: 1 }
+        }
+      };
+
+      const pyroReqs = calculateRequirements(pyroTraveler, {});
+      expect(pyroReqs.find(r => r.key === 'teachingsofcontention')?.required).toBe(3);
+      expect(pyroReqs.find(r => r.key === 'sentryswoodenwhistle')?.required).toBe(6);
+      expect(pyroReqs.find(r => r.key === 'thecornerstoneofstarsandflames')?.required).toBe(4);
+
+      // 3. Multi-element Traveler simulation in simulatePlannerInventory
+      const sim = simulatePlannerInventory([geoTraveler, pyroTraveler], {});
+      expect(sim.requirements['character:Aether:Geo']).toBeDefined();
+      expect(sim.requirements['character:Lumine:Pyro']).toBeDefined();
+      expect(sim.requirements['character:Aether:Geo'].length).toBeGreaterThan(0);
+      expect(sim.requirements['character:Lumine:Pyro'].length).toBeGreaterThan(0);
+    });
   });
 });
 

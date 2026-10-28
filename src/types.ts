@@ -1,3 +1,5 @@
+import type { TravelerElement } from './utils/characterHelpers';
+
 export type MaterialsData = Record<string, number>;
 
 export interface GoodCharacter {
@@ -30,6 +32,7 @@ export interface GoodArtifact {
 
 export interface PlannedCharacter {
   key: string;
+  travelerElement?: TravelerElement;
   current: {
     level: number;
     ascension: number;

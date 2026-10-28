@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { syncPlannedItemsWithGoodImport } from '../plannerImportSync';
-import { lookupCharacter, isTravelerKey, isSameCharacterKey } from '../characterHelpers';
+import { lookupCharacter, isTravelerKey, isSameCharacterKey, getTravelerElement, getCharacterPlanId, isSamePlannedCharacter } from '../characterHelpers';
 
 describe('plannerImportSync', () => {
   describe('syncPlannedItemsWithGoodImport', () => {
@@ -163,6 +163,23 @@ describe('plannerImportSync', () => {
       const lumineMeta = lookupCharacter('Traveler', 'Lumine');
       expect(lumineMeta?.name).toBe('Lumine');
       expect(lumineMeta?.id).toBe('PlayerGirl');
+
+      expect(getTravelerElement({ key: 'Aether', travelerElement: 'Pyro' })).toBe('Pyro');
+      expect(getTravelerElement('character:Lumine:Hydro')).toBe('Hydro');
+      expect(getCharacterPlanId({ key: 'Aether', travelerElement: 'Dendro' }, 'Aether')).toBe('character:Aether:Dendro');
+
+      expect(
+        isSamePlannedCharacter(
+          { key: 'Aether', travelerElement: 'Anemo' },
+          { key: 'Aether', travelerElement: 'Dendro' }
+        )
+      ).toBe(false);
+      expect(
+        isSamePlannedCharacter(
+          { key: 'Aether', travelerElement: 'Dendro' },
+          { key: 'Lumine', travelerElement: 'Dendro' }
+        )
+      ).toBe(true);
     });
   });
 });

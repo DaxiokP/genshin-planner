@@ -40614,6 +40614,2398 @@
       ]
     }
   },
+  "TravelerAnemo": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsoffreedom",
+          "name": "Teachings of Freedom",
+          "count": 3
+        },
+        {
+          "key": "diviningscroll",
+          "name": "Divining Scroll",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 2
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoballad",
+          "name": "Guide to Ballad",
+          "count": 4
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetofreedom",
+          "name": "Guide to Freedom",
+          "count": 6
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 9
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofballad",
+          "name": "Philosophies of Ballad",
+          "count": 4
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 4
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesoffreedom",
+          "name": "Philosophies of Freedom",
+          "count": 6
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 6
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 12
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 9
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofballad",
+          "name": "Philosophies of Ballad",
+          "count": 16
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 12
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "TravelerGeo": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofprosperity",
+          "name": "Teachings of Prosperity",
+          "count": 3
+        },
+        {
+          "key": "diviningscroll",
+          "name": "Divining Scroll",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetodiligence",
+          "name": "Guide to Diligence",
+          "count": 2
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetogold",
+          "name": "Guide to Gold",
+          "count": 4
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetoprosperity",
+          "name": "Guide to Prosperity",
+          "count": 6
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetodiligence",
+          "name": "Guide to Diligence",
+          "count": 9
+        },
+        {
+          "key": "sealedscroll",
+          "name": "Sealed Scroll",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofgold",
+          "name": "Philosophies of Gold",
+          "count": 4
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 4
+        },
+        {
+          "key": "tailofboreas",
+          "name": "Tail of Boreas",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofprosperity",
+          "name": "Philosophies of Prosperity",
+          "count": 6
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 6
+        },
+        {
+          "key": "tailofboreas",
+          "name": "Tail of Boreas",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofdiligence",
+          "name": "Philosophies of Diligence",
+          "count": 12
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 9
+        },
+        {
+          "key": "tailofboreas",
+          "name": "Tail of Boreas",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofgold",
+          "name": "Philosophies of Gold",
+          "count": 16
+        },
+        {
+          "key": "forbiddencursescroll",
+          "name": "Forbidden Curse Scroll",
+          "count": 12
+        },
+        {
+          "key": "tailofboreas",
+          "name": "Tail of Boreas",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    },
+    "autoTalents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsoffreedom",
+          "name": "Teachings of Freedom",
+          "count": 3
+        },
+        {
+          "key": "firmarrowhead",
+          "name": "Firm Arrowhead",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 2
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoballad",
+          "name": "Guide to Ballad",
+          "count": 4
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetofreedom",
+          "name": "Guide to Freedom",
+          "count": 6
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoresistance",
+          "name": "Guide to Resistance",
+          "count": 9
+        },
+        {
+          "key": "sharparrowhead",
+          "name": "Sharp Arrowhead",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofballad",
+          "name": "Philosophies of Ballad",
+          "count": 4
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 4
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesoffreedom",
+          "name": "Philosophies of Freedom",
+          "count": 6
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 6
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofresistance",
+          "name": "Philosophies of Resistance",
+          "count": 12
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 9
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofballad",
+          "name": "Philosophies of Ballad",
+          "count": 16
+        },
+        {
+          "key": "weatheredarrowhead",
+          "name": "Weathered Arrowhead",
+          "count": 12
+        },
+        {
+          "key": "dvalinssigh",
+          "name": "Dvalin's Sigh",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "TravelerElectro": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsoftransience",
+          "name": "Teachings of Transience",
+          "count": 3
+        },
+        {
+          "key": "oldhandguard",
+          "name": "Old Handguard",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoelegance",
+          "name": "Guide to Elegance",
+          "count": 2
+        },
+        {
+          "key": "kageuchihandguard",
+          "name": "Kageuchi Handguard",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetolight",
+          "name": "Guide to Light",
+          "count": 4
+        },
+        {
+          "key": "kageuchihandguard",
+          "name": "Kageuchi Handguard",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetotransience",
+          "name": "Guide to Transience",
+          "count": 6
+        },
+        {
+          "key": "kageuchihandguard",
+          "name": "Kageuchi Handguard",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoelegance",
+          "name": "Guide to Elegance",
+          "count": 9
+        },
+        {
+          "key": "kageuchihandguard",
+          "name": "Kageuchi Handguard",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesoflight",
+          "name": "Philosophies of Light",
+          "count": 4
+        },
+        {
+          "key": "famedhandguard",
+          "name": "Famed Handguard",
+          "count": 4
+        },
+        {
+          "key": "dragonlordscrown",
+          "name": "Dragon Lord's Crown",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesoftransience",
+          "name": "Philosophies of Transience",
+          "count": 6
+        },
+        {
+          "key": "famedhandguard",
+          "name": "Famed Handguard",
+          "count": 6
+        },
+        {
+          "key": "dragonlordscrown",
+          "name": "Dragon Lord's Crown",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofelegance",
+          "name": "Philosophies of Elegance",
+          "count": 12
+        },
+        {
+          "key": "famedhandguard",
+          "name": "Famed Handguard",
+          "count": 9
+        },
+        {
+          "key": "dragonlordscrown",
+          "name": "Dragon Lord's Crown",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesoflight",
+          "name": "Philosophies of Light",
+          "count": 16
+        },
+        {
+          "key": "famedhandguard",
+          "name": "Famed Handguard",
+          "count": 12
+        },
+        {
+          "key": "dragonlordscrown",
+          "name": "Dragon Lord's Crown",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "TravelerDendro": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofadmonition",
+          "name": "Teachings of Admonition",
+          "count": 3
+        },
+        {
+          "key": "fungalspores",
+          "name": "Fungal Spores",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetoingenuity",
+          "name": "Guide to Ingenuity",
+          "count": 2
+        },
+        {
+          "key": "luminescentpollen",
+          "name": "Luminescent Pollen",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetopraxis",
+          "name": "Guide to Praxis",
+          "count": 4
+        },
+        {
+          "key": "luminescentpollen",
+          "name": "Luminescent Pollen",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetoadmonition",
+          "name": "Guide to Admonition",
+          "count": 6
+        },
+        {
+          "key": "luminescentpollen",
+          "name": "Luminescent Pollen",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetoingenuity",
+          "name": "Guide to Ingenuity",
+          "count": 9
+        },
+        {
+          "key": "luminescentpollen",
+          "name": "Luminescent Pollen",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofpraxis",
+          "name": "Philosophies of Praxis",
+          "count": 4
+        },
+        {
+          "key": "crystallinecystdust",
+          "name": "Crystalline Cyst Dust",
+          "count": 4
+        },
+        {
+          "key": "mudraofthemaleficgeneral",
+          "name": "Mudra of the Malefic General",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofadmonition",
+          "name": "Philosophies of Admonition",
+          "count": 6
+        },
+        {
+          "key": "crystallinecystdust",
+          "name": "Crystalline Cyst Dust",
+          "count": 6
+        },
+        {
+          "key": "mudraofthemaleficgeneral",
+          "name": "Mudra of the Malefic General",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofingenuity",
+          "name": "Philosophies of Ingenuity",
+          "count": 12
+        },
+        {
+          "key": "crystallinecystdust",
+          "name": "Crystalline Cyst Dust",
+          "count": 9
+        },
+        {
+          "key": "mudraofthemaleficgeneral",
+          "name": "Mudra of the Malefic General",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofpraxis",
+          "name": "Philosophies of Praxis",
+          "count": 16
+        },
+        {
+          "key": "crystallinecystdust",
+          "name": "Crystalline Cyst Dust",
+          "count": 12
+        },
+        {
+          "key": "mudraofthemaleficgeneral",
+          "name": "Mudra of the Malefic General",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "TravelerHydro": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofequity",
+          "name": "Teachings of Equity",
+          "count": 3
+        },
+        {
+          "key": "transoceanicpearl",
+          "name": "Transoceanic Pearl",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetojustice",
+          "name": "Guide to Justice",
+          "count": 2
+        },
+        {
+          "key": "transoceanicchunk",
+          "name": "Transoceanic Chunk",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoorder",
+          "name": "Guide to Order",
+          "count": 4
+        },
+        {
+          "key": "transoceanicchunk",
+          "name": "Transoceanic Chunk",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetoequity",
+          "name": "Guide to Equity",
+          "count": 6
+        },
+        {
+          "key": "transoceanicchunk",
+          "name": "Transoceanic Chunk",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetojustice",
+          "name": "Guide to Justice",
+          "count": 9
+        },
+        {
+          "key": "transoceanicchunk",
+          "name": "Transoceanic Chunk",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesoforder",
+          "name": "Philosophies of Order",
+          "count": 4
+        },
+        {
+          "key": "xenochromaticcrystal",
+          "name": "Xenochromatic Crystal",
+          "count": 4
+        },
+        {
+          "key": "worldspanfern",
+          "name": "Worldspan Fern",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofequity",
+          "name": "Philosophies of Equity",
+          "count": 6
+        },
+        {
+          "key": "xenochromaticcrystal",
+          "name": "Xenochromatic Crystal",
+          "count": 6
+        },
+        {
+          "key": "worldspanfern",
+          "name": "Worldspan Fern",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofjustice",
+          "name": "Philosophies of Justice",
+          "count": 12
+        },
+        {
+          "key": "xenochromaticcrystal",
+          "name": "Xenochromatic Crystal",
+          "count": 9
+        },
+        {
+          "key": "worldspanfern",
+          "name": "Worldspan Fern",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesoforder",
+          "name": "Philosophies of Order",
+          "count": 16
+        },
+        {
+          "key": "xenochromaticcrystal",
+          "name": "Xenochromatic Crystal",
+          "count": 12
+        },
+        {
+          "key": "worldspanfern",
+          "name": "Worldspan Fern",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "TravelerPyro": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofcontention",
+          "name": "Teachings of Contention",
+          "count": 3
+        },
+        {
+          "key": "sentryswoodenwhistle",
+          "name": "Sentry's Wooden Whistle",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetokindling",
+          "name": "Guide to Kindling",
+          "count": 2
+        },
+        {
+          "key": "warriorsmetalwhistle",
+          "name": "Warrior's Metal Whistle",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoconflict",
+          "name": "Guide to Conflict",
+          "count": 4
+        },
+        {
+          "key": "warriorsmetalwhistle",
+          "name": "Warrior's Metal Whistle",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetocontention",
+          "name": "Guide to Contention",
+          "count": 6
+        },
+        {
+          "key": "warriorsmetalwhistle",
+          "name": "Warrior's Metal Whistle",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetokindling",
+          "name": "Guide to Kindling",
+          "count": 9
+        },
+        {
+          "key": "warriorsmetalwhistle",
+          "name": "Warrior's Metal Whistle",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofconflict",
+          "name": "Philosophies of Conflict",
+          "count": 4
+        },
+        {
+          "key": "sauriancrownedwarriorsgoldenwhistle",
+          "name": "Saurian-Crowned Warrior's Golden Whistle",
+          "count": 4
+        },
+        {
+          "key": "thecornerstoneofstarsandflames",
+          "name": "The Cornerstone of Stars and Flames",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofcontention",
+          "name": "Philosophies of Contention",
+          "count": 6
+        },
+        {
+          "key": "sauriancrownedwarriorsgoldenwhistle",
+          "name": "Saurian-Crowned Warrior's Golden Whistle",
+          "count": 6
+        },
+        {
+          "key": "thecornerstoneofstarsandflames",
+          "name": "The Cornerstone of Stars and Flames",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesofkindling",
+          "name": "Philosophies of Kindling",
+          "count": 12
+        },
+        {
+          "key": "sauriancrownedwarriorsgoldenwhistle",
+          "name": "Saurian-Crowned Warrior's Golden Whistle",
+          "count": 9
+        },
+        {
+          "key": "thecornerstoneofstarsandflames",
+          "name": "The Cornerstone of Stars and Flames",
+          "count": 1
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofconflict",
+          "name": "Philosophies of Conflict",
+          "count": 16
+        },
+        {
+          "key": "sauriancrownedwarriorsgoldenwhistle",
+          "name": "Saurian-Crowned Warrior's Golden Whistle",
+          "count": 12
+        },
+        {
+          "key": "thecornerstoneofstarsandflames",
+          "name": "The Cornerstone of Stars and Flames",
+          "count": 1
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "TravelerCryo": {
+    "ascension": {
+      "1": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 20000
+        },
+        {
+          "key": "brilliantdiamondsliver",
+          "name": "Brilliant Diamond Sliver",
+          "count": 1
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 3
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 3
+        }
+      ],
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 40000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 10
+        },
+        {
+          "key": "damagedmask",
+          "name": "Damaged Mask",
+          "count": 15
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 60000
+        },
+        {
+          "key": "brilliantdiamondfragment",
+          "name": "Brilliant Diamond Fragment",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 20
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 12
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 80000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 3
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 30
+        },
+        {
+          "key": "stainedmask",
+          "name": "Stained Mask",
+          "count": 18
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 100000
+        },
+        {
+          "key": "brilliantdiamondchunk",
+          "name": "Brilliant Diamond Chunk",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 45
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 12
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "brilliantdiamondgemstone",
+          "name": "Brilliant Diamond Gemstone",
+          "count": 6
+        },
+        {
+          "key": "windwheelaster",
+          "name": "Windwheel Aster",
+          "count": 60
+        },
+        {
+          "key": "ominousmask",
+          "name": "Ominous Mask",
+          "count": 24
+        }
+      ]
+    },
+    "talents": {
+      "2": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 12500
+        },
+        {
+          "key": "teachingsofcharity",
+          "name": "Teachings of Charity",
+          "count": 3
+        },
+        {
+          "key": "chimericcore",
+          "name": "Chimeric Core",
+          "count": 6
+        }
+      ],
+      "3": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 17500
+        },
+        {
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
+          "count": 2
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 3
+        }
+      ],
+      "4": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 25000
+        },
+        {
+          "key": "guidetoglory",
+          "name": "Guide to Glory",
+          "count": 4
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 4
+        }
+      ],
+      "5": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 30000
+        },
+        {
+          "key": "guidetocharity",
+          "name": "Guide to Charity",
+          "count": 6
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 6
+        }
+      ],
+      "6": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 37500
+        },
+        {
+          "key": "guidetofortitude",
+          "name": "Guide to Fortitude",
+          "count": 9
+        },
+        {
+          "key": "symbioticchimericnucleus",
+          "name": "Symbiotic Chimeric Nucleus",
+          "count": 9
+        }
+      ],
+      "7": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 120000
+        },
+        {
+          "key": "philosophiesofglory",
+          "name": "Philosophies of Glory",
+          "count": 4
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 4
+        },
+        {
+          "key": "ascendedsamplequeen",
+          "name": "Ascended Sample: Queen",
+          "count": 1
+        }
+      ],
+      "8": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 260000
+        },
+        {
+          "key": "philosophiesofcharity",
+          "name": "Philosophies of Charity",
+          "count": 6
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 6
+        },
+        {
+          "key": "ascendedsamplequeen",
+          "name": "Ascended Sample: Queen",
+          "count": 1
+        }
+      ],
+      "9": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 450000
+        },
+        {
+          "key": "philosophiesoffortitude",
+          "name": "Philosophies of Fortitude",
+          "count": 12
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 9
+        },
+        {
+          "key": "ascendedsamplequeen",
+          "name": "Ascended Sample: Queen",
+          "count": 2
+        }
+      ],
+      "10": [
+        {
+          "key": "mora",
+          "name": "Mora",
+          "count": 700000
+        },
+        {
+          "key": "philosophiesofglory",
+          "name": "Philosophies of Glory",
+          "count": 16
+        },
+        {
+          "key": "primechimericnexus",
+          "name": "Prime Chimeric Nexus",
+          "count": 12
+        },
+        {
+          "key": "ascendedsamplequeen",
+          "name": "Ascended Sample: Queen",
+          "count": 2
+        },
+        {
+          "key": "crownofinsight",
+          "name": "Crown of Insight",
+          "count": 1
+        }
+      ]
+    }
+  },
   "Sandrone": {
     "ascension": {
       "1": [

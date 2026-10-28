@@ -254,7 +254,8 @@ const assetJobs = [
   { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_FrostScepter.png', dest: 'public/weapons/Catalyst_FrostScepter.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
   { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_Windtalker.png', dest: 'public/weapons/Bow_Windtalker.png', fallback: 'public/weapons/Bow_Hunters.png' },
   // 7.1 Materials
-  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113092.png', dest: 'public/icons/113092.png', fallback: 'public/icons/113001.png' }
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113092.png', dest: 'public/icons/113092.png', fallback: 'public/icons/113001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113063.png', dest: 'public/icons/113063.png', fallback: 'public/icons/113005.png' }
 ];
 
 // Artifact Relics

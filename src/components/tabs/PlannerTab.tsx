@@ -8,7 +8,14 @@ import { moveItem } from '../../utils/plannerHelpers';
 import { calculateRequirements } from '../../utils/plannerCalculator';
 import materialMapData from '../../maps/materialMap.json';
 import weaponMapData from '../../maps/weaponMap.json';
-import { lookupCharacter, isSameCharacterKey, type TravelerKey } from '../../utils/characterHelpers';
+import {
+  lookupCharacter,
+  isTravelerKey,
+  isSameCharacterKey,
+  getTravelerElement,
+  getCharacterPlanId,
+  type TravelerKey,
+} from '../../utils/characterHelpers';
 
 interface MaterialMapEntry {
   id: string;
@@ -97,7 +104,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
 
   const getPlanStatus = (planned: any) => {
     const isWeapon = planned.type === 'weapon';
-    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : getCharacterPlanId(planned, traveler));
     const requirements = planned.enabled !== false
       ? (simulation.requirements[id] || [])
       : calculateRequirements({ ...planned, enabled: true }, null);
@@ -153,9 +160,10 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
     setDropPlacement(null);
   };
 
-  const togglePlannedCharacter = (key: string) => {
+  const togglePlannedCharacter = (targetIdOrKey: string) => {
     setPlannedItems(prev => prev.map(p => {
-      if ((p.type === 'character' || !p.type) && p.key === key) {
+      const pid = p.id || (p.type === 'weapon' ? `weapon:${p.weaponIndex}` : getCharacterPlanId(p, traveler));
+      if ((p.type === 'character' || !p.type) && (pid === targetIdOrKey || p.key === targetIdOrKey)) {
         return {
           ...p,
           enabled: p.enabled !== false ? false : true
@@ -165,12 +173,12 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
     }));
   };
 
-  const removePlannedCharacter = (key: string) => {
-    setDeletingCharacterKey(key);
+  const removePlannedCharacter = (targetIdOrKey: string) => {
+    setDeletingCharacterKey(targetIdOrKey);
   };
 
-  const upgradePlannedCharacter = (key: string) => {
-    setSelectedUpgradeCharacterKey(key);
+  const upgradePlannedCharacter = (targetIdOrKey: string) => {
+    setSelectedUpgradeCharacterKey(targetIdOrKey);
     setIsUpgradeModalOpen(true);
   };
 
@@ -462,7 +470,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
               ) : (
                 visiblePlannedItems.map((planned) => {
                   const isWeapon = planned.type === 'weapon';
-                  const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+                  const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : getCharacterPlanId(planned, traveler));
                   const { isReady, requirements } = getPlanStatus(planned);
 
                   // Custom Card Style overrides for the Highlight Filter
@@ -1041,12 +1049,18 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                     </div>
                   );
                 } else {
-                  // Character Card Card
+                  // Character Card
                   const charMapInfo = lookupChar(planned.key);
+                  const isTraveler = !planned.custom && isTravelerKey(planned.key);
+                  const travelerElement = isTraveler ? getTravelerElement(planned) : null;
                   const rarity = planned.custom ? (planned.customRarity || 5) : (charMapInfo?.rarity || 4);
                   const name = planned.custom ? (planned.customName || planned.key) : (charMapInfo?.name || planned.key);
                   const fontScale = name.length > 20 ? '0.8rem' : name.length > 12 ? '0.95rem' : '1.15rem';
-                  const elementClass = planned.custom ? 'none' : (charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none');
+                  const elementClass = planned.custom
+                    ? 'none'
+                    : isTraveler && travelerElement
+                      ? travelerElement.toLowerCase()
+                      : (charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none');
 
                   return (
                     <div
@@ -1087,7 +1101,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                           <button
                             onClick={() => {
                               setOpenedTargetFromPlanner(true);
-                              setSelectedCharacterKeyForTarget(planned.key);
+                              setSelectedCharacterKeyForTarget(isTraveler ? id : planned.key);
                             }}
                             style={{
                               width: '32px',
@@ -1111,7 +1125,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                           <button
                             onClick={() => {
                               if (!planned.custom) {
-                                upgradePlannedCharacter(planned.key);
+                                upgradePlannedCharacter(id);
                               }
                             }}
                             style={{
@@ -1144,26 +1158,39 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                           fontWeight: '700',
                           fontSize: fontScale,
                           letterSpacing: '0.01em',
-                          display: '-webkit-box',
+                          display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          gap: '6px',
                           flex: 1,
                           textAlign: 'center',
                           lineHeight: '1.15',
                           padding: '0 4px',
                           maxHeight: '38px',
                           overflow: 'hidden',
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
                           wordBreak: 'break-word'
                         } as any}>
+                          {isTraveler && travelerElement && (
+                            <img
+                              src={`${import.meta.env.BASE_URL}elements/${travelerElement.toLowerCase()}.png`}
+                              alt={travelerElement}
+                              title={`${travelerElement} Traveler`}
+                              style={{
+                                width: '20px',
+                                height: '20px',
+                                objectFit: 'contain',
+                                flexShrink: 0,
+                                filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))'
+                              }}
+                            />
+                          )}
                           <span>{name}</span>
                         </div>
 
                         {/* Right Buttons (Standby, Delete) */}
                         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                           <button
-                            onClick={() => togglePlannedCharacter(planned.key)}
+                            onClick={() => togglePlannedCharacter(id)}
                             style={{
                               width: '32px',
                               height: '32px',
@@ -1184,7 +1211,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                             <Power size={14} style={{ strokeWidth: 2.5 }} />
                           </button>
                           <button
-                            onClick={() => removePlannedCharacter(planned.key)}
+                            onClick={() => removePlannedCharacter(id)}
                             style={{
                               width: '32px',
                               height: '32px',

@@ -3,7 +3,7 @@ import { X, Check, Plus, Minus, RotateCw } from 'lucide-react';
 import type { GoodCharacter, PlannedCharacter } from '../App';
 import materialMapData from '../maps/materialMap.json';
 import { simulateUpgrade, hasSingleStar } from '../utils/upgradeHelpers';
-import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
+import { lookupCharacter, isTravelerKey, getTravelerElement, type TravelerKey } from '../utils/characterHelpers';
 
 const materialMap = materialMapData as Record<string, {
   id: string;
@@ -332,8 +332,16 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
       >
         {/* Title Bar */}
         <div className="modal-header" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
-          <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', fontWeight: 700, color: '#fff' }}>
-            Upgrade {charInfo.name}
+          <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.4rem', fontWeight: 700, color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>Upgrade {charInfo.name}</span>
+            {isTravelerKey(planned.key) && (
+              <img
+                src={`${import.meta.env.BASE_URL}elements/${getTravelerElement(planned).toLowerCase()}.png`}
+                alt={getTravelerElement(planned)}
+                title={`${getTravelerElement(planned)} Traveler`}
+                style={{ width: '24px', height: '24px', objectFit: 'contain' }}
+              />
+            )}
           </h2>
           <button className="modal-close-btn" onClick={onClose} type="button">
             <X size={18} />

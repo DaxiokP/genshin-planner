@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Check, X, Plus, Minus } from 'lucide-react';
 import type { GoodCharacter, PlannedCharacter } from '../App';
-import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
+import {
+  lookupCharacter,
+  isTravelerKey,
+  getTravelerElement,
+  TRAVELER_ELEMENTS,
+  type TravelerKey,
+  type TravelerElement,
+} from '../utils/characterHelpers';
 
 interface CharacterTargetModalProps {
   isOpen: boolean;
@@ -10,6 +17,7 @@ interface CharacterTargetModalProps {
   characterKey: string | null;
   currentData: GoodCharacter | undefined;
   plannedData?: PlannedCharacter;
+  plannedItems?: any[];
   customInfo?: any;
   onEditCustom?: () => void;
   onReplaceWithExisting?: () => void;
@@ -147,6 +155,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   characterKey,
   currentData,
   plannedData,
+  plannedItems = [],
   customInfo,
   onEditCustom,
   onReplaceWithExisting,
@@ -154,6 +163,8 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   traveler = 'Aether',
 }) => {
   const isCustom = characterKey?.startsWith('custom_') || plannedData?.custom || customInfo?.custom;
+  const isTraveler = !isCustom && isTravelerKey(characterKey);
+
   const customCharInfo = isCustom ? {
     id: 'CustomCharacter',
     name: plannedData?.customName || customInfo?.name || 'Custom Character',
@@ -163,6 +174,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
 
   const charInfo = customCharInfo || lookupCharacter(characterKey, traveler) || { id: '', name: '', rarity: 4 };
 
+  const [selectedElement, setSelectedElement] = useState<TravelerElement>('Anemo');
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentAscension, setCurrentAscension] = useState(0);
   const [currentTalents, setCurrentTalents] = useState({ auto: 1, skill: 1, burst: 1 });
@@ -171,17 +183,79 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   const [desiredAscension, setDesiredAscension] = useState(6);
   const [desiredTalents, setDesiredTalents] = useState({ auto: 9, skill: 9, burst: 9 });
 
+  // Any existing Traveler plan in the planner shares level/ascension
+  const anyTravelerPlan = isTraveler
+    ? plannedItems.find(p => (p.type === 'character' || !p.type) && isTravelerKey(p.key))
+    : undefined;
+
   const minCurrentLevel = currentData?.level || 1;
   const minCurrentAscension = currentData?.ascension || 0;
-  const minCurrentAuto = currentData?.talent?.auto || 1;
-  const minCurrentSkill = currentData?.talent?.skill || 1;
-  const minCurrentBurst = currentData?.talent?.burst || 1;
+  // For Traveler, each element has independent talents starting at 1 unless imported for that specific element
+  const minCurrentAuto = isTraveler ? 1 : (currentData?.talent?.auto || 1);
+  const minCurrentSkill = isTraveler ? 1 : (currentData?.talent?.skill || 1);
+  const minCurrentBurst = isTraveler ? 1 : (currentData?.talent?.burst || 1);
 
   const constellation = currentData?.constellation || 0;
   const isSkillBoosted = !isCustom && constellation >= 3;
   const isBurstBoosted = !isCustom && constellation >= 5;
 
   useEffect(() => {
+    if (!isOpen || !characterKey) return;
+
+    if (isTraveler) {
+      let initialElement: TravelerElement = 'Anemo';
+      if (plannedData) {
+        initialElement = getTravelerElement(plannedData);
+      } else {
+        const extracted = getTravelerElement(characterKey);
+        if (characterKey.includes(':') || characterKey.toLowerCase() !== traveler.toLowerCase() && characterKey.toLowerCase() !== 'traveler') {
+          initialElement = extracted;
+        } else {
+          // Pick first element not yet in plannedItems, or Anemo if all/none are planned
+          const plannedElements = new Set(
+            plannedItems
+              .filter(p => (p.type === 'character' || !p.type) && isTravelerKey(p.key))
+              .map(p => getTravelerElement(p))
+          );
+          const firstUnplanned = TRAVELER_ELEMENTS.find(el => !plannedElements.has(el));
+          initialElement = firstUnplanned || 'Anemo';
+        }
+      }
+      setSelectedElement(initialElement);
+
+      const matchingElementPlan = plannedData && getTravelerElement(plannedData) === initialElement
+        ? plannedData
+        : plannedItems.find(p => (p.type === 'character' || !p.type) && isTravelerKey(p.key) && getTravelerElement(p) === initialElement);
+
+      const sharedCurLevel = matchingElementPlan?.current?.level ?? anyTravelerPlan?.current?.level ?? currentData?.level ?? 1;
+      const sharedCurAsc = matchingElementPlan?.current?.ascension ?? anyTravelerPlan?.current?.ascension ?? currentData?.ascension ?? 0;
+      const sharedDesLevel = matchingElementPlan?.desired?.level ?? anyTravelerPlan?.desired?.level ?? Math.max(90, sharedCurLevel);
+      const sharedDesAsc = matchingElementPlan?.desired?.ascension ?? anyTravelerPlan?.desired?.ascension ?? Math.max(6, sharedCurAsc);
+
+      setCurrentLevel(sharedCurLevel);
+      setCurrentAscension(sharedCurAsc);
+      setDesiredLevel(sharedDesLevel);
+      setDesiredAscension(sharedDesAsc);
+
+      if (matchingElementPlan) {
+        setCurrentTalents({ ...matchingElementPlan.current.talent });
+        setDesiredTalents({ ...matchingElementPlan.desired.talent });
+      } else {
+        const curTalents = {
+          auto: 1,
+          skill: 1,
+          burst: 1,
+        };
+        setCurrentTalents(curTalents);
+        setDesiredTalents({
+          auto: Math.min(9, getMaxTalentForAscension(sharedDesAsc)),
+          skill: Math.min(9, getMaxTalentForAscension(sharedDesAsc)),
+          burst: Math.min(9, getMaxTalentForAscension(sharedDesAsc)),
+        });
+      }
+      return;
+    }
+
     if (plannedData) {
       setCurrentLevel(plannedData.current.level);
       setCurrentAscension(plannedData.current.ascension);
@@ -218,7 +292,26 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
         burst: Math.max(9, curTalents.burst),
       });
     }
-  }, [currentData, characterKey, plannedData]);
+  }, [currentData, characterKey, plannedData, isOpen]);
+
+  const handleElementSelect = (el: TravelerElement) => {
+    setSelectedElement(el);
+    const matchingPlan = plannedItems.find(
+      p => (p.type === 'character' || !p.type) && isTravelerKey(p.key) && getTravelerElement(p) === el
+    );
+    if (matchingPlan) {
+      setCurrentTalents({ ...matchingPlan.current.talent });
+      setDesiredTalents({ ...matchingPlan.desired.talent });
+    } else {
+      const maxT = getMaxTalentForAscension(desiredAscension);
+      setCurrentTalents({ auto: 1, skill: 1, burst: 1 });
+      setDesiredTalents({
+        auto: Math.min(9, maxT),
+        skill: Math.min(9, maxT),
+        burst: Math.min(9, maxT),
+      });
+    }
+  };
 
   useEffect(() => {
     const maxTalent = getMaxTalentForAscension(desiredAscension);
@@ -235,7 +328,8 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
 
   const handleAccept = () => {
     onAccept({
-      key: characterKey,
+      key: isTraveler ? traveler : characterKey,
+      ...(isTraveler ? { travelerElement: selectedElement } : {}),
       current: {
         level: currentLevel,
         ascension: currentAscension,
@@ -290,6 +384,20 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
 
         <div className="target-modal-left">
           <div className="target-modal-header" style={{ display: 'flex', alignItems: 'center' }}>
+            {isTraveler && (
+              <img
+                src={`${import.meta.env.BASE_URL}elements/${selectedElement.toLowerCase()}.png`}
+                alt={selectedElement}
+                title={`${selectedElement} Traveler`}
+                style={{
+                  width: '28px',
+                  height: '28px',
+                  marginRight: '10px',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.45))'
+                }}
+              />
+            )}
             {charInfo.name}
             <span style={{ 
               background: '#4caf50', 
@@ -303,6 +411,92 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
               C{currentData?.constellation || 0}
             </span>
           </div>
+
+          {isTraveler && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: 'rgba(0, 0, 0, 0.25)',
+              padding: '8px 12px',
+              borderRadius: '10px',
+              marginBottom: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.08)'
+            }}>
+              <span style={{
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                color: 'rgba(255, 255, 255, 0.85)',
+                marginRight: '10px',
+                whiteSpace: 'nowrap'
+              }}>
+                Element
+              </span>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                {TRAVELER_ELEMENTS.map(el => {
+                  const isSelected = selectedElement === el;
+                  const alreadyPlanned = plannedItems.some(
+                    p => (p.type === 'character' || !p.type) && isTravelerKey(p.key) && getTravelerElement(p) === el
+                  );
+                  return (
+                    <button
+                      key={el}
+                      type="button"
+                      onClick={() => handleElementSelect(el)}
+                      title={alreadyPlanned ? `${el} (Already in Planner)` : el}
+                      style={{
+                        width: '34px',
+                        height: '34px',
+                        borderRadius: '8px',
+                        border: isSelected
+                          ? '2px solid #ffcc66'
+                          : alreadyPlanned
+                            ? '1px solid rgba(129, 199, 132, 0.6)'
+                            : '1px solid rgba(255, 255, 255, 0.12)',
+                        background: isSelected
+                          ? 'rgba(255, 204, 102, 0.2)'
+                          : 'rgba(0, 0, 0, 0.35)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        position: 'relative',
+                        transition: 'all 0.15s ease',
+                        transform: isSelected ? 'scale(1.08)' : 'none',
+                        boxShadow: isSelected ? '0 0 10px rgba(255, 204, 102, 0.35)' : 'none'
+                      }}
+                    >
+                      <img
+                        src={`${import.meta.env.BASE_URL}elements/${el.toLowerCase()}.png`}
+                        alt={el}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          opacity: isSelected ? 1 : 0.65
+                        }}
+                      />
+                      {alreadyPlanned && (
+                        <span
+                          style={{
+                            position: 'absolute',
+                            bottom: '-2px',
+                            right: '-2px',
+                            width: '8px',
+                            height: '8px',
+                            borderRadius: '50%',
+                            background: '#81c784',
+                            border: '1px solid #12131a'
+                          }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           <div className="modal-content" style={{ padding: 0 }}>
             <div className="target-row">

@@ -58,6 +58,18 @@ genshindb.characters('names', { matchCategories: true }).forEach(charName => {
     }
 });
 
+// 1b. Scrape Traveler elemental talent costs
+['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo'].forEach(el => {
+    const talents = genshindb.talents(`Traveler (${el})`);
+    if (talents && talents.costs) {
+        Object.values(talents.costs).forEach(costArray => {
+            if (Array.isArray(costArray)) {
+                costArray.forEach(item => allowedNames.add(item.name));
+            }
+        });
+    }
+});
+
 // 2. Scrape Weapon Ascension bounds
 genshindb.weapons('names', { matchCategories: true }).forEach(wepName => {
     const wep = genshindb.weapons(wepName);

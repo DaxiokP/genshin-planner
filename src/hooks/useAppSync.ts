@@ -1,7 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import type { MaterialsData, GoodCharacter, GoodWeapon, GoodArtifact } from '../types';
 import { supabase, fetchUserProfiles, saveProfileState } from '../supabase';
-import type { TravelerKey } from '../utils/characterHelpers';
+import { isTravelerKey, getTravelerElement, getCharacterPlanId, type TravelerKey } from '../utils/characterHelpers';
+
+function normalizeLoadedPlannedItems(items: any[], traveler: TravelerKey): any[] {
+  return (items || []).map(item => {
+    if ((item.type === 'character' || !item.type) && isTravelerKey(item.key)) {
+      const el = getTravelerElement(item);
+      return {
+        ...item,
+        type: 'character',
+        travelerElement: el,
+        id: getCharacterPlanId(item, traveler, el),
+      };
+    }
+    return item;
+  });
+}
 
 function parseTravelerAndFavorites(
   rawFavorites: any,
@@ -200,6 +215,7 @@ export function useAppSync() {
               id: `character:${item.key}`
             }));
           }
+          plannedItemsData = normalizeLoadedPlannedItems(plannedItemsData, travelerData);
 
           setMaterials(materialsData);
           setCharacters(charactersData);
@@ -234,6 +250,7 @@ export function useAppSync() {
               localData.favorite_character_keys,
               localData.traveler
             );
+            plannedItemsData = normalizeLoadedPlannedItems(plannedItemsData, parsedLocal.traveler);
             setPlannedItems(plannedItemsData);
             setFavoriteCharacterKeys(parsedLocal.favorites);
             setTraveler(parsedLocal.traveler);

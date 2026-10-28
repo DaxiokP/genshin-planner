@@ -3,12 +3,13 @@ import weaponRequirementsMapData from '../maps/weaponRequirementsMap.json';
 import weaponExpMapData from '../maps/weaponExpMap.json';
 import weaponMapData from '../maps/weaponMap.json';
 import materialMapData from '../maps/materialMap.json';
-import { isTravelerKey } from './characterHelpers';
+import { isTravelerKey, getTravelerElement, getCharacterPlanId } from './characterHelpers';
 
 
 const characterRequirementsMap = characterRequirementsMapData as Record<string, {
   ascension: Record<string, { key: string; name: string; count: number }[]>;
   talents: Record<string, { key: string; name: string; count: number }[]>;
+  autoTalents?: Record<string, { key: string; name: string; count: number }[]>;
 }>;
 
 const weaponRequirementsMap = weaponRequirementsMapData as Record<string, {
@@ -432,8 +433,10 @@ export function accumulatePlanRequirements(planned: any, addMaterial: (key: stri
         }
       });
     } else {
-      const charKey = isTravelerKey(planned.key) ? 'Aether' : planned.key;
-      const charReqs = characterRequirementsMap[charKey];
+      const charKey = isTravelerKey(planned.key)
+        ? `Traveler${getTravelerElement(planned)}`
+        : planned.key;
+      const charReqs = characterRequirementsMap[charKey] || (isTravelerKey(planned.key) ? characterRequirementsMap['Aether'] : undefined);
       if (charReqs) {
         if (planned.desired.ascension > planned.current.ascension) {
           for (let asc = planned.current.ascension + 1; asc <= planned.desired.ascension; asc++) {
@@ -450,7 +453,9 @@ export function accumulatePlanRequirements(planned: any, addMaterial: (key: stri
           const desLvl = planned.desired.talent[tKey];
           if (desLvl > curLvl) {
             for (let lvl = curLvl + 1; lvl <= desLvl; lvl++) {
-              const stepCosts = charReqs.talents[lvl] || [];
+              const stepCosts = (tKey === 'auto' && charReqs.autoTalents?.[lvl])
+                ? charReqs.autoTalents[lvl]
+                : (charReqs.talents[lvl] || []);
               stepCosts.forEach(item => {
                 addMaterial(item.key, item.count);
               });
@@ -834,7 +839,7 @@ export function simulatePlannerInventory(
 
   plannedItems.forEach(planned => {
     const isWeapon = planned.type === 'weapon';
-    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : `character:${planned.key}`);
+    const id = planned.id || (isWeapon ? `weapon:${planned.weaponIndex}` : getCharacterPlanId(planned));
 
     if (planned.enabled === false) {
       requirements[id] = [];
