@@ -253,3 +253,140 @@
   border-color: rgba(239, 83, 80, 0.5);
   color: #ff8a80;
 }
+
+.settings-btn-save {
+  border-color: rgba(255, 204, 102, 0.4);
+  color: #ffcc66;
+}
+
+.settings-btn-save:hover {
+  background: rgba(255, 204, 102, 0.15);
+  border-color: rgba(255, 204, 102, 0.7);
+  color: #ffe099;
+}
+
+.traveler-selector-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.traveler-toggle-group {
+  display: inline-flex;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 4px;
+  gap: 6px;
+}
+
+.traveler-toggle-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.traveler-toggle-option:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.traveler-toggle-option.active {
+  background: rgba(255, 204, 102, 0.14);
+  border-color: rgba(255, 204, 102, 0.5);
+  color: #ffcc66;
+}
+
+.traveler-toggle-option:focus-within {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.traveler-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.traveler-toggle-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.traveler-toggle-check {
+  color: #ffcc66;
+  margin-left: 2px;
+}
+
+.data-import-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pending-file-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.55rem 0.9rem;
+  background: rgba(94, 189, 140, 0.1);
+  border: 1px solid rgba(94, 189, 140, 0.35);
+  border-radius: 8px;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.pending-file-icon {
+  color: #6ecea0;
+  flex-shrink: 0;
+}
+
+.pending-file-name {
+  font-weight: 600;
+  color: #6ecea0;
+  word-break: break-all;
+}
+
+.pending-file-hint {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.pending-file-remove {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  transition: all 0.15s ease;
+}
+
+.pending-file-remove:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}

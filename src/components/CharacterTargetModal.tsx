@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Check, X, Plus, Minus } from 'lucide-react';
 import type { GoodCharacter, PlannedCharacter } from '../App';
-import characterMapData from '../maps/characterMap.json';
-
-const characterMap: Record<string, any> = characterMapData;
+import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
 
 interface CharacterTargetModalProps {
   isOpen: boolean;
@@ -16,6 +14,7 @@ interface CharacterTargetModalProps {
   onEditCustom?: () => void;
   onReplaceWithExisting?: () => void;
   onAccept: (planned: PlannedCharacter) => void;
+  traveler?: TravelerKey;
 }
 
 const getMaxTalentForAscension = (asc: number) => {
@@ -152,6 +151,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
   onEditCustom,
   onReplaceWithExisting,
   onAccept,
+  traveler = 'Aether',
 }) => {
   const isCustom = characterKey?.startsWith('custom_') || plannedData?.custom || customInfo?.custom;
   const customCharInfo = isCustom ? {
@@ -161,7 +161,7 @@ export const CharacterTargetModal: React.FC<CharacterTargetModalProps> = ({
     custom: true,
   } : null;
 
-  const charInfo = customCharInfo || (characterKey ? characterMap[characterKey] : null) || { id: '', name: '', rarity: 4 };
+  const charInfo = customCharInfo || lookupCharacter(characterKey, traveler) || { id: '', name: '', rarity: 4 };
 
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentAscension, setCurrentAscension] = useState(0);

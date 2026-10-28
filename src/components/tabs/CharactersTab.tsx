@@ -3,19 +3,8 @@ import React, { useMemo } from 'react';
 import { Search, X, User, ArrowUpNarrowWide, ArrowDownNarrowWide } from 'lucide-react';
 import { CharacterCard } from '../CharacterCard';
 import type { GoodCharacter, GoodWeapon, GoodArtifact } from '../../types';
-import characterMapData from '../../maps/characterMap.json';
 import { handleFilterToggle } from '../../utils/filterHelpers';
-
-const characterMapRaw: Record<string, any> = characterMapData as any;
-const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
-
-const lookupChar = (key: string) => {
-  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
-  return characterMapRaw[charIndex[normalizedKey]] ?? null;
-};
+import { lookupCharacter, isSameCharacterKey, type TravelerKey } from '../../utils/characterHelpers';
 
 interface CharactersTabProps {
   characters: GoodCharacter[];
@@ -35,6 +24,7 @@ interface CharactersTabProps {
   setCharacterSortBy: React.Dispatch<React.SetStateAction<'level' | 'name'>>;
   characterSortOrder: 'asc' | 'desc';
   setCharacterSortOrder: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>;
+  traveler: TravelerKey;
 }
 
 export const CharactersTab: React.FC<CharactersTabProps> = ({
@@ -55,7 +45,9 @@ export const CharactersTab: React.FC<CharactersTabProps> = ({
   setCharacterSortBy,
   characterSortOrder,
   setCharacterSortOrder,
+  traveler,
 }) => {
+  const lookupChar = (key: string) => lookupCharacter(key, traveler);
   // Filtered characters memo
   const filteredCharacters = useMemo(() => {
     if (
@@ -95,7 +87,7 @@ export const CharactersTab: React.FC<CharactersTabProps> = ({
 
       return true;
     });
-  }, [characters, characterSearch, selectedCharacterWeaponTypes, selectedCharacterElements, selectedCharacterRarities]);
+  }, [characters, characterSearch, selectedCharacterWeaponTypes, selectedCharacterElements, selectedCharacterRarities, traveler]);
 
   // Counts for Character filter badges based on owned characters and active filters
   const characterCounts = useMemo(() => {
@@ -155,14 +147,14 @@ export const CharactersTab: React.FC<CharactersTabProps> = ({
     });
 
     return counts;
-  }, [characters, filteredCharacters]);
+  }, [characters, filteredCharacters, traveler]);
 
   // Sorted characters memo
   const sortedCharacters = useMemo(() => {
     const list = [...filteredCharacters];
     list.sort((a, b) => {
-      const isFavA = favoriteCharacterKeys.includes(a.key);
-      const isFavB = favoriteCharacterKeys.includes(b.key);
+      const isFavA = favoriteCharacterKeys.some(k => isSameCharacterKey(k, a.key));
+      const isFavB = favoriteCharacterKeys.some(k => isSameCharacterKey(k, b.key));
 
       // 1. Favorite characters first
       if (isFavA !== isFavB) {
@@ -195,7 +187,7 @@ export const CharactersTab: React.FC<CharactersTabProps> = ({
       }
     });
     return list;
-  }, [filteredCharacters, characterSortBy, characterSortOrder, favoriteCharacterKeys]);
+  }, [filteredCharacters, characterSortBy, characterSortOrder, favoriteCharacterKeys, traveler]);
 
   return (
     <section className="characters-container">
@@ -331,10 +323,11 @@ export const CharactersTab: React.FC<CharactersTabProps> = ({
           <CharacterCard
             key={char.key}
             character={char}
-            weapon={weapons.find(w => w.location === char.key)}
-            artifacts={artifacts.filter(a => a.location === char.key)}
-            isFavorite={favoriteCharacterKeys.includes(char.key)}
+            weapon={weapons.find(w => isSameCharacterKey(w.location, char.key))}
+            artifacts={artifacts.filter(a => isSameCharacterKey(a.location, char.key))}
+            isFavorite={favoriteCharacterKeys.some(k => isSameCharacterKey(k, char.key))}
             onToggleFavorite={() => toggleFavoriteCharacter(char.key)}
+            traveler={traveler}
           />
         ))}
       </div>

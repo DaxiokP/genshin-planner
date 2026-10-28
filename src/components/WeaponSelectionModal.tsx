@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { X, Search, Star, Calendar } from 'lucide-react';
 import type { GoodWeapon } from '../App';
 import weaponMapData from '../maps/weaponMap.json';
+import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
 
 const weaponMapRaw: Record<string, any> = weaponMapData;
 const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -30,6 +31,7 @@ interface WeaponSelectionModalProps {
   onSelect: (weaponIndex: number, weaponKey?: string) => void;
   replaceMode?: boolean;
   onAddCustom?: () => void;
+  traveler?: TravelerKey;
 }
 
 const getWeaponTypeIconPath = (type: string) => {
@@ -51,6 +53,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
   onSelect,
   replaceMode = false,
   onAddCustom,
+  traveler = 'Aether',
 }) => {
   const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>(replaceMode ? 'all' : 'owned');
   const [searchQuery, setSearchQuery] = useState('');
@@ -438,7 +441,7 @@ export const WeaponSelectionModal: React.FC<WeaponSelectionModalProps> = ({
                           zIndex: 2,
                           pointerEvents: 'none'
                         }}>
-                          {w.location}
+                          {lookupCharacter(w.location, traveler)?.name || w.location}
                         </div>
                       )}
                     </div>

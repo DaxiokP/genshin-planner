@@ -1,23 +1,13 @@
 import React from 'react';
 import { Sword, User, Shield, Heart, Zap, Sparkles } from 'lucide-react';
 import type { GoodWeapon, GoodCharacter } from '../App';
-import characterMapData from '../maps/characterMap.json';
-
-const characterMapRaw: Record<string, any> = characterMapData as any;
-const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
-
-const lookupChar = (key: string) => {
-  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
-  return characterMapRaw[charIndex[normalizedKey]] ?? null;
-};
+import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
 
 interface WeaponCardProps {
   weapon: GoodWeapon;
   weaponMapData: any; // resolved metadata containing name, rarity, type, id, substatType, stats
   equippedCharacter?: GoodCharacter;
+  traveler?: TravelerKey;
 }
 
 const getMaxLevel = (ascension: number) => {
@@ -72,7 +62,7 @@ const getSubstatIcon = (type: string) => {
   return <Sword size={14} style={{ color: '#e0e0e0' }} />;
 };
 
-export const WeaponCard: React.FC<WeaponCardProps> = ({ weapon, weaponMapData, equippedCharacter }) => {
+export const WeaponCard: React.FC<WeaponCardProps> = ({ weapon, weaponMapData, equippedCharacter, traveler = 'Aether' }) => {
   const rarity = weaponMapData?.rarity || 1;
   const maxLvl = getMaxLevel(weapon.ascension);
   const type = weaponMapData?.type || 'Sword';
@@ -87,7 +77,7 @@ export const WeaponCard: React.FC<WeaponCardProps> = ({ weapon, weaponMapData, e
 
   // Equipped Character data lookup
   const hasChar = weapon.location && weapon.location !== '';
-  const charData = hasChar ? lookupChar(weapon.location) : null;
+  const charData = hasChar ? lookupCharacter(weapon.location, traveler) : null;
   const charName = charData?.name || weapon.location;
 
   return (

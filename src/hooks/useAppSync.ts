@@ -1,6 +1,30 @@
 import { useState, useRef, useEffect } from 'react';
 import type { MaterialsData, GoodCharacter, GoodWeapon, GoodArtifact } from '../types';
 import { supabase, fetchUserProfiles, saveProfileState } from '../supabase';
+import type { TravelerKey } from '../utils/characterHelpers';
+
+function parseTravelerAndFavorites(
+  rawFavorites: any,
+  explicitTraveler?: any
+): { traveler: TravelerKey; favorites: string[] } {
+  const arr = Array.isArray(rawFavorites) ? rawFavorites : [];
+  let resolvedTraveler: TravelerKey = 'Aether';
+
+  if (explicitTraveler === 'Lumine' || explicitTraveler === 'Aether') {
+    resolvedTraveler = explicitTraveler;
+  } else {
+    const tag = arr.find((k: any) => typeof k === 'string' && k.startsWith('__traveler:'));
+    if (tag) {
+      const val = tag.replace('__traveler:', '');
+      if (val === 'Lumine' || val === 'Aether') {
+        resolvedTraveler = val;
+      }
+    }
+  }
+
+  const favorites = arr.filter((k: any) => typeof k === 'string' && !k.startsWith('__traveler:'));
+  return { traveler: resolvedTraveler, favorites };
+}
 
 export function useAppSync() {
   const [materials, setMaterials] = useState<MaterialsData | null>(null);
@@ -9,6 +33,7 @@ export function useAppSync() {
   const [artifacts, setArtifacts] = useState<GoodArtifact[]>([]);
   const [plannedItems, setPlannedItems] = useState<any[]>([]);
   const [favoriteCharacterKeys, setFavoriteCharacterKeys] = useState<string[]>([]);
+  const [traveler, setTraveler] = useState<TravelerKey>('Aether');
 
   // --- Supabase Authentication & Syncing State ---
   const [user, setUser] = useState<any>(null);
@@ -112,7 +137,12 @@ export function useAppSync() {
           let artifactsData = currentProfileData?.artifacts || [];
           let plannedCharactersData = currentProfileData?.planned_characters || [];
           let plannedItemsData = currentProfileData?.planned_items || [];
-          let favoriteCharacterKeysData = currentProfileData?.favorite_character_keys || [];
+          const parsedCloud = parseTravelerAndFavorites(
+            currentProfileData?.favorite_character_keys,
+            currentProfileData?.traveler
+          );
+          let favoriteCharacterKeysData = parsedCloud.favorites;
+          let travelerData: TravelerKey = parsedCloud.traveler;
 
           // Migration logic: If cloud profile is empty but local has data, migrate it!
           const localDataStr = localStorage.getItem('genshin_planner_local_data');
@@ -126,7 +156,12 @@ export function useAppSync() {
                 artifactsData = localData.artifacts || [];
                 plannedCharactersData = localData.planned_characters || [];
                 plannedItemsData = localData.planned_items || [];
-                favoriteCharacterKeysData = localData.favorite_character_keys || [];
+                const parsedLocal = parseTravelerAndFavorites(
+                  localData.favorite_character_keys,
+                  localData.traveler
+                );
+                favoriteCharacterKeysData = parsedLocal.favorites;
+                travelerData = parsedLocal.traveler;
 
                 if (plannedItemsData.length === 0 && plannedCharactersData.length > 0) {
                   plannedItemsData = plannedCharactersData.map((item: any) => ({
@@ -144,7 +179,8 @@ export function useAppSync() {
                   artifacts: artifactsData,
                   planned_characters: plannedCharactersData,
                   planned_items: plannedItemsData,
-                  favorite_character_keys: favoriteCharacterKeysData
+                  favorite_character_keys: favoriteCharacterKeysData,
+                  traveler: travelerData
                 });
                 console.log(`Migrated local data to cloud for profile: ${targetProfile}`);
 
@@ -171,6 +207,7 @@ export function useAppSync() {
           setArtifacts(artifactsData);
           setPlannedItems(plannedItemsData);
           setFavoriteCharacterKeys(favoriteCharacterKeysData);
+          setTraveler(travelerData);
           setSyncStatus('synced');
         } else {
           // Load local storage
@@ -193,8 +230,13 @@ export function useAppSync() {
               }));
             }
 
+            const parsedLocal = parseTravelerAndFavorites(
+              localData.favorite_character_keys,
+              localData.traveler
+            );
             setPlannedItems(plannedItemsData);
-            setFavoriteCharacterKeys(localData.favorite_character_keys || []);
+            setFavoriteCharacterKeys(parsedLocal.favorites);
+            setTraveler(parsedLocal.traveler);
           } else {
             setMaterials(null);
             setCharacters([]);
@@ -202,6 +244,7 @@ export function useAppSync() {
             setArtifacts([]);
             setPlannedItems([]);
             setFavoriteCharacterKeys([]);
+            setTraveler('Aether');
           }
           setSyncStatus('local');
         }
@@ -239,7 +282,8 @@ export function useAppSync() {
       artifacts,
       planned_characters: plannedItems.filter(item => item.type === 'character' || !item.type),
       planned_items: plannedItems,
-      favorite_character_keys: favoriteCharacterKeys
+      favorite_character_keys: favoriteCharacterKeys,
+      traveler
     };
 
     if (user) {
@@ -269,7 +313,7 @@ export function useAppSync() {
         clearTimeout(saveTimeoutRef.current);
       }
     };
-  }, [materials, characters, weapons, artifacts, plannedItems, favoriteCharacterKeys, user, activeProfile, isLoadingProfile]);
+  }, [materials, characters, weapons, artifacts, plannedItems, favoriteCharacterKeys, traveler, user, activeProfile, isLoadingProfile]);
 
   return {
     materials,
@@ -284,6 +328,8 @@ export function useAppSync() {
     setPlannedItems,
     favoriteCharacterKeys,
     setFavoriteCharacterKeys,
+    traveler,
+    setTraveler,
     user,
     setUser,
     profiles,

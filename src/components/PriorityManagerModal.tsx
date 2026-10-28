@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { X, GripVertical } from 'lucide-react';
-import characterMapData from '../maps/characterMap.json';
 import weaponMapData from '../maps/weaponMap.json';
+import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
 
-const characterMapRaw: Record<string, any> = characterMapData as any;
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
 
 const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
-
-const lookupChar = (key: string) => {
-  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
-  return characterMapRaw[charIndex[normalizedKey]] ?? null;
-};
 
 const weaponIndex: Record<string, string> = {};
 Object.keys(weaponMapRaw).forEach(k => { weaponIndex[normalize(k)] = k; });
@@ -28,6 +19,7 @@ interface PriorityManagerModalProps {
   plannedItems: any[];
   onClose: () => void;
   onSave: (ordered: any[]) => void;
+  traveler?: TravelerKey;
 }
 
 export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
@@ -35,7 +27,9 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
   plannedItems,
   onClose,
   onSave,
+  traveler = 'Aether',
 }) => {
+  const lookupChar = (key: string) => lookupCharacter(key, traveler);
   const [draft, setDraft] = useState<any[]>([]);
   const [savedOrder, setSavedOrder] = useState<string[]>([]);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);

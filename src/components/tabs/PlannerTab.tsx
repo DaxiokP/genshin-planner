@@ -7,8 +7,8 @@ import { hasSingleStar } from '../../utils/upgradeHelpers';
 import { moveItem } from '../../utils/plannerHelpers';
 import { calculateRequirements } from '../../utils/plannerCalculator';
 import materialMapData from '../../maps/materialMap.json';
-import characterMapData from '../../maps/characterMap.json';
 import weaponMapData from '../../maps/weaponMap.json';
+import { lookupCharacter, isSameCharacterKey, type TravelerKey } from '../../utils/characterHelpers';
 
 interface MaterialMapEntry {
   id: string;
@@ -21,18 +21,6 @@ interface MaterialMapEntry {
 }
 
 const materialMap: Record<string, MaterialMapEntry> = materialMapData as any;
-
-// Helper to look up character data
-const characterMapRaw: Record<string, any> = characterMapData as any;
-const normalizeChar = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalizeChar(k)] = k; });
-
-const lookupChar = (key: string) => {
-  const normalizedKey = normalizeChar(key === 'Traveler' ? 'Aether' : key);
-  return characterMapRaw[charIndex[normalizedKey]] ?? null;
-};
 
 // Helper to look up weapon data
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
@@ -70,6 +58,7 @@ interface PlannerTabProps {
   setIsUpgradeModalOpen: (val: boolean) => void;
   setDeletingWeaponId: (val: string | null) => void;
   setDeletingCharacterKey: (val: string | null) => void;
+  traveler: TravelerKey;
 }
 
 export const PlannerTab: React.FC<PlannerTabProps> = ({
@@ -97,7 +86,9 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
   setIsUpgradeModalOpen,
   setDeletingWeaponId,
   setDeletingCharacterKey,
+  traveler,
 }) => {
+  const lookupChar = (key: string) => lookupCharacter(key, traveler);
   const [canDragCardKey, setCanDragCardKey] = useState<string | null>(null);
   const [draggedCardKey, setDraggedCardKey] = useState<string | null>(null);
   const [dragOverCardKey, setDragOverCardKey] = useState<string | null>(null);
@@ -184,7 +175,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
   };
 
   const renderLevelsAndTalents = (planned: any) => {
-    const charOwned = characters.find(c => c.key === planned.key);
+    const charOwned = characters.find(c => isSameCharacterKey(c.key, planned.key));
     const constellation = charOwned?.constellation || 0;
     const isSkillBoosted = constellation >= 3;
     const isBurstBoosted = constellation >= 5;
@@ -1271,7 +1262,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                   border: '1px solid rgba(255,255,255,0.1)'
                                 }}
                               >
-                                C{characters.find(c => c.key === planned.key)?.constellation || 0}
+                                C{characters.find(c => isSameCharacterKey(c.key, planned.key))?.constellation || 0}
                               </span>
                             )}
                           </div>

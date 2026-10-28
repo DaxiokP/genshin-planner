@@ -21,6 +21,7 @@ export interface PlannerState {
   planned_characters: any[];
   planned_items?: any[];
   favorite_character_keys: string[];
+  traveler?: 'Aether' | 'Lumine';
 }
 
 // Fetch all profiles for an authenticated user
@@ -46,6 +47,14 @@ export async function saveProfileState(
   state: PlannerState
 ) {
   if (!supabase) return null;
+
+  const cleanedFavorites = (state.favorite_character_keys || []).filter(
+    (k: string) => typeof k === 'string' && !k.startsWith('__traveler:')
+  );
+  const favoritesWithTraveler = [
+    ...cleanedFavorites,
+    `__traveler:${state.traveler === 'Lumine' ? 'Lumine' : 'Aether'}`
+  ];
   
   const { data, error } = await supabase
     .from('user_planners')
@@ -58,7 +67,7 @@ export async function saveProfileState(
       artifacts: state.artifacts,
       planned_characters: state.planned_characters,
       planned_items: state.planned_items || [],
-      favorite_character_keys: state.favorite_character_keys || [],
+      favorite_character_keys: favoritesWithTraveler,
       updated_at: new Date().toISOString()
     }, {
       onConflict: 'user_id,profile_name'

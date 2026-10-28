@@ -1,5 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { syncPlannedItemsWithGoodImport } from '../plannerImportSync';
+import { lookupCharacter, isTravelerKey, isSameCharacterKey } from '../characterHelpers';
 
 describe('plannerImportSync', () => {
   describe('syncPlannedItemsWithGoodImport', () => {
@@ -100,6 +101,68 @@ describe('plannerImportSync', () => {
       expect(synced[1].id).toBe('weapon:0');
       expect(synced[1].current.level).toBe(5);
       expect(synced[1].current.ascension).toBe(0);
+    });
+
+    test('matches planned Aether or Lumine against imported GOOD Traveler key', () => {
+      const previousPlannedItems = [
+        {
+          id: 'character:Lumine',
+          key: 'Lumine',
+          type: 'character',
+          enabled: true,
+          current: {
+            level: 20,
+            ascension: 1,
+            talent: { auto: 1, skill: 1, burst: 1 }
+          },
+          desired: {
+            level: 90,
+            ascension: 6,
+            talent: { auto: 6, skill: 6, burst: 6 }
+          }
+        }
+      ];
+
+      const importedCharacters = [
+        {
+          key: 'Traveler',
+          level: 80,
+          constellation: 6,
+          ascension: 5,
+          talent: { auto: 4, skill: 6, burst: 8 }
+        }
+      ];
+
+      const synced = syncPlannedItemsWithGoodImport(previousPlannedItems, importedCharacters, [], []);
+
+      expect(synced[0].current.level).toBe(80);
+      expect(synced[0].current.ascension).toBe(5);
+      expect(synced[0].current.talent.auto).toBe(4);
+      expect(synced[0].current.talent.skill).toBe(6);
+      expect(synced[0].current.talent.burst).toBe(8);
+      expect(synced[0].desired.talent.burst).toBe(8);
+    });
+  });
+
+  describe('characterHelpers', () => {
+    test('resolves Traveler keys to Aether by default and Lumine when selected', () => {
+      expect(isTravelerKey('Traveler')).toBe(true);
+      expect(isTravelerKey('Aether')).toBe(true);
+      expect(isTravelerKey('Lumine')).toBe(true);
+      expect(isTravelerKey('TravelerAnemo')).toBe(true);
+      expect(isTravelerKey('Furina')).toBe(false);
+
+      expect(isSameCharacterKey('Traveler', 'Lumine')).toBe(true);
+      expect(isSameCharacterKey('Aether', 'Lumine')).toBe(true);
+      expect(isSameCharacterKey('Traveler', 'Furina')).toBe(false);
+
+      const aetherMeta = lookupCharacter('Traveler', 'Aether');
+      expect(aetherMeta?.name).toBe('Aether');
+      expect(aetherMeta?.id).toBe('PlayerBoy');
+
+      const lumineMeta = lookupCharacter('Traveler', 'Lumine');
+      expect(lumineMeta?.name).toBe('Lumine');
+      expect(lumineMeta?.id).toBe('PlayerGirl');
     });
   });
 });

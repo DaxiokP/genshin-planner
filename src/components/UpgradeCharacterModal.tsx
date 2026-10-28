@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { X, Check, Plus, Minus, RotateCw } from 'lucide-react';
 import type { GoodCharacter, PlannedCharacter } from '../App';
-import characterMapData from '../maps/characterMap.json';
 import materialMapData from '../maps/materialMap.json';
 import { simulateUpgrade, hasSingleStar } from '../utils/upgradeHelpers';
+import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
 
-const characterMap: Record<string, any> = characterMapData;
 const materialMap = materialMapData as Record<string, {
   id: string;
   name?: string;
@@ -31,6 +30,7 @@ interface UpgradeCharacterModalProps {
     craftingBonuses: Record<string, number>
   ) => void;
   handleOpenQuickInventory: (key: string) => void;
+  traveler?: TravelerKey;
 }
 
 const getMaxTalentForAscension = (asc: number) => {
@@ -166,6 +166,7 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
   materials,
   onUpgradeClick,
   handleOpenQuickInventory,
+  traveler = 'Aether',
 }) => {
   const [desiredLevel, setDesiredLevel] = useState(90);
   const [desiredAscension, setDesiredAscension] = useState(6);
@@ -198,7 +199,7 @@ export const UpgradeCharacterModal: React.FC<UpgradeCharacterModalProps> = ({
 
   if (!isOpen || !planned) return null;
 
-  const charInfo = characterMap[planned.key];
+  const charInfo = lookupCharacter(planned.key, traveler);
   if (!charInfo) return null;
 
   const constellation = currentData?.constellation || 0;

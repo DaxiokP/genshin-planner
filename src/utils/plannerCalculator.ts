@@ -3,6 +3,7 @@ import weaponRequirementsMapData from '../maps/weaponRequirementsMap.json';
 import weaponExpMapData from '../maps/weaponExpMap.json';
 import weaponMapData from '../maps/weaponMap.json';
 import materialMapData from '../maps/materialMap.json';
+import { isTravelerKey } from './characterHelpers';
 
 
 const characterRequirementsMap = characterRequirementsMapData as Record<string, {
@@ -431,7 +432,7 @@ export function accumulatePlanRequirements(planned: any, addMaterial: (key: stri
         }
       });
     } else {
-      const charKey = planned.key === 'Traveler' ? 'Aether' : planned.key;
+      const charKey = isTravelerKey(planned.key) ? 'Aether' : planned.key;
       const charReqs = characterRequirementsMap[charKey];
       if (charReqs) {
         if (planned.desired.ascension > planned.current.ascension) {

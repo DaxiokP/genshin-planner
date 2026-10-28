@@ -2,16 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { X, Search, Star, Calendar } from 'lucide-react';
 import type { GoodCharacter } from '../App';
 import characterMapData from '../maps/characterMap.json';
+import { lookupCharacter, isTravelerKey, isSameCharacterKey, type TravelerKey } from '../utils/characterHelpers';
 
 const characterMap: Record<string, any> = characterMapData;
-
-const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-const charIndex: Record<string, string> = {};
-Object.keys(characterMap).forEach(k => { charIndex[normalize(k)] = k; });
-const lookupChar = (key: string) => {
-  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
-  return characterMap[charIndex[normalizedKey]] ?? null;
-};
 
 const parseVersion = (v: string | number | undefined): [number, number] => {
   if (v === undefined || v === null) return [0, 0];
@@ -33,6 +26,7 @@ interface CharacterSelectionModalProps {
   onSelect: (characterKey: string) => void;
   replaceMode?: boolean;
   onAddCustom?: () => void;
+  traveler?: TravelerKey;
 }
 
 const isDoneCharacter = (char: GoodCharacter) => {
@@ -53,7 +47,9 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
   onSelect,
   replaceMode = false,
   onAddCustom,
+  traveler = 'Aether',
 }) => {
+  const lookupChar = (key: string) => lookupCharacter(key, traveler);
   const [viewMode, setViewMode] = useState<'owned' | 'unowned' | 'all'>(replaceMode ? 'all' : 'owned');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'stars' | 'name' | 'release'>('stars');
@@ -72,7 +68,7 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
     let result: GoodCharacter[] = [];
 
     if (viewMode === 'owned') {
-      result = [...ownedCharacters];
+      result = ownedCharacters.map(c => isTravelerKey(c.key) ? { ...c, key: traveler } : c);
     } else if (viewMode === 'unowned') {
       // Get all characters from characterMap that are not owned
       Object.keys(characterMap).forEach(key => {
@@ -83,12 +79,12 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
         if (['MannequinBoy', 'MannequinGirl', 'PlayerBoy', 'PlayerGirl'].includes(info.id) && key !== 'Aether' && key !== 'Lumine') {
           return;
         }
+        // Only show the active Traveler twin
+        if ((key === 'Aether' || key === 'Lumine') && key !== traveler) {
+          return;
+        }
 
-        const ownedMatch = ownedCharacters.find(c => {
-          const cNorm = normalize(c.key);
-          const keyNorm = normalize(key);
-          return cNorm === keyNorm || (cNorm === 'traveler' && keyNorm === 'aether');
-        });
+        const ownedMatch = ownedCharacters.find(c => isSameCharacterKey(c.key, key));
 
         if (!ownedMatch) {
           result.push({
@@ -110,12 +106,12 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
         if (['MannequinBoy', 'MannequinGirl', 'PlayerBoy', 'PlayerGirl'].includes(info.id) && key !== 'Aether' && key !== 'Lumine') {
           return;
         }
+        // Only show the active Traveler twin
+        if ((key === 'Aether' || key === 'Lumine') && key !== traveler) {
+          return;
+        }
 
-        const ownedMatch = ownedCharacters.find(c => {
-          const cNorm = normalize(c.key);
-          const keyNorm = normalize(key);
-          return cNorm === keyNorm || (cNorm === 'traveler' && keyNorm === 'aether');
-        });
+        const ownedMatch = ownedCharacters.find(c => isSameCharacterKey(c.key, key));
 
         if (ownedMatch) {
           result.push({
@@ -198,7 +194,7 @@ export const CharacterSelectionModal: React.FC<CharacterSelectionModalProps> = (
       characters: result,
       allMatchingAreDone
     };
-  }, [ownedCharacters, filterElement, searchQuery, sortBy, showDone, viewMode]);
+  }, [ownedCharacters, filterElement, searchQuery, sortBy, showDone, viewMode, traveler]);
 
   if (!isOpen) return null;
 

@@ -1,24 +1,20 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
 import type { GoodCharacter, GoodWeapon, GoodArtifact } from '../App';
-import characterMapData from '../maps/characterMap.json';
 import weaponMapData from '../maps/weaponMap.json';
 import artifactMapData from '../maps/artifactMap.json';
+import { lookupCharacter, type TravelerKey } from '../utils/characterHelpers';
 
-const characterMapRaw: Record<string, any> = characterMapData as any;
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
 const artifactMapRaw: Record<string, any> = artifactMapData as any;
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
 const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
 const weaponIndex: Record<string, string> = {};
 Object.keys(weaponMapRaw).forEach(k => { weaponIndex[normalize(k)] = k; });
 const artifactIndex: Record<string, string> = {};
 Object.keys(artifactMapRaw).forEach(k => { artifactIndex[normalize(k)] = k; });
 
-const lookupChar = (key: string) => characterMapRaw[charIndex[normalize(key)]] ?? null;
 const lookupWeapon = (key: string) => weaponMapRaw[weaponIndex[normalize(key)]] ?? null;
 const lookupArtifact = (key: string) => artifactMapRaw[artifactIndex[normalize(key)]] ?? null;
 
@@ -28,6 +24,7 @@ interface CharacterCardProps {
   artifacts?: GoodArtifact[];
   isFavorite: boolean;
   onToggleFavorite: () => void;
+  traveler?: TravelerKey;
 }
 
 const artifactSlotOrder = ['flower', 'plume', 'sands', 'goblet', 'circlet'];
@@ -54,10 +51,9 @@ const FallbackIcon = ({ slot }: { slot: string }) => {
   );
 };
 
-export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon, artifacts = [], isFavorite, onToggleFavorite }) => {
+export const CharacterCard: React.FC<CharacterCardProps> = ({ character, weapon, artifacts = [], isFavorite, onToggleFavorite, traveler = 'Aether' }) => {
   // Handle Traveler alias — GOOD uses "Traveler" but map has "Aether"/"Lumine"
-  const charKey = character.key === 'Traveler' ? 'Aether' : character.key;
-  const charData = lookupChar(charKey) || { name: character.key, rarity: 5, element: 'None', icon: '', weaponType: 'Sword' };
+  const charData = lookupCharacter(character.key, traveler) || { name: character.key, rarity: 5, element: 'None', icon: '', weaponType: 'Sword', id: '' };
   const elementClass = charData.element ? charData.element.toLowerCase() : 'none';
 
   const weaponData = weapon ? lookupWeapon(weapon.key) : null;

@@ -4,7 +4,6 @@ import { CharacterSelectionModal } from './components/CharacterSelectionModal';
 import { CharacterTargetModal } from './components/CharacterTargetModal';
 import { calculateRequirements, simulatePlannerInventory, getDomainMaterialWeekdayGroup, getRawCardRequirements } from './utils/plannerCalculator';
 import './App.css';
-import characterMapData from './maps/characterMap.json';
 import weaponMapData from './maps/weaponMap.json';
 import { supabase, createCustomProfile, deleteUserProfile } from './supabase';
 import type { PlannedCharacter } from './types';
@@ -27,18 +26,11 @@ import { InventoryTab } from './components/tabs/InventoryTab';
 import { syncPlannedItemsWithGoodImport } from './utils/plannerImportSync';
 import { AccountSettingsTab } from './components/tabs/AccountSettingsTab';
 import { CustomItemModal } from './components/CustomItemModal';
+import { lookupCharacter, isTravelerKey, isSameCharacterKey, type TravelerKey } from './utils/characterHelpers';
 
 // Build case-insensitive lookup indexes (GOOD format keys may differ in casing)
-const characterMapRaw: Record<string, any> = characterMapData as any;
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
 const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-const charIndex: Record<string, string> = {};
-Object.keys(characterMapRaw).forEach(k => { charIndex[normalize(k)] = k; });
-const lookupChar = (key: string) => {
-  const normalizedKey = normalize(key === 'Traveler' ? 'Aether' : key);
-  return characterMapRaw[charIndex[normalizedKey]] ?? null;
-};
 
 const weaponIndex: Record<string, string> = {};
 Object.keys(weaponMapRaw).forEach(k => { weaponIndex[normalize(k)] = k; });
@@ -65,6 +57,8 @@ function App() {
     setPlannedItems,
     favoriteCharacterKeys,
     setFavoriteCharacterKeys,
+    traveler,
+    setTraveler,
     user,
     setUser,
     profiles,
@@ -78,6 +72,7 @@ function App() {
     setIsProfileDropdownOpen,
     dropdownRef,
   } = useAppSync();
+  const lookupChar = (key: string) => lookupCharacter(key, traveler);
   const plannedCharacters = useMemo(() => {
     return plannedItems.filter(item => item.type === 'character' || !item.type) as PlannedCharacter[];
   }, [plannedItems]);
@@ -179,7 +174,7 @@ function App() {
   const [replaceMode, setReplaceMode] = useState(false);
   const [replaceTargetId, setReplaceTargetId] = useState<string | null>(null);
 
-  const processFile = (file: File) => {
+  const processFile = (file: File, targetTraveler: TravelerKey = traveler) => {
     if (!file.name.endsWith('.json')) {
       alert('Please upload a valid JSON file.');
       return;
@@ -206,7 +201,12 @@ function App() {
           data.characters || [],
           data.weapons || [],
           weapons
-        );
+        ).map(item => {
+          if ((item.type === 'character' || !item.type) && isTravelerKey(item.key)) {
+            return { ...item, key: targetTraveler, id: `character:${targetTraveler}` };
+          }
+          return item;
+        });
 
         setMaterials(data.materials);
         setCharacters(data.characters || []);
@@ -219,6 +219,35 @@ function App() {
       }
     };
     reader.readAsText(file);
+  };
+
+  const handleSaveSettings = (newTraveler: TravelerKey, pendingFile: File | null) => {
+    setTraveler(newTraveler);
+
+    setPlannedItems(prev => {
+      const hasTraveler = prev.some(p => (p.type === 'character' || !p.type) && isTravelerKey(p.key));
+      if (!hasTraveler) return prev;
+      return prev.map(p => {
+        if ((p.type === 'character' || !p.type) && isTravelerKey(p.key)) {
+          return {
+            ...p,
+            key: newTraveler,
+            id: `character:${newTraveler}`
+          };
+        }
+        return p;
+      });
+    });
+
+    setFavoriteCharacterKeys(prev => {
+      const hasTraveler = prev.some(k => isTravelerKey(k));
+      if (!hasTraveler) return prev;
+      return prev.map(k => (isTravelerKey(k) ? newTraveler : k));
+    });
+
+    if (pendingFile) {
+      processFile(pendingFile, newTraveler);
+    }
   };
 
   const clearGoodData = () => {
@@ -236,7 +265,7 @@ function App() {
     },
     craftingBonuses: Record<string, number>
   ) => {
-    const planned = plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey);
+    const planned = plannedCharacters.find(p => isSameCharacterKey(p.key, selectedUpgradeCharacterKey));
     if (!planned) return;
 
     const draftChar = { ...planned, desired: target, enabled: true };
@@ -259,7 +288,7 @@ function App() {
       wanderersadvice: number;
     }
   ) => {
-    const planned = plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey);
+    const planned = plannedCharacters.find(p => isSameCharacterKey(p.key, selectedUpgradeCharacterKey));
     if (!planned || !upgradeDraftTarget || !materials) return;
 
     const mutatedMaterials = applyUpgradeInventoryMutations(
@@ -273,7 +302,7 @@ function App() {
 
     setMaterials(mutatedMaterials);
     setPlannedItems(prev => prev.map(p => {
-      if ((p.type === 'character' || !p.type) && p.key === selectedUpgradeCharacterKey) {
+      if ((p.type === 'character' || !p.type) && isSameCharacterKey(p.key, selectedUpgradeCharacterKey)) {
         return {
           ...p,
           current: {
@@ -287,7 +316,7 @@ function App() {
     }));
 
     setCharacters(prev => prev.map(c => {
-      if (c.key === selectedUpgradeCharacterKey) {
+      if (isSameCharacterKey(c.key, selectedUpgradeCharacterKey)) {
         return {
           ...c,
           level: upgradeDraftTarget.level,
@@ -377,8 +406,11 @@ function App() {
   };
 
   const toggleFavoriteCharacter = (key: string) => {
+    const resolvedKey = isTravelerKey(key) ? traveler : key;
     setFavoriteCharacterKeys(prev =>
-      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+      prev.some(k => isSameCharacterKey(k, resolvedKey))
+        ? prev.filter(k => !isSameCharacterKey(k, resolvedKey))
+        : [...prev, resolvedKey]
     );
   };
   const handleCustomItemAccept = (customData: any) => {
@@ -561,6 +593,7 @@ function App() {
             characters={characters}
             weapons={weapons}
             artifacts={artifacts}
+            traveler={traveler}
             favoriteCharacterKeys={favoriteCharacterKeys}
             toggleFavoriteCharacter={toggleFavoriteCharacter}
             characterSearch={characterSearch}
@@ -582,6 +615,7 @@ function App() {
           <WeaponsTab
             weapons={weapons}
             characters={characters}
+            traveler={traveler}
             weaponSearch={weaponSearch}
             setWeaponSearch={setWeaponSearch}
             selectedWeaponTypes={selectedWeaponTypes}
@@ -598,6 +632,7 @@ function App() {
             simulation={simulation}
             characters={characters}
             weapons={weapons}
+            traveler={traveler}
             selectedDayOffset={selectedDayOffset}
             setSelectedDayOffset={setSelectedDayOffset}
             timeToReset={timeToReset}
@@ -629,7 +664,8 @@ function App() {
             setProfiles={setProfiles}
             deleteUserProfile={deleteUserProfile}
             createCustomProfile={createCustomProfile}
-            processFile={processFile}
+            traveler={traveler}
+            onSaveSettings={handleSaveSettings}
             clearGoodData={clearGoodData}
           />
         )}
@@ -642,6 +678,7 @@ function App() {
           mousePos={mousePos}
           plannedItems={plannedItems}
           weapons={weapons}
+          traveler={traveler}
         />
       )}
 
@@ -653,6 +690,7 @@ function App() {
           setReplaceTargetId(null);
         }}
         ownedCharacters={characters}
+        traveler={traveler}
         replaceMode={replaceMode}
         onAddCustom={() => {
           setCustomModalSource('selection');
@@ -667,7 +705,7 @@ function App() {
             setPlannedItems(prev => {
               return prev.map(p => {
                 if (p.id === replaceTargetId) {
-                  const existingChar = characters.find(c => c.key === key);
+                  const existingChar = characters.find(c => isSameCharacterKey(c.key, key));
                   const currentLevel = existingChar?.level || 1;
                   const currentAscension = existingChar?.ascension || 0;
                   const currentTalents = {
@@ -728,11 +766,12 @@ function App() {
           setIsCharacterSelectModalOpen(true);
         }}
         characterKey={selectedCharacterKeyForTarget}
-        currentData={characters.find(c => c.key === selectedCharacterKeyForTarget)}
-        plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? plannedItems.find(p => (p.type === 'character' || !p.type) && p.key === selectedCharacterKeyForTarget) : undefined}
-        customInfo={selectedCharacterKeyForTarget ? (plannedItems.find(p => p.key === selectedCharacterKeyForTarget) || (tempCustomItem && tempCustomItem.key === selectedCharacterKeyForTarget ? tempCustomItem : undefined)) : undefined}
+        traveler={traveler}
+        currentData={characters.find(c => isSameCharacterKey(c.key, selectedCharacterKeyForTarget))}
+        plannedData={openedTargetFromPlanner && selectedCharacterKeyForTarget !== null ? plannedItems.find(p => (p.type === 'character' || !p.type) && isSameCharacterKey(p.key, selectedCharacterKeyForTarget)) : undefined}
+        customInfo={selectedCharacterKeyForTarget ? (plannedItems.find(p => isSameCharacterKey(p.key, selectedCharacterKeyForTarget)) || (tempCustomItem && tempCustomItem.key === selectedCharacterKeyForTarget ? tempCustomItem : undefined)) : undefined}
         onEditCustom={() => {
-          const item = plannedItems.find(p => p.key === selectedCharacterKeyForTarget) || tempCustomItem;
+          const item = plannedItems.find(p => isSameCharacterKey(p.key, selectedCharacterKeyForTarget)) || tempCustomItem;
           setEditingCustomData(item);
           setCustomModalSource('target');
           setCustomModalType('character');
@@ -741,19 +780,21 @@ function App() {
         }}
         onReplaceWithExisting={() => {
           setReplaceMode(true);
-          setReplaceTargetId(plannedItems.find(p => p.key === selectedCharacterKeyForTarget)?.id || null);
+          setReplaceTargetId(plannedItems.find(p => isSameCharacterKey(p.key, selectedCharacterKeyForTarget))?.id || null);
           setIsCharacterSelectModalOpen(true);
           setSelectedCharacterKeyForTarget(null);
         }}
         onAccept={(planned) => {
           setPlannedItems(prev => {
+            const resolvedKey = isTravelerKey(planned.key) ? traveler : planned.key;
             const characterPlan = {
               ...planned,
+              key: resolvedKey,
               type: 'character',
-              id: `character:${planned.key}`,
+              id: `character:${resolvedKey}`,
               enabled: true
             };
-            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && p.key === planned.key) || tempCustomItem;
+            const existingItem = prev.find(p => (p.type === 'character' || !p.type) && isSameCharacterKey(p.key, resolvedKey)) || tempCustomItem;
             if (existingItem) {
               characterPlan.custom = existingItem.custom;
               characterPlan.customName = existingItem.customName;
@@ -761,7 +802,7 @@ function App() {
               characterPlan.customMaterials = existingItem.customMaterials;
               characterPlan.enabled = existingItem.enabled !== false;
             }
-            const exists = prev.findIndex(p => (p.type === 'character' || !p.type) && p.key === planned.key);
+            const exists = prev.findIndex(p => (p.type === 'character' || !p.type) && isSameCharacterKey(p.key, resolvedKey));
             if (exists >= 0) {
               const next = [...prev];
               next[exists] = characterPlan;
@@ -784,6 +825,7 @@ function App() {
         }}
         ownedWeapons={weapons}
         plannedItems={plannedItems}
+        traveler={traveler}
         replaceMode={replaceMode}
         onAddCustom={() => {
           setCustomModalSource('selection');
@@ -951,7 +993,7 @@ function App() {
               itemIconSrc={`${import.meta.env.BASE_URL}characters/${charData?.id}.png`}
               onClose={() => setDeletingCharacterKey(null)}
               onConfirm={() => {
-                setPlannedItems(prev => prev.filter(p => !((p.type === 'character' || !p.type) && p.key === deletingCharacterKey)));
+                setPlannedItems(prev => prev.filter(p => !((p.type === 'character' || !p.type) && isSameCharacterKey(p.key, deletingCharacterKey))));
                 setDeletingCharacterKey(null);
               }}
             />
@@ -989,9 +1031,10 @@ function App() {
             setIsUpgradeModalOpen(false);
             setSelectedUpgradeCharacterKey(null);
           }}
-          planned={plannedCharacters.find(p => p.key === selectedUpgradeCharacterKey)}
-          currentData={characters.find(c => c.key === selectedUpgradeCharacterKey)}
+          planned={plannedCharacters.find(p => isSameCharacterKey(p.key, selectedUpgradeCharacterKey))}
+          currentData={characters.find(c => isSameCharacterKey(c.key, selectedUpgradeCharacterKey))}
           materials={materials}
+          traveler={traveler}
           onUpgradeClick={handleUpgradeModalConfirm}
           handleOpenQuickInventory={handleOpenQuickInventory}
         />
@@ -1041,6 +1084,7 @@ function App() {
       <PriorityManagerModal
         isOpen={isPriorityModalOpen}
         plannedItems={plannedItems}
+        traveler={traveler}
         onClose={() => setIsPriorityModalOpen(false)}
         onSave={(ordered) => setPlannedItems(ordered)}
       />
@@ -1068,6 +1112,7 @@ interface TooltipBoxProps {
   mousePos: { x: number; y: number };
   plannedItems: any[];
   weapons: any[];
+  traveler: TravelerKey;
 }
 
 const getDomainInfo = (key: string, sortGroup?: number, sortRank?: number) => {
@@ -1138,7 +1183,7 @@ const isGenericMaterial = (key: string) => {
          k === 'enhancementore';
 };
 
-const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedItems, weapons }) => {
+const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedItems, weapons, traveler }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [pos, setPos] = React.useState({ x: mousePos.x, y: mousePos.y });
   const [measured, setMeasured] = React.useState(false);
@@ -1230,7 +1275,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
             fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&rounded=true`
           });
         } else if (!isWeapon) {
-          const meta = lookupChar(planned.key);
+          const meta = lookupCharacter(planned.key, traveler);
           if (meta) {
             items.push({
               type: 'character',
@@ -1247,7 +1292,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
           const wInfo = lookupWeapon(planned.key);
           if (wInfo) {
             const location = weapons[planned.weaponIndex]?.location;
-            const equippedChar = location ? lookupChar(location) : null;
+            const equippedChar = location ? lookupCharacter(location, traveler) : null;
             const equippedName = equippedChar?.name || location;
             const title = wInfo.name ? (location ? `${wInfo.name} (Equipped on ${equippedName})` : wInfo.name) : planned.key;
 
@@ -1267,7 +1312,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
     });
 
     return items;
-  }, [hoveredItem.key, hoveredItem.data.custom, hoveredItem.data.requiredBy, plannedItems, weapons]);
+  }, [hoveredItem.key, hoveredItem.data.custom, hoveredItem.data.requiredBy, plannedItems, weapons, traveler]);
 
   return (
     <div

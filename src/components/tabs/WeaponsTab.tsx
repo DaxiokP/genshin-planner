@@ -5,6 +5,7 @@ import { WeaponCard } from '../WeaponCard';
 import type { GoodWeapon, GoodCharacter } from '../../types';
 import weaponMapData from '../../maps/weaponMap.json';
 import { handleFilterToggle } from '../../utils/filterHelpers';
+import { isSameCharacterKey, type TravelerKey } from '../../utils/characterHelpers';
 
 const weaponMapRaw: Record<string, any> = weaponMapData as any;
 const normalize = (k: string) => k.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -25,6 +26,7 @@ interface WeaponsTabProps {
   setSelectedWeaponTypes: React.Dispatch<React.SetStateAction<string[]>>;
   selectedStarRarities: number[];
   setSelectedStarRarities: React.Dispatch<React.SetStateAction<number[]>>;
+  traveler: TravelerKey;
 }
 
 export const WeaponsTab: React.FC<WeaponsTabProps> = ({
@@ -36,6 +38,7 @@ export const WeaponsTab: React.FC<WeaponsTabProps> = ({
   setSelectedWeaponTypes,
   selectedStarRarities,
   setSelectedStarRarities,
+  traveler,
 }) => {
   const getWeaponName = (w: GoodWeapon) => {
     const mapData = lookupWeapon(w.key);
@@ -235,13 +238,14 @@ export const WeaponsTab: React.FC<WeaponsTabProps> = ({
       <div className="weapons-grid">
         {sortedWeapons.map((weapon, idx) => {
           const mapData = lookupWeapon(weapon.key);
-          const equippedChar = characters.find(c => c.key === weapon.location);
+          const equippedChar = characters.find(c => isSameCharacterKey(c.key, weapon.location));
           return (
             <WeaponCard
               key={`${weapon.key}-${weapon.location}-${idx}`}
               weapon={weapon}
               weaponMapData={mapData}
               equippedCharacter={equippedChar}
+              traveler={traveler}
             />
           );
         })}

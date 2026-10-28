@@ -1,7 +1,8 @@
 import type { GoodCharacter, GoodWeapon } from '../types';
+import { isTravelerKey } from './characterHelpers';
 
 const normalizeKey = (key: string) => {
-  const k = key === 'Traveler' ? 'Aether' : key;
+  const k = isTravelerKey(key) ? 'Aether' : key;
   return k.toLowerCase().replace(/[^a-z0-9]/g, '');
 };
 

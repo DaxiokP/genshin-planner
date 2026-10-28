@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './AccountSettingsTab.css';
-import { Trash2, Edit2, Upload, Plus, Check, X, User } from 'lucide-react';
+import { Trash2, Edit2, Upload, Plus, Check, X, User, FileJson, Save } from 'lucide-react';
 import { updateProfileName } from '../../supabase';
+import type { TravelerKey } from '../../utils/characterHelpers';
 
 interface AccountSettingsTabProps {
   user: any;
@@ -11,8 +12,9 @@ interface AccountSettingsTabProps {
   setProfiles: React.Dispatch<React.SetStateAction<any[]>>;
   deleteUserProfile: (userId: string, profileName: string) => Promise<any>;
   createCustomProfile: (userId: string, profileName: string) => Promise<any>;
-  processFile: (file: File) => void;
   clearGoodData: () => void;
+  traveler: TravelerKey;
+  onSaveSettings: (newTraveler: TravelerKey, file: File | null) => void;
 }
 
 export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
@@ -23,8 +25,9 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
   setProfiles,
   deleteUserProfile,
   createCustomProfile,
-  processFile,
   clearGoodData,
+  traveler,
+  onSaveSettings,
 }) => {
   const [editingProfileName, setEditingProfileName] = useState<string | null>(null);
   const [editInputName, setEditInputName] = useState<string>('');
@@ -32,8 +35,25 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
   const [isAddingProfile, setIsAddingProfile] = useState(false);
   const [newProfileName, setNewProfileName] = useState('');
   const [isCreatingProfile, setIsCreatingProfile] = useState(false);
+
+  const [pendingTraveler, setPendingTraveler] = useState<TravelerKey>(traveler);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Sync pending traveler when the saved traveler changes
+  useEffect(() => {
+    setPendingTraveler(traveler);
+  }, [traveler]);
+
+  // Reset pending file and traveler draft when switching Target Profile
+  useEffect(() => {
+    setPendingFile(null);
+    setPendingTraveler(traveler);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  }, [activeProfile]);
 
   const handleDeleteProfile = async (profileName: string) => {
     if (!user) return;
@@ -118,8 +138,21 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      processFile(file);
-      event.target.value = ''; // Reset input
+      if (!file.name.endsWith('.json')) {
+        alert('Please upload a valid JSON file.');
+        event.target.value = '';
+        return;
+      }
+      setPendingFile(file);
+      event.target.value = ''; // Reset input so the same file can be re-selected
+    }
+  };
+
+  const handleSave = () => {
+    onSaveSettings(pendingTraveler, pendingFile);
+    setPendingFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
@@ -223,11 +256,17 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
         <div className="profile-data-actions">
           
           <div className="active-profile-selector">
-            <span style={{ color: 'var(--text-secondary)' }}>Target Profile:</span>
+            <span style={{ color: 'var(--text-secondary)', minWidth: '150px' }}>Target Profile:</span>
             {user ? (
               <select 
                 value={activeProfile} 
-                onChange={(e) => setActiveProfile(e.target.value)}
+                onChange={(e) => {
+                  setPendingFile(null);
+                  if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                  }
+                  setActiveProfile(e.target.value);
+                }}
               >
                 {profiles.map(p => (
                   <option key={p.profile_name} value={p.profile_name}>
@@ -240,20 +279,80 @@ export const AccountSettingsTab: React.FC<AccountSettingsTabProps> = ({
             )}
           </div>
 
-          <div className="data-buttons">
-            <input
-              type="file"
-              accept=".json"
-              ref={fileInputRef}
-              style={{ display: 'none' }}
-              onChange={handleFileUpload}
-            />
-            <button className="settings-btn settings-btn-import" onClick={() => fileInputRef.current?.click()}>
-              <Upload size={18} /> Import File
-            </button>
-            <button className="settings-btn settings-btn-clear" onClick={handleDeleteData}>
-              <Trash2 size={18} /> Delete Data
-            </button>
+          <div className="traveler-selector-row">
+            <span style={{ color: 'var(--text-secondary)', minWidth: '150px' }}>Traveller Character:</span>
+            <div className="traveler-toggle-group" role="radiogroup" aria-label="Traveller Character">
+              {(['Aether', 'Lumine'] as TravelerKey[]).map(option => {
+                const isSelected = pendingTraveler === option;
+                const iconId = option === 'Aether' ? 'PlayerBoy' : 'PlayerGirl';
+                return (
+                  <label
+                    key={option}
+                    className={`traveler-toggle-option ${isSelected ? 'active' : ''}`}
+                  >
+                    <input
+                      type="radio"
+                      name="traveler-character"
+                      value={option}
+                      checked={isSelected}
+                      onChange={() => setPendingTraveler(option)}
+                      className="traveler-radio-input"
+                    />
+                    <img
+                      src={`${import.meta.env.BASE_URL}characters/${iconId}.png`}
+                      alt=""
+                      aria-hidden="true"
+                      className="traveler-toggle-avatar"
+                    />
+                    <span className="traveler-toggle-label">{option}</span>
+                    {isSelected && <Check size={14} className="traveler-toggle-check" aria-hidden="true" />}
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="data-import-section">
+            <div className="data-buttons">
+              <input
+                type="file"
+                accept=".json"
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                onChange={handleFileUpload}
+              />
+              <button type="button" className="settings-btn settings-btn-import" onClick={() => fileInputRef.current?.click()}>
+                <Upload size={18} /> Import File
+              </button>
+              <button type="button" className="settings-btn settings-btn-save" onClick={handleSave}>
+                <Save size={18} /> Save
+              </button>
+              <button type="button" className="settings-btn settings-btn-clear" onClick={handleDeleteData}>
+                <Trash2 size={18} /> Delete Data
+              </button>
+            </div>
+
+            {pendingFile && (
+              <div className="pending-file-banner" role="status" aria-live="polite">
+                <FileJson size={16} className="pending-file-icon" />
+                <span className="pending-file-name">{pendingFile.name}</span>
+                <span className="pending-file-hint">(Click Save to apply)</span>
+                <button
+                  type="button"
+                  className="pending-file-remove"
+                  onClick={() => {
+                    setPendingFile(null);
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = '';
+                    }
+                  }}
+                  title="Remove pending file"
+                  aria-label="Remove pending file"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            )}
           </div>
           
           <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.5rem', lineHeight: '1.4' }}>
