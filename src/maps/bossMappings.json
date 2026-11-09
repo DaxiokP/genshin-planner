@@ -1456,5 +1456,25 @@
       "shivadajadefragment",
       "shivadajadesliver"
     ]
+  },
+  "shatteredstabilityanchor": {
+    "enemyName": "Wavebinder",
+    "drops": [
+      "shatteredstabilityanchor"
+    ],
+    "gems": [
+      "vajradaamethystgemstone",
+      "vajradaamethystchunk",
+      "vajradaamethystfragment",
+      "vajradaamethystsliver",
+      "shivadajadegemstone",
+      "shivadajadechunk",
+      "shivadajadefragment",
+      "shivadajadesliver",
+      "varunadalazuritegemstone",
+      "varunadalazuritechunk",
+      "varunadalazuritefragment",
+      "varunadalazuritesliver"
+    ]
   }
 }

@@ -255,7 +255,23 @@ const assetJobs = [
   { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Bow_Windtalker.png', dest: 'public/weapons/Bow_Windtalker.png', fallback: 'public/weapons/Bow_Hunters.png' },
   // 7.1 Materials
   { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113092.png', dest: 'public/icons/113092.png', fallback: 'public/icons/113001.png' },
-  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113063.png', dest: 'public/icons/113063.png', fallback: 'public/icons/113005.png' }
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113063.png', dest: 'public/icons/113063.png', fallback: 'public/icons/113005.png' },
+  // 7.2 Characters & Namecards & Splash Arts
+  { url: 'https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mitya.png', dest: 'public/characters/Mitya.png', fallback: 'public/characters/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Valeriy.png', dest: 'public/characters/Valeriy.png', fallback: 'public/characters/Keqing.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mitya.png', dest: 'public/splash_arts/Mitya.png', fallback: 'public/splash_arts/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Valeriy.png', dest: 'public/splash_arts/Valeriy.png', fallback: 'public/splash_arts/Keqing.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/namecard/UI_NameCardPic_Mitya_P.png', dest: 'public/namecards/Mitya.png', fallback: 'public/namecards/Shenhe.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/namecard/UI_NameCardPic_Valeriy_P.png', dest: 'public/namecards/Valeriy.png', fallback: 'public/namecards/Keqing.png' },
+  // 7.2 Weapons
+  { url: 'https://gi.yatta.moe/assets/UI/UI_EquipIcon_Catalyst_Chernaya.png', dest: 'public/weapons/Catalyst_Chernaya.png', fallback: 'public/weapons/Catalyst_Apprentice.png' },
+  // 7.2 Materials
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101273.png', dest: 'public/icons/101273.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_101274.png', dest: 'public/icons/101274.png', fallback: 'public/icons/100021.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_113093.png', dest: 'public/icons/113093.png', fallback: 'public/icons/113001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112158.png', dest: 'public/icons/112158.png', fallback: 'public/icons/112001.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112159.png', dest: 'public/icons/112159.png', fallback: 'public/icons/112002.png' },
+  { url: 'https://gi.yatta.moe/assets/UI/UI_ItemIcon_112160.png', dest: 'public/icons/112160.png', fallback: 'public/icons/112003.png' }
 ];
 
 // Artifact Relics

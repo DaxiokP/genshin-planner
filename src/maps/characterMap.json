@@ -1114,5 +1114,23 @@
     "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Vodyanitsa.png",
     "id": "Vodyanitsa",
     "version": "7.1"
+  },
+  "Mitya": {
+    "name": "Mitya",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "Catalyst",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mitya.png",
+    "id": "Mitya",
+    "version": "7.2"
+  },
+  "Valeriy": {
+    "name": "Valeriy",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "Sword",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Valeriy.png",
+    "id": "Valeriy",
+    "version": "7.2"
   }
 }

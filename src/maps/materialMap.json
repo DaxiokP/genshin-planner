@@ -5140,6 +5140,17 @@
     "sortRank": 11101,
     "localExt": ".png"
   },
+  "thecornerstoneofstarsandflames": {
+    "id": "113063",
+    "name": "The Cornerstone of Stars and Flames",
+    "rarity": 5,
+    "sources": [
+      "Obtained from completed regional quests in Natlan"
+    ],
+    "sortGroup": 200,
+    "sortRank": 11101,
+    "localExt": ".png"
+  },
   "themeaningofaeons": {
     "id": "113034",
     "name": "The Meaning of Aeons",
@@ -5773,41 +5784,6 @@
     "sortRank": 104365,
     "localExt": ".png"
   },
-  "teachingsofglory": {
-    "id": "104371",
-    "name": "Teachings of Glory",
-    "rarity": 2,
-    "sources": [
-      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)"
-    ],
-    "sortGroup": 500,
-    "sortRank": 104371,
-    "localExt": ".png"
-  },
-  "guidetoglory": {
-    "id": "104372",
-    "name": "Guide to Glory",
-    "rarity": 3,
-    "sources": [
-      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
-      "Crafted"
-    ],
-    "sortGroup": 500,
-    "sortRank": 104371,
-    "localExt": ".png"
-  },
-  "philosophiesofglory": {
-    "id": "104373",
-    "name": "Philosophies of Glory",
-    "rarity": 4,
-    "sources": [
-      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
-      "Crafted"
-    ],
-    "sortGroup": 500,
-    "sortRank": 104371,
-    "localExt": ".png"
-  },
   "teachingsoffortitude": {
     "id": "104368",
     "name": "Teachings of Fortitude",
@@ -5841,6 +5817,41 @@
     ],
     "sortGroup": 500,
     "sortRank": 104368,
+    "localExt": ".png"
+  },
+  "teachingsofglory": {
+    "id": "104371",
+    "name": "Teachings of Glory",
+    "rarity": 2,
+    "sources": [
+      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104371,
+    "localExt": ".png"
+  },
+  "guidetoglory": {
+    "id": "104372",
+    "name": "Guide to Glory",
+    "rarity": 3,
+    "sources": [
+      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104371,
+    "localExt": ".png"
+  },
+  "philosophiesofglory": {
+    "id": "104373",
+    "name": "Philosophies of Glory",
+    "rarity": 4,
+    "sources": [
+      "Domain of Mastery: Relics of the Fallen Grace (Wed/Sat/Sun)",
+      "Crafted"
+    ],
+    "sortGroup": 500,
+    "sortRank": 104371,
     "localExt": ".png"
   },
   "etherealglimmershard": {
@@ -6192,15 +6203,74 @@
     "sortRank": 113092,
     "localExt": ".png"
   },
-  "thecornerstoneofstarsandflames": {
-    "id": "113063",
-    "name": "The Cornerstone of Stars and Flames",
-    "rarity": 5,
+  "fairywormwood": {
+    "id": "101273",
+    "name": "Fairy Wormwood",
+    "rarity": 1,
     "sources": [
-      "Obtained from completed regional quests in Natlan"
+      "Found in Snezhnaya",
+      "Teplo Oasis"
     ],
-    "sortGroup": 200,
-    "sortRank": 11101,
+    "sortGroup": 700,
+    "sortRank": 101273,
+    "localExt": ".png"
+  },
+  "crystalfold": {
+    "id": "101274",
+    "name": "Crystalfold",
+    "rarity": 1,
+    "sources": [
+      "Found in Snezhnaya",
+      "Novokitezhgrad"
+    ],
+    "sortGroup": 700,
+    "sortRank": 101274,
+    "localExt": ".png"
+  },
+  "shatteredstabilityanchor": {
+    "id": "113093",
+    "name": "Shattered Stability Anchor",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Lv. 30+ Wavebinder"
+    ],
+    "sortGroup": 300,
+    "sortRank": 113093,
+    "localExt": ".png"
+  },
+  "snowbornheartshard": {
+    "id": "112158",
+    "name": "Snowborn Heartshard",
+    "rarity": 2,
+    "sources": [
+      "Dropped by Mindless Iceborns"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112158,
+    "localExt": ".png"
+  },
+  "snowbornmirrorheart": {
+    "id": "112159",
+    "name": "Snowborn Mirrorheart",
+    "rarity": 3,
+    "sources": [
+      "Dropped by Mindless Iceborns",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112158,
+    "localExt": ".png"
+  },
+  "snowbornheartofignorance": {
+    "id": "112160",
+    "name": "Snowborn Heart of Ignorance",
+    "rarity": 4,
+    "sources": [
+      "Dropped by Mindless Iceborns",
+      "Crafted"
+    ],
+    "sortGroup": 100,
+    "sortRank": 112158,
     "localExt": ".png"
   }
 }
