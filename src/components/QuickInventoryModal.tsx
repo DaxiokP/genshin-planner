@@ -263,8 +263,8 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
   };
 
   const handleSaveClick = () => {
-    if (!materials) return;
-    const updatedMaterials = { ...materials };
+    const baseMaterials = materials || {};
+    const updatedMaterials = { ...baseMaterials };
 
     displayedInfo.groups.forEach(g => {
       g.items.forEach(key => {
@@ -273,7 +273,7 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
 
         const lowerKey = key.toLowerCase();
         let matchedKey = key;
-        for (const existingKey of Object.keys(materials)) {
+        for (const existingKey of Object.keys(baseMaterials)) {
           if (existingKey.toLowerCase() === lowerKey) {
             matchedKey = existingKey;
             break;

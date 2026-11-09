@@ -104,6 +104,7 @@ function App() {
   const [selectedQuickInventoryMaterial, setSelectedQuickInventoryMaterial] = useState<string | null>(null);
 
   const handleOpenQuickInventory = (key: string) => {
+    setHoveredItem(null);
     setSelectedQuickInventoryMaterial(key);
     setIsQuickInventoryOpen(true);
   };
@@ -632,6 +633,7 @@ function App() {
             setSearch={setSearch}
             setHoveredItem={setHoveredItem}
             setMousePos={setMousePos}
+            handleOpenQuickInventory={handleOpenQuickInventory}
           />
         )}
 

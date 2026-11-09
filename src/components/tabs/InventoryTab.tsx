@@ -25,6 +25,7 @@ interface InventoryTabProps {
   setSearch: (val: string) => void;
   setHoveredItem: React.Dispatch<React.SetStateAction<any>>;
   setMousePos: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>;
+  handleOpenQuickInventory: (key: string) => void;
 }
 
 export const InventoryTab: React.FC<InventoryTabProps> = ({
@@ -34,6 +35,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
   setSearch,
   setHoveredItem,
   setMousePos,
+  handleOpenQuickInventory,
 }) => {
   const [category, setCategory] = React.useState<string>('0');
   const [isClearModalOpen, setIsClearModalOpen] = React.useState<boolean>(false);
@@ -162,7 +164,11 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
         if (!moraData) return null;
         return (
           <div className="mora-banner">
-            <div className="mora-icon-wrapper">
+            <div
+              className="mora-icon-wrapper"
+              onClick={() => handleOpenQuickInventory('mora')}
+              style={{ cursor: 'pointer' }}
+            >
               <img
                 src={moraData.localExt ? `${import.meta.env.BASE_URL}icons/${moraData.id}${moraData.localExt}` : `${import.meta.env.BASE_URL}icons/202.png`}
                 alt="Mora"
@@ -212,7 +218,11 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
               onMouseLeave={() => setHoveredItem(null)}
               onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
             >
-              <div className={`material-icon-wrapper bg-rarity-${pseudoRarity}`}>
+              <div
+                className={`material-icon-wrapper bg-rarity-${pseudoRarity}`}
+                onClick={() => handleOpenQuickInventory(key)}
+                style={{ cursor: 'pointer' }}
+              >
                 <img
                   src={data.localExt ? `${import.meta.env.BASE_URL}icons/${itemID}${data.localExt}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(formattedName)}&background=random&color=fff&rounded=true&font-size=0.33`}
                   alt={formattedName}
