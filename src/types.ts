@@ -49,6 +49,7 @@ export interface PlannedCharacter {
   custom?: boolean;
   customName?: string;
   customRarity?: number;
+  customElement?: TravelerElement;
   customWeaponType?: 'Sword' | 'Claymore' | 'Polearm' | 'Bow' | 'Catalyst';
   customMaterials?: {
     common?: string;

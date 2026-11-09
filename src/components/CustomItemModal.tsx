@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Check } from 'lucide-react';
 import { SelectMaterialModal } from './SelectMaterialModal';
 import materialMapData from '../maps/materialMap.json';
+import { TRAVELER_ELEMENTS, type TravelerElement } from '../utils/characterHelpers';
 
 const materialMap = materialMapData as Record<string, any>;
 
@@ -22,6 +23,7 @@ export const CustomItemModal: React.FC<CustomItemModalProps> = ({
 }) => {
   const [name, setName] = useState('');
   const [rarity, setRarity] = useState<number>(type === 'character' ? 5 : 4);
+  const [element, setElement] = useState<TravelerElement>(TRAVELER_ELEMENTS[0]);
   const [weaponType, setWeaponType] = useState<'Sword' | 'Claymore' | 'Polearm' | 'Bow' | 'Catalyst'>('Sword');
   
   // Custom slots
@@ -36,11 +38,13 @@ export const CustomItemModal: React.FC<CustomItemModalProps> = ({
       if (existingData) {
         setName(existingData.customName || existingData.name || '');
         setRarity(existingData.customRarity || existingData.rarity || (type === 'character' ? 5 : 4));
+        setElement(existingData.customElement || TRAVELER_ELEMENTS[0]);
         setWeaponType(existingData.customWeaponType || 'Sword');
         setMats(existingData.customMaterials || {});
       } else {
         setName('');
         setRarity(type === 'character' ? 5 : 5);
+        setElement(TRAVELER_ELEMENTS[0]);
         setWeaponType('Sword');
         setMats({});
       }
@@ -104,7 +108,9 @@ export const CustomItemModal: React.FC<CustomItemModalProps> = ({
       enabled: existingData ? existingData.enabled !== false : true,
     };
 
-    if (!isCharacter) {
+    if (isCharacter) {
+      result.customElement = element;
+    } else {
       result.customWeaponType = weaponType;
     }
 
@@ -254,6 +260,56 @@ export const CustomItemModal: React.FC<CustomItemModalProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* Element Selector (only for Character) */}
+            {isCharacter && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center' }}>
+                <span style={{ color: '#ffcc66', fontSize: '0.85rem', fontWeight: 'bold', fontFamily: "'Outfit', sans-serif" }}>Element</span>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  {TRAVELER_ELEMENTS.map(el => {
+                    const isSelected = element === el;
+                    return (
+                      <button
+                        key={el}
+                        type="button"
+                        onClick={() => setElement(el)}
+                        title={el}
+                        style={{
+                          width: '36px',
+                          height: '36px',
+                          borderRadius: '8px',
+                          border: isSelected
+                            ? '2px solid #ffcc66'
+                            : '1px solid rgba(255, 255, 255, 0.12)',
+                          background: isSelected
+                            ? 'rgba(255, 204, 102, 0.2)'
+                            : 'rgba(0, 0, 0, 0.35)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          padding: '4px',
+                          transition: 'all 0.15s ease',
+                          transform: isSelected ? 'scale(1.08)' : 'none',
+                          boxShadow: isSelected ? '0 0 10px rgba(255, 204, 102, 0.35)' : 'none'
+                        }}
+                      >
+                        <img
+                          src={`${import.meta.env.BASE_URL}elements/${el.toLowerCase()}.png`}
+                          alt={el}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain',
+                            opacity: isSelected ? 1 : 0.65
+                          }}
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Material Slots */}
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '1rem' }}>

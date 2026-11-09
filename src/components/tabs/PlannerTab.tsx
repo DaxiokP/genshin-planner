@@ -14,6 +14,7 @@ import {
   isSameCharacterKey,
   getTravelerElement,
   getCharacterPlanId,
+  TRAVELER_ELEMENTS,
   type TravelerKey,
 } from '../../utils/characterHelpers';
 
@@ -1053,11 +1054,12 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                   const charMapInfo = lookupChar(planned.key);
                   const isTraveler = !planned.custom && isTravelerKey(planned.key);
                   const travelerElement = isTraveler ? getTravelerElement(planned) : null;
+                  const customElement = planned.custom ? (planned.customElement || TRAVELER_ELEMENTS[0]) : null;
                   const rarity = planned.custom ? (planned.customRarity || 5) : (charMapInfo?.rarity || 4);
                   const name = planned.custom ? (planned.customName || planned.key) : (charMapInfo?.name || planned.key);
                   const fontScale = name.length > 20 ? '0.8rem' : name.length > 12 ? '0.95rem' : '1.15rem';
-                  const elementClass = planned.custom
-                    ? 'none'
+                  const elementClass = planned.custom && customElement
+                    ? customElement.toLowerCase()
                     : isTraveler && travelerElement
                       ? travelerElement.toLowerCase()
                       : (charMapInfo?.element ? charMapInfo.element.toLowerCase() : 'none');
@@ -1246,7 +1248,7 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', height: '146px' }}>
                           {/* Enlarged avatar frame */}
                           <div
-                            className={`bg-rarity-${charMapInfo?.rarity || 4}-solid bg-element-${elementClass}-gradient`}
+                            className={`bg-rarity-${rarity}-solid bg-element-${elementClass}-gradient`}
                             style={{
                               width: '120px',
                               height: '120px',
@@ -1255,16 +1257,22 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                               position: 'relative',
                               flexShrink: 0,
                               border: '2px solid rgba(0,0,0,0.4)',
-                              boxShadow: '0 6px 12px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.08)'
+                              boxShadow: '0 6px 12px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.08)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
                             }}
                           >
                             <img
-                              src={planned.custom ? `${import.meta.env.BASE_URL}characters/CustomCharacter.png` : `${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
+                              src={planned.custom ? `${import.meta.env.BASE_URL}elements/${(customElement || TRAVELER_ELEMENTS[0]).toLowerCase()}.png` : `${import.meta.env.BASE_URL}characters/${charMapInfo?.id}.png`}
                               alt={charMapInfo?.name || name}
-                              style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }}
+                              style={planned.custom
+                                ? { width: '72%', height: '72%', objectFit: 'contain', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.45))' }
+                                : { width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'bottom' }
+                              }
                               onError={(e) => {
                                 const target = e.currentTarget;
-                                if (!target.dataset.fallback) {
+                                if (!planned.custom && !target.dataset.fallback) {
                                   target.dataset.fallback = 'enka';
                                   target.src = `https://enka.network/ui/UI_AvatarIcon_${charMapInfo?.id || planned.key}.png`;
                                 } else if (!target.dataset.fallbackUi) {
@@ -1390,7 +1398,8 @@ export const PlannerTab: React.FC<PlannerTabProps> = ({
                                                 name: name,
                                                 type: 'character',
                                                 rarity: rarity,
-                                                custom: true
+                                                custom: true,
+                                                element: customElement || TRAVELER_ELEMENTS[0]
                                               }
                                             ]
                                           }

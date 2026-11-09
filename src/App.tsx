@@ -33,6 +33,7 @@ import {
   isSamePlannedCharacter,
   getTravelerElement,
   getCharacterPlanId,
+  TRAVELER_ELEMENTS,
   type TravelerKey,
 } from './utils/characterHelpers';
 
@@ -777,6 +778,7 @@ function App() {
                     custom: false,
                     customName: undefined,
                     customRarity: undefined,
+                    customElement: undefined,
                     customMaterials: undefined,
                     current: {
                       level: currentLevel,
@@ -855,6 +857,7 @@ function App() {
               characterPlan.custom = existingItem.custom;
               characterPlan.customName = existingItem.customName;
               characterPlan.customRarity = existingItem.customRarity;
+              characterPlan.customElement = existingItem.customElement || (existingItem.custom ? TRAVELER_ELEMENTS[0] : undefined);
               characterPlan.customMaterials = existingItem.customMaterials;
               characterPlan.enabled = existingItem.enabled !== false;
             }
@@ -1091,17 +1094,25 @@ function App() {
       {deletingCharacterKey && (
         (() => {
           const targetPlan = findPlannedCharacterBySelector(deletingCharacterKey);
+          const isCustomChar = Boolean(targetPlan?.custom);
           const charData = lookupChar(targetPlan?.key || deletingCharacterKey);
-          const isTraveler = isTravelerKey(targetPlan?.key || deletingCharacterKey);
+          const isTraveler = !isCustomChar && isTravelerKey(targetPlan?.key || deletingCharacterKey);
           const travelerEl = isTraveler ? getTravelerElement(targetPlan || deletingCharacterKey) : null;
-          const displayName = charData?.name
-            ? (isTraveler && travelerEl ? `${charData.name} (${travelerEl})` : charData.name)
-            : deletingCharacterKey;
+          const customEl = isCustomChar ? (targetPlan?.customElement || TRAVELER_ELEMENTS[0]) : null;
+          const displayName = isCustomChar
+            ? (targetPlan?.customName || targetPlan?.key || deletingCharacterKey)
+            : charData?.name
+              ? (isTraveler && travelerEl ? `${charData.name} (${travelerEl})` : charData.name)
+              : deletingCharacterKey;
+          const itemRarity = isCustomChar ? (targetPlan?.customRarity || 5) : (charData?.rarity || 5);
+          const itemIconSrc = isCustomChar
+            ? `${import.meta.env.BASE_URL}elements/${(customEl || TRAVELER_ELEMENTS[0]).toLowerCase()}.png`
+            : `${import.meta.env.BASE_URL}characters/${charData?.id}.png`;
           return (
             <DeletePlanConfirmationModal
               itemName={displayName}
-              itemRarity={charData?.rarity || 5}
-              itemIconSrc={`${import.meta.env.BASE_URL}characters/${charData?.id}.png`}
+              itemRarity={itemRarity}
+              itemIconSrc={itemIconSrc}
               onClose={() => setDeletingCharacterKey(null)}
               onConfirm={() => {
                 setPlannedItems(prev => prev.filter(p => {
@@ -1352,7 +1363,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
           title: rb.name,
           imageSrc: isWep 
             ? `${import.meta.env.BASE_URL}icons/${rb.weaponType?.toLowerCase()}.png`
-            : `${import.meta.env.BASE_URL}characters/CustomCharacter.png`,
+            : `${import.meta.env.BASE_URL}elements/${(rb.element || TRAVELER_ELEMENTS[0]).toLowerCase()}.png`,
           fallbackImageSrc
         };
       });
@@ -1387,7 +1398,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
             title: name,
             imageSrc: isWeapon 
               ? `${import.meta.env.BASE_URL}icons/${planned.customWeaponType?.toLowerCase()}.png`
-              : `${import.meta.env.BASE_URL}characters/CustomCharacter.png`,
+              : `${import.meta.env.BASE_URL}elements/${(planned.customElement || TRAVELER_ELEMENTS[0]).toLowerCase()}.png`,
             fallbackImageSrc: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&rounded=true`
           });
         } else if (!isWeapon) {

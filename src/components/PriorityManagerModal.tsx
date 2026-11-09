@@ -6,6 +6,7 @@ import {
   isTravelerKey,
   getTravelerElement,
   getCharacterPlanId,
+  TRAVELER_ELEMENTS,
   type TravelerKey,
 } from '../utils/characterHelpers';
 
@@ -115,12 +116,14 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
 
           if (isWeapon) {
             const wData = lookupWeapon(planned.key) || {
-              name: planned.key,
-              rarity: 4,
+              name: planned.customName || planned.name || planned.key,
+              rarity: planned.customRarity || 4,
               id: '',
-              type: '',
+              type: planned.customWeaponType || 'Sword',
             };
-            const rarity = wData.rarity || 4;
+            const rarity = planned.custom ? (planned.customRarity || 4) : (wData.rarity || 4);
+            const displayName = planned.custom ? (planned.customName || planned.name || planned.key) : wData.name;
+            const weaponType = planned.custom ? (planned.customWeaponType || 'Sword') : wData.type;
             
             // Setup custom premium background gradients & borders based on weapon rarity
             let bgStyle = 'rgba(255, 255, 255, 0.02)';
@@ -193,17 +196,17 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
                     }}
                   >
                     <img
-                      src={`${import.meta.env.BASE_URL}weapons/${wData.id}.png`}
-                      alt={wData.name}
-                      style={{ width: '110%', height: '110%', objectFit: 'contain' }}
+                      src={planned.custom ? getWeaponTypeIconPath(weaponType) : `${import.meta.env.BASE_URL}weapons/${wData.id}.png`}
+                      alt={displayName}
+                      style={planned.custom ? { width: '75%', height: '75%', objectFit: 'contain' } : { width: '110%', height: '110%', objectFit: 'contain' }}
                       onError={(e) => {
                         const target = e.currentTarget;
-                        if (!target.dataset.fallback) {
+                        if (!planned.custom && !target.dataset.fallback) {
                           target.dataset.fallback = 'enka';
                           target.src = `https://enka.network/ui/UI_EquipIcon_${wData.id}.png`;
                         } else if (!target.dataset.fallbackUi) {
                           target.dataset.fallbackUi = 'ui';
-                          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(wData.name)}&background=random&color=fff&rounded=true&font-size=0.4`;
+                          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=random&color=fff&rounded=true&font-size=0.4`;
                         }
                       }}
                     />
@@ -212,12 +215,12 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
                   {/* Weapon Name Row (With type icon badge) */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <img 
-                      src={getWeaponTypeIconPath(wData.type)} 
-                      alt={wData.type} 
+                      src={getWeaponTypeIconPath(weaponType)} 
+                      alt={weaponType} 
                       style={{ width: '14px', height: '14px', opacity: 0.6 }} 
                     />
-                    <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '140px' }} title={wData.name}>
-                      {wData.name}
+                    <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '140px' }} title={displayName}>
+                      {displayName}
                     </span>
                   </div>
                 </div>
@@ -233,17 +236,21 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
           } else {
             // Character Row
             const charData = lookupChar(planned.key) || {
-              name: planned.key,
-              rarity: 5,
-              element: 'None',
+              name: planned.customName || planned.name || planned.key,
+              rarity: planned.customRarity || 5,
+              element: planned.custom ? (planned.customElement || TRAVELER_ELEMENTS[0]) : 'None',
               id: '',
             };
             const isTraveler = !planned.custom && isTravelerKey(planned.key);
             const travelerElement = isTraveler ? getTravelerElement(planned) : null;
-            const rarity = charData.rarity || 4;
-            const elementClass = isTraveler && travelerElement
-              ? travelerElement.toLowerCase()
-              : (charData.element ? charData.element.toLowerCase() : 'none');
+            const customElement = planned.custom ? (planned.customElement || TRAVELER_ELEMENTS[0]) : null;
+            const displayName = planned.custom ? (planned.customName || planned.name || planned.key) : charData.name;
+            const rarity = planned.custom ? (planned.customRarity || 5) : (charData.rarity || 4);
+            const elementClass = planned.custom && customElement
+              ? customElement.toLowerCase()
+              : isTraveler && travelerElement
+                ? travelerElement.toLowerCase()
+                : (charData.element ? charData.element.toLowerCase() : 'none');
 
             return (
               <div
@@ -314,17 +321,23 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
                     }}
                   >
                     <img
-                      src={`${import.meta.env.BASE_URL}characters/${charData.id}.png`}
-                      alt={charData.name}
-                      style={{ width: '115%', height: '115%', objectFit: 'contain', objectPosition: 'bottom' }}
+                      src={planned.custom
+                        ? `${import.meta.env.BASE_URL}elements/${(customElement || TRAVELER_ELEMENTS[0]).toLowerCase()}.png`
+                        : `${import.meta.env.BASE_URL}characters/${charData.id}.png`
+                      }
+                      alt={displayName}
+                      style={planned.custom
+                        ? { width: '75%', height: '75%', objectFit: 'contain' }
+                        : { width: '115%', height: '115%', objectFit: 'contain', objectPosition: 'bottom' }
+                      }
                       onError={(e) => {
                         const target = e.currentTarget;
-                        if (!target.dataset.fallback) {
+                        if (!planned.custom && !target.dataset.fallback) {
                           target.dataset.fallback = 'enka';
                           target.src = `https://enka.network/ui/UI_AvatarIcon_${charData.id}.png`;
                         } else if (!target.dataset.fallbackUi) {
                           target.dataset.fallbackUi = 'ui';
-                          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(charData.name)}&background=random&color=fff&rounded=true&font-size=0.4`;
+                          target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=random&color=fff&rounded=true&font-size=0.4`;
                         }
                       }}
                     />
@@ -340,8 +353,8 @@ export const PriorityManagerModal: React.FC<PriorityManagerModalProps> = ({
                         style={{ width: '15px', height: '15px', objectFit: 'contain', flexShrink: 0 }}
                       />
                     )}
-                    <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '145px' }} title={isTraveler && travelerElement ? `${charData.name} (${travelerElement})` : charData.name}>
-                      {charData.name}
+                    <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '145px' }} title={isTraveler && travelerElement ? `${displayName} (${travelerElement})` : displayName}>
+                      {displayName}
                     </span>
                   </div>
                 </div>

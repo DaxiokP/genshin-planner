@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { X, Search } from 'lucide-react';
 import materialMapData from '../maps/materialMap.json';
 
@@ -16,6 +16,12 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
   onSelect,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSearchQuery('');
+    }
+  }, [isOpen, category]);
 
   const availableMaterials = useMemo(() => {
     const materials = Object.entries(materialMapData).map(([key, val]: any) => ({
@@ -88,15 +94,26 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
       filtered = materials.filter(m => m.sortGroup === 200);
     }
 
-    // Sort by name
+    // Sort from older to newer (by numeric item ID)
     return filtered
       .filter(m => m.name.toLowerCase().includes(searchQuery.toLowerCase()))
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .sort((a, b) => (Number(a.id) || 0) - (Number(b.id) || 0));
   }, [category, searchQuery]);
 
   if (!isOpen) return null;
 
+  const handleClose = () => {
+    setSearchQuery('');
+    onClose();
+  };
+
+  const handleSelectItem = (key: string) => {
+    setSearchQuery('');
+    onSelect(key);
+  };
+
   const handleSelectUnknown = () => {
+    setSearchQuery('');
     onSelect(`?_${category.toLowerCase()}`);
   };
 
@@ -117,7 +134,7 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
   return (
     <div 
       className="modal-overlay" 
-      onClick={onClose} 
+      onClick={handleClose} 
       style={{ 
         zIndex: 1100, 
         display: 'flex', 
@@ -133,7 +150,7 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
       >
         <div className="modal-header">
           <h2>Select {getCategoryTitle()}</h2>
-          <button className="modal-close-btn" onClick={onClose}>
+          <button className="modal-close-btn" onClick={handleClose}>
             <X size={20} />
           </button>
         </div>
@@ -147,7 +164,6 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
               className="modal-search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              autoFocus
             />
             {searchQuery && (
               <button className="modal-search-clear" onClick={() => setSearchQuery('')}>
@@ -164,10 +180,35 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
             gap: '0.75rem',
             justifyItems: 'center'
           }}>
+            {/* Question Mark Option (First in the list) */}
+            <div
+              onClick={handleSelectUnknown}
+              className="char-select-item"
+              style={{ width: '70px', cursor: 'pointer', textAlign: 'center' }}
+              title="New Material"
+            >
+              <div 
+                className="material-icon-wrapper" 
+                style={{ 
+                  width: '60px', 
+                  height: '60px', 
+                  borderRadius: '50%', 
+                  background: '#0a0b0d', 
+                  border: '2px solid rgba(255,255,255,0.1)',
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  margin: '0 auto'
+                }}
+              >
+                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#ece5d8' }}>?</span>
+              </div>
+            </div>
+
             {availableMaterials.map((mat) => (
               <div
                 key={mat.key}
-                onClick={() => onSelect(mat.key)}
+                onClick={() => handleSelectItem(mat.key)}
                 className="char-select-item"
                 style={{ width: '70px', cursor: 'pointer', textAlign: 'center' }}
                 title={mat.name}
@@ -198,31 +239,6 @@ export const SelectMaterialModal: React.FC<SelectMaterialModalProps> = ({
                 </div>
               </div>
             ))}
-
-            {/* Question Mark Option */}
-            <div
-              onClick={handleSelectUnknown}
-              className="char-select-item"
-              style={{ width: '70px', cursor: 'pointer', textAlign: 'center' }}
-              title="New Material"
-            >
-              <div 
-                className="material-icon-wrapper" 
-                style={{ 
-                  width: '60px', 
-                  height: '60px', 
-                  borderRadius: '50%', 
-                  background: '#0a0b0d', 
-                  border: '2px solid rgba(255,255,255,0.1)',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  margin: '0 auto'
-                }}
-              >
-                <span style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#ece5d8' }}>?</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

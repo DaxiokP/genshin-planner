@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import type { MaterialsData, GoodCharacter, GoodWeapon, GoodArtifact } from '../types';
 import { supabase, fetchUserProfiles, saveProfileState } from '../supabase';
-import { isTravelerKey, getTravelerElement, getCharacterPlanId, type TravelerKey } from '../utils/characterHelpers';
+import { isTravelerKey, getTravelerElement, getCharacterPlanId, TRAVELER_ELEMENTS, type TravelerKey } from '../utils/characterHelpers';
 
 function normalizeLoadedPlannedItems(items: any[], traveler: TravelerKey): any[] {
   return (items || []).map(item => {
@@ -12,6 +12,12 @@ function normalizeLoadedPlannedItems(items: any[], traveler: TravelerKey): any[]
         type: 'character',
         travelerElement: el,
         id: getCharacterPlanId(item, traveler, el),
+      };
+    }
+    if ((item.type === 'character' || !item.type) && item.custom && !item.customElement) {
+      return {
+        ...item,
+        customElement: TRAVELER_ELEMENTS[0],
       };
     }
     return item;
