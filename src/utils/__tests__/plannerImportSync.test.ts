@@ -150,6 +150,9 @@ describe('plannerImportSync', () => {
       expect(isTravelerKey('Aether')).toBe(true);
       expect(isTravelerKey('Lumine')).toBe(true);
       expect(isTravelerKey('TravelerAnemo')).toBe(true);
+      expect(isTravelerKey('character:Aether:Anemo')).toBe(true);
+      expect(isTravelerKey('character:Lumine:Pyro')).toBe(true);
+      expect(isTravelerKey('character:Furina')).toBe(false);
       expect(isTravelerKey('Furina')).toBe(false);
 
       expect(isSameCharacterKey('Traveler', 'Lumine')).toBe(true);

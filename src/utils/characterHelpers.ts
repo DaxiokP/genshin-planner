@@ -23,7 +23,8 @@ Object.keys(characterMapRaw).forEach(k => {
 
 export const isTravelerKey = (key: string | null | undefined): boolean => {
   if (!key) return false;
-  const n = normalize(key);
+  const raw = key.startsWith('character:') ? key.slice('character:'.length) : key;
+  const n = normalize(raw);
   return n === 'traveler' || n === 'aether' || n === 'lumine' || n.startsWith('traveler') || n.startsWith('aether') || n.startsWith('lumine');
 };
 
