@@ -1307,7 +1307,9 @@ const isGenericMaterial = (key: string) => {
          k === 'wanderersadvice' || 
          k === 'mysticenhancementore' || 
          k === 'fineenhancementore' || 
-         k === 'enhancementore';
+         k === 'enhancementore' ||
+         k === 'dustofazoth' ||
+         k === 'dreamsolvent';
 };
 
 const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedItems, weapons, traveler }) => {
@@ -1316,8 +1318,19 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
   const [measured, setMeasured] = React.useState(false);
 
   React.useLayoutEffect(() => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
+    const el = ref.current;
+    if (!el) return;
+    if ('showPopover' in el) {
+      try {
+        if (el.matches(':popover-open')) {
+          el.hidePopover();
+        }
+        el.showPopover();
+      } catch {
+        // Fallback when Popover API is unavailable
+      }
+    }
+    const rect = el.getBoundingClientRect();
     const width = rect.width || 220;
     const height = rect.height || 150;
 
@@ -1448,6 +1461,7 @@ const TooltipBox: React.FC<TooltipBoxProps> = ({ hoveredItem, mousePos, plannedI
     <div
       ref={ref}
       className="tooltip-box global"
+      {...({ popover: 'manual' } as Record<string, string>)}
       style={{
         left: pos.x,
         top: pos.y,

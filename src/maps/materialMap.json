@@ -1274,6 +1274,17 @@
     "sortRank": 15103,
     "localExt": ".png"
   },
+  "dreamsolvent": {
+    "id": "113021",
+    "name": "Dream Solvent",
+    "rarity": 4,
+    "sources": [
+      "Trounce Domain and Great Wolf King of the North Challenge Reward"
+    ],
+    "sortGroup": 800,
+    "sortRank": 410011,
+    "localExt": ".png"
+  },
   "dropoftaintedwater": {
     "id": "112086",
     "name": "Drop of Tainted Water",
@@ -1295,6 +1306,17 @@
     ],
     "sortGroup": 600,
     "sortRank": 15114,
+    "localExt": ".png"
+  },
+  "dustofazoth": {
+    "id": "104201",
+    "name": "Dust of Azoth",
+    "rarity": 2,
+    "sources": [
+      "Stardust Exchange"
+    ],
+    "sortGroup": 800,
+    "sortRank": 410011,
     "localExt": ".png"
   },
   "dvalinsclaw": {

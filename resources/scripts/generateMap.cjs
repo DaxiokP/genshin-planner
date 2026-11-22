@@ -14,6 +14,9 @@ const allowedNames = new Set([
   "Fine Enhancement Ore",
   "Mystic Enhancement Ore",
   "Sanctifying Unction",
+  // Conversion Materials
+  "Dust of Azoth",
+  "Dream Solvent",
   // 6.5 & 6.7 Patch & Doctor Boss Materials
   "Mask of the Virtuous Doctor", "Madman's Restraint", "Elixir of the Heretic",
   "Counterfeit Resin", "Twisted Withered Branch", "Profaned Sprout",

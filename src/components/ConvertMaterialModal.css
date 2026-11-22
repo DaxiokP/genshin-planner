@@ -1,0 +1,637 @@
+/* Native <dialog> Modal Base for Convert Material & Source Picker */
+dialog.convert-dialog {
+  padding: 0;
+  border: 1px solid rgba(255, 204, 102, 0.28);
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 40%, #202230 0%, #13151e 100%);
+  color: var(--text-primary);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.85), 0 0 32px rgba(255, 204, 102, 0.12);
+  max-width: min(640px, 95vw);
+  width: fit-content;
+  min-width: min(470px, 94vw);
+  max-height: 90vh;
+  margin: auto;
+  overflow: visible;
+}
+
+dialog.convert-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog.convert-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.convert-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Header */
+.convert-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 14px 14px 0 0;
+}
+
+.convert-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.convert-modal-header h2 {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffcc66;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.convert-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+/* Info ("i") Toggletip Button & Rate Popover */
+.convert-info-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.convert-info-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 204, 102, 0.35);
+  background: rgba(255, 204, 102, 0.1);
+  color: #ffcc66;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.convert-info-btn:hover,
+.convert-info-btn:focus-visible {
+  background: rgba(255, 204, 102, 0.22);
+  border-color: rgba(255, 204, 102, 0.75);
+  outline: none;
+}
+
+.convert-rate-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 240px;
+  background: #1a1d28;
+  border: 1px solid rgba(255, 204, 102, 0.45);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+  z-index: 30;
+  font-family: 'Outfit', sans-serif;
+  color: #e8e6df;
+}
+
+.convert-rate-popover-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffcc66;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.convert-rate-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+}
+
+.convert-rate-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.convert-rate-tier {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.convert-rate-value {
+  font-weight: 700;
+  color: #ffcc66;
+}
+
+/* Body */
+.convert-modal-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Top Target Selector Strip (4 Gems or 3 Weekly Drops) */
+.convert-top-strip {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.convert-top-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.16s ease;
+}
+
+.convert-top-item:hover {
+  transform: translateY(-2px);
+}
+
+.convert-top-icon-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.convert-top-icon-box img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  transform: scale(1.22);
+}
+
+.convert-top-item.selected .convert-top-icon-box {
+  border-color: #ffcc66;
+  box-shadow: 0 0 0 2px rgba(255, 204, 102, 0.35), 0 0 16px rgba(255, 204, 102, 0.4);
+}
+
+.convert-top-item:hover .convert-top-icon-box {
+  border-color: rgba(255, 204, 102, 0.65);
+}
+
+.convert-top-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e8e6df;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
+  min-width: 42px;
+  text-align: center;
+}
+
+.convert-top-item.selected .convert-top-count {
+  background: rgba(255, 204, 102, 0.22);
+  color: #ffcc66;
+}
+
+/* Middle Conversion Equation Area */
+.convert-equation-panel {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 1.1rem 1.35rem;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+  width: fit-content;
+}
+
+.convert-equation-grid {
+  display: grid;
+  grid-template-columns: 82px 66px 26px 66px 32px 66px;
+  row-gap: 0.55rem;
+  column-gap: 0.35rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.convert-row-label {
+  justify-self: end;
+  padding-right: 0.4rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.2px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.convert-operator {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: rgba(255, 204, 102, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+/* Slot Icon Boxes */
+.convert-slot-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  background: #14161f;
+  transition: transform 0.16s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.convert-slot-icon img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  transform: scale(1.22);
+}
+
+.convert-slot-icon.clickable {
+  cursor: pointer;
+  border: 2px dashed rgba(255, 204, 102, 0.55);
+}
+
+.convert-slot-icon.clickable.has-selection {
+  border-style: solid;
+  border-color: rgba(255, 204, 102, 0.65);
+}
+
+.convert-slot-icon.clickable:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #ffcc66;
+  box-shadow: 0 0 14px rgba(255, 204, 102, 0.35);
+}
+
+.convert-slot-icon.disabled-slot,
+.convert-slot-icon:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+  filter: grayscale(1);
+  border: 2px dashed rgba(255, 255, 255, 0.18);
+}
+
+.convert-slot-icon.grayed-out {
+  opacity: 0.38;
+  filter: grayscale(1);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.convert-question-mark {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ece5d8;
+  line-height: 1;
+}
+
+/* Inputs & Read-only Cells in Equation Grid */
+.convert-cell-input {
+  width: 62px;
+  height: 32px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.98rem;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.convert-cell-input::-webkit-outer-spin-button,
+.convert-cell-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.convert-cell-input:focus {
+  border-color: #ffcc66;
+  box-shadow: 0 0 8px rgba(255, 204, 102, 0.55);
+}
+
+.convert-cell-input.target-amount-input {
+  border: 2px solid rgba(255, 204, 102, 0.75);
+}
+
+.convert-cell-readonly {
+  width: 62px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  user-select: none;
+}
+
+.convert-cell-readonly.insufficient {
+  background: rgba(239, 83, 80, 0.18);
+  border-color: rgba(239, 83, 80, 0.65);
+  color: #ff8a80;
+}
+
+.convert-cell-readonly.muted {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.convert-cell-empty {
+  width: 62px;
+  height: 32px;
+}
+
+/* Footer */
+.convert-modal-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 0 0 14px 14px;
+}
+
+.convert-btn-cancel {
+  background: rgba(255, 255, 255, 0.06);
+  color: #d4d4d8;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.convert-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.convert-submit-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.convert-btn-submit {
+  background: #ffcc66;
+  color: #332200;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 10px rgba(255, 204, 102, 0.25);
+  transition: background 0.18s ease, transform 0.15s ease, opacity 0.18s ease;
+}
+
+.convert-btn-submit:hover:not(:disabled) {
+  background: #ffd980;
+  transform: translateY(-1px);
+}
+
+.convert-btn-submit:disabled {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.convert-disabled-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: #2b181a;
+  color: #ff9a9a;
+  border: 1px solid rgba(239, 83, 80, 0.55);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Source Picker Nested <dialog> */
+dialog.convert-picker-dialog {
+  padding: 0;
+  border: 1px solid rgba(255, 204, 102, 0.35);
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 30%, #222536 0%, #141620 100%);
+  color: var(--text-primary);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  max-width: min(560px, 94vw);
+  width: fit-content;
+  min-width: min(320px, 90vw);
+  max-height: 82vh;
+  margin: auto;
+  overflow: hidden;
+}
+
+dialog.convert-picker-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog.convert-picker-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.convert-picker-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.convert-picker-body {
+  padding: 1.25rem 1.4rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.convert-picker-single-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.convert-picker-gem-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.convert-picker-gem-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.convert-picker-element-label {
+  width: 60px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.convert-picker-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.15s ease;
+}
+
+.convert-picker-option:hover {
+  transform: translateY(-2px);
+}
+
+.convert-picker-option.zero-stock .convert-picker-icon-box {
+  opacity: 0.58;
+}
+
+.convert-picker-option.zero-stock:hover .convert-picker-icon-box {
+  opacity: 1;
+}
+
+.convert-picker-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 9px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.convert-picker-icon-box img {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  transform: scale(1.22);
+}
+
+.convert-picker-option:hover .convert-picker-icon-box {
+  border-color: #ffcc66;
+  box-shadow: 0 0 12px rgba(255, 204, 102, 0.35);
+}
+
+.convert-picker-option.selected .convert-picker-icon-box {
+  border-color: #ffcc66;
+  box-shadow: 0 0 0 2px rgba(255, 204, 102, 0.4);
+}
+
+.convert-picker-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e8e6df;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 7px;
+  border-radius: 5px;
+  min-width: 34px;
+  text-align: center;
+}
+
+.convert-picker-option.zero-stock .convert-picker-count {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 520px) {
+  .convert-equation-grid {
+    grid-template-columns: 64px 56px 18px 56px 24px 56px;
+  }
+
+  .convert-slot-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .convert-cell-input,
+  .convert-cell-readonly,
+  .convert-cell-empty {
+    width: 54px;
+    font-size: 0.88rem;
+  }
+}

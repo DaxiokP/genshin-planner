@@ -200,6 +200,14 @@ input[type=number] {
   /* Micro interpolation for smooth tracking */
 }
 
+.tooltip-box.global[popover] {
+  border: none;
+  padding: 0;
+  margin: 0;
+  inset: auto;
+  overflow: visible;
+}
+
 .tooltip-header {
   background: #354257;
   /* Dark slate blue */
@@ -1446,6 +1454,8 @@ input[type=number] {
 .quick-inventory-modal-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   background: rgba(255, 255, 255, 0.02) !important;
+  position: relative;
+  z-index: 5;
 }
 
 .quick-inventory-modal-header h2 {
@@ -1653,4 +1663,86 @@ input[type=number] {
   border-color: rgba(255, 204, 102, 0.6) !important;
   color: #fff !important;
   box-shadow: 0 0 10px rgba(255, 204, 102, 0.15);
+}
+
+/* Convert trigger icon button inside QuickInventoryModal */
+.quick-inventory-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quick-inventory-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin-bottom: 0.85rem;
+}
+
+.quick-inventory-group-header .quick-inventory-group-title {
+  margin-bottom: 0 !important;
+  width: auto;
+}
+
+.quick-inventory-convert-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 204, 102, 0.35);
+  background: rgba(255, 204, 102, 0.12);
+  color: #ffcc66;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.16s ease, box-shadow 0.18s ease;
+}
+
+.quick-inventory-convert-btn.small {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.quick-inventory-convert-btn:hover,
+.quick-inventory-convert-btn:focus-visible {
+  background: rgba(255, 204, 102, 0.26);
+  border-color: rgba(255, 204, 102, 0.8);
+  color: #fff3d1;
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(255, 204, 102, 0.25);
+  outline: none;
+}
+
+.quick-inventory-convert-btn::after {
+  content: 'Convert';
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: #161822;
+  color: #ffcc66;
+  border: 1px solid rgba(255, 204, 102, 0.45);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  z-index: 50;
+}
+
+.quick-inventory-convert-btn:hover::after,
+.quick-inventory-convert-btn:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }

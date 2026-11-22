@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { X, Save, Plus } from 'lucide-react';
+import { X, Save, Plus, ArrowLeftRight } from 'lucide-react';
 import materialMapData from '../maps/materialMap.json';
 import bossMappingsData from '../maps/bossMappings.json';
+import {
+  ConvertMaterialModal,
+  type ConvertModalContext,
+} from './ConvertMaterialModal';
+import {
+  getGemFamilyAndTier,
+  getWeeklyBossConversionGroup,
+} from '../utils/conversionHelpers';
 
 const materialMap = materialMapData as Record<string, {
   id: string;
@@ -185,11 +193,39 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
 }) => {
   const [draftCounts, setDraftCounts] = useState<Record<string, string>>({});
   const [draftDeltas, setDraftDeltas] = useState<Record<string, string>>({});
+  const [convertContext, setConvertContext] = useState<ConvertModalContext | null>(null);
 
   const displayedInfo = useMemo(() => {
     if (!materialKey) return null;
     return resolveGroupedMaterials(materialKey);
   }, [materialKey]);
+
+  const primaryConvertContext = useMemo<ConvertModalContext | null>(() => {
+    if (!materialKey) return null;
+    const gemInfo = getGemFamilyAndTier(materialKey);
+    if (gemInfo) {
+      return {
+        mode: 'dust',
+        gemFamily: gemInfo.family,
+        familyName: gemInfo.familyName,
+      };
+    }
+    const weeklyGroup = getWeeklyBossConversionGroup(materialKey);
+    if (weeklyGroup) {
+      return {
+        mode: 'solvent',
+        bossName: weeklyGroup.bossName,
+        drops: weeklyGroup.drops,
+      };
+    }
+    return null;
+  }, [materialKey]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setConvertContext(null);
+    }
+  }, [isOpen]);
 
   const getRawOwnedCount = (key: string): number => {
     if (!materials) return 0;
@@ -289,6 +325,7 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
   };
 
   return (
+    <>
     <div className="modal-overlay" onClick={onClose}>
       <div 
         className="modal-container quick-inventory-modal-container"
@@ -304,9 +341,24 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
         {/* Header */}
         <div className="modal-header quick-inventory-modal-header">
           <h2>{displayedInfo.title}</h2>
-          <button className="modal-close-btn" onClick={onClose} type="button">
-            <X size={18} />
-          </button>
+          <div className="quick-inventory-header-actions">
+            {primaryConvertContext && (
+              <button
+                className="quick-inventory-convert-btn"
+                onClick={() => {
+                  setHoveredItem(null);
+                  setConvertContext(primaryConvertContext);
+                }}
+                type="button"
+                aria-label="Convert"
+              >
+                <ArrowLeftRight size={17} />
+              </button>
+            )}
+            <button className="modal-close-btn" onClick={onClose} type="button">
+              <X size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Body */}
@@ -328,12 +380,33 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
               <div className={`quick-inventory-sections-wrapper ${gridColsClass}`}>
                 {displayedInfo.groups.map((g, groupIdx) => {
                   const isMora = g.items.includes('mora');
+                  const groupGemInfo =
+                    g.title && g.items.length > 0 ? getGemFamilyAndTier(g.items[0]) : null;
                   return (
                     <div key={groupIdx} className="quick-inventory-group-section">
                       {g.title && (
-                        <h3 className="quick-inventory-group-title">
-                          {g.title}
-                        </h3>
+                        <div className="quick-inventory-group-header">
+                          <h3 className="quick-inventory-group-title">
+                            {g.title}
+                          </h3>
+                          {groupGemInfo && (
+                            <button
+                              className="quick-inventory-convert-btn small"
+                              type="button"
+                              aria-label={`Convert ${groupGemInfo.familyName}`}
+                              onClick={() => {
+                                setHoveredItem(null);
+                                setConvertContext({
+                                  mode: 'dust',
+                                  gemFamily: groupGemInfo.family,
+                                  familyName: groupGemInfo.familyName,
+                                });
+                              }}
+                            >
+                              <ArrowLeftRight size={14} />
+                            </button>
+                          )}
+                        </div>
                       )}
 
                       <div className="quick-inventory-compact-grid">
@@ -500,5 +573,15 @@ export const QuickInventoryModal: React.FC<QuickInventoryModalProps> = ({
         </div>
       </div>
     </div>
+    <ConvertMaterialModal
+      isOpen={convertContext !== null}
+      context={convertContext}
+      materials={materials}
+      onClose={() => setConvertContext(null)}
+      onConvert={(updated) => onSave(updated)}
+      setHoveredItem={setHoveredItem}
+      setMousePos={setMousePos}
+    />
+    </>
   );
 };
